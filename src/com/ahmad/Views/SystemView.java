@@ -1,52 +1,44 @@
 package com.ahmad.Views;
 
+import com.ahmad.Tools.CustomPanel;
+import com.ahmad.Tools.Paintable;
 import com.ahmad.Views.ModeOne.DanglingBoxView;
 import com.ahmad.Views.ModeOne.SlopedBoxView;
 import com.ahmad.Models.ModeOne.SystemModel;
 
-import javax.swing.*;
 import java.awt.*;
 
-public class SystemView extends JPanel {
-    private SystemModel boxSystem;
+public class SystemView implements Paintable {
+    public CustomPanel systemPanel;
+
+    private SystemModel systemModel;
 
     private SlopedBoxView slopedBoxView;
     private DanglingBoxView danglingBoxView;
 
     private SlopeView slopeView;
 
-    private double slopeAngle;
+    public SystemView(SystemModel systemModel) {
+        this.systemModel = systemModel;
 
-    public SystemView(SystemModel boxSystem) {
-        super();
+        slopedBoxView = new SlopedBoxView(systemModel);
+        danglingBoxView = new DanglingBoxView(systemModel);
 
-        setPreferredSize(new Dimension(1200, 700));
+        slopeView = new SlopeView(systemModel);
 
-        this.boxSystem = boxSystem;
-
-        slopedBoxView = new SlopedBoxView(boxSystem);
-        danglingBoxView = new DanglingBoxView(boxSystem);
-
-        slopeView = new SlopeView(boxSystem);
-
-        slopeAngle = boxSystem.getSlopeAngle();
+        systemPanel = new CustomPanel(this);
+        systemPanel.setPreferredSize(new Dimension(1200, 700));
     }
 
-    public void paintComponent(Graphics graphics) {
-        super.paintComponent(graphics);
-
-        slopedBoxView.draw(graphics, slopeAngle);
+    @Override
+    public void paint(Graphics graphics) {
+        slopedBoxView.draw(graphics);
         danglingBoxView.draw(graphics);
 
         slopeView.draw(graphics);
-    }
 
-    public void setSlopeAngle(double slopeAngle) {
-        this.slopeAngle = slopeAngle;
-    }
-
-    public SystemModel getBoxSystem() {
-        return boxSystem;
+        // Repaints the window after updating everything
+        systemPanel.repaint();
     }
 }
 

@@ -35,12 +35,6 @@ public class AngleTextFieldController implements KeyListener {
             double slopeAngle = Double.parseDouble(slopeAngleTextField.getText());
 
             boxSystem.setSlopeAngle(slopeAngle);
-            simulationView.setSlopeAngle(slopeAngle);
-
-            boxSystem.getBoxA().setPositionBasedOnAngle(slopeAngle);
-            boxSystem.getBoxB().setPositionBasedOnAngle(slopeAngle);
-
-            view.repaint();
         } catch (Exception e) {
             System.out.println("Error for angle");
         }

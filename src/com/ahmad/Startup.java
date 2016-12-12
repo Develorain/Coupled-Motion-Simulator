@@ -20,12 +20,12 @@ public class Startup {
         JFrame jFrame = new JFrame("Coupled Motion Simulator");
         jFrame.setMinimumSize(new Dimension(800, 600));
         //jFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        jFrame.setContentPane(mainView);
+        jFrame.setContentPane(mainView.mainPanel);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.pack();
         jFrame.setVisible(true);
 
-        System.out.println(mainView.simulationView.getSize());
+        System.out.println(mainView.systemView.systemPanel.getSize());
         System.out.println(jFrame.getSize());
     }
 }

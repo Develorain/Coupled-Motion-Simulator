@@ -22,10 +22,10 @@ public class SystemModel extends Model {
     private double slopeAngle;
 
     public SystemModel() {
-        slopeAngle = 45; // default value of 45
+        boxA = new SlopedBoxModel(this, 1, 0);         // get these values from the view
+        boxB = new DanglingBoxModel(this, 1, 0);
 
-        boxA = new SlopedBoxModel(1, slopeAngle, 0);         // get these values from the view
-        boxB = new DanglingBoxModel(1, slopeAngle, 0);
+        setSlopeAngle(45);
 
         slopeA = new SlopeModel(this);
     }
@@ -62,6 +62,8 @@ public class SystemModel extends Model {
 
     public void setSlopeAngle(double slopeAngle) {
         this.slopeAngle = slopeAngle;
+        boxA.setPositionBasedOnAngle();
+        boxB.setPositionBasedOnAngle();
     }
 
     public double getSlopeAngle() {
@@ -78,5 +80,17 @@ public class SystemModel extends Model {
 
     public DanglingBoxModel getBoxB() {
         return boxB;
+    }
+
+    public void iterate() {
+        // Updates the boxes' velocities
+        boxA.updateVelocity();
+        boxB.updateVelocity();
+
+        // Updates the boxes' positions
+        boxA.updatePosition();
+        boxB.updatePosition();
+
+        notifyViews();
     }
 }

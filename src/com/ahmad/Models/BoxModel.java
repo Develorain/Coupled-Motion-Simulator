@@ -1,9 +1,12 @@
 package com.ahmad.Models;
 
+import com.ahmad.Models.ModeOne.SystemModel;
 import com.ahmad.Tools.Vector;
 
 public abstract class BoxModel {
     private static final double DELTA_TIME = 1.0 / 60.0;
+
+    protected SystemModel systemModel;
 
     protected double x;  // making this double makes drawing code a lot bulkier since i need to convert from double
     protected double y;  // but keeping it as int doesn't allow me to increment the position
@@ -15,11 +18,12 @@ public abstract class BoxModel {
     private Vector velocity = new Vector();
     private Vector acceleration;
 
-    public BoxModel(double mass, double drawAngle, double mu) {
+    public BoxModel(SystemModel systemModel, double mass, double mu) {
+        this.systemModel = systemModel;
         this.mass = mass;
         this.mu = mu;
 
-        setPositionBasedOnAngle(drawAngle);
+        setPositionBasedOnAngle();
     }
 
     public void updatePosition() {
@@ -32,7 +36,7 @@ public abstract class BoxModel {
         velocity.setY(velocity.getY() + acceleration.getY() * DELTA_TIME);
     }
 
-    public abstract void setPositionBasedOnAngle(double angle);
+    public abstract void setPositionBasedOnAngle();
 
     public double getMass() {
         return mass;

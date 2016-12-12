@@ -1,7 +1,6 @@
 package com.ahmad.Controllers;
 
 import com.ahmad.Models.ModeOne.SystemModel;
-import com.ahmad.Views.MainView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,34 +10,20 @@ import java.util.TimerTask;
 public class StartButtonController implements ActionListener {
     private Timer timer;
 
-    private MainView view;
-    private SystemModel boxSystem;
+    private SystemModel systemModel;
 
-    public StartButtonController(MainView view, SystemModel boxSystem) {
-        this.view = view;
-        this.boxSystem = boxSystem;
+    public StartButtonController(SystemModel systemModel) {
+        this.systemModel = systemModel;
     }
 
     public void actionPerformed(ActionEvent e) {
         System.out.println("Start Button Pressed");
 
-        boxSystem.update();
+        systemModel.update();
 
         TimerTask timerTask = new TimerTask() {
             public void run() {
-                // Updates the boxes' velocities
-                boxSystem.getBoxA().updateVelocity();
-                boxSystem.getBoxB().updateVelocity();
-
-                // Updates the boxes' positions
-                boxSystem.getBoxA().updatePosition();
-                boxSystem.getBoxB().updatePosition();
-
-                // Updates the box system's information table
-                view.updateBoxSystemInfoTable();
-
-                // Repaints the window after updating everything
-                view.repaint();
+                systemModel.iterate(); // TODO: needs to check if start button was already pressed to avoid multiple timers
             }
         };
 
@@ -47,4 +32,5 @@ public class StartButtonController implements ActionListener {
         timer = new Timer();
         timer.scheduleAtFixedRate(timerTask, 1000 / 60, 1000 / 60);
     }
+
 }
