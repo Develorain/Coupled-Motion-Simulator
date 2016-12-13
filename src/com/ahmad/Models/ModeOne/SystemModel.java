@@ -22,15 +22,14 @@ public class SystemModel extends Model {
     private double slopeAngle;
 
     public SystemModel() {
-        boxA = new SlopedBoxModel(this, 1, 0);         // get these values from the view
+        boxA = new SlopedBoxModel(this, 1, 0);
         boxB = new DanglingBoxModel(this, 1, 0);
+        slopeA = new SlopeModel(this);
 
         setSlopeAngle(45);
-
-        slopeA = new SlopeModel(this);
     }
 
-    public void update() {
+    public void initializeConstantValues() {
         updateFriction();
         updateAcceleration();
         updateTension();
@@ -62,8 +61,9 @@ public class SystemModel extends Model {
 
     public void setSlopeAngle(double slopeAngle) {
         this.slopeAngle = slopeAngle;
-        boxA.setPositionBasedOnAngle();
-        boxB.setPositionBasedOnAngle();
+        boxA.calculateCoordinates();
+        boxB.calculateCoordinates();
+        slopeA.calculateCoordinates();
     }
 
     public double getSlopeAngle() {

@@ -5,6 +5,7 @@ import com.ahmad.Controllers.ResetButtonController;
 import com.ahmad.Controllers.StartButtonController;
 import com.ahmad.Models.ModeOne.SystemModel;
 import com.ahmad.Models.Model;
+import com.ahmad.Views.ModeOne.SystemView;
 
 import javax.swing.*;
 import java.awt.*;

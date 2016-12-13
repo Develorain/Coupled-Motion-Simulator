@@ -19,7 +19,7 @@ public class StartButtonController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         System.out.println("Start Button Pressed");
 
-        systemModel.update();
+        systemModel.initializeConstantValues();
 
         TimerTask timerTask = new TimerTask() {
             public void run() {

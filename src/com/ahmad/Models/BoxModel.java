@@ -23,7 +23,7 @@ public abstract class BoxModel {
         this.mass = mass;
         this.mu = mu;
 
-        setPositionBasedOnAngle();
+        calculateCoordinates();
     }
 
     public void updatePosition() {
@@ -36,7 +36,7 @@ public abstract class BoxModel {
         velocity.setY(velocity.getY() + acceleration.getY() * DELTA_TIME);
     }
 
-    public abstract void setPositionBasedOnAngle();
+    public abstract void calculateCoordinates();
 
     public double getMass() {
         return mass;

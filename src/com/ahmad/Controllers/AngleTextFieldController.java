@@ -1,7 +1,7 @@
 package com.ahmad.Controllers;
 
 import com.ahmad.Models.ModeOne.SystemModel;
-import com.ahmad.Views.SystemView;
+import com.ahmad.Views.ModeOne.SystemView;
 import com.ahmad.Views.MainView;
 
 import javax.swing.*;

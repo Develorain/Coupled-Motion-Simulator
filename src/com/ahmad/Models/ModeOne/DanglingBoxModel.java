@@ -8,7 +8,7 @@ public class DanglingBoxModel extends BoxModel {
         super(systemModel, mass, mu);
     }
 
-    public void setPositionBasedOnAngle() {
+    public void calculateCoordinates() {
         double tempX = 600;
         double tempY = 350;
 

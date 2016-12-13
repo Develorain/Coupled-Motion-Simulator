@@ -4,24 +4,22 @@ import com.ahmad.Models.ModeOne.SystemModel;
 import com.ahmad.Tools.MathTools;
 
 public class SlopeModel {
-    private SystemModel boxSystem;
+    private SystemModel systemModel;
 
     public int x1;  // bottom left x
     public int y1;  // bottom left y
     public int x2;  // top right x
     public int y2;  // top right y
 
-    public SlopeModel(SystemModel boxSystem) {
-        this.boxSystem = boxSystem;
-
-        calculateCoordinates(45);
+    public SlopeModel(SystemModel systemModel) {
+        this.systemModel = systemModel;
     }
 
-    public void calculateCoordinates(double slopeAngle) {
-        x1 = (int) (boxSystem.getBoxA().getX() + 100 * MathTools.sin(slopeAngle));
-        y1 = (int) (boxSystem.getBoxA().getY() + 100 * MathTools.cos(slopeAngle));
+    public void calculateCoordinates() {
+        x1 = (int) (systemModel.getBoxA().getX() + 100 * MathTools.sin(systemModel.getSlopeAngle()));
+        y1 = (int) (systemModel.getBoxA().getY() + 100 * MathTools.cos(systemModel.getSlopeAngle()));
 
-        x2 = boxSystem.getBoxB().getX();
-        y2 = boxSystem.getBoxB().getY();
+        x2 = systemModel.getBoxB().getX();
+        y2 = systemModel.getBoxB().getY();
     }
 }
