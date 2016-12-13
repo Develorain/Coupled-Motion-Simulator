@@ -23,7 +23,7 @@ public class StartButtonController implements ActionListener {
 
         TimerTask timerTask = new TimerTask() {
             public void run() {
-                systemModel.iterate(); // TODO: needs to check if start button was already pressed to avoid multiple timers
+                systemModel.iterate(); // TODO: needs to check if start button was already pressed to avoid multiple timers running
             }
         };
 
