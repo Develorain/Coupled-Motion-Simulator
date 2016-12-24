@@ -14,6 +14,5 @@ public class CustomPanel extends JPanel {
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         paintable.paint(graphics);
-        repaint();
     }
 }

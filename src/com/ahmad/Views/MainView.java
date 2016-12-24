@@ -39,8 +39,9 @@ public class MainView implements View {
 
     @Override
     public void update() {
-        // Updates the box system's information table
-        updateBoxSystemInfoTable();
+        systemView.systemPanel.repaint(); // Repaints the simulation area
+
+        updateBoxSystemInfoTable();       // Updates the box system's information table
     }
 
     // Updates all the information tables
