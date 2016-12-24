@@ -4,8 +4,8 @@ import com.ahmad.Models.BoxModel;
 import com.ahmad.Tools.MathTools;
 
 public class DanglingBoxModel extends BoxModel {
-    public DanglingBoxModel(SystemModel systemModel, double mass, double mu) {
-        super(systemModel, mass, mu);
+    public DanglingBoxModel(SystemModel systemModel, double mass) {
+        super(systemModel, mass);
     }
 
     public void calculateCoordinates() {

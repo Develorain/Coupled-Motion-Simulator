@@ -1,8 +1,8 @@
 package com.ahmad.Models.ModeOne;
 
 import com.ahmad.Models.Model;
-import com.ahmad.Models.WireModel;
 import com.ahmad.Models.SlopeModel;
+import com.ahmad.Models.WireModel;
 import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
 
@@ -23,7 +23,7 @@ public class SystemModel extends Model {
 
     public SystemModel() {
         boxA = new SlopedBoxModel(this, 1, 0);
-        boxB = new DanglingBoxModel(this, 1, 0);
+        boxB = new DanglingBoxModel(this, 1);
         slopeA = new SlopeModel(this);
 
         setSlopeAngle(45);
@@ -91,6 +91,6 @@ public class SystemModel extends Model {
         boxA.updatePosition();
         boxB.updatePosition();
 
-        notifyViews();
+        updateView();
     }
 }

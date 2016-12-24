@@ -4,8 +4,12 @@ import com.ahmad.Models.BoxModel;
 import com.ahmad.Tools.MathTools;
 
 public class SlopedBoxModel extends BoxModel {
+    private double mu;
+
     public SlopedBoxModel(SystemModel systemModel, double mass, double mu) {
-        super(systemModel, mass, mu);
+        super(systemModel, mass);
+
+        this.mu = mu;
     }
 
     public void calculateCoordinates() {
@@ -28,5 +32,9 @@ public class SlopedBoxModel extends BoxModel {
                 break;
             }
         }
+    }
+
+    public double getMu() {
+        return mu;
     }
 }

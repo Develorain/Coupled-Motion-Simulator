@@ -12,15 +12,13 @@ public abstract class BoxModel {
     private final int width = 100;
     private final int height = 100;
     private double mass;
-    private double mu;
 
     private Vector velocity = new Vector();
     private Vector acceleration;
 
-    public BoxModel(SystemModel systemModel, double mass, double mu) {
+    public BoxModel(SystemModel systemModel, double mass) {
         this.systemModel = systemModel;
         this.mass = mass;
-        this.mu = mu;
 
         calculateCoordinates();
     }
@@ -39,10 +37,6 @@ public abstract class BoxModel {
 
     public double getMass() {
         return mass;
-    }
-
-    public double getMu() {
-        return mu;
     }
 
     public double getVelocityMagnitude() {
