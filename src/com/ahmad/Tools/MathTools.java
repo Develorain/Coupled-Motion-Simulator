@@ -1,7 +1,6 @@
 package com.ahmad.Tools;
 
 public class MathTools {
-    public static final double DELTA_TIME_SECONDS = 1.0 / 60.0;
 
     public static double sin(double angleDegrees) {
         return Math.sin(Math.toRadians(angleDegrees));

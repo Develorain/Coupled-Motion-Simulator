@@ -1,7 +1,7 @@
 package com.ahmad.Controllers;
 
 import com.ahmad.Models.ModeOne.SystemModel;
-import com.ahmad.Tools.MathTools;
+import com.ahmad.Tools.Constants;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,7 +31,7 @@ public class StartButtonController implements ActionListener {
         // to stop the timer after x amount of seconds: http://stackoverflow.com/questions/4252187/how-to-stop-execution-after-a-certain-time-in-java
 
         timer = new Timer();
-        timer.scheduleAtFixedRate(timerTask, (int) (MathTools.DELTA_TIME_SECONDS * 1000), (int) (MathTools.DELTA_TIME_SECONDS * 1000));
+        timer.scheduleAtFixedRate(timerTask, (int) (Constants.DELTA_TIME_SECONDS * 1000), (int) (Constants.DELTA_TIME_SECONDS * 1000));
     }
 
 }

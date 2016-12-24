@@ -11,7 +11,7 @@ import java.awt.*;
 
 public class MainView implements View {
     private SystemModel systemModel;
-    private SystemView systemView;
+    public SystemView systemView;
 
     public JPanel mainPanel = new JPanel(new GridBagLayout());
 

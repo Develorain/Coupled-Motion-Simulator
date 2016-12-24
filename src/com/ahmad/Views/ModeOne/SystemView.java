@@ -1,6 +1,7 @@
 package com.ahmad.Views.ModeOne;
 
 import com.ahmad.Models.ModeOne.SystemModel;
+import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.CustomPanel;
 import com.ahmad.Tools.Paintable;
 
@@ -17,11 +18,13 @@ public class SystemView implements Paintable {
         this.systemModel = systemModel;
 
         systemPanel = new CustomPanel(this);
-        systemPanel.setPreferredSize(new Dimension(1200, 700));
+        systemPanel.setPreferredSize(new Dimension(Constants.SIMULATION_WIDTH_PIXELS, Constants.SIMULATION_HEIGHT_PIXELS));
     }
 
     @Override
     public void paint(Graphics graphics) {
+        graphics.drawLine(0, 0, Constants.SIMULATION_WIDTH_PIXELS / 2, Constants.SIMULATION_HEIGHT_PIXELS / 2);
+
         drawSlopedBox((Graphics2D) graphics);
         drawDanglingBox(graphics);
         drawSlope(graphics);
@@ -30,7 +33,7 @@ public class SystemView implements Paintable {
     private void drawSlopedBox(Graphics2D graphics) {
         // Creates a rectangle rotated based on the box's angle
         double theta = Math.toRadians(systemModel.getSlopeAngle());
-        Rectangle2D rectangle2D = new Rectangle2D.Double(0, 0, 100, 100);
+        Rectangle2D rectangle2D = new Rectangle2D.Double(0, 0, systemModel.getBoxA().getBoxWidth(), systemModel.getBoxA().getBoxHeight());
         AffineTransform affineTransform = new AffineTransform();
         affineTransform.rotate(-theta);
 
@@ -48,7 +51,7 @@ public class SystemView implements Paintable {
     }
 
     private void drawDanglingBox(Graphics graphics) {
-        graphics.fillRect(systemModel.getBoxB().getX(), systemModel.getBoxB().getY(), systemModel.getBoxB().getWidth(), systemModel.getBoxB().getHeight());
+        graphics.fillRect(systemModel.getBoxB().getX(), systemModel.getBoxB().getY(), systemModel.getBoxB().getBoxWidth(), systemModel.getBoxB().getBoxHeight());
     }
 
     private void drawSlope(Graphics graphics) {
@@ -56,4 +59,4 @@ public class SystemView implements Paintable {
     }
 }
 
-//graphics.drawLine(0, 0, getWidth() / 2, getHeight() / 2);
+//graphics.drawLine(0, 0, getBoxWidth() / 2, getBoxHeight() / 2);
