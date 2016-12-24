@@ -22,11 +22,11 @@ public class SystemModel extends Model {
     private double slopeAngle;
 
     public SystemModel() {
+        slopeAngle = 45;
+
         boxA = new SlopedBoxModel(this, 1, 0);
         boxB = new DanglingBoxModel(this, 1);
         slopeA = new SlopeModel(this);
-
-        setSlopeAngle(45);
     }
 
     public void initializeConstantValues() {
@@ -61,9 +61,12 @@ public class SystemModel extends Model {
 
     public void setSlopeAngle(double slopeAngle) {
         this.slopeAngle = slopeAngle;
+
         boxA.calculateCoordinates();
         boxB.calculateCoordinates();
         slopeA.calculateCoordinates();
+
+        updateView();
     }
 
     public double getSlopeAngle() {

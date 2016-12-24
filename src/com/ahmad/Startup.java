@@ -40,12 +40,12 @@ public class Startup {
 
 
 // TODO: **IMPORTANT**
-// fix acceleration calculation   (complete)
-// add tension calculation        (complete)
 // based on what value is not provided (either mass, mu, or acceleration), solve for not given value
 // draw slope, pulley, and string
 // make it so that you can either pick to put in mu value, or just the frictional force of the box
 // the positions of the boxes should not be hard-coded, but rather be based on the current size of the simulation view
+// fix acceleration calculation   (complete)
+// add tension calculation        (complete)
 
 
 // TODO: **SECONDARY**

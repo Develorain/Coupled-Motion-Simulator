@@ -13,6 +13,8 @@ public class SlopeModel {
 
     public SlopeModel(SystemModel systemModel) {
         this.systemModel = systemModel;
+
+        calculateCoordinates();
     }
 
     public void calculateCoordinates() {
