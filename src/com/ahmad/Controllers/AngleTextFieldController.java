@@ -1,24 +1,18 @@
 package com.ahmad.Controllers;
 
 import com.ahmad.Models.ModeOne.SystemModel;
-import com.ahmad.Views.ModeOne.SystemView;
-import com.ahmad.Views.MainView;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class AngleTextFieldController implements KeyListener {
-    private MainView view;
     private JTextField slopeAngleTextField;
-    private SystemModel boxSystem;
-    private SystemView simulationView;
+    private SystemModel systemModel;
 
-    public AngleTextFieldController(MainView view, JTextField slopeAngleTextField, SystemModel boxSystem, SystemView simulationView) {
-        this.view = view;
+    public AngleTextFieldController(JTextField slopeAngleTextField, SystemModel systemModel) {
         this.slopeAngleTextField = slopeAngleTextField;
-        this.boxSystem = boxSystem;
-        this.simulationView = simulationView;
+        this.systemModel = systemModel;
     }
 
     @Override
@@ -34,7 +28,7 @@ public class AngleTextFieldController implements KeyListener {
         try {
             double slopeAngle = Double.parseDouble(slopeAngleTextField.getText());
 
-            boxSystem.setSlopeAngle(slopeAngle);
+            systemModel.setSlopeAngle(slopeAngle);
         } catch (Exception e) {
             System.out.println("Error for angle");
         }
