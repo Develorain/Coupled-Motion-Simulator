@@ -4,7 +4,6 @@ import com.ahmad.Controllers.AngleTextFieldController;
 import com.ahmad.Controllers.ResetButtonController;
 import com.ahmad.Controllers.StartButtonController;
 import com.ahmad.Models.ModeOne.SystemModel;
-import com.ahmad.Models.Model;
 import com.ahmad.Views.ModeOne.SystemView;
 
 import javax.swing.*;
@@ -12,7 +11,7 @@ import java.awt.*;
 
 public class MainView implements View {
     private SystemModel systemModel;
-    public SystemView systemView;
+    private SystemView systemView;
 
     public JPanel mainPanel = new JPanel(new GridBagLayout());
 
@@ -32,20 +31,20 @@ public class MainView implements View {
 
     public MainView(SystemModel systemModel) {
         this.systemModel = systemModel;
-        systemModel.attach(this);
+        systemModel.setView(this);
 
         layoutScreen();
         registerControllers();
     }
 
     @Override
-    public void update(Model changedModel) {
+    public void update() {
         // Updates the box system's information table
         updateBoxSystemInfoTable();
     }
 
     // Updates all the information tables
-    public void updateBoxSystemInfoTable() {
+    private void updateBoxSystemInfoTable() {
         String accel = Double.toString(systemModel.getAcceleration());
         accelerationTextField.setText(accel);
 
@@ -58,7 +57,7 @@ public class MainView implements View {
         startButton.addActionListener(sbl);
 
 
-        AngleTextFieldController atfc = new AngleTextFieldController(this, slopeAAngleTextField, systemModel, systemView);
+        AngleTextFieldController atfc = new AngleTextFieldController(slopeAAngleTextField, systemModel);
         slopeAAngleTextField.addKeyListener(atfc);
 
 
