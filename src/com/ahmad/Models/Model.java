@@ -2,19 +2,14 @@ package com.ahmad.Models;
 
 import com.ahmad.Views.View;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Model {
-    private List<View> views = new ArrayList<>();
+    private View view;
 
-    public void attach(View view) {
-        views.add(view);
+    public void setView(View view) {
+        this.view = view;
     }
 
-    public void notifyViews() {
-        for (View view : views) {
-            view.update(this);
-        }
+    public void updateView() {
+        view.update();
     }
 }

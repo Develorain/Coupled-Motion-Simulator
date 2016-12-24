@@ -1,8 +1,8 @@
 package com.ahmad.Views.ModeOne;
 
+import com.ahmad.Models.ModeOne.SystemModel;
 import com.ahmad.Tools.CustomPanel;
 import com.ahmad.Tools.Paintable;
-import com.ahmad.Models.ModeOne.SystemModel;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;

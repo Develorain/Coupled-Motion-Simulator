@@ -25,7 +25,7 @@ public class Startup {
         jFrame.pack();
         jFrame.setVisible(true);
 
-        System.out.println(mainView.systemView.systemPanel.getSize());
+        //System.out.println(mainView.systemView.systemPanel.getSize());
         System.out.println(jFrame.getSize());
     }
 }
@@ -35,6 +35,8 @@ public class Startup {
 // putting in no mass breaks the program (for example, removing all the value of dangling box and pressing start)
 // user can input negative angles and angles above 90 degrees
 // if the friction is too great the box moves backwards. instead, the box should not move at all if frictional force is greater than gravity force
+// make sure the boxes don't start at the polar extremes of the slope and make sure it does not go past the pulley or past the slope
+// timer in StartButtonController only takes integers when it should take fractions
 
 
 // TODO: **IMPORTANT**
