@@ -49,7 +49,7 @@ public class MainView implements View {
         String accel = Double.toString(systemModel.getAccelerationOfSystem());
         accelerationTextField.setText(accel);
 
-        String vel = Double.toString(systemModel.getBoxA().getVelocityMagnitude());
+        String vel = Double.toString(systemModel.getSlopedBox().getVelocityMagnitude());
         velocityTextField.setText(vel);
     }
 

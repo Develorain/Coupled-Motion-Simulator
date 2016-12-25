@@ -8,11 +8,12 @@ import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
 
 public class SystemModel extends Model {
-    private SlopedBoxModel boxA;
-    private DanglingBoxModel boxB;
+    private SlopedBoxModel slopedBox;
+    private DanglingBoxModel danglingBox;
 
-    public SlopeModel slopeA;
-    private WireModel wireA;
+    public SlopeModel slope;
+
+    private WireModel wire;
 
     private double frictionOfSystem;
     private double accelerationOfSystem;
@@ -20,9 +21,9 @@ public class SystemModel extends Model {
     private double slopeAngle;
 
     public SystemModel() {
-        boxA = new SlopedBoxModel(this, 1, 0);
-        boxB = new DanglingBoxModel(this, 1);
-        slopeA = new SlopeModel(this);
+        slopedBox = new SlopedBoxModel(this, 1, 0);
+        danglingBox = new DanglingBoxModel(this, 1);
+        slope = new SlopeModel(this);
     }
 
     public void initializeConstantValues() {
@@ -32,35 +33,35 @@ public class SystemModel extends Model {
     }
 
     private void updateFriction() {
-        frictionOfSystem = boxA.getMass() * Constants.GRAVITY * MathTools.cos(slopeAngle) * boxA.getMu();
+        frictionOfSystem = slopedBox.getMass() * Constants.GRAVITY * MathTools.cos(slopeAngle) * slopedBox.getMu();
         //frictionOfSystem = 10;
     }
 
     // this method is here because we need access to all boxes to calculate accelerationOfSystem
     private void updateAcceleration() {
-        accelerationOfSystem = (boxB.getMass() * Constants.GRAVITY - boxA.getMass() * Constants.GRAVITY * MathTools.sin(slopeAngle) - frictionOfSystem)
-                / (boxA.getMass() + boxB.getMass());
+        accelerationOfSystem = (danglingBox.getMass() * Constants.GRAVITY - slopedBox.getMass() * Constants.GRAVITY * MathTools.sin(slopeAngle) - frictionOfSystem)
+                / (slopedBox.getMass() + danglingBox.getMass());
 
         Vector accelerationA = Vector.createFromPolar(accelerationOfSystem, slopeAngle);
         Vector accelerationB = Vector.createFromPolar(accelerationOfSystem, -90);
 
-        boxA.setAcceleration(accelerationA);
-        boxB.setAcceleration(accelerationB);
+        slopedBox.setAcceleration(accelerationA);
+        danglingBox.setAcceleration(accelerationB);
     }
 
     private void updateTension() {
-        wireA = new WireModel(boxB);
-        wireA.calculateTension(accelerationOfSystem);
+        wire = new WireModel(danglingBox);
+        wire.calculateTension(accelerationOfSystem);
 
-        System.out.println("Tension: " + wireA.tension);
+        System.out.println("Tension: " + wire.tension);
     }
 
     public void setSlopeAngle(double slopeAngle) {
         this.slopeAngle = slopeAngle;
 
-        boxA.calculateCoordinates();
-        boxB.calculateCoordinates();
-        slopeA.calculateCoordinates();
+        slopedBox.calculateCoordinates();
+        danglingBox.calculateCoordinates();
+        slope.calculateCoordinates();
 
         updateView();
     }
@@ -73,22 +74,22 @@ public class SystemModel extends Model {
         return accelerationOfSystem;
     }
 
-    public SlopedBoxModel getBoxA() {
-        return boxA;
+    public SlopedBoxModel getSlopedBox() {
+        return slopedBox;
     }
 
-    public DanglingBoxModel getBoxB() {
-        return boxB;
+    public DanglingBoxModel getDanglingBox() {
+        return danglingBox;
     }
 
     public void iterate() {
         // Updates the boxes' velocities
-        boxA.updateVelocity();
-        boxB.updateVelocity();
+        slopedBox.updateVelocity();
+        danglingBox.updateVelocity();
 
         // Updates the boxes' positions
-        boxA.updatePosition();
-        boxB.updatePosition();
+        slopedBox.updatePosition();
+        danglingBox.updatePosition();
 
         updateView();
     }

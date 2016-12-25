@@ -33,7 +33,7 @@ public class SystemView implements Paintable {
     private void drawSlopedBox(Graphics2D graphics) {
         // Creates a rectangle rotated based on the box's angle
         double theta = Math.toRadians(systemModel.getSlopeAngle());
-        Rectangle2D rectangle2D = new Rectangle2D.Double(0, 0, systemModel.getBoxA().getBoxWidth(), systemModel.getBoxA().getBoxHeight());
+        Rectangle2D rectangle2D = new Rectangle2D.Double(0, 0, systemModel.getSlopedBox().getBoxWidth(), systemModel.getSlopedBox().getBoxHeight());
         AffineTransform affineTransform = new AffineTransform();
         affineTransform.rotate(-theta);
 
@@ -45,17 +45,17 @@ public class SystemView implements Paintable {
         graphics2D.setColor(new Color(51, 51, 51));    // mild gray colour
 
         // Moves origin to x, y coordinate of the rectangle, draws it, and then returns origin back to 0, 0
-        graphics2D.translate(systemModel.getBoxA().getX(), systemModel.getBoxA().getY());
+        graphics2D.translate(systemModel.getSlopedBox().getX(), systemModel.getSlopedBox().getY());
         graphics2D.fill(rotatedRectangle);
-        graphics2D.translate(-systemModel.getBoxA().getX(), -systemModel.getBoxA().getY());
+        graphics2D.translate(-systemModel.getSlopedBox().getX(), -systemModel.getSlopedBox().getY());
     }
 
     private void drawDanglingBox(Graphics graphics) {
-        graphics.fillRect(systemModel.getBoxB().getX(), systemModel.getBoxB().getY(), systemModel.getBoxB().getBoxWidth(), systemModel.getBoxB().getBoxHeight());
+        graphics.fillRect(systemModel.getDanglingBox().getX(), systemModel.getDanglingBox().getY(), systemModel.getDanglingBox().getBoxWidth(), systemModel.getDanglingBox().getBoxHeight());
     }
 
     private void drawSlope(Graphics graphics) {
-        graphics.drawLine(systemModel.slopeA.x1, systemModel.slopeA.y1, systemModel.slopeA.x2, systemModel.slopeA.y2);
+        graphics.drawLine(systemModel.slope.x1, systemModel.slope.y1, systemModel.slope.x2, systemModel.slope.y2);
     }
 }
 
