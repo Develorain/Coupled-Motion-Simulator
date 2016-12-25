@@ -18,8 +18,8 @@ public class SlopeModel {
     }
 
     public void calculateCoordinates() {
-        x1 = (int) (systemModel.getBoxA().getX() + 100 * MathTools.sin(systemModel.getSlopeAngle()));
-        y1 = (int) (systemModel.getBoxA().getY() + 100 * MathTools.cos(systemModel.getSlopeAngle()));
+        x1 = (int) (systemModel.getBoxA().getX() + systemModel.getBoxA().getBoxWidth() * MathTools.sin(systemModel.getSlopeAngle()));
+        y1 = (int) (systemModel.getBoxA().getY() + systemModel.getBoxA().getBoxHeight() * MathTools.cos(systemModel.getSlopeAngle()));
 
         x2 = systemModel.getBoxB().getX();
         y2 = systemModel.getBoxB().getY();

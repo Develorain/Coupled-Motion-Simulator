@@ -46,7 +46,7 @@ public class MainView implements View {
 
     // Updates all the information tables
     private void updateBoxSystemInfoTable() {
-        String accel = Double.toString(systemModel.getAcceleration());
+        String accel = Double.toString(systemModel.getAccelerationOfSystem());
         accelerationTextField.setText(accel);
 
         String vel = Double.toString(systemModel.getBoxA().getVelocityMagnitude());
