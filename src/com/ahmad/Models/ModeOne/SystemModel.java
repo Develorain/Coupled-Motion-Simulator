@@ -21,6 +21,8 @@ public class SystemModel extends Model {
     private double slopeAngle;
 
     public SystemModel() {
+        slopeAngle = 45;
+
         slopedBox = new SlopedBoxModel(this, 1, 0);
         danglingBox = new DanglingBoxModel(this, 1);
         slope = new SlopeModel(this);
