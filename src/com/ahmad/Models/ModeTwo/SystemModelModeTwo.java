@@ -7,7 +7,7 @@ import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
 
-public class SystemModelTwo extends Model {
+public class SystemModelModeTwo extends Model {
     private LeftBoxModel leftBox;
     private MiddleBoxModel middleBox;
     private RightBoxModel rightBox;
@@ -24,13 +24,13 @@ public class SystemModelTwo extends Model {
     private double leftSlopeAngle;
     private double rightSlopeAngle;
 
-    public SystemModelTwo() {
+    public SystemModelModeTwo() {
         leftSlopeAngle = 45;
         rightSlopeAngle = 45;
 
         leftBox = new LeftBoxModel(this, 1, 0);
-        middleBox = new MiddleBoxModel(this, 1);
-        rightBox = new RightBoxModel(this, 1);
+        middleBox = new MiddleBoxModel(this, 1, 0);
+        rightBox = new RightBoxModel(this, 1, 0);
 
         leftSlope = new SlopeModel(this);
         rightSlope = new SlopeModel(this);
@@ -85,14 +85,6 @@ public class SystemModelTwo extends Model {
 
     public double getAccelerationOfSystem() {
         return accelerationOfSystem;
-    }
-
-    public SlopedBoxModel getLeftBox() {
-        return leftBox;
-    }
-
-    public DanglingBoxModel getMiddleBox() {
-        return middleBox;
     }
 
     public void iterate() {

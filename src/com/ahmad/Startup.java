@@ -1,6 +1,6 @@
 package com.ahmad;
 
-import com.ahmad.Models.ModeOne.SystemModelOne;
+import com.ahmad.Models.ModeOne.SystemModelModeOne;
 import com.ahmad.Views.MainView;
 
 import javax.swing.*;
@@ -13,8 +13,8 @@ public class Startup {
             e.printStackTrace();
         }
 
-        SystemModelOne systemModelOne = new SystemModelOne();
-        MainView mainView = new MainView(systemModelOne);
+        SystemModelModeOne systemModelModeOne = new SystemModelModeOne();
+        MainView mainView = new MainView(systemModelModeOne);
 
         JFrame jFrame = new JFrame("Coupled Motion Simulator");
         //jFrame.setMinimumSize(new Dimension(708, 851));

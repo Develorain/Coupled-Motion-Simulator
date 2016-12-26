@@ -5,11 +5,13 @@ import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
 
 public class SlopedBoxModel extends BoxModel {
+    private SystemModelModeOne systemModelModeOne;
     private double mu;
 
-    public SlopedBoxModel(SystemModelOne systemModelOne, double mass, double mu) {
-        super(systemModelOne, mass);
+    public SlopedBoxModel(SystemModelModeOne systemModelModeOne, double mass, double mu) {
+        super(mass);
 
+        this.systemModelModeOne = systemModelModeOne;
         this.mu = mu;
     }
 
@@ -19,8 +21,8 @@ public class SlopedBoxModel extends BoxModel {
         double tempY = Constants.SIMULATION_HEIGHT_PIXELS / 2;
 
         while (true) {
-            tempX -= MathTools.cos(systemModelOne.getSlopeAngle());
-            tempY += MathTools.sin(systemModelOne.getSlopeAngle());
+            tempX -= MathTools.cos(systemModelModeOne.getSlopeAngle());
+            tempY += MathTools.sin(systemModelModeOne.getSlopeAngle());
 
             if (tempX <= boxWidth || tempY >= Constants.SIMULATION_HEIGHT_PIXELS - boxHeight) {
                 // Set the x and y value to the calculated in-bounds coordinates
@@ -28,8 +30,8 @@ public class SlopedBoxModel extends BoxModel {
                 y = tempY;
 
                 // Offset the values so that the bottom of the box is displayed at this coordinate, not the top left corner
-                x -= boxWidth * MathTools.sin(systemModelOne.getSlopeAngle());
-                y -= boxHeight * MathTools.cos(systemModelOne.getSlopeAngle());
+                x -= boxWidth * MathTools.sin(systemModelModeOne.getSlopeAngle());
+                y -= boxHeight * MathTools.cos(systemModelModeOne.getSlopeAngle());
 
                 break;
             }

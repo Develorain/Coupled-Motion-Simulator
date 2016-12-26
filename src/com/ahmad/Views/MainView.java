@@ -3,14 +3,14 @@ package com.ahmad.Views;
 import com.ahmad.Controllers.AngleTextFieldController;
 import com.ahmad.Controllers.ResetButtonController;
 import com.ahmad.Controllers.StartButtonController;
-import com.ahmad.Models.ModeOne.SystemModelOne;
+import com.ahmad.Models.ModeOne.SystemModelModeOne;
 import com.ahmad.Views.ModeOne.SystemView;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class MainView implements View {
-    private SystemModelOne systemModelOne;
+    private SystemModelModeOne systemModelModeOne;
     public SystemView systemView;
 
     public JPanel mainPanel = new JPanel(new GridBagLayout());
@@ -29,9 +29,9 @@ public class MainView implements View {
 
     private JTextField slopeAAngleTextField;
 
-    public MainView(SystemModelOne systemModelOne) {
-        this.systemModelOne = systemModelOne;
-        systemModelOne.setView(this);
+    public MainView(SystemModelModeOne systemModelModeOne) {
+        this.systemModelModeOne = systemModelModeOne;
+        systemModelModeOne.setView(this);
 
         layoutScreen();
         registerControllers();
@@ -46,19 +46,19 @@ public class MainView implements View {
 
     // Updates all the information tables
     private void updateBoxSystemInfoTable() {
-        String accel = Double.toString(systemModelOne.getAccelerationOfSystem());
+        String accel = Double.toString(systemModelModeOne.getAccelerationOfSystem());
         accelerationTextField.setText(accel);
 
-        String vel = Double.toString(systemModelOne.getSlopedBox().getVelocityMagnitude());
+        String vel = Double.toString(systemModelModeOne.getSlopedBox().getVelocityMagnitude());
         velocityTextField.setText(vel);
     }
 
     private void registerControllers() {
-        StartButtonController sbl = new StartButtonController(systemModelOne);
+        StartButtonController sbl = new StartButtonController(systemModelModeOne);
         startButton.addActionListener(sbl);
 
 
-        AngleTextFieldController atfc = new AngleTextFieldController(slopeAAngleTextField, systemModelOne);
+        AngleTextFieldController atfc = new AngleTextFieldController(slopeAAngleTextField, systemModelModeOne);
         slopeAAngleTextField.addKeyListener(atfc);
 
 
@@ -71,7 +71,7 @@ public class MainView implements View {
         GridBagConstraints gc = new GridBagConstraints();
 
         // Creates and adds simulation view to the main JPanel
-        systemView = new SystemView(systemModelOne);
+        systemView = new SystemView(systemModelModeOne);
         gc.fill = GridBagConstraints.BOTH;
         gc.gridx = 0;
         gc.gridy = 0;

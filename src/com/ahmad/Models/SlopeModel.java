@@ -1,27 +1,27 @@
 package com.ahmad.Models;
 
-import com.ahmad.Models.ModeOne.SystemModelOne;
+import com.ahmad.Models.ModeOne.SystemModelModeOne;
 import com.ahmad.Tools.MathTools;
 
 public class SlopeModel {
-    private SystemModelOne systemModelOne;
+    private SystemModelModeOne systemModelModeOne;
 
     public int x1;  // bottom left x
     public int y1;  // bottom left y
     public int x2;  // top right x
     public int y2;  // top right y
 
-    public SlopeModel(SystemModelOne systemModelOne) {
-        this.systemModelOne = systemModelOne;
+    public SlopeModel(SystemModelModeOne systemModelModeOne) {
+        this.systemModelModeOne = systemModelModeOne;
 
         calculateCoordinates();
     }
 
     public void calculateCoordinates() {
-        x1 = (int) (systemModelOne.getSlopedBox().getX() + systemModelOne.getSlopedBox().getBoxWidth() * MathTools.sin(systemModelOne.getSlopeAngle()));
-        y1 = (int) (systemModelOne.getSlopedBox().getY() + systemModelOne.getSlopedBox().getBoxHeight() * MathTools.cos(systemModelOne.getSlopeAngle()));
+        x1 = (int) (systemModelModeOne.getSlopedBox().getX() + systemModelModeOne.getSlopedBox().getBoxWidth() * MathTools.sin(systemModelModeOne.getSlopeAngle()));
+        y1 = (int) (systemModelModeOne.getSlopedBox().getY() + systemModelModeOne.getSlopedBox().getBoxHeight() * MathTools.cos(systemModelModeOne.getSlopeAngle()));
 
-        x2 = systemModelOne.getDanglingBox().getX();
-        y2 = systemModelOne.getDanglingBox().getY();
+        x2 = systemModelModeOne.getDanglingBox().getX();
+        y2 = systemModelModeOne.getDanglingBox().getY();
     }
 }

@@ -1,14 +1,15 @@
 package com.ahmad.Models.ModeTwo;
 
 import com.ahmad.Models.BoxModel;
-import com.ahmad.Models.ModeOne.SystemModelOne;
 
 public class RightBoxModel extends BoxModel {
+    private SystemModelModeTwo systemModelModeTwo;
     private double mu;
 
-    public RightBoxModel(SystemModelOne systemModelOne, double mass, double mu) {
-        super(systemModelOne, mass);
+    public RightBoxModel(SystemModelModeTwo systemModelModeTwo, double mass, double mu) {
+        super(mass);
 
+        this.systemModelModeTwo = systemModelModeTwo;
         this.mu = mu;
     }
 

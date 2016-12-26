@@ -7,7 +7,7 @@ import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
 
-public class SystemModelOne extends Model {
+public class SystemModelModeOne extends Model {
     private SlopedBoxModel slopedBox;
     private DanglingBoxModel danglingBox;
 
@@ -20,7 +20,7 @@ public class SystemModelOne extends Model {
 
     private double slopeAngle;
 
-    public SystemModelOne() {
+    public SystemModelModeOne() {
         slopeAngle = 45;
 
         slopedBox = new SlopedBoxModel(this, 1, 0);

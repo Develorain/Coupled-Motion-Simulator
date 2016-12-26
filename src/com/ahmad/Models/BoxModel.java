@@ -1,12 +1,9 @@
 package com.ahmad.Models;
 
-import com.ahmad.Models.ModeOne.SystemModelOne;
 import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.Vector;
 
 public abstract class BoxModel {
-    protected SystemModelOne systemModelOne;
-
     protected double x;  // making this double makes drawing code a lot bulkier since i need to convert from double
     protected double y;  // but keeping it as int doesn't allow me to increment the position
     protected final int boxWidth = 100;
@@ -16,8 +13,7 @@ public abstract class BoxModel {
     private Vector velocity = new Vector();
     private Vector acceleration;
 
-    public BoxModel(SystemModelOne systemModelOne, double mass) {
-        this.systemModelOne = systemModelOne;
+    public BoxModel(double mass) {
         this.mass = mass;
 
         calculateCoordinates();

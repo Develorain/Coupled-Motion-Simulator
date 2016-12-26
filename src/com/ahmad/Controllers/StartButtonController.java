@@ -1,6 +1,6 @@
 package com.ahmad.Controllers;
 
-import com.ahmad.Models.ModeOne.SystemModelOne;
+import com.ahmad.Models.ModeOne.SystemModelModeOne;
 import com.ahmad.Tools.Constants;
 
 import java.awt.event.ActionEvent;
@@ -11,20 +11,20 @@ import java.util.TimerTask;
 public class StartButtonController implements ActionListener {
     private Timer timer;
 
-    private SystemModelOne systemModelOne;
+    private SystemModelModeOne systemModelModeOne;
 
-    public StartButtonController(SystemModelOne systemModelOne) {
-        this.systemModelOne = systemModelOne;
+    public StartButtonController(SystemModelModeOne systemModelModeOne) {
+        this.systemModelModeOne = systemModelModeOne;
     }
 
     public void actionPerformed(ActionEvent actionEvent) {
         System.out.println("Start Button Pressed");
 
-        systemModelOne.initializeConstantValues();
+        systemModelModeOne.initializeConstantValues();
 
         TimerTask timerTask = new TimerTask() {
             public void run() {
-                systemModelOne.iterate(); // TODO: needs to check if start button was already pressed to avoid multiple timers running
+                systemModelModeOne.iterate(); // TODO: needs to check if start button was already pressed to avoid multiple timers running
             }
         };
 
