@@ -11,6 +11,8 @@ public class DanglingBoxModel extends BoxModel {
         super(mass);
 
         this.systemModelModeOne = systemModelModeOne;
+
+        calculateCoordinates();
     }
 
     @Override

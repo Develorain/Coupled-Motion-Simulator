@@ -1,7 +1,6 @@
 package com.ahmad.Models.ModeOne;
 
 import com.ahmad.Models.Model;
-import com.ahmad.Models.SlopeModel;
 import com.ahmad.Models.WireModel;
 import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
@@ -11,7 +10,7 @@ public class SystemModelModeOne extends Model {
     private SlopedBoxModel slopedBox;
     private DanglingBoxModel danglingBox;
 
-    public SlopeModel slope;
+    public SlopeModelModeOne slope;
 
     private WireModel wire;
 
@@ -25,7 +24,7 @@ public class SystemModelModeOne extends Model {
 
         slopedBox = new SlopedBoxModel(this, 1, 0);
         danglingBox = new DanglingBoxModel(this, 1);
-        slope = new SlopeModel(this);
+        slope = new SlopeModelModeOne(this);
         wire = new WireModel(danglingBox);
     }
 

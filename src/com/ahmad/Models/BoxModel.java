@@ -15,8 +15,6 @@ public abstract class BoxModel {
 
     public BoxModel(double mass) {
         this.mass = mass;
-
-        calculateCoordinates();
     }
 
     public void updatePosition() {

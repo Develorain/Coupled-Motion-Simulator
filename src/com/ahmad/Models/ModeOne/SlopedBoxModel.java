@@ -13,6 +13,8 @@ public class SlopedBoxModel extends BoxModel {
 
         this.systemModelModeOne = systemModelModeOne;
         this.mu = mu;
+
+        calculateCoordinates();
     }
 
     @Override

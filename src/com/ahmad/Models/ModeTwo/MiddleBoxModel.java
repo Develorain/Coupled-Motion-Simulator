@@ -11,6 +11,8 @@ public class MiddleBoxModel extends BoxModel {
 
         this.systemModelModeTwo = systemModelModeTwo;
         this.mu = mu;
+
+        calculateCoordinates();
     }
 
     @Override
