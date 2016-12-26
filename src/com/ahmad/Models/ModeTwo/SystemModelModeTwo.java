@@ -1,23 +1,21 @@
 package com.ahmad.Models.ModeTwo;
 
 import com.ahmad.Models.Model;
-import com.ahmad.Models.ModeOne.SlopeModelModeOne;
-import com.ahmad.Models.WireModel;
 import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
 
 public class SystemModelModeTwo extends Model {
-    /*
     private LeftBoxModel leftBox;
     private MiddleBoxModel middleBox;
     private RightBoxModel rightBox;
 
-    public SlopeModelModeOne leftSlope;
-    public SlopeModelModeOne rightSlope;
+    private LeftSlopeModel leftSlope;
+    private MiddleSlopeModel middleSlope;
+    private RightSlopeModel rightSlope;
 
-    private WireModel leftWire;
-    private WireModel rightWire;
+    //private WireModel leftWire;
+    //private WireModel rightWire;
 
     private double frictionOfSystem;
     private double accelerationOfSystem;
@@ -33,17 +31,18 @@ public class SystemModelModeTwo extends Model {
         middleBox = new MiddleBoxModel(this, 1, 0);
         rightBox = new RightBoxModel(this, 1, 0);
 
-        leftSlope = new SlopeModelModeOne(this);
-        rightSlope = new SlopeModelModeOne(this);
+        leftSlope = new LeftSlopeModel();
+        middleSlope = new MiddleSlopeModel();
+        rightSlope = new RightSlopeModel();
 
-        leftWire = new WireModel();
-        rightWire = new WireModel();
+        //leftWire = new WireModel();
+        //rightWire = new WireModel();
     }
 
     public void initializeConstantValues() {
         updateFriction();
         updateAcceleration();
-        updateTension();
+        //updateTension();
     }
 
     private void updateFriction() {
@@ -63,19 +62,23 @@ public class SystemModelModeTwo extends Model {
         middleBox.setAcceleration(accelerationB);
     }
 
-    private void updateTension() {
-        leftWire = new WireModel(middleBox);
-        leftWire.calculateTension(accelerationOfSystem);
-
-        System.out.println("Tension: " + leftWire.tension);
-    }
+    //private void updateTension() {
+//        leftWire = new WireModel(middleBox);
+//        leftWire.calculateTension(accelerationOfSystem);
+//
+//        System.out.println("Tension: " + leftWire.tension);
+//    }
 
     public void setLeftSlopeAngle(double leftSlopeAngle) {
         this.leftSlopeAngle = leftSlopeAngle;
 
         leftBox.calculateCoordinates();
         middleBox.calculateCoordinates();
+        rightBox.calculateCoordinates();
+
         leftSlope.calculateCoordinates();
+        middleSlope.calculateCoordinates();
+        rightSlope.calculateCoordinates();
 
         updateView();
     }
@@ -99,5 +102,4 @@ public class SystemModelModeTwo extends Model {
 
         updateView();
     }
-    */
 }
