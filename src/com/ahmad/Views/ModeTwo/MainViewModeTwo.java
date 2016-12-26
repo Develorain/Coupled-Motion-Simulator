@@ -28,15 +28,14 @@ public class MainViewModeTwo implements View {
 
     private JTextField leftBoxMassTextField;
     private JTextField leftBoxMuTextField;
-
+    private JTextField leftSlopeAngleTextField;
 
     private JTextField middleBoxMassTextField;
     private JTextField middleBoxMuTextField;
+    private JTextField middleSlopeAngleTextField;
 
     private JTextField rightBoxMassTextField;
     private JTextField rightBoxMuTextField;
-
-    private JTextField leftSlopeAngleTextField;
     private JTextField rightSlopeAngleTextField;
 
     public MainViewModeTwo(SystemModelModeTwo systemModelModeTwo) {
@@ -88,19 +87,93 @@ public class MainViewModeTwo implements View {
         GridBagConstraints gc = new GridBagConstraints();
 
         // Creates and adds simulation view to the main JPanel
-        //systemView = new SystemView(systemModelModeTwo);
+        systemView = new SystemView(systemModelModeTwo);
         gc.fill = GridBagConstraints.BOTH;
         gc.gridx = 0;
         gc.gridy = 0;
-        gc.gridwidth = 7;
+        gc.gridwidth = 9;
         gc.weighty = 100;
-        //mainPanel.add(systemView.systemPanel, gc);
+        mainPanel.add(systemView.systemPanel, gc);
 
         createBoxSystemTable(gc);
-        createBlockATable(gc);
-        createSlopeATable(gc);
-        createBlockBTable(gc);
+
+        createLeftBlockTable(gc);
+        createLeftSlopeTable(gc);
+
+        createMiddleBlockTable(gc);
+
+        createRightBlockTable(gc);
+        createRightSlopeTable(gc);
+
         createButtonTable(gc);
+    }
+
+    private void createRightSlopeTable(GridBagConstraints gc) {
+        gc.fill = GridBagConstraints.NONE;
+
+        JLabel rightSlopeTitleLabel = new JLabel("Right Slope");
+        gc.anchor = GridBagConstraints.CENTER;
+        gc.gridx = 6;
+        gc.gridy = 4;
+        gc.gridwidth = 2;
+        gc.gridheight = 1;
+        mainPanel.add(rightSlopeTitleLabel, gc);
+
+        JLabel rightSlopeAngleLabel = new JLabel("Angle ");
+        gc.anchor = GridBagConstraints.LINE_END;
+        gc.gridx = 6;
+        gc.gridy = 5;
+        gc.gridwidth = 1;
+        gc.gridheight = 1;
+        mainPanel.add(rightSlopeAngleLabel, gc);
+
+        rightSlopeAngleTextField = new JTextField(10);
+        rightSlopeAngleTextField.setText("45");
+        gc.anchor = GridBagConstraints.LINE_START;
+        gc.gridx = 7;
+        gc.gridy = 5;
+        mainPanel.add(rightSlopeAngleTextField, gc);
+    }
+
+    private void createRightBlockTable(GridBagConstraints gc) {
+        gc.fill = GridBagConstraints.NONE;
+        gc.gridheight = 1;
+        gc.weightx = 1;
+        gc.weighty = 1;
+
+        JLabel rightBoxTitleLabel = new JLabel("Right Block");
+        gc.anchor = GridBagConstraints.CENTER;
+        gc.gridx = 6;
+        gc.gridy = 1;
+        gc.gridwidth = 2;
+        mainPanel.add(rightBoxTitleLabel, gc);
+
+        JLabel rightBoxMassLabel = new JLabel("Mass ");
+        gc.anchor = GridBagConstraints.LINE_END;
+        gc.gridx = 6;
+        gc.gridy = 2;
+        gc.gridwidth = 1;
+        mainPanel.add(rightBoxMassLabel, gc);
+
+        JLabel rightBoxMuLabel = new JLabel("Mu ");
+        gc.anchor = GridBagConstraints.LINE_END;
+        gc.gridx = 6;
+        gc.gridy = 3;
+        gc.gridwidth = 1;
+        mainPanel.add(rightBoxMuLabel, gc);
+
+        rightBoxMassTextField = new JTextField("1", 10);
+        gc.anchor = GridBagConstraints.LINE_START;
+        gc.gridx = 7;
+        gc.gridy = 2;
+        mainPanel.add(rightBoxMassTextField, gc);
+
+        rightBoxMuTextField = new JTextField(10);
+        rightBoxMuTextField.setText("0");
+        gc.anchor = GridBagConstraints.LINE_START;
+        gc.gridx = 7;
+        gc.gridy = 3;
+        mainPanel.add(rightBoxMuTextField, gc);
     }
 
     private void createButtonTable(GridBagConstraints gc) {
@@ -111,78 +184,92 @@ public class MainViewModeTwo implements View {
 
         String[] modesList = new String[]{"Mode 1", "Mode 2", "Mode 3"};
         modesComboBox = new JComboBox(modesList);
-        gc.gridx = 6;
+        gc.gridx = 8;
         gc.gridy = 1;
         mainPanel.add(modesComboBox, gc);
 
         startButton = new JButton("Start Simulation");
-        gc.gridx = 6;
+        gc.gridx = 8;
         gc.gridy = 2;
         mainPanel.add(startButton, gc);
 
         pauseButton = new JButton("Pause Simulation");
-        gc.gridx = 6;
+        gc.gridx = 8;
         gc.gridy = 3;
         mainPanel.add(pauseButton, gc);
 
         resetButton = new JButton("Reset Simulation");
-        gc.gridx = 6;
+        gc.gridx = 8;
         gc.gridy = 4;
         mainPanel.add(resetButton, gc);
     }
 
-    private void createBlockBTable(GridBagConstraints gc) {
+    private void createMiddleBlockTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.NONE;
         gc.gridheight = 1;
         gc.weightx = 1;
         gc.weighty = 1;
 
-        JLabel boxBTitleLabel = new JLabel("Block B");
+        JLabel middleBoxTitleLabel = new JLabel("Middle Block");
         gc.anchor = GridBagConstraints.CENTER;
         gc.gridx = 4;
         gc.gridy = 1;
         gc.gridwidth = 2;
-        mainPanel.add(boxBTitleLabel, gc);
+        mainPanel.add(middleBoxTitleLabel, gc);
 
-        JLabel boxBMassLabel = new JLabel("Mass ");
+        JLabel middleBoxMassLabel = new JLabel("Mass ");
         gc.anchor = GridBagConstraints.LINE_END;
         gc.gridx = 4;
         gc.gridy = 2;
         gc.gridwidth = 1;
-        mainPanel.add(boxBMassLabel, gc);
+        mainPanel.add(middleBoxMassLabel, gc);
 
-        rightBoxMassTextField = new JTextField("1", 10);
+        JLabel middleBoxMuLabel = new JLabel("Mu ");
+        gc.anchor = GridBagConstraints.LINE_END;
+        gc.gridx = 4;
+        gc.gridy = 3;
+        gc.gridwidth = 1;
+        mainPanel.add(middleBoxMuLabel, gc);
+
+        middleBoxMassTextField = new JTextField("1", 10);
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 5;
         gc.gridy = 2;
-        mainPanel.add(rightBoxMassTextField, gc);
+        mainPanel.add(middleBoxMassTextField, gc);
+
+        middleBoxMuTextField = new JTextField(10);
+        middleBoxMuTextField.setText("0");
+        gc.anchor = GridBagConstraints.LINE_START;
+        gc.gridx = 5;
+        gc.gridy = 3;
+        mainPanel.add(middleBoxMuTextField, gc);
     }
 
-    private void createBlockATable(GridBagConstraints gc) {
+    private void createLeftBlockTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.NONE;
         gc.gridheight = 1;
         gc.weightx = 1;
         gc.weighty = 1;
 
-        JLabel boxATitleLabel = new JLabel("Block A");
+        JLabel leftBoxTitleLabel = new JLabel("Left Block");
         gc.anchor = GridBagConstraints.CENTER;
         gc.gridx = 2;
         gc.gridy = 1;
         gc.gridwidth = 2;
-        mainPanel.add(boxATitleLabel, gc);
+        mainPanel.add(leftBoxTitleLabel, gc);
 
-        JLabel boxAMassLabel = new JLabel("Mass ");
+        JLabel leftBoxMassLabel = new JLabel("Mass ");
         gc.anchor = GridBagConstraints.LINE_END;
         gc.gridx = 2;
         gc.gridy = 2;
         gc.gridwidth = 1;
-        mainPanel.add(boxAMassLabel, gc);
+        mainPanel.add(leftBoxMassLabel, gc);
 
-        JLabel boxAMuLabel = new JLabel("Mu ");
+        JLabel leftBoxMuLabel = new JLabel("Mu ");
         gc.anchor = GridBagConstraints.LINE_END;
         gc.gridx = 2;
         gc.gridy = 3;
-        mainPanel.add(boxAMuLabel, gc);
+        mainPanel.add(leftBoxMuLabel, gc);
 
         leftBoxMassTextField = new JTextField(10);
         leftBoxMassTextField.setText("1");
@@ -199,24 +286,24 @@ public class MainViewModeTwo implements View {
         mainPanel.add(leftBoxMuTextField, gc);
     }
 
-    private void createSlopeATable(GridBagConstraints gc) {
+    private void createLeftSlopeTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.NONE;
 
-        JLabel slopeATitleLabel = new JLabel("Slope A");
+        JLabel leftSlopeTitleLabel = new JLabel("Left Slope");
         gc.anchor = GridBagConstraints.CENTER;
         gc.gridx = 2;
         gc.gridy = 4;
         gc.gridwidth = 2;
         gc.gridheight = 1;
-        mainPanel.add(slopeATitleLabel, gc);
+        mainPanel.add(leftSlopeTitleLabel, gc);
 
-        JLabel slopeAAngleLabel = new JLabel("Angle ");
+        JLabel leftSlopeAngleLabel = new JLabel("Angle ");
         gc.anchor = GridBagConstraints.LINE_END;
         gc.gridx = 2;
         gc.gridy = 5;
         gc.gridwidth = 1;
         gc.gridheight = 1;
-        mainPanel.add(slopeAAngleLabel, gc);
+        mainPanel.add(leftSlopeAngleLabel, gc);
 
         leftSlopeAngleTextField = new JTextField(10);
         leftSlopeAngleTextField.setText("45");

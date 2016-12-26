@@ -1,8 +1,8 @@
 package com.ahmad.Views.ModeOne;
 
 import com.ahmad.Models.ModeOne.SystemModelModeOne;
-import com.ahmad.Tools.Globals;
 import com.ahmad.Tools.CustomPanel;
+import com.ahmad.Tools.Globals;
 import com.ahmad.Tools.Paintable;
 
 import java.awt.*;
