@@ -1,7 +1,7 @@
 package com.ahmad;
 
 import com.ahmad.Models.ModeOne.SystemModelModeOne;
-import com.ahmad.Views.MainView;
+import com.ahmad.Views.ModeOne.MainViewModeOne;
 
 import javax.swing.*;
 
@@ -14,17 +14,17 @@ public class Startup {
         }
 
         SystemModelModeOne systemModelModeOne = new SystemModelModeOne();
-        MainView mainView = new MainView(systemModelModeOne);
+        MainViewModeOne mainViewModeOne = new MainViewModeOne(systemModelModeOne);
 
         JFrame jFrame = new JFrame("Coupled Motion Simulator");
         //jFrame.setMinimumSize(new Dimension(708, 851));
         //jFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        jFrame.setContentPane(mainView.mainPanel);
+        jFrame.setContentPane(mainViewModeOne.mainPanel);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.pack();
         jFrame.setVisible(true);
 
-        System.out.println(mainView.systemView.systemPanel.getSize());
+        System.out.println(mainViewModeOne.systemView.systemPanel.getSize());
         System.out.println(jFrame.getSize());
     }
 }

@@ -1,11 +1,12 @@
 package com.ahmad.Models.ModeTwo;
 
 import com.ahmad.Models.Model;
+import com.ahmad.Models.SystemModel;
 import com.ahmad.Tools.Globals;
 import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
 
-public class SystemModelModeTwo extends Model {
+public class SystemModelModeTwo extends Model implements SystemModel {
     private LeftBoxModel leftBox;
     private MiddleBoxModel middleBox;
     private RightBoxModel rightBox;

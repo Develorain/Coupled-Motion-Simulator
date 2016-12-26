@@ -1,12 +1,13 @@
 package com.ahmad.Models.ModeOne;
 
 import com.ahmad.Models.Model;
+import com.ahmad.Models.SystemModel;
 import com.ahmad.Models.WireModel;
 import com.ahmad.Tools.Globals;
 import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
 
-public class SystemModelModeOne extends Model {
+public class SystemModelModeOne extends Model implements SystemModel {
     private SlopedBoxModel slopedBox;
     private DanglingBoxModel danglingBox;
 

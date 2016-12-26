@@ -1,16 +1,16 @@
-package com.ahmad.Views;
+package com.ahmad.Views.ModeOne;
 
-import com.ahmad.Controllers.AngleTextFieldController;
+import com.ahmad.Controllers.ModeOne.AngleTextFieldControllerModeOne;
 import com.ahmad.Controllers.ModeComboBoxController;
 import com.ahmad.Controllers.ResetButtonController;
 import com.ahmad.Controllers.StartButtonController;
 import com.ahmad.Models.ModeOne.SystemModelModeOne;
-import com.ahmad.Views.ModeOne.SystemView;
+import com.ahmad.Views.View;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MainView implements View {
+public class MainViewModeOne implements View {
     private SystemModelModeOne systemModelModeOne;
     public SystemView systemView;
 
@@ -31,7 +31,7 @@ public class MainView implements View {
 
     private JTextField slopeAAngleTextField;
 
-    public MainView(SystemModelModeOne systemModelModeOne) {
+    public MainViewModeOne(SystemModelModeOne systemModelModeOne) {
         this.systemModelModeOne = systemModelModeOne;
         systemModelModeOne.setView(this);
 
@@ -60,7 +60,7 @@ public class MainView implements View {
         startButton.addActionListener(sbl);
 
 
-        AngleTextFieldController atfc = new AngleTextFieldController(slopeAAngleTextField, systemModelModeOne);
+        AngleTextFieldControllerModeOne atfc = new AngleTextFieldControllerModeOne(slopeAAngleTextField, systemModelModeOne);
         slopeAAngleTextField.addKeyListener(atfc);
 
 

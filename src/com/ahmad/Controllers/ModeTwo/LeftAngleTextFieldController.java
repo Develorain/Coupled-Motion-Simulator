@@ -1,4 +1,4 @@
-package com.ahmad.Controllers;
+package com.ahmad.Controllers.ModeTwo;
 
 import com.ahmad.Models.ModeOne.SystemModelModeOne;
 
@@ -6,11 +6,11 @@ import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class AngleTextFieldController implements KeyListener {
+public class LeftAngleTextFieldController implements KeyListener {
     private JTextField slopeAngleTextField;
     private SystemModelModeOne systemModelModeOne;
 
-    public AngleTextFieldController(JTextField slopeAngleTextField, SystemModelModeOne systemModelModeOne) {
+    public LeftAngleTextFieldController(JTextField slopeAngleTextField, SystemModelModeOne systemModelModeOne) {
         this.slopeAngleTextField = slopeAngleTextField;
         this.systemModelModeOne = systemModelModeOne;
     }

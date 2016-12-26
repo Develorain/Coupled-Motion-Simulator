@@ -12,7 +12,6 @@ public class ResetButtonController implements ActionListener {
     private JTextField boxBMassTextField;
     private JTextField slopeAAngleTextField;
 
-    // TODO: do i need a super() call?
     public ResetButtonController(JTextField accelerationTextField, JTextField velocityTextField,
                                  JTextField boxAMassTextField, JTextField boxAMuTextField,
                                  JTextField boxBMassTextField, JTextField slopeAAngleTextField) {
