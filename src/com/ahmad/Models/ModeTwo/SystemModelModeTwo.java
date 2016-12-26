@@ -7,9 +7,9 @@ import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
 
 public class SystemModelModeTwo extends Model implements SystemModel {
-    private LeftBoxModel leftBox;
-    private MiddleBoxModel middleBox;
-    private RightBoxModel rightBox;
+    public LeftBoxModel leftBox;
+    public MiddleBoxModel middleBox;
+    public RightBoxModel rightBox;
 
     private LeftSlopeModel leftSlope;
     private MiddleSlopeModel middleSlope;
@@ -63,7 +63,7 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         middleBox.setAcceleration(accelerationB);
     }
 
-    //private void updateTension() {
+//    private void updateTension() {
 //        leftWire = new WireModel(middleBox);
 //        leftWire.calculateTension(accelerationOfSystem);
 //
@@ -72,6 +72,20 @@ public class SystemModelModeTwo extends Model implements SystemModel {
 
     public void setLeftSlopeAngle(double leftSlopeAngle) {
         this.leftSlopeAngle = leftSlopeAngle;
+
+        leftBox.calculateCoordinates();
+        middleBox.calculateCoordinates();
+        rightBox.calculateCoordinates();
+
+        leftSlope.calculateCoordinates();
+        middleSlope.calculateCoordinates();
+        rightSlope.calculateCoordinates();
+
+        updateView();
+    }
+
+    public void setRightSlopeAngle(double rightSlopeAngle) {
+        this.rightSlopeAngle = rightSlopeAngle;
 
         leftBox.calculateCoordinates();
         middleBox.calculateCoordinates();

@@ -1,6 +1,17 @@
 package com.ahmad.Views.ModeTwo;
 
-/*
+import com.ahmad.Controllers.ModeComboBoxController;
+import com.ahmad.Controllers.ModeTwo.LeftAngleTextFieldController;
+import com.ahmad.Controllers.ModeTwo.RightAngleTextFieldController;
+import com.ahmad.Controllers.ResetButtonController;
+import com.ahmad.Controllers.StartButtonController;
+import com.ahmad.Models.ModeTwo.SystemModelModeTwo;
+import com.ahmad.Views.ModeOne.SystemView;
+import com.ahmad.Views.View;
+
+import javax.swing.*;
+import java.awt.*;
+
 public class MainViewModeTwo implements View {
     private SystemModelModeTwo systemModelModeTwo;
     public SystemView systemView;
@@ -15,12 +26,18 @@ public class MainViewModeTwo implements View {
     private JButton resetButton;
     private JComboBox modesComboBox;
 
-    private JTextField boxAMassTextField;
-    private JTextField boxAMuTextField;
+    private JTextField leftBoxMassTextField;
+    private JTextField leftBoxMuTextField;
 
-    private JTextField boxBMassTextField;
 
-    private JTextField slopeAAngleTextField;
+    private JTextField middleBoxMassTextField;
+    private JTextField middleBoxMuTextField;
+
+    private JTextField rightBoxMassTextField;
+    private JTextField rightBoxMuTextField;
+
+    private JTextField leftSlopeAngleTextField;
+    private JTextField rightSlopeAngleTextField;
 
     public MainViewModeTwo(SystemModelModeTwo systemModelModeTwo) {
         this.systemModelModeTwo = systemModelModeTwo;
@@ -42,8 +59,8 @@ public class MainViewModeTwo implements View {
         String accel = Double.toString(systemModelModeTwo.getAccelerationOfSystem());
         accelerationTextField.setText(accel);
 
-        //String vel = Double.toString(systemModelModeTwo.getSlopedBox().getVelocityMagnitude());
-        //velocityTextField.setText(vel);
+        String vel = Double.toString(systemModelModeTwo.leftBox.getVelocityMagnitude());
+        velocityTextField.setText(vel);
     }
 
     private void registerControllers() {
@@ -51,12 +68,15 @@ public class MainViewModeTwo implements View {
         startButton.addActionListener(sbl);
 
 
-        //AngleTextFieldController atfc = new AngleTextFieldController(slopeAAngleTextField, systemModelModeTwo);
-        //slopeAAngleTextField.addKeyListener(atfc);
+        LeftAngleTextFieldController latfc = new LeftAngleTextFieldController(leftSlopeAngleTextField, systemModelModeTwo);
+        leftSlopeAngleTextField.addKeyListener(latfc);
+
+        RightAngleTextFieldController ratfc = new RightAngleTextFieldController(leftSlopeAngleTextField, systemModelModeTwo);
+        leftSlopeAngleTextField.addKeyListener(ratfc);
 
 
         ResetButtonController rbc = new ResetButtonController(accelerationTextField, velocityTextField,
-                boxAMassTextField, boxAMuTextField, boxBMassTextField, slopeAAngleTextField);
+                leftBoxMassTextField, leftBoxMuTextField, rightBoxMassTextField, leftSlopeAngleTextField);
         resetButton.addActionListener(rbc);
 
 
@@ -68,13 +88,13 @@ public class MainViewModeTwo implements View {
         GridBagConstraints gc = new GridBagConstraints();
 
         // Creates and adds simulation view to the main JPanel
-        systemView = new SystemView(systemModelModeTwo);
+        //systemView = new SystemView(systemModelModeTwo);
         gc.fill = GridBagConstraints.BOTH;
         gc.gridx = 0;
         gc.gridy = 0;
         gc.gridwidth = 7;
         gc.weighty = 100;
-        mainPanel.add(systemView.systemPanel, gc);
+        //mainPanel.add(systemView.systemPanel, gc);
 
         createBoxSystemTable(gc);
         createBlockATable(gc);
@@ -131,11 +151,11 @@ public class MainViewModeTwo implements View {
         gc.gridwidth = 1;
         mainPanel.add(boxBMassLabel, gc);
 
-        boxBMassTextField = new JTextField("1", 10);
+        rightBoxMassTextField = new JTextField("1", 10);
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 5;
         gc.gridy = 2;
-        mainPanel.add(boxBMassTextField, gc);
+        mainPanel.add(rightBoxMassTextField, gc);
     }
 
     private void createBlockATable(GridBagConstraints gc) {
@@ -164,19 +184,19 @@ public class MainViewModeTwo implements View {
         gc.gridy = 3;
         mainPanel.add(boxAMuLabel, gc);
 
-        boxAMassTextField = new JTextField(10);
-        boxAMassTextField.setText("1");
+        leftBoxMassTextField = new JTextField(10);
+        leftBoxMassTextField.setText("1");
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 3;
         gc.gridy = 2;
-        mainPanel.add(boxAMassTextField, gc);
+        mainPanel.add(leftBoxMassTextField, gc);
 
-        boxAMuTextField = new JTextField(10);
-        boxAMuTextField.setText("0");
+        leftBoxMuTextField = new JTextField(10);
+        leftBoxMuTextField.setText("0");
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 3;
         gc.gridy = 3;
-        mainPanel.add(boxAMuTextField, gc);
+        mainPanel.add(leftBoxMuTextField, gc);
     }
 
     private void createSlopeATable(GridBagConstraints gc) {
@@ -198,12 +218,12 @@ public class MainViewModeTwo implements View {
         gc.gridheight = 1;
         mainPanel.add(slopeAAngleLabel, gc);
 
-        slopeAAngleTextField = new JTextField(10);
-        slopeAAngleTextField.setText("45");
+        leftSlopeAngleTextField = new JTextField(10);
+        leftSlopeAngleTextField.setText("45");
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 3;
         gc.gridy = 5;
-        mainPanel.add(slopeAAngleTextField, gc);
+        mainPanel.add(leftSlopeAngleTextField, gc);
     }
 
     private void createBoxSystemTable(GridBagConstraints gc) {
@@ -245,4 +265,3 @@ public class MainViewModeTwo implements View {
         mainPanel.add(velocityTextField, gc);
     }
 }
-    */
