@@ -87,6 +87,10 @@ public class SystemModelModeTwo extends Model {
         return leftSlopeAngle;
     }
 
+    public double getRightSlopeAngle() {
+        return rightSlopeAngle;
+    }
+
     public double getAccelerationOfSystem() {
         return accelerationOfSystem;
     }
