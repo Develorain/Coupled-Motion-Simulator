@@ -1,7 +1,7 @@
 package com.ahmad.Models.ModeTwo;
 
 import com.ahmad.Models.BoxModel;
-import com.ahmad.Tools.Constants;
+import com.ahmad.Tools.Globals;
 import com.ahmad.Tools.MathTools;
 
 public class RightBoxModel extends BoxModel {
@@ -19,14 +19,14 @@ public class RightBoxModel extends BoxModel {
 
     @Override
     public void calculateCoordinates() {
-        double tempX = Constants.SIMULATION_WIDTH_PIXELS * 2 / 3;
-        double tempY = Constants.SIMULATION_HEIGHT_PIXELS / 2;
+        double tempX = Globals.SIMULATION_WIDTH_PIXELS * 2 / 3;
+        double tempY = Globals.SIMULATION_HEIGHT_PIXELS / 2;
 
         while (true) {
             tempX -= MathTools.cos(systemModelModeTwo.getRightSlopeAngle());
             tempY += MathTools.sin(systemModelModeTwo.getRightSlopeAngle());
 
-            if (tempX <= boxWidth || tempY >= Constants.SIMULATION_HEIGHT_PIXELS - boxHeight) {
+            if (tempX <= boxWidth || tempY >= Globals.SIMULATION_HEIGHT_PIXELS - boxHeight) {
                 // Set the x and y value to the calculated in-bounds coordinates
                 x = tempX;
                 y = tempY;

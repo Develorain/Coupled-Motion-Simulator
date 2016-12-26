@@ -1,7 +1,7 @@
 package com.ahmad.Views.ModeOne;
 
 import com.ahmad.Models.ModeOne.SystemModelModeOne;
-import com.ahmad.Tools.Constants;
+import com.ahmad.Tools.Globals;
 import com.ahmad.Tools.CustomPanel;
 import com.ahmad.Tools.Paintable;
 
@@ -18,12 +18,12 @@ public class SystemView implements Paintable {
         this.systemModelModeOne = systemModelModeOne;
 
         systemPanel = new CustomPanel(this);
-        systemPanel.setPreferredSize(new Dimension(Constants.SIMULATION_WIDTH_PIXELS, Constants.SIMULATION_HEIGHT_PIXELS));
+        systemPanel.setPreferredSize(new Dimension(Globals.SIMULATION_WIDTH_PIXELS, Globals.SIMULATION_HEIGHT_PIXELS));
     }
 
     @Override
     public void paint(Graphics graphics) {
-        graphics.drawLine(0, 0, Constants.SIMULATION_WIDTH_PIXELS / 2, Constants.SIMULATION_HEIGHT_PIXELS / 2);
+        graphics.drawLine(0, 0, Globals.SIMULATION_WIDTH_PIXELS / 2, Globals.SIMULATION_HEIGHT_PIXELS / 2);
 
         drawSlopedBox((Graphics2D) graphics);
         drawDanglingBox(graphics);

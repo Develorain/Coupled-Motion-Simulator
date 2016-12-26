@@ -1,7 +1,7 @@
 package com.ahmad.Models.ModeTwo;
 
 import com.ahmad.Models.Model;
-import com.ahmad.Tools.Constants;
+import com.ahmad.Tools.Globals;
 import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
 
@@ -46,13 +46,13 @@ public class SystemModelModeTwo extends Model {
     }
 
     private void updateFriction() {
-        frictionOfSystem = leftBox.getMass() * Constants.GRAVITY * MathTools.cos(leftSlopeAngle) * leftBox.getMu();
+        frictionOfSystem = leftBox.getMass() * Globals.GRAVITY * MathTools.cos(leftSlopeAngle) * leftBox.getMu();
         //frictionOfSystem = 10;
     }
 
     // this method is here because we need access to all boxes to calculate accelerationOfSystem
     private void updateAcceleration() {
-        accelerationOfSystem = (middleBox.getMass() * Constants.GRAVITY - leftBox.getMass() * Constants.GRAVITY * MathTools.sin(leftSlopeAngle) - frictionOfSystem)
+        accelerationOfSystem = (middleBox.getMass() * Globals.GRAVITY - leftBox.getMass() * Globals.GRAVITY * MathTools.sin(leftSlopeAngle) - frictionOfSystem)
                 / (leftBox.getMass() + middleBox.getMass());
 
         Vector accelerationA = Vector.createFromPolar(accelerationOfSystem, leftSlopeAngle);

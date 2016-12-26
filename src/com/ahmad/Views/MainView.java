@@ -1,6 +1,7 @@
 package com.ahmad.Views;
 
 import com.ahmad.Controllers.AngleTextFieldController;
+import com.ahmad.Controllers.ModeComboBoxController;
 import com.ahmad.Controllers.ResetButtonController;
 import com.ahmad.Controllers.StartButtonController;
 import com.ahmad.Models.ModeOne.SystemModelModeOne;
@@ -21,6 +22,7 @@ public class MainView implements View {
     private JButton startButton;
     private JButton pauseButton;
     private JButton resetButton;
+    private JComboBox modesComboBox;
 
     private JTextField boxAMassTextField;
     private JTextField boxAMuTextField;
@@ -65,6 +67,10 @@ public class MainView implements View {
         ResetButtonController rbc = new ResetButtonController(accelerationTextField, velocityTextField,
                 boxAMassTextField, boxAMuTextField, boxBMassTextField, slopeAAngleTextField);
         resetButton.addActionListener(rbc);
+
+
+        ModeComboBoxController mcbc = new ModeComboBoxController(modesComboBox);
+        modesComboBox.addActionListener(mcbc);
     }
 
     private void layoutScreen() {
@@ -93,10 +99,10 @@ public class MainView implements View {
         gc.weighty = 1;
 
         String[] modesList = new String[]{"Mode 1", "Mode 2", "Mode 3"};
-        JComboBox modes = new JComboBox(modesList);
+        modesComboBox = new JComboBox(modesList);
         gc.gridx = 6;
         gc.gridy = 1;
-        mainPanel.add(modes, gc);
+        mainPanel.add(modesComboBox, gc);
 
         startButton = new JButton("Start Simulation");
         gc.gridx = 6;

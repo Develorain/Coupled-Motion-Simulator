@@ -1,6 +1,6 @@
 package com.ahmad.Models;
 
-import com.ahmad.Tools.Constants;
+import com.ahmad.Tools.Globals;
 import com.ahmad.Tools.Vector;
 
 public abstract class BoxModel {
@@ -18,13 +18,13 @@ public abstract class BoxModel {
     }
 
     public void updatePosition() {
-        x += velocity.getX() * Constants.DELTA_TIME_SECONDS;
-        y -= velocity.getY() * Constants.DELTA_TIME_SECONDS;
+        x += velocity.getX() * Globals.DELTA_TIME_SECONDS;
+        y -= velocity.getY() * Globals.DELTA_TIME_SECONDS;
     }
 
     public void updateVelocity() {
-        velocity.setX(velocity.getX() + acceleration.getX() * Constants.DELTA_TIME_SECONDS);
-        velocity.setY(velocity.getY() + acceleration.getY() * Constants.DELTA_TIME_SECONDS);
+        velocity.setX(velocity.getX() + acceleration.getX() * Globals.DELTA_TIME_SECONDS);
+        velocity.setY(velocity.getY() + acceleration.getY() * Globals.DELTA_TIME_SECONDS);
     }
 
     public abstract void calculateCoordinates();

@@ -2,7 +2,7 @@ package com.ahmad.Models.ModeOne;
 
 import com.ahmad.Models.Model;
 import com.ahmad.Models.WireModel;
-import com.ahmad.Tools.Constants;
+import com.ahmad.Tools.Globals;
 import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
 
@@ -35,13 +35,13 @@ public class SystemModelModeOne extends Model {
     }
 
     private void updateFriction() {
-        frictionOfSystem = slopedBox.getMass() * Constants.GRAVITY * MathTools.cos(slopeAngle) * slopedBox.getMu();
+        frictionOfSystem = slopedBox.getMass() * Globals.GRAVITY * MathTools.cos(slopeAngle) * slopedBox.getMu();
         //frictionOfSystem = 10;
     }
 
     // this method is here because we need access to all boxes to calculate accelerationOfSystem
     private void updateAcceleration() {
-        accelerationOfSystem = (danglingBox.getMass() * Constants.GRAVITY - slopedBox.getMass() * Constants.GRAVITY * MathTools.sin(slopeAngle) - frictionOfSystem)
+        accelerationOfSystem = (danglingBox.getMass() * Globals.GRAVITY - slopedBox.getMass() * Globals.GRAVITY * MathTools.sin(slopeAngle) - frictionOfSystem)
                 / (slopedBox.getMass() + danglingBox.getMass());
 
         Vector accelerationA = Vector.createFromPolar(accelerationOfSystem, slopeAngle);

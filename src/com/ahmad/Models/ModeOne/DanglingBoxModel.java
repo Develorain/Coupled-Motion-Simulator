@@ -1,7 +1,7 @@
 package com.ahmad.Models.ModeOne;
 
 import com.ahmad.Models.BoxModel;
-import com.ahmad.Tools.Constants;
+import com.ahmad.Tools.Globals;
 import com.ahmad.Tools.MathTools;
 
 public class DanglingBoxModel extends BoxModel {
@@ -17,14 +17,14 @@ public class DanglingBoxModel extends BoxModel {
 
     @Override
     public void calculateCoordinates() {
-        double tempX = Constants.SIMULATION_WIDTH_PIXELS / 2;
-        double tempY = Constants.SIMULATION_HEIGHT_PIXELS / 2;
+        double tempX = Globals.SIMULATION_WIDTH_PIXELS / 2;
+        double tempY = Globals.SIMULATION_HEIGHT_PIXELS / 2;
 
         while (true) {
             tempX += MathTools.cos(systemModelModeOne.getSlopeAngle());
             tempY -= MathTools.sin(systemModelModeOne.getSlopeAngle());
 
-            if (tempX >= Constants.SIMULATION_WIDTH_PIXELS - (2 * boxWidth) || tempY <= boxHeight) {
+            if (tempX >= Globals.SIMULATION_WIDTH_PIXELS - (2 * boxWidth) || tempY <= boxHeight) {
                 // Set the x and y value to the calculated in-bounds coordinates
                 x = tempX;
                 y = tempY;
