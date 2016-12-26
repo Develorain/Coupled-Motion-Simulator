@@ -11,9 +11,9 @@ public class SystemModelModeTwo extends Model implements SystemModel {
     public MiddleBoxModel middleBox;
     public RightBoxModel rightBox;
 
-    private LeftSlopeModel leftSlope;
-    private MiddleSlopeModel middleSlope;
-    private RightSlopeModel rightSlope;
+    public LeftSlopeModel leftSlope;
+    public MiddleSlopeModel middleSlope;
+    public RightSlopeModel rightSlope;
 
     //private WireModel leftWire;
     //private WireModel rightWire;
@@ -22,10 +22,12 @@ public class SystemModelModeTwo extends Model implements SystemModel {
     private double accelerationOfSystem;
 
     private double leftSlopeAngle;
+    private double middleSlopeAngle;
     private double rightSlopeAngle;
 
     public SystemModelModeTwo() {
         leftSlopeAngle = 45;
+        middleSlopeAngle = 0;
         rightSlopeAngle = 45;
 
         leftBox = new LeftBoxModel(this, 1, 0);
@@ -100,6 +102,10 @@ public class SystemModelModeTwo extends Model implements SystemModel {
 
     public double getLeftSlopeAngle() {
         return leftSlopeAngle;
+    }
+
+    public double getMiddleSlopeAngle() {
+        return middleSlopeAngle;
     }
 
     public double getRightSlopeAngle() {

@@ -6,15 +6,19 @@ import com.ahmad.Controllers.ModeTwo.RightAngleTextFieldController;
 import com.ahmad.Controllers.ResetButtonController;
 import com.ahmad.Controllers.StartButtonController;
 import com.ahmad.Models.ModeTwo.SystemModelModeTwo;
-import com.ahmad.Views.ModeOne.SystemView;
+import com.ahmad.Tools.CustomPanel;
+import com.ahmad.Tools.Globals;
+import com.ahmad.Tools.GraphicsPainter;
+import com.ahmad.Tools.Paintable;
 import com.ahmad.Views.View;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MainViewModeTwo implements View {
+public class MainViewModeTwo implements View, Paintable {
+    public CustomPanel systemPanel;
+
     private SystemModelModeTwo systemModelModeTwo;
-    public SystemView systemView;
 
     public JPanel mainPanel = new JPanel(new GridBagLayout());
 
@@ -42,13 +46,16 @@ public class MainViewModeTwo implements View {
         this.systemModelModeTwo = systemModelModeTwo;
         systemModelModeTwo.setView(this);
 
+        systemPanel = new CustomPanel(this);
+        systemPanel.setPreferredSize(new Dimension(Globals.SIMULATION_WIDTH_PIXELS, Globals.SIMULATION_HEIGHT_PIXELS));
+
         layoutScreen();
         registerControllers();
     }
 
     @Override
     public void update() {
-        systemView.systemPanel.repaint(); // Repaints the simulation area
+        systemPanel.repaint(); // Repaints the simulation area
 
         updateBoxSystemInfoTable();       // Updates the box system's information table
     }
@@ -70,8 +77,8 @@ public class MainViewModeTwo implements View {
         LeftAngleTextFieldController latfc = new LeftAngleTextFieldController(leftSlopeAngleTextField, systemModelModeTwo);
         leftSlopeAngleTextField.addKeyListener(latfc);
 
-        RightAngleTextFieldController ratfc = new RightAngleTextFieldController(leftSlopeAngleTextField, systemModelModeTwo);
-        leftSlopeAngleTextField.addKeyListener(ratfc);
+        RightAngleTextFieldController ratfc = new RightAngleTextFieldController(rightSlopeAngleTextField, systemModelModeTwo);
+        rightSlopeAngleTextField.addKeyListener(ratfc);
 
 
         ResetButtonController rbc = new ResetButtonController(accelerationTextField, velocityTextField,
@@ -87,13 +94,12 @@ public class MainViewModeTwo implements View {
         GridBagConstraints gc = new GridBagConstraints();
 
         // Creates and adds simulation view to the main JPanel
-        systemView = new SystemView(systemModelModeTwo);
         gc.fill = GridBagConstraints.BOTH;
         gc.gridx = 0;
         gc.gridy = 0;
         gc.gridwidth = 9;
         gc.weighty = 100;
-        mainPanel.add(systemView.systemPanel, gc);
+        mainPanel.add(systemPanel, gc);
 
         createBoxSystemTable(gc);
 
@@ -350,5 +356,23 @@ public class MainViewModeTwo implements View {
         gc.gridx = 1;
         gc.gridy = 3;
         mainPanel.add(velocityTextField, gc);
+    }
+
+    @Override
+    public void paint(Graphics graphics) {
+        graphics.drawLine(0, 0, Globals.SIMULATION_WIDTH_PIXELS / 2, Globals.SIMULATION_HEIGHT_PIXELS / 2);
+        graphics.drawLine(0, 0, Globals.SIMULATION_WIDTH_PIXELS / 3, Globals.SIMULATION_HEIGHT_PIXELS / 2);
+        graphics.drawLine(0, 0, Globals.SIMULATION_WIDTH_PIXELS * 2 / 3, Globals.SIMULATION_HEIGHT_PIXELS / 2);
+
+        graphics.drawLine(0, 0, systemModelModeTwo.leftBox.getX(), systemModelModeTwo.leftBox.getY());
+        graphics.drawLine(0, 0, systemModelModeTwo.rightBox.getX(), systemModelModeTwo.rightBox.getY());
+
+        GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.leftBox, systemModelModeTwo.getLeftSlopeAngle(), true);
+        GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.middleBox, systemModelModeTwo.getMiddleSlopeAngle(), false);
+        GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.rightBox, systemModelModeTwo.getRightSlopeAngle(), false);
+
+        GraphicsPainter.drawSlope(graphics, systemModelModeTwo.leftSlope);
+        GraphicsPainter.drawSlope(graphics, systemModelModeTwo.middleSlope);
+        GraphicsPainter.drawSlope(graphics, systemModelModeTwo.rightSlope);
     }
 }

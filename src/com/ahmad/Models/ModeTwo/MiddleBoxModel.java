@@ -1,6 +1,7 @@
 package com.ahmad.Models.ModeTwo;
 
 import com.ahmad.Models.BoxModel;
+import com.ahmad.Tools.Globals;
 
 public class MiddleBoxModel extends BoxModel {
     private SystemModelModeTwo systemModelModeTwo;
@@ -17,7 +18,8 @@ public class MiddleBoxModel extends BoxModel {
 
     @Override
     public void calculateCoordinates() {
-        // TODO: implement this method
+        x = Globals.SIMULATION_WIDTH_PIXELS / 2 - boxWidth / 2;
+        y = Globals.SIMULATION_HEIGHT_PIXELS / 2 - boxHeight;
     }
 
     public double getMu() {

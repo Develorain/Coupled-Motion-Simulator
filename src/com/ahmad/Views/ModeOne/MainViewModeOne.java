@@ -1,18 +1,23 @@
 package com.ahmad.Views.ModeOne;
 
-import com.ahmad.Controllers.ModeOne.AngleTextFieldControllerModeOne;
 import com.ahmad.Controllers.ModeComboBoxController;
+import com.ahmad.Controllers.ModeOne.AngleTextFieldControllerModeOne;
 import com.ahmad.Controllers.ResetButtonController;
 import com.ahmad.Controllers.StartButtonController;
 import com.ahmad.Models.ModeOne.SystemModelModeOne;
+import com.ahmad.Tools.CustomPanel;
+import com.ahmad.Tools.Globals;
+import com.ahmad.Tools.GraphicsPainter;
+import com.ahmad.Tools.Paintable;
 import com.ahmad.Views.View;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MainViewModeOne implements View {
+public class MainViewModeOne implements View, Paintable {
+    public CustomPanel systemPanel;
+
     private SystemModelModeOne systemModelModeOne;
-    public SystemView systemView;
 
     public JPanel mainPanel = new JPanel(new GridBagLayout());
 
@@ -35,13 +40,16 @@ public class MainViewModeOne implements View {
         this.systemModelModeOne = systemModelModeOne;
         systemModelModeOne.setView(this);
 
+        systemPanel = new CustomPanel(this);
+        systemPanel.setPreferredSize(new Dimension(Globals.SIMULATION_WIDTH_PIXELS, Globals.SIMULATION_HEIGHT_PIXELS));
+
         layoutScreen();
         registerControllers();
     }
 
     @Override
     public void update() {
-        systemView.systemPanel.repaint(); // Repaints the simulation area
+        systemPanel.repaint(); // Repaints the simulation area
 
         updateBoxSystemInfoTable();       // Updates the box system's information table
     }
@@ -77,13 +85,12 @@ public class MainViewModeOne implements View {
         GridBagConstraints gc = new GridBagConstraints();
 
         // Creates and adds simulation view to the main JPanel
-        systemView = new SystemView(systemModelModeOne);
         gc.fill = GridBagConstraints.BOTH;
         gc.gridx = 0;
         gc.gridy = 0;
         gc.gridwidth = 7;
         gc.weighty = 100;
-        mainPanel.add(systemView.systemPanel, gc);
+        mainPanel.add(systemPanel, gc);
 
         createBoxSystemTable(gc);
         createBlockATable(gc);
@@ -252,5 +259,14 @@ public class MainViewModeOne implements View {
         gc.gridx = 1;
         gc.gridy = 3;
         mainPanel.add(velocityTextField, gc);
+    }
+
+    @Override
+    public void paint(Graphics graphics) {
+        graphics.drawLine(0, 0, Globals.SIMULATION_WIDTH_PIXELS / 2, Globals.SIMULATION_HEIGHT_PIXELS / 2);
+
+        GraphicsPainter.drawSlopedBox(graphics, systemModelModeOne.getSlopedBox(), systemModelModeOne.getSlopeAngle(), true);
+        GraphicsPainter.drawDanglingBox(graphics, systemModelModeOne.getDanglingBox());
+        GraphicsPainter.drawSlope(graphics, systemModelModeOne.slope);
     }
 }
