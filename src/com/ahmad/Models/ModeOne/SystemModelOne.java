@@ -7,7 +7,7 @@ import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
 
-public class SystemModel extends Model {
+public class SystemModelOne extends Model {
     private SlopedBoxModel slopedBox;
     private DanglingBoxModel danglingBox;
 
@@ -20,12 +20,13 @@ public class SystemModel extends Model {
 
     private double slopeAngle;
 
-    public SystemModel() {
+    public SystemModelOne() {
         slopeAngle = 45;
 
         slopedBox = new SlopedBoxModel(this, 1, 0);
         danglingBox = new DanglingBoxModel(this, 1);
         slope = new SlopeModel(this);
+        wire = new WireModel(danglingBox);
     }
 
     public void initializeConstantValues() {
@@ -52,7 +53,6 @@ public class SystemModel extends Model {
     }
 
     private void updateTension() {
-        wire = new WireModel(danglingBox);
         wire.calculateTension(accelerationOfSystem);
 
         System.out.println("Tension: " + wire.tension);

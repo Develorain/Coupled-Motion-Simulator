@@ -3,8 +3,11 @@ package com.ahmad.Models.ModeTwo;
 import com.ahmad.Models.Model;
 import com.ahmad.Models.SlopeModel;
 import com.ahmad.Models.WireModel;
+import com.ahmad.Tools.Constants;
+import com.ahmad.Tools.MathTools;
+import com.ahmad.Tools.Vector;
 
-public class SystemModel extends Model {
+public class SystemModelTwo extends Model {
     private LeftBoxModel leftBox;
     private MiddleBoxModel middleBox;
     private RightBoxModel rightBox;
@@ -21,14 +24,19 @@ public class SystemModel extends Model {
     private double leftSlopeAngle;
     private double rightSlopeAngle;
 
-    /*
-    public SystemModel() {
+    public SystemModelTwo() {
+        leftSlopeAngle = 45;
+        rightSlopeAngle = 45;
+
         leftBox = new LeftBoxModel(this, 1, 0);
         middleBox = new MiddleBoxModel(this, 1);
         rightBox = new RightBoxModel(this, 1);
 
         leftSlope = new SlopeModel(this);
         rightSlope = new SlopeModel(this);
+
+        leftWire = new WireModel();
+        rightWire = new WireModel();
     }
 
     public void initializeConstantValues() {
@@ -98,5 +106,4 @@ public class SystemModel extends Model {
 
         updateView();
     }
-    */
 }

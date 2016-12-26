@@ -1,6 +1,6 @@
 package com.ahmad;
 
-import com.ahmad.Models.ModeOne.SystemModel;
+import com.ahmad.Models.ModeOne.SystemModelOne;
 import com.ahmad.Views.MainView;
 
 import javax.swing.*;
@@ -13,8 +13,8 @@ public class Startup {
             e.printStackTrace();
         }
 
-        SystemModel systemModel = new SystemModel();
-        MainView mainView = new MainView(systemModel);
+        SystemModelOne systemModelOne = new SystemModelOne();
+        MainView mainView = new MainView(systemModelOne);
 
         JFrame jFrame = new JFrame("Coupled Motion Simulator");
         //jFrame.setMinimumSize(new Dimension(708, 851));
@@ -30,6 +30,7 @@ public class Startup {
 }
 
 // TODO: **BUGS**
+// TODO: IMPORTANT: boxmodel needs to take both mode1 and mode2 system models
 // start button doesn't actually set the new values of the boxes (mass)
 // pressing the start button multiple times makes the boxes move faster. this happens because multiple timers are created, each of which are adding to velocity
 // putting in no mass breaks the program (for example, removing all the value of dangling box and pressing start)
