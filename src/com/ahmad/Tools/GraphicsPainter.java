@@ -8,13 +8,13 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 
 public class GraphicsPainter {
-    public static void drawSlopedBox(Graphics graphics, BoxModel box, double slopeAngle, boolean isLeft) {
+    public static void drawSlopedBox(Graphics graphics, BoxModel box, double slopeAngle) {
         // Creates a rectangle rotated based on the box's angle
         double theta = Math.toRadians(slopeAngle);
         Rectangle2D rectangle2D = new Rectangle2D.Double(0, 0, box.getBoxWidth(), box.getBoxHeight());
         AffineTransform affineTransform = new AffineTransform();
 
-        affineTransform.rotate(isLeft ? -theta : theta);
+        affineTransform.rotate(-theta);
 
         // Create a shape based on the rotated rectangle
         Shape rotatedRectangle = affineTransform.createTransformedShape(rectangle2D);

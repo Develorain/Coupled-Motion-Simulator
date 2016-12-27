@@ -35,7 +35,7 @@ public class SystemModelModeTwo extends Model implements SystemModel {
     public SystemModelModeTwo() {
         leftSlopeAngle = 45;
         middleSlopeAngle = 0;
-        rightSlopeAngle = 45;
+        rightSlopeAngle = 135;
 
         leftBox = new LeftBoxModel(this, 1, 0);
         middleBox = new MiddleBoxModel(this, 1, 0);
@@ -67,7 +67,7 @@ public class SystemModelModeTwo extends Model implements SystemModel {
 
         Vector accelerationA = Vector.createFromPolar(accelerationOfSystem, leftSlopeAngle);
         Vector accelerationB = Vector.createFromPolar(accelerationOfSystem, middleSlopeAngle);
-        Vector accelerationC = Vector.createFromPolar(accelerationOfSystem, rightSlopeAngle - 90);
+        Vector accelerationC = Vector.createFromPolar(accelerationOfSystem, rightSlopeAngle + 180);
 
         leftBox.setAcceleration(accelerationA);
         middleBox.setAcceleration(accelerationB);

@@ -360,16 +360,16 @@ public class MainViewModeTwo implements View, Paintable {
 
     @Override
     public void paint(Graphics graphics) {
-        //graphics.drawLine(0, 0, Globals.SIMULATION_WIDTH_PIXELS / 3, Globals.SIMULATION_HEIGHT_PIXELS / 2);
-        //graphics.drawLine(0, 0, Globals.SIMULATION_WIDTH_PIXELS / 2, Globals.SIMULATION_HEIGHT_PIXELS / 2);
-        //graphics.drawLine(0, 0, Globals.SIMULATION_WIDTH_PIXELS * 2 / 3, Globals.SIMULATION_HEIGHT_PIXELS / 2);
+        //graphics.drawLine(0, 0, Globals.SIMULATION_WIDTH_PIXELS / 3, Globals.SIMULATION_HEIGHT_PIXELS / 2);  // left point of middle slope
+        //graphics.drawLine(0, 0, Globals.SIMULATION_WIDTH_PIXELS / 2, Globals.SIMULATION_HEIGHT_PIXELS / 2); // center point
+        //graphics.drawLine(0, 0, Globals.SIMULATION_WIDTH_PIXELS * 2 / 3, Globals.SIMULATION_HEIGHT_PIXELS / 2); // right point of middle slope
 
-        //graphics.drawLine(0, 0, systemModelModeTwo.leftBox.getX(), systemModelModeTwo.leftBox.getY());
-        graphics.drawLine(0, 0, systemModelModeTwo.rightBox.getX(), systemModelModeTwo.rightBox.getY());
+        //graphics.drawLine(0, 0, systemModelModeTwo.leftBox.getX(), systemModelModeTwo.leftBox.getY()); // left box
+        //graphics.drawLine(0, 0, systemModelModeTwo.rightBox.getX(), systemModelModeTwo.rightBox.getY()); // right box
 
-        GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.leftBox, systemModelModeTwo.getLeftSlopeAngle(), true);
-        GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.middleBox, systemModelModeTwo.getMiddleSlopeAngle(), false);
-        GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.rightBox, systemModelModeTwo.getRightSlopeAngle(), false);
+        GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.leftBox, systemModelModeTwo.getLeftSlopeAngle());
+        GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.middleBox, systemModelModeTwo.getMiddleSlopeAngle());
+        GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.rightBox, systemModelModeTwo.getRightSlopeAngle());
 
         GraphicsPainter.drawSlope(graphics, systemModelModeTwo.leftSlope);
         GraphicsPainter.drawSlope(graphics, systemModelModeTwo.middleSlope);

@@ -265,7 +265,7 @@ public class MainViewModeOne implements View, Paintable {
     public void paint(Graphics graphics) {
         graphics.drawLine(0, 0, Globals.SIMULATION_WIDTH_PIXELS / 2, Globals.SIMULATION_HEIGHT_PIXELS / 2);
 
-        GraphicsPainter.drawSlopedBox(graphics, systemModelModeOne.getSlopedBox(), systemModelModeOne.getSlopeAngle(), true);
+        GraphicsPainter.drawSlopedBox(graphics, systemModelModeOne.getSlopedBox(), systemModelModeOne.getSlopeAngle());
         GraphicsPainter.drawDanglingBox(graphics, systemModelModeOne.getDanglingBox());
         GraphicsPainter.drawSlope(graphics, systemModelModeOne.slope);
     }
