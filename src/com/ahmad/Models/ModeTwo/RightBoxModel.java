@@ -23,17 +23,17 @@ public class RightBoxModel extends BoxModel {
         double tempY = Globals.SIMULATION_HEIGHT_PIXELS / 2;
 
         while (true) {
-            tempX -= MathTools.cos(systemModelModeTwo.getRightSlopeAngle());
-            tempY += MathTools.sin(systemModelModeTwo.getRightSlopeAngle());
+            tempX += MathTools.cos(systemModelModeTwo.getRightSlopeAngle());
+            tempY -= MathTools.sin(systemModelModeTwo.getRightSlopeAngle());
 
-            if (tempX >= Globals.SIMULATION_WIDTH_PIXELS - boxWidth || tempY >= Globals.SIMULATION_HEIGHT_PIXELS - boxHeight) {
+            if (tempX >= Globals.SIMULATION_WIDTH_PIXELS - 2 * boxWidth || tempY >= Globals.SIMULATION_HEIGHT_PIXELS - boxHeight) {
                 // Set the x and y value to the calculated in-bounds coordinates
                 x = tempX;
                 y = tempY;
 
-                // Offset the values so that the bottom of the box is displayed at this coordinate, not the top left corner
-                //x += boxWidth * MathTools.sin(systemModelModeTwo.getRightSlopeAngle());
-                //y -= boxHeight * MathTools.cos(systemModelModeTwo.getRightSlopeAngle());
+                // Push the box so it is on the slope, not below the slope
+                x += boxWidth * MathTools.sin(systemModelModeTwo.getLeftSlopeAngle());
+                y -= boxHeight * MathTools.cos(systemModelModeTwo.getLeftSlopeAngle());
 
                 break;
             }

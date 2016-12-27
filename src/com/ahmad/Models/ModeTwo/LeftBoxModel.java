@@ -31,7 +31,7 @@ public class LeftBoxModel extends BoxModel {
                 x = tempX;
                 y = tempY;
 
-                // Offset the values so that the bottom of the box is displayed at this coordinate, not the top left corner
+                // Push the box so it is on the slope, not below the slope
                 x -= boxWidth * MathTools.sin(systemModelModeTwo.getLeftSlopeAngle());
                 y -= boxHeight * MathTools.cos(systemModelModeTwo.getLeftSlopeAngle());
 

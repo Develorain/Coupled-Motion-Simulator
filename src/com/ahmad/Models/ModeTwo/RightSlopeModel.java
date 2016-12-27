@@ -18,8 +18,8 @@ public class RightSlopeModel extends SlopeModel {
         x1 = Globals.SIMULATION_WIDTH_PIXELS * 2 / 3;
         y1 = Globals.SIMULATION_HEIGHT_PIXELS / 2;
 
-        x2 = (int) Math.round(systemModelModeTwo.rightBox.getX() + systemModelModeTwo.rightBox.getBoxWidth() * MathTools.cos(systemModelModeTwo.getRightSlopeAngle()));
-        y2 = (int) Math.round(systemModelModeTwo.rightBox.getY() + systemModelModeTwo.rightBox.getBoxHeight() * MathTools.sin(systemModelModeTwo.getRightSlopeAngle()));
+        //x2 = (int) Math.round(systemModelModeTwo.rightBox.getX() + systemModelModeTwo.rightBox.getBoxWidth() * MathTools.cos(systemModelModeTwo.getRightSlopeAngle()));
+        //y2 = (int) Math.round(systemModelModeTwo.rightBox.getY() + systemModelModeTwo.rightBox.getBoxHeight() * MathTools.sin(systemModelModeTwo.getRightSlopeAngle()));
 
         x2 = systemModelModeTwo.rightBox.getX();
         y2 = systemModelModeTwo.rightBox.getY();
