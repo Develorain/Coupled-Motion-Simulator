@@ -25,7 +25,7 @@ public class GraphicsPainter {
 
         // Moves origin to x, y coordinate of the rectangle, draws it, and then returns origin back to 0, 0
         graphics2D.translate(box.getX(), box.getY());
-        graphics2D.fill(rotatedRectangle);
+        graphics2D.draw(rotatedRectangle);
         graphics2D.translate(-box.getX(), -box.getY());
     }
 

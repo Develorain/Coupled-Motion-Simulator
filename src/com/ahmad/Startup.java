@@ -40,6 +40,7 @@ public class Startup {
 // timer in StartButtonController only takes integers when it should take fractions
 // if simulation is active, and you select the angle text field, and press anything (ex. shift), the boxes move the their original position
 // simulation view can not be less than 700 pixels wide without the boxes not being centered
+// calculating velocity and position and iterating 60 times a second is incorrect because the acceleration is instantaneous, so the velocity is accelerating in between the 1/60'ths of a second
 
 
 // TODO: **IMPORTANT**
@@ -58,6 +59,7 @@ public class Startup {
 // round acceleration and velocity values
 // find a fix for jagged edges on sloped box
 // make a JLabel inside the box that follows the box and has the letter "A" on it
+// show how long simulation has been running for (time)
 
 /**
  * 1. Start at the center

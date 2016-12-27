@@ -6,6 +6,13 @@ import com.ahmad.Tools.Globals;
 import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
 
+// TODO:
+// draw slopes
+// draw pulleys
+// fix acceleration equation to use all 3 boxes
+// add tension and wires
+// add proper friction calculations
+
 public class SystemModelModeTwo extends Model implements SystemModel {
     public LeftBoxModel leftBox;
     public MiddleBoxModel middleBox;
@@ -34,9 +41,9 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         middleBox = new MiddleBoxModel(this, 1, 0);
         rightBox = new RightBoxModel(this, 1, 0);
 
-        leftSlope = new LeftSlopeModel();
-        middleSlope = new MiddleSlopeModel();
-        rightSlope = new RightSlopeModel();
+        leftSlope = new LeftSlopeModel(this);
+        middleSlope = new MiddleSlopeModel(this);
+        rightSlope = new RightSlopeModel(this);
 
         //leftWire = new WireModel();
         //rightWire = new WireModel();
@@ -59,10 +66,12 @@ public class SystemModelModeTwo extends Model implements SystemModel {
                 / (leftBox.getMass() + middleBox.getMass());
 
         Vector accelerationA = Vector.createFromPolar(accelerationOfSystem, leftSlopeAngle);
-        Vector accelerationB = Vector.createFromPolar(accelerationOfSystem, -90);
+        Vector accelerationB = Vector.createFromPolar(accelerationOfSystem, middleSlopeAngle);
+        Vector accelerationC = Vector.createFromPolar(accelerationOfSystem, rightSlopeAngle - 90);
 
         leftBox.setAcceleration(accelerationA);
         middleBox.setAcceleration(accelerationB);
+        rightBox.setAcceleration(accelerationC);
     }
 
 //    private void updateTension() {
@@ -120,10 +129,12 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         // Updates the boxes' velocities
         leftBox.updateVelocity();
         middleBox.updateVelocity();
+        rightBox.updateVelocity();
 
         // Updates the boxes' positions
         leftBox.updatePosition();
         middleBox.updatePosition();
+        rightBox.updatePosition();
 
         updateView();
     }

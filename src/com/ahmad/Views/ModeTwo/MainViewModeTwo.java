@@ -360,11 +360,11 @@ public class MainViewModeTwo implements View, Paintable {
 
     @Override
     public void paint(Graphics graphics) {
-        graphics.drawLine(0, 0, Globals.SIMULATION_WIDTH_PIXELS / 2, Globals.SIMULATION_HEIGHT_PIXELS / 2);
-        graphics.drawLine(0, 0, Globals.SIMULATION_WIDTH_PIXELS / 3, Globals.SIMULATION_HEIGHT_PIXELS / 2);
-        graphics.drawLine(0, 0, Globals.SIMULATION_WIDTH_PIXELS * 2 / 3, Globals.SIMULATION_HEIGHT_PIXELS / 2);
+        //graphics.drawLine(0, 0, Globals.SIMULATION_WIDTH_PIXELS / 3, Globals.SIMULATION_HEIGHT_PIXELS / 2);
+        //graphics.drawLine(0, 0, Globals.SIMULATION_WIDTH_PIXELS / 2, Globals.SIMULATION_HEIGHT_PIXELS / 2);
+        //graphics.drawLine(0, 0, Globals.SIMULATION_WIDTH_PIXELS * 2 / 3, Globals.SIMULATION_HEIGHT_PIXELS / 2);
 
-        graphics.drawLine(0, 0, systemModelModeTwo.leftBox.getX(), systemModelModeTwo.leftBox.getY());
+        //graphics.drawLine(0, 0, systemModelModeTwo.leftBox.getX(), systemModelModeTwo.leftBox.getY());
         graphics.drawLine(0, 0, systemModelModeTwo.rightBox.getX(), systemModelModeTwo.rightBox.getY());
 
         GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.leftBox, systemModelModeTwo.getLeftSlopeAngle(), true);
