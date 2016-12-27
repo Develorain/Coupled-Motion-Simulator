@@ -26,14 +26,16 @@ public class RightBoxModel extends BoxModel {
             tempX += MathTools.cos(systemModelModeTwo.getRightSlopeAngle());
             tempY -= MathTools.sin(systemModelModeTwo.getRightSlopeAngle());
 
-            if (tempX >= Globals.SIMULATION_WIDTH_PIXELS - 2 * boxWidth || tempY >= Globals.SIMULATION_HEIGHT_PIXELS - boxHeight) {
+            // Boundaries for the box, account for the width and height of box when on an angle
+            if (tempX >= Globals.SIMULATION_WIDTH_PIXELS - boxWidth * MathTools.cos(systemModelModeTwo.getRightSlopeAngle()) - boxWidth ||
+                    tempY >= Globals.SIMULATION_HEIGHT_PIXELS + boxHeight * MathTools.sin(systemModelModeTwo.getRightSlopeAngle()) - boxHeight) {
                 // Set the x and y value to the calculated in-bounds coordinates
                 x = tempX;
                 y = tempY;
 
                 // Push the box so it is on the slope, not below the slope
-                x += boxWidth * MathTools.sin(systemModelModeTwo.getLeftSlopeAngle());
-                y -= boxHeight * MathTools.cos(systemModelModeTwo.getLeftSlopeAngle());
+                x -= boxWidth * MathTools.sin(systemModelModeTwo.getRightSlopeAngle());
+                y -= boxHeight * MathTools.cos(systemModelModeTwo.getRightSlopeAngle());
 
                 break;
             }

@@ -28,7 +28,7 @@ public class RightAngleTextFieldController implements KeyListener {
         try {
             double slopeAngle = Double.parseDouble(slopeAngleTextField.getText());
 
-            systemModelModeTwo.setRightSlopeAngle(180 - slopeAngle);
+            systemModelModeTwo.setRightSlopeAngle(-slopeAngle);
         } catch (Exception e) {
             System.out.println("Error for angle");
         }

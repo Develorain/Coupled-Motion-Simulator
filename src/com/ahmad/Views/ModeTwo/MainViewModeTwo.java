@@ -373,6 +373,6 @@ public class MainViewModeTwo implements View, Paintable {
 
         GraphicsPainter.drawSlope(graphics, systemModelModeTwo.leftSlope);
         GraphicsPainter.drawSlope(graphics, systemModelModeTwo.middleSlope);
-        //GraphicsPainter.drawSlope(graphics, systemModelModeTwo.rightSlope);
+        GraphicsPainter.drawSlope(graphics, systemModelModeTwo.rightSlope);
     }
 }
