@@ -1,7 +1,7 @@
 package com.ahmad;
 
-import com.ahmad.Models.ModeTwo.SystemModelModeTwo;
-import com.ahmad.Views.ModeTwo.MainViewModeTwo;
+import com.ahmad.Models.ModeOne.SystemModelModeOne;
+import com.ahmad.Views.ModeOne.MainViewModeOne;
 
 import javax.swing.*;
 
@@ -13,13 +13,13 @@ public class Startup {
             e.printStackTrace();
         }
 
-        SystemModelModeTwo systemModelModeTwo = new SystemModelModeTwo();
-        MainViewModeTwo mainViewModeTwo = new MainViewModeTwo(systemModelModeTwo);
+        SystemModelModeOne systemModelModeOne = new SystemModelModeOne();
+        MainViewModeOne mainViewModeOne = new MainViewModeOne(systemModelModeOne);
 
         JFrame jFrame = new JFrame("Coupled Motion Simulator");
         //jFrame.setMinimumSize(new Dimension(708, 851));
         //jFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        jFrame.setContentPane(mainViewModeTwo.mainPanel);
+        jFrame.setContentPane(mainViewModeOne.mainPanel);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.pack();
         jFrame.setVisible(true);
@@ -50,6 +50,7 @@ public class Startup {
 // add multiple modes
 // fix acceleration calculation   (complete)
 // add tension calculation        (complete)
+// Each controller doesn't need to be an actionlistener, Can have one controller per view that has multiple actionlisteners
 
 
 // TODO: **SECONDARY**
