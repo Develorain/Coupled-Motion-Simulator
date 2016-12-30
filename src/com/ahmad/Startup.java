@@ -6,6 +6,8 @@ import com.ahmad.Views.ModeOne.MainViewModeOne;
 import javax.swing.*;
 
 public class Startup {
+    public static JFrame jFrame;
+
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -13,13 +15,12 @@ public class Startup {
             e.printStackTrace();
         }
 
-        SystemModelModeOne systemModelModeOne = new SystemModelModeOne();
-        MainViewModeOne mainViewModeOne = new MainViewModeOne(systemModelModeOne);
+        MainViewModeOne mainViewModeOne = new MainViewModeOne(new SystemModelModeOne());
 
-        JFrame jFrame = new JFrame("Coupled Motion Simulator");
+        jFrame = new JFrame("Coupled Motion Simulator");
         //jFrame.setMinimumSize(new Dimension(708, 851));
         //jFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        jFrame.setContentPane(mainViewModeOne.mainPanel);
+        jFrame.getContentPane().add(mainViewModeOne.mainPanel);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.pack();
         jFrame.setVisible(true);
@@ -28,6 +29,12 @@ public class Startup {
         System.out.println(jFrame.getSize());
     }
 }
+
+// TODO: ** REAL TODO **
+// TODO: Switch between modes
+// TODO: Variable switching
+// TODO: Draw pulleys and wires
+
 
 // TODO: **BUGS**
 // TODO: IMPORTANT: boxmodel needs to take both mode1 and mode2 system models
@@ -50,8 +57,15 @@ public class Startup {
 // add multiple modes
 // fix acceleration calculation   (complete)
 // add tension calculation        (complete)
-// Each controller doesn't need to be an actionlistener, Can have one controller per view that has multiple actionlisteners
 
+
+//
+//
+//
+//
+//
+//
+//
 
 // TODO: **SECONDARY**
 // make it so that you can either pick to put in mu value, or just the frictional force of the box
@@ -61,10 +75,3 @@ public class Startup {
 // find a fix for jagged edges on sloped box
 // make a JLabel inside the box that follows the box and has the letter "A" on it
 // show how long simulation has been running for (time)
-
-/**
- * 1. Start at the center
- * 2. Draw the slope at the angle
- * 3. Go down the slope until you are at the end of the screen and draw block A there, 100 offset
- * 4. Go up the slope until you're out of screen and that will be your cutoff, 100 offset
- */
