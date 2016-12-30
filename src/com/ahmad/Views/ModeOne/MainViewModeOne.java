@@ -56,11 +56,11 @@ public class MainViewModeOne implements View, Paintable {
 
     // Updates all the information tables
     private void updateBoxSystemInfoTable() {
-        String accel = Double.toString(systemModelModeOne.getAccelerationOfSystem());
-        accelerationTextField.setText(accel);
+        String accelerationValue = Double.toString(systemModelModeOne.getAccelerationOfSystem());
+        accelerationTextField.setText(accelerationValue);
 
-        String vel = Double.toString(systemModelModeOne.getSlopedBox().getVelocityMagnitude());
-        velocityTextField.setText(vel);
+        String velocityValue = Double.toString(systemModelModeOne.getSlopedBox().getVelocityMagnitude());
+        velocityTextField.setText(velocityValue);
     }
 
     private void registerControllers() {
@@ -263,10 +263,11 @@ public class MainViewModeOne implements View, Paintable {
 
     @Override
     public void paint(Graphics graphics) {
-        graphics.drawLine(0, 0, Globals.SIMULATION_WIDTH_PIXELS / 2, Globals.SIMULATION_HEIGHT_PIXELS / 2);
-
         GraphicsPainter.drawSlopedBox(graphics, systemModelModeOne.getSlopedBox(), systemModelModeOne.getSlopeAngle());
         GraphicsPainter.drawDanglingBox(graphics, systemModelModeOne.getDanglingBox());
         GraphicsPainter.drawSlope(graphics, systemModelModeOne.slope);
+        GraphicsPainter.drawWire(graphics, systemModelModeOne.wire);
+
+        graphics.drawOval(systemModelModeOne.getDanglingBox().getX(), systemModelModeOne.getDanglingBox().getY() - 50, 50, 50);
     }
 }

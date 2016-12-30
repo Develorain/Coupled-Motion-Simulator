@@ -2,6 +2,7 @@ package com.ahmad.Tools;
 
 import com.ahmad.Models.BoxModel;
 import com.ahmad.Models.SlopeModel;
+import com.ahmad.Models.WireModel;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -25,16 +26,20 @@ public class GraphicsPainter {
 
         // Moves origin to x, y coordinate of the rectangle, draws it, and then returns origin back to 0, 0
         graphics2D.translate(box.getX(), box.getY());
-        graphics2D.fill(rotatedRectangle);
+        graphics2D.draw(rotatedRectangle);
         graphics2D.translate(-box.getX(), -box.getY());
     }
 
     public static void drawDanglingBox(Graphics graphics, BoxModel box) {
-        graphics.fillRect(box.getX(), box.getY(), box.getBoxWidth(), box.getBoxHeight());
+        graphics.drawRect(box.getX(), box.getY(), box.getBoxWidth(), box.getBoxHeight());
     }
 
     public static void drawSlope(Graphics graphics, SlopeModel slope) {
         graphics.drawLine(slope.x1, slope.y1, slope.x2, slope.y2);
+    }
+
+    public static void drawWire(Graphics graphics, WireModel wire) {
+        graphics.drawLine(wire.x1, wire.y1, wire.x2, wire.y2);
     }
 }
 

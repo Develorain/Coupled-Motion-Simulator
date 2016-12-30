@@ -13,7 +13,7 @@ public class SystemModelModeOne extends Model implements SystemModel {
 
     public SlopeModelModeOne slope;
 
-    private WireModel wire;
+    public WireModel wire;
 
     private double frictionOfSystem;
     private double accelerationOfSystem;
@@ -26,7 +26,7 @@ public class SystemModelModeOne extends Model implements SystemModel {
         slopedBox = new SlopedBoxModel(this, 1, 0);
         danglingBox = new DanglingBoxModel(this, 1);
         slope = new SlopeModelModeOne(this);
-        wire = new WireModel(danglingBox);
+        wire = new WireModel(this);
     }
 
     public void initializeConstantValues() {
@@ -64,6 +64,7 @@ public class SystemModelModeOne extends Model implements SystemModel {
         slopedBox.calculateCoordinates();
         danglingBox.calculateCoordinates();
         slope.calculateCoordinates();
+        wire.calculateCoordinates();
 
         updateView();
     }
