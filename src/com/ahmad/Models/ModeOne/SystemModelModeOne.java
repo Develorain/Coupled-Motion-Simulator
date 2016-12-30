@@ -20,6 +20,8 @@ public class SystemModelModeOne extends Model implements SystemModel {
 
     private double slopeAngle;
 
+    public long simulationStartTime = 0;
+
     public SystemModelModeOne() {
         slopeAngle = 45;
 
@@ -86,11 +88,11 @@ public class SystemModelModeOne extends Model implements SystemModel {
     }
 
     public void iterate() {
-        if (Globals.simulationStartTime == 0) {
-            Globals.simulationStartTime = System.nanoTime();
+        if (simulationStartTime == 0) {
+            simulationStartTime = System.nanoTime();
         }
 
-        double elapsedSeconds = (System.nanoTime() - Globals.simulationStartTime) / 1000000000.0;
+        double elapsedSeconds = (System.nanoTime() - simulationStartTime) / 1000000000.0;
 
         //System.out.println(elapsedSeconds);
 

@@ -25,8 +25,6 @@ public class ModeComboBoxController implements ActionListener {
         JPanel contentPane = (JPanel) Startup.jFrame.getContentPane();
         contentPane.removeAll();
 
-        Globals.simulationStartTime = 0; // reset the time
-
         if (currentMode == 1) {
             MainViewModeOne mainViewModeOne = new MainViewModeOne(new SystemModelModeOne());
 

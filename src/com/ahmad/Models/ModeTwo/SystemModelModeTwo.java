@@ -32,6 +32,8 @@ public class SystemModelModeTwo extends Model implements SystemModel {
     private double middleSlopeAngle;
     private double rightSlopeAngle;
 
+    public long simulationStartTime = 0;
+
     public SystemModelModeTwo() {
         leftSlopeAngle = 45;
         middleSlopeAngle = 0;
@@ -126,11 +128,11 @@ public class SystemModelModeTwo extends Model implements SystemModel {
     }
 
     public void iterate() {
-        if (Globals.simulationStartTime == 0) {
-            Globals.simulationStartTime = System.nanoTime();
+        if (simulationStartTime == 0) {
+            simulationStartTime = System.nanoTime();
         }
 
-        double elapsedSeconds = (System.nanoTime() - Globals.simulationStartTime) / 1000000000.0;
+        double elapsedSeconds = (System.nanoTime() - simulationStartTime) / 1000000000.0;
 
         // Updates the boxes' velocities
         leftBox.updateVelocity(elapsedSeconds);
