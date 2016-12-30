@@ -31,7 +31,8 @@ public class StartButtonController implements ActionListener {
         // to stop the timer after x amount of seconds: http://stackoverflow.com/questions/4252187/how-to-stop-execution-after-a-certain-time-in-java
 
         timer = new Timer();
-        timer.scheduleAtFixedRate(timerTask, (int) (Globals.DELTA_TIME_SECONDS * 1000), (int) (Globals.DELTA_TIME_SECONDS * 1000));
+
+        timer.scheduleAtFixedRate(timerTask, 0, 1000 / Globals.UPDATES_PER_SECOND);
     }
 
 }

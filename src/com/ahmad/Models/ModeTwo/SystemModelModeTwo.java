@@ -126,15 +126,21 @@ public class SystemModelModeTwo extends Model implements SystemModel {
     }
 
     public void iterate() {
+        if (Globals.simulationStartTime == 0) {
+            Globals.simulationStartTime = System.nanoTime();
+        }
+
+        double elapsedSeconds = (System.nanoTime() - Globals.simulationStartTime) / 1000000000.0;
+
         // Updates the boxes' velocities
-        leftBox.updateVelocity();
-        middleBox.updateVelocity();
-        rightBox.updateVelocity();
+        leftBox.updateVelocity(elapsedSeconds);
+        middleBox.updateVelocity(elapsedSeconds);
+        rightBox.updateVelocity(elapsedSeconds);
 
         // Updates the boxes' positions
-        leftBox.updatePosition();
-        middleBox.updatePosition();
-        rightBox.updatePosition();
+        leftBox.updatePosition(elapsedSeconds);
+        middleBox.updatePosition(elapsedSeconds);
+        rightBox.updatePosition(elapsedSeconds);
 
         updateView();
     }

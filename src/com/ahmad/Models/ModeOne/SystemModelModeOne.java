@@ -86,13 +86,21 @@ public class SystemModelModeOne extends Model implements SystemModel {
     }
 
     public void iterate() {
+        if (Globals.simulationStartTime == 0) {
+            Globals.simulationStartTime = System.nanoTime();
+        }
+
+        double elapsedSeconds = (System.nanoTime() - Globals.simulationStartTime) / 1000000000.0;
+
+        //System.out.println(elapsedSeconds);
+
         // Updates the boxes' velocities
-        slopedBox.updateVelocity();
-        danglingBox.updateVelocity();
+        slopedBox.updateVelocity(elapsedSeconds);
+        danglingBox.updateVelocity(elapsedSeconds);
 
         // Updates the boxes' positions
-        slopedBox.updatePosition();
-        danglingBox.updatePosition();
+        slopedBox.updatePosition(elapsedSeconds);
+        danglingBox.updatePosition(elapsedSeconds);
 
         updateView();
     }

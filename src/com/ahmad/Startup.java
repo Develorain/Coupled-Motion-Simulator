@@ -31,7 +31,6 @@ public class Startup {
 }
 
 // TODO: ** REAL TODO **
-// TODO: Switch between modes
 // TODO: Variable switching
 // TODO: Draw pulleys and wires
 
@@ -44,11 +43,8 @@ public class Startup {
 // user can input negative angles and angles above 90 degrees
 // if the friction is too great the box moves backwards. instead, the box should not move at all if frictional force is greater than gravity force
 // make sure the boxes don't start at the polar extremes of the slope and make sure it does not go past the pulley or past the slope
-// timer in StartButtonController only takes integers when it should take fractions
 // if simulation is active, and you select the angle text field, and press anything (ex. shift), the boxes move the their original position
 // simulation view can not be less than 700 pixels wide without the boxes not being centered
-// calculating velocity and position and iterating 60 times a second is incorrect because the acceleration is instantaneous, so the velocity is accelerating in between the 1/60'ths of a second
-
 
 // TODO: **IMPORTANT**
 // based on what value is not provided (either mass, mu, or acceleration), solve for not given value

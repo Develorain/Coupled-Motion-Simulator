@@ -20,16 +20,18 @@ public class ModeComboBoxController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        Globals.currentMode = modesComboBox.getSelectedIndex() + 1;
+        int currentMode = modesComboBox.getSelectedIndex() + 1;
 
         JPanel contentPane = (JPanel) Startup.jFrame.getContentPane();
         contentPane.removeAll();
 
-        if (Globals.currentMode == 1) {
+        Globals.simulationStartTime = 0; // reset the time
+
+        if (currentMode == 1) {
             MainViewModeOne mainViewModeOne = new MainViewModeOne(new SystemModelModeOne());
 
             contentPane.add(mainViewModeOne.mainPanel);
-        } else if (Globals.currentMode == 2) {
+        } else if (currentMode == 2) {
             MainViewModeTwo mainViewModeTwo = new MainViewModeTwo(new SystemModelModeTwo());
 
             contentPane.add(mainViewModeTwo.mainPanel);
