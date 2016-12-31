@@ -8,17 +8,17 @@ import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
 
 public class SystemModelModeOne extends Model implements SystemModel {
-    private SlopedBoxModel slopedBox;
-    private DanglingBoxModel danglingBox;
+    public SlopedBoxModel slopedBox;
+    public DanglingBoxModel danglingBox;
 
     public SlopeModelModeOne slope;
 
     public WireModel wire;
 
-    private double frictionOfSystem;
-    private double accelerationOfSystem;
+    public double frictionOfSystem;
+    public double accelerationOfSystem;
 
-    private double slopeAngle;
+    public double slopeAngle;
 
     public long simulationStartTime = 0;
 
@@ -39,7 +39,7 @@ public class SystemModelModeOne extends Model implements SystemModel {
 
     private void updateFriction() {
         frictionOfSystem = slopedBox.getMass() * Globals.GRAVITY * MathTools.cos(slopeAngle) * slopedBox.getMu();
-        //frictionOfSystem = 10;
+        //frictionOfSystem = 200;
     }
 
     // this method is here because we need access to all boxes to calculate accelerationOfSystem

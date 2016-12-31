@@ -7,7 +7,7 @@ public abstract class BoxModel {
     protected double y;  // but keeping it as int doesn't allow me to increment the position
     protected final int boxWidth = 100;
     protected final int boxHeight = 100;
-    private double mass;
+    public double mass;
 
     private Vector velocity = new Vector();
     private Vector acceleration;

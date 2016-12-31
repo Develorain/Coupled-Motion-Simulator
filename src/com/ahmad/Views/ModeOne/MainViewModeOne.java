@@ -17,24 +17,24 @@ import java.awt.*;
 public class MainViewModeOne implements View, Paintable {
     public CustomPanel systemPanel;
 
-    private SystemModelModeOne systemModelModeOne;
+    public SystemModelModeOne systemModelModeOne;
 
     public JPanel mainPanel = new JPanel(new GridBagLayout());
 
-    private JTextField accelerationTextField;
-    private JTextField velocityTextField;
+    public JTextField accelerationTextField;
+    public JTextField velocityTextField;
 
-    private JButton startButton;
-    private JButton pauseButton;
-    private JButton resetButton;
-    private JComboBox modesComboBox;
+    public JButton startButton;
+    public JButton pauseButton;
+    public JButton resetButton;
+    public JComboBox modesComboBox;
 
-    private JTextField leftBoxMassTextField;
-    private JTextField leftBoxMuTextField;
+    public JTextField leftBoxMassTextField;
+    public JTextField leftBoxMuTextField;
 
-    private JTextField rightBoxMassTextField;
+    public JTextField rightBoxMassTextField;
 
-    private JTextField leftSlopeAngleTextField;
+    public JTextField leftSlopeAngleTextField;
 
     public MainViewModeOne(SystemModelModeOne systemModelModeOne) {
         this.systemModelModeOne = systemModelModeOne;
@@ -64,7 +64,7 @@ public class MainViewModeOne implements View, Paintable {
     }
 
     private void registerControllers() {
-        StartButtonController sbl = new StartButtonController(systemModelModeOne);
+        StartButtonController sbl = new StartButtonController(this, systemModelModeOne);
         startButton.addActionListener(sbl);
 
 

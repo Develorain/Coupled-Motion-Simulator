@@ -5,8 +5,8 @@ import com.ahmad.Tools.Globals;
 import com.ahmad.Tools.MathTools;
 
 public class SlopedBoxModel extends BoxModel {
-    private SystemModelModeOne systemModelModeOne;
-    private double mu;
+    public SystemModelModeOne systemModelModeOne;
+    public double mu;
 
     public SlopedBoxModel(SystemModelModeOne systemModelModeOne, double mass, double mu) {
         super(mass);

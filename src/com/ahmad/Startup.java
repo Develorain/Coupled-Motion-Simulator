@@ -31,12 +31,14 @@ public class Startup {
 }
 
 // TODO: ** REAL TODO **
+// TODO: Fix input
+// TODO: Fix friction
 // TODO: Variable switching
 // TODO: Draw pulleys and wires
 
 
 // TODO: **BUGS**
-// TODO: IMPORTANT: boxmodel needs to take both mode1 and mode2 system models
+// TODO: IMPORTANT: BoxModel needs to take both mode1 and mode2 system models
 // start button doesn't actually set the new values of the boxes (mass)
 // pressing the start button multiple times makes the boxes move faster. this happens because multiple timers are created, each of which are adding to velocity
 // putting in no mass breaks the program (for example, removing all the value of dangling box and pressing start)
