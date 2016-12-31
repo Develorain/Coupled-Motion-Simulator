@@ -1,7 +1,7 @@
 package com.ahmad.Models;
 
 public interface SystemModel {
-    void initializeConstantValues();
+    void initializeConstantValues(int scenario);
 
     void iterate();
 }

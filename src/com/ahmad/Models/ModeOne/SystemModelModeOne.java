@@ -31,10 +31,20 @@ public class SystemModelModeOne extends Model implements SystemModel {
         wire = new WireModel(this);
     }
 
-    public void initializeConstantValues() {
-        updateFriction();
-        updateAcceleration();
-        updateTension();
+    public void initializeConstantValues(int scenario) {
+        switch (scenario) {
+            case 1:
+                updateFriction();
+                updateAcceleration();
+                updateTension();
+                break;
+
+            case 2:
+                break;
+
+            case 3:
+                break;
+        }
     }
 
     private void updateFriction() {

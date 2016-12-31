@@ -51,7 +51,7 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         //rightWire = new WireModel();
     }
 
-    public void initializeConstantValues() {
+    public void initializeConstantValues(int scenario) {
         updateFriction();
         updateAcceleration();
         //updateTension();

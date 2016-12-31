@@ -34,7 +34,6 @@ public class StartButtonController implements ActionListener {
             sysModel.getDanglingBox().mass = Double.parseDouble(mainView.rightBoxMassTextField.getText());
             sysModel.getSlopedBox().mu = Double.parseDouble(mainView.leftBoxMuTextField.getText());
             sysModel.slopeAngle = Double.parseDouble(mainView.leftSlopeAngleTextField.getText());
-
         } else if (!mainView.rightBoxMassTextField.getText().isEmpty() && !mainView.tensionTextField.getText().isEmpty()
                 && !mainView.leftSlopeAngleTextField.getText().isEmpty() && !mainView.leftBoxMuTextField.getText().isEmpty()) {
             scenario = 2;
@@ -43,7 +42,6 @@ public class StartButtonController implements ActionListener {
             sysModel.wire.tension = Double.parseDouble(mainView.tensionTextField.getText());
             sysModel.slopeAngle = Double.parseDouble(mainView.leftSlopeAngleTextField.getText());
             sysModel.getSlopedBox().mu = Double.parseDouble(mainView.leftBoxMuTextField.getText());
-
         } else if (!mainView.accelerationTextField.getText().isEmpty() && !mainView.tensionTextField.getText().isEmpty()
                 && !mainView.leftSlopeAngleTextField.getText().isEmpty() && !mainView.leftBoxMassTextField.getText().isEmpty()) {
             scenario = 3;
@@ -57,7 +55,7 @@ public class StartButtonController implements ActionListener {
             return;
         }
 
-        systemModel.initializeConstantValues();
+        systemModel.initializeConstantValues(scenario);
 
         TimerTask timerTask = new TimerTask() {
             public void run() {
