@@ -22,17 +22,40 @@ public class StartButtonController implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent actionEvent) {
-        SystemModelModeOne z = (SystemModelModeOne) systemModel;
+        SystemModelModeOne sysModel = (SystemModelModeOne) systemModel;
 
-        //z.accelerationOfSystem = Double.parseDouble(mainView.accelerationTextField.getText());
+        int scenario = -1;
 
-        z.getSlopedBox().mass = Double.parseDouble(mainView.leftBoxMassTextField.getText());
+        if (!mainView.leftBoxMassTextField.getText().isEmpty() && !mainView.rightBoxMassTextField.getText().isEmpty()
+                && !mainView.leftBoxMuTextField.getText().isEmpty() && !mainView.leftSlopeAngleTextField.getText().isEmpty()) {
+            scenario = 1;
 
-        z.getSlopedBox().mu = Double.parseDouble(mainView.leftBoxMuTextField.getText());
+            sysModel.getSlopedBox().mass = Double.parseDouble(mainView.leftBoxMassTextField.getText());
+            sysModel.getDanglingBox().mass = Double.parseDouble(mainView.rightBoxMassTextField.getText());
+            sysModel.getSlopedBox().mu = Double.parseDouble(mainView.leftBoxMuTextField.getText());
+            sysModel.slopeAngle = Double.parseDouble(mainView.leftSlopeAngleTextField.getText());
 
-        z.getDanglingBox().mass = Double.parseDouble(mainView.rightBoxMassTextField.getText());
+        } else if (!mainView.rightBoxMassTextField.getText().isEmpty() && !mainView.tensionTextField.getText().isEmpty()
+                && !mainView.leftSlopeAngleTextField.getText().isEmpty() && !mainView.leftBoxMuTextField.getText().isEmpty()) {
+            scenario = 2;
 
-        z.slopeAngle = Double.parseDouble(mainView.leftSlopeAngleTextField.getText());
+            sysModel.getDanglingBox().mass = Double.parseDouble(mainView.rightBoxMassTextField.getText());
+            sysModel.wire.tension = Double.parseDouble(mainView.tensionTextField.getText());
+            sysModel.slopeAngle = Double.parseDouble(mainView.leftSlopeAngleTextField.getText());
+            sysModel.getSlopedBox().mu = Double.parseDouble(mainView.leftBoxMuTextField.getText());
+
+        } else if (!mainView.accelerationTextField.getText().isEmpty() && !mainView.tensionTextField.getText().isEmpty()
+                && !mainView.leftSlopeAngleTextField.getText().isEmpty() && !mainView.leftBoxMassTextField.getText().isEmpty()) {
+            scenario = 3;
+
+            sysModel.accelerationOfSystem = Double.parseDouble(mainView.accelerationTextField.getText());
+            sysModel.wire.tension = Double.parseDouble(mainView.tensionTextField.getText());
+            sysModel.slopeAngle = Double.parseDouble(mainView.leftSlopeAngleTextField.getText());
+            sysModel.getSlopedBox().mass = Double.parseDouble(mainView.leftBoxMassTextField.getText());
+        } else {
+            System.out.println("Missing input");
+            return;
+        }
 
         systemModel.initializeConstantValues();
 
