@@ -31,8 +31,6 @@ public class Startup {
 }
 
 // TODO: ** REAL TODO **
-// TODO: Fix input
-// TODO: Fix friction
 // TODO: Variable switching
 // TODO: Draw pulleys and wires
 
@@ -47,6 +45,7 @@ public class Startup {
 // make sure the boxes don't start at the polar extremes of the slope and make sure it does not go past the pulley or past the slope
 // if simulation is active, and you select the angle text field, and press anything (ex. shift), the boxes move the their original position
 // simulation view can not be less than 700 pixels wide without the boxes not being centered
+// borders should scale with window size, not 100 pixels absolute
 
 // TODO: **IMPORTANT**
 // based on what value is not provided (either mass, mu, or acceleration), solve for not given value

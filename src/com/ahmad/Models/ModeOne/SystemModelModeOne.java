@@ -38,14 +38,45 @@ public class SystemModelModeOne extends Model implements SystemModel {
     }
 
     private void updateFriction() {
-        frictionOfSystem = slopedBox.getMass() * Globals.GRAVITY * MathTools.cos(slopeAngle) * slopedBox.getMu();
+        frictionOfSystem = slopedBox.getMu() * slopedBox.getMass() * Globals.GRAVITY * MathTools.cos(slopeAngle);
         //frictionOfSystem = 200;
     }
 
     // this method is here because we need access to all boxes to calculate accelerationOfSystem
     private void updateAcceleration() {
-        accelerationOfSystem = (danglingBox.getMass() * Globals.GRAVITY - slopedBox.getMass() * Globals.GRAVITY * MathTools.sin(slopeAngle) - frictionOfSystem)
-                / (slopedBox.getMass() + danglingBox.getMass());
+        // a = ( m_r * g - m_l * g * sin(theta) ) / ( m_l + m_r )
+        double accelerationOfSystemWithoutFriction = (
+                danglingBox.getMass() * Globals.GRAVITY - slopedBox.getMass() * Globals.GRAVITY * MathTools.sin(slopeAngle)
+        ) / (slopedBox.getMass() + danglingBox.getMass());
+
+        if (accelerationOfSystemWithoutFriction == 0) {
+            accelerationOfSystem = 0;
+        } else if (accelerationOfSystemWithoutFriction > 0) {
+            // a = ( m_r * g - m_l * g * sin(theta) - mu_l * m_l * g * cos(theta) ) / ( m_l + m_r )
+
+            accelerationOfSystem = (
+                    danglingBox.getMass() * Globals.GRAVITY - slopedBox.getMass() * Globals.GRAVITY * MathTools.sin(slopeAngle)
+                            - frictionOfSystem
+            ) / (slopedBox.getMass() + danglingBox.getMass());
+
+            // Friction only limits motion
+            if (accelerationOfSystem < 0) {
+                accelerationOfSystem = 0;
+            }
+
+        } else if (accelerationOfSystemWithoutFriction < 0) {
+            // a = ( m_r * g - m_l * g * sin(theta) + mu_l * m_l * g * cos(theta) ) / ( m_l + m_r )
+
+            accelerationOfSystem = (
+                    danglingBox.getMass() * Globals.GRAVITY - slopedBox.getMass() * Globals.GRAVITY * MathTools.sin(slopeAngle)
+                            + frictionOfSystem
+            ) / (slopedBox.getMass() + danglingBox.getMass());
+
+            // Friction only limits motion
+            if (accelerationOfSystem > 0) {
+                accelerationOfSystem = 0;
+            }
+        }
 
         Vector accelerationA = Vector.createFromPolar(accelerationOfSystem, slopeAngle);
         Vector accelerationB = Vector.createFromPolar(accelerationOfSystem, -90);
