@@ -34,9 +34,9 @@ public class SystemModelModeOne extends Model implements SystemModel {
     public void initializeConstantValues(int scenario) {
         switch (scenario) {
             case 1:
-                updateFriction();
-                updateAcceleration();
-                updateTension();
+                updateFriction(slopedBox.getMass(), slopedBox.getMu(), slopeAngle);
+                updateAcceleration(slopedBox.getMass(), danglingBox.getMass(), frictionOfSystem, slopeAngle);
+                updateTension(danglingBox.getMass(), accelerationOfSystem);
                 break;
 
             case 2:
@@ -47,27 +47,17 @@ public class SystemModelModeOne extends Model implements SystemModel {
         }
     }
 
-    private void updateFriction() {
-        frictionOfSystem = slopedBox.getMu() * slopedBox.getMass() * Globals.GRAVITY * MathTools.cos(slopeAngle);
-        //frictionOfSystem = 200;
+    private void updateFriction(double massLeft, double muLeft, double angle) {
+        frictionOfSystem = muLeft * massLeft * Globals.GRAVITY * MathTools.cos(angle);
     }
 
-    // this method is here because we need access to all boxes to calculate accelerationOfSystem
-    private void updateAcceleration() {
-        // a = ( m_r * g - m_l * g * sin(theta) ) / ( m_l + m_r )
-        double accelerationOfSystemWithoutFriction = (
-                danglingBox.getMass() * Globals.GRAVITY - slopedBox.getMass() * Globals.GRAVITY * MathTools.sin(slopeAngle)
-        ) / (slopedBox.getMass() + danglingBox.getMass());
+    private void updateAcceleration(double massLeft, double massRight, double friction, double angle) {
+        double accelerationOfSystemWithoutFriction = (massRight * Globals.GRAVITY - massLeft * Globals.GRAVITY * MathTools.sin(angle)) / (massLeft + massRight);
 
         if (accelerationOfSystemWithoutFriction == 0) {
             accelerationOfSystem = 0;
         } else if (accelerationOfSystemWithoutFriction > 0) {
-            // a = ( m_r * g - m_l * g * sin(theta) - mu_l * m_l * g * cos(theta) ) / ( m_l + m_r )
-
-            accelerationOfSystem = (
-                    danglingBox.getMass() * Globals.GRAVITY - slopedBox.getMass() * Globals.GRAVITY * MathTools.sin(slopeAngle)
-                            - frictionOfSystem
-            ) / (slopedBox.getMass() + danglingBox.getMass());
+            accelerationOfSystem = (massRight * Globals.GRAVITY - massLeft * Globals.GRAVITY * MathTools.sin(angle) - friction) / (massLeft + massRight);
 
             // Friction only limits motion
             if (accelerationOfSystem < 0) {
@@ -75,12 +65,7 @@ public class SystemModelModeOne extends Model implements SystemModel {
             }
 
         } else if (accelerationOfSystemWithoutFriction < 0) {
-            // a = ( m_r * g - m_l * g * sin(theta) + mu_l * m_l * g * cos(theta) ) / ( m_l + m_r )
-
-            accelerationOfSystem = (
-                    danglingBox.getMass() * Globals.GRAVITY - slopedBox.getMass() * Globals.GRAVITY * MathTools.sin(slopeAngle)
-                            + frictionOfSystem
-            ) / (slopedBox.getMass() + danglingBox.getMass());
+            accelerationOfSystem = (massRight * Globals.GRAVITY - massLeft * Globals.GRAVITY * MathTools.sin(angle) + friction) / (massLeft + massRight);
 
             // Friction only limits motion
             if (accelerationOfSystem > 0) {
@@ -88,15 +73,35 @@ public class SystemModelModeOne extends Model implements SystemModel {
             }
         }
 
-        Vector accelerationA = Vector.createFromPolar(accelerationOfSystem, slopeAngle);
+        Vector accelerationA = Vector.createFromPolar(accelerationOfSystem, angle);
         Vector accelerationB = Vector.createFromPolar(accelerationOfSystem, -90);
 
         slopedBox.setAcceleration(accelerationA);
         danglingBox.setAcceleration(accelerationB);
     }
 
-    private void updateTension() {
-        wire.calculateTension(accelerationOfSystem);
+    private void updateTension(double massRight, double acceleration) {
+        wire.calculateTension(massRight, acceleration);
+    }
+
+    public void iterate() {
+        if (simulationStartTime == 0) {
+            simulationStartTime = System.nanoTime();
+        }
+
+        double elapsedSeconds = (System.nanoTime() - simulationStartTime) / 1000000000.0;
+
+        //System.out.println(elapsedSeconds);
+
+        // Updates the boxes' velocities
+        slopedBox.updateVelocity(elapsedSeconds);
+        danglingBox.updateVelocity(elapsedSeconds);
+
+        // Updates the boxes' positions
+        slopedBox.updatePosition(elapsedSeconds);
+        danglingBox.updatePosition(elapsedSeconds);
+
+        updateView();
     }
 
     public void setSlopeAngle(double slopeAngle) {
@@ -124,25 +129,5 @@ public class SystemModelModeOne extends Model implements SystemModel {
 
     public DanglingBoxModel getDanglingBox() {
         return danglingBox;
-    }
-
-    public void iterate() {
-        if (simulationStartTime == 0) {
-            simulationStartTime = System.nanoTime();
-        }
-
-        double elapsedSeconds = (System.nanoTime() - simulationStartTime) / 1000000000.0;
-
-        //System.out.println(elapsedSeconds);
-
-        // Updates the boxes' velocities
-        slopedBox.updateVelocity(elapsedSeconds);
-        danglingBox.updateVelocity(elapsedSeconds);
-
-        // Updates the boxes' positions
-        slopedBox.updatePosition(elapsedSeconds);
-        danglingBox.updatePosition(elapsedSeconds);
-
-        updateView();
     }
 }

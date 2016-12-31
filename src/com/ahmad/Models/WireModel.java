@@ -48,7 +48,7 @@ public class WireModel {
         y2 = (int) (systemModelModeOne.getDanglingBox().getY() - 50); //+ 50 * MathTools.sin(systemModelModeOne.getSlopeAngle())
     }
 
-    public void calculateTension(double acceleration) {
-        tension = systemModelModeOne.getDanglingBox().getMass() * (Globals.GRAVITY - acceleration);
+    public void calculateTension(double massRight, double acceleration) {
+        tension = massRight * (Globals.GRAVITY - acceleration);
     }
 }
