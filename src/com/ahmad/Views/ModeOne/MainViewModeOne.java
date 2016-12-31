@@ -23,6 +23,8 @@ public class MainViewModeOne implements View, Paintable {
 
     public JTextField accelerationTextField;
     public JTextField velocityTextField;
+    public JTextField frictionTextField;
+    public JTextField tensionTextField;
 
     public JButton startButton;
     public JButton pauseButton;
@@ -61,6 +63,12 @@ public class MainViewModeOne implements View, Paintable {
 
         String velocityValue = Double.toString(systemModelModeOne.getSlopedBox().getVelocityMagnitude());
         velocityTextField.setText(velocityValue);
+
+        String frictionValue = Double.toString(systemModelModeOne.frictionOfSystem);
+        frictionTextField.setText(frictionValue);
+
+        String tensionValue = Double.toString(systemModelModeOne.wire.tension);
+        tensionTextField.setText(tensionValue);
     }
 
     private void registerControllers() {
@@ -248,6 +256,18 @@ public class MainViewModeOne implements View, Paintable {
         gc.gridy = 3;
         mainPanel.add(velocityLabel, gc);
 
+        JLabel frictionLabel = new JLabel("Friction ");
+        gc.anchor = GridBagConstraints.LINE_END;
+        gc.gridx = 0;
+        gc.gridy = 4;
+        mainPanel.add(frictionLabel, gc);
+
+        JLabel tensionLabel = new JLabel("Tension ");
+        gc.anchor = GridBagConstraints.LINE_END;
+        gc.gridx = 0;
+        gc.gridy = 5;
+        mainPanel.add(tensionLabel, gc);
+
         accelerationTextField = new JTextField(10);
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 1;
@@ -255,10 +275,23 @@ public class MainViewModeOne implements View, Paintable {
         mainPanel.add(accelerationTextField, gc);
 
         velocityTextField = new JTextField(10);
+        velocityTextField.setEditable(false);
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 1;
         gc.gridy = 3;
         mainPanel.add(velocityTextField, gc);
+
+        frictionTextField = new JTextField(10);
+        gc.anchor = GridBagConstraints.LINE_START;
+        gc.gridx = 1;
+        gc.gridy = 4;
+        mainPanel.add(frictionTextField, gc);
+
+        tensionTextField = new JTextField(10);
+        gc.anchor = GridBagConstraints.LINE_START;
+        gc.gridx = 1;
+        gc.gridy = 5;
+        mainPanel.add(tensionTextField, gc);
     }
 
     @Override

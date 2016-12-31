@@ -87,8 +87,6 @@ public class SystemModelModeOne extends Model implements SystemModel {
 
     private void updateTension() {
         wire.calculateTension(accelerationOfSystem);
-
-        System.out.println("Tension: " + wire.tension);
     }
 
     public void setSlopeAngle(double slopeAngle) {

@@ -1,6 +1,7 @@
 package com.ahmad.Models;
 
 import com.ahmad.Models.ModeOne.SystemModelModeOne;
+import com.ahmad.Tools.Globals;
 import com.ahmad.Tools.MathTools;
 
 public class WireModel {
@@ -48,6 +49,6 @@ public class WireModel {
     }
 
     public void calculateTension(double acceleration) {
-        tension = systemModelModeOne.getDanglingBox().getMass() * 9.8 - systemModelModeOne.getDanglingBox().getMass() * acceleration;
+        tension = systemModelModeOne.getDanglingBox().getMass() * (Globals.GRAVITY - acceleration);
     }
 }

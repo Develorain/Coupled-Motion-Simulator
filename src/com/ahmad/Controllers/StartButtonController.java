@@ -22,8 +22,6 @@ public class StartButtonController implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent actionEvent) {
-        System.out.println("Start Button Pressed");
-
         SystemModelModeOne z = (SystemModelModeOne) systemModel;
 
         //z.accelerationOfSystem = Double.parseDouble(mainView.accelerationTextField.getText());
