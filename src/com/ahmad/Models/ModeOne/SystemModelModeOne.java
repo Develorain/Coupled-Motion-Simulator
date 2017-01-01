@@ -40,6 +40,8 @@ public class SystemModelModeOne extends Model implements SystemModel {
                 break;
 
             case 2:
+                updateAcceleration(wire.tension, danglingBox.getMass());
+                updateMassLeft(slopeAngle, slopedBox.getMu(), frictionOfSystem);
                 break;
 
             case 3:
@@ -49,6 +51,15 @@ public class SystemModelModeOne extends Model implements SystemModel {
 
     private void updateFriction(double massLeft, double muLeft, double angle) {
         frictionOfSystem = muLeft * massLeft * Globals.GRAVITY * MathTools.cos(angle);
+    }
+
+    private void updateAcceleration(double tension, double massRight) {
+        accelerationOfSystem = (massRight * Globals.GRAVITY - tension) / massRight;
+        setBoxAccelerations();
+    }
+
+    public void updateMassLeft(double angle, double muLeft, double friction) {
+        slopedBox.mass = friction / (muLeft * Globals.GRAVITY * MathTools.cos(angle));
     }
 
     private void updateAcceleration(double massLeft, double massRight, double friction, double angle) {
@@ -73,11 +84,15 @@ public class SystemModelModeOne extends Model implements SystemModel {
             }
         }
 
-        Vector accelerationA = Vector.createFromPolar(accelerationOfSystem, angle);
-        Vector accelerationB = Vector.createFromPolar(accelerationOfSystem, -90);
+        setBoxAccelerations();
+    }
 
-        slopedBox.setAcceleration(accelerationA);
-        danglingBox.setAcceleration(accelerationB);
+    private void setBoxAccelerations() {
+        Vector accelerationLeft = Vector.createFromPolar(accelerationOfSystem, slopeAngle);
+        Vector accelerationRight = Vector.createFromPolar(accelerationOfSystem, -90);
+
+        slopedBox.setAcceleration(accelerationLeft);
+        danglingBox.setAcceleration(accelerationRight);
     }
 
     private void updateTension(double massRight, double acceleration) {

@@ -35,12 +35,14 @@ public class StartButtonController implements ActionListener {
             sysModel.getSlopedBox().mu = Double.parseDouble(mainView.leftBoxMuTextField.getText());
             sysModel.slopeAngle = Double.parseDouble(mainView.leftSlopeAngleTextField.getText());
         } else if (!mainView.rightBoxMassTextField.getText().isEmpty() && !mainView.tensionTextField.getText().isEmpty()
-                && !mainView.leftSlopeAngleTextField.getText().isEmpty() && !mainView.leftBoxMuTextField.getText().isEmpty()) {
+                && !mainView.leftSlopeAngleTextField.getText().isEmpty() && !mainView.frictionTextField.getText().isEmpty()
+                && !mainView.leftBoxMuTextField.getText().isEmpty()) {
             scenario = 2;
 
             sysModel.getDanglingBox().mass = Double.parseDouble(mainView.rightBoxMassTextField.getText());
             sysModel.wire.tension = Double.parseDouble(mainView.tensionTextField.getText());
             sysModel.slopeAngle = Double.parseDouble(mainView.leftSlopeAngleTextField.getText());
+            sysModel.frictionOfSystem = Double.parseDouble(mainView.frictionTextField.getText());
             sysModel.getSlopedBox().mu = Double.parseDouble(mainView.leftBoxMuTextField.getText());
         } else if (!mainView.accelerationTextField.getText().isEmpty() && !mainView.tensionTextField.getText().isEmpty()
                 && !mainView.leftSlopeAngleTextField.getText().isEmpty() && !mainView.leftBoxMassTextField.getText().isEmpty()) {
