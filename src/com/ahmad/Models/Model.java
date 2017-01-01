@@ -12,4 +12,8 @@ public class Model {
     public void updateView() {
         view.update();
     }
+
+    public void repaintView() {
+        view.repaint();
+    }
 }

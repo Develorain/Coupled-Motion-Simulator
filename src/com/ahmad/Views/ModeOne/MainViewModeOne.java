@@ -56,6 +56,11 @@ public class MainViewModeOne implements View, Paintable {
         updateBoxSystemInfoTable();       // Updates the box system's information table
     }
 
+    @Override
+    public void repaint() {
+        systemPanel.repaint();
+    }
+
     // Updates all the information tables
     private void updateBoxSystemInfoTable() {
         String accelerationValue = Double.toString(systemModelModeOne.getAccelerationOfSystem());

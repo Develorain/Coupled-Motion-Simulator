@@ -127,7 +127,7 @@ public class SystemModelModeOne extends Model implements SystemModel {
         slope.calculateCoordinates();
         wire.calculateCoordinates();
 
-        updateView();
+        repaintView();
     }
 
     public double getSlopeAngle() {

@@ -4,7 +4,6 @@ import com.ahmad.Controllers.ModeComboBoxController;
 import com.ahmad.Controllers.ModeTwo.LeftAngleTextFieldController;
 import com.ahmad.Controllers.ModeTwo.RightAngleTextFieldController;
 import com.ahmad.Controllers.ResetButtonController;
-import com.ahmad.Controllers.StartButtonController;
 import com.ahmad.Models.ModeTwo.SystemModelModeTwo;
 import com.ahmad.Tools.CustomPanel;
 import com.ahmad.Tools.Globals;
@@ -58,6 +57,11 @@ public class MainViewModeTwo implements View, Paintable {
         systemPanel.repaint(); // Repaints the simulation area
 
         updateBoxSystemInfoTable();       // Updates the box system's information table
+    }
+
+    @Override
+    public void repaint() {
+        systemPanel.repaint();
     }
 
     // Updates all the information tables
