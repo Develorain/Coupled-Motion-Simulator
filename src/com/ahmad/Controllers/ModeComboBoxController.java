@@ -3,7 +3,6 @@ package com.ahmad.Controllers;
 import com.ahmad.Models.ModeOne.SystemModelModeOne;
 import com.ahmad.Models.ModeTwo.SystemModelModeTwo;
 import com.ahmad.Startup;
-import com.ahmad.Tools.Globals;
 import com.ahmad.Views.ModeOne.MainViewModeOne;
 import com.ahmad.Views.ModeTwo.MainViewModeTwo;
 

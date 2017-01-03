@@ -3,7 +3,7 @@ package com.ahmad.Models.ModeOne;
 import com.ahmad.Models.Model;
 import com.ahmad.Models.SystemModel;
 import com.ahmad.Models.WireModel;
-import com.ahmad.Tools.Globals;
+import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
 
@@ -15,7 +15,7 @@ public class SystemModelModeOne extends Model implements SystemModel {
 
     public WireModel wire;
 
-    public double frictionOfSystem;
+    public double frictionOfSystem; // TODO: doesn't exist, should be friction of sloped box, and should be in sloped box
     public double accelerationOfSystem;
 
     public double slopeAngle;
@@ -50,25 +50,33 @@ public class SystemModelModeOne extends Model implements SystemModel {
     }
 
     private void updateFriction(double massLeft, double muLeft, double angle) {
-        frictionOfSystem = muLeft * massLeft * Globals.GRAVITY * MathTools.cos(angle);
+        frictionOfSystem = muLeft * massLeft * Constants.GRAVITY * MathTools.cos(angle);
     }
 
-    private void updateAcceleration(double tension, double massRight) {
-        accelerationOfSystem = (massRight * Globals.GRAVITY - tension) / massRight;
-        setBoxAccelerations();
+    private void updateFriction(double massLeft, double massRight, double acceleration, double angle) {
+        // TODO: what if acceleration is 0?
+        if (acceleration > 0) {
+            frictionOfSystem = (massLeft + massRight) * acceleration - massRight * Constants.GRAVITY + massLeft * Constants.GRAVITY * MathTools.sin(angle);
+        } else {
+            frictionOfSystem = -(massLeft + massRight) * acceleration + massRight * Constants.GRAVITY - massLeft * Constants.GRAVITY * MathTools.sin(angle);
+        }
     }
 
-    public void updateMassLeft(double angle, double muLeft, double friction) {
-        slopedBox.mass = friction / (muLeft * Globals.GRAVITY * MathTools.cos(angle));
+    private void updateMassLeft(double angle, double muLeft, double friction) {
+        slopedBox.mass = friction / (muLeft * Constants.GRAVITY * MathTools.cos(angle));
+    }
+
+    private void updateMassRight(double tension, double acceleration) {
+        danglingBox.mass = tension / (Constants.GRAVITY - acceleration);
     }
 
     private void updateAcceleration(double massLeft, double massRight, double friction, double angle) {
-        double accelerationOfSystemWithoutFriction = (massRight * Globals.GRAVITY - massLeft * Globals.GRAVITY * MathTools.sin(angle)) / (massLeft + massRight);
+        double accelerationOfSystemWithoutFriction = (massRight * Constants.GRAVITY - massLeft * Constants.GRAVITY * MathTools.sin(angle)) / (massLeft + massRight);
 
         if (accelerationOfSystemWithoutFriction == 0) {
             accelerationOfSystem = 0;
         } else if (accelerationOfSystemWithoutFriction > 0) {
-            accelerationOfSystem = (massRight * Globals.GRAVITY - massLeft * Globals.GRAVITY * MathTools.sin(angle) - friction) / (massLeft + massRight);
+            accelerationOfSystem = (massRight * Constants.GRAVITY - massLeft * Constants.GRAVITY * MathTools.sin(angle) - friction) / (massLeft + massRight);
 
             // Friction only limits motion
             if (accelerationOfSystem < 0) {
@@ -76,7 +84,7 @@ public class SystemModelModeOne extends Model implements SystemModel {
             }
 
         } else if (accelerationOfSystemWithoutFriction < 0) {
-            accelerationOfSystem = (massRight * Globals.GRAVITY - massLeft * Globals.GRAVITY * MathTools.sin(angle) + friction) / (massLeft + massRight);
+            accelerationOfSystem = (massRight * Constants.GRAVITY - massLeft * Constants.GRAVITY * MathTools.sin(angle) + friction) / (massLeft + massRight);
 
             // Friction only limits motion
             if (accelerationOfSystem > 0) {
@@ -84,6 +92,11 @@ public class SystemModelModeOne extends Model implements SystemModel {
             }
         }
 
+        setBoxAccelerations();
+    }
+
+    private void updateAcceleration(double tension, double massRight) {
+        accelerationOfSystem = (massRight * Constants.GRAVITY - tension) / massRight;
         setBoxAccelerations();
     }
 

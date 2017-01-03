@@ -2,7 +2,7 @@ package com.ahmad.Controllers;
 
 import com.ahmad.Models.ModeOne.SystemModelModeOne;
 import com.ahmad.Models.SystemModel;
-import com.ahmad.Tools.Globals;
+import com.ahmad.Tools.Constants;
 import com.ahmad.Views.ModeOne.MainViewModeOne;
 
 import java.awt.event.ActionEvent;
@@ -69,7 +69,7 @@ public class StartButtonController implements ActionListener {
 
         timer = new Timer();
 
-        timer.scheduleAtFixedRate(timerTask, 0, 1000 / Globals.UPDATES_PER_SECOND);
+        timer.scheduleAtFixedRate(timerTask, 0, 1000 / Constants.UPDATES_PER_SECOND);
     }
 
 }

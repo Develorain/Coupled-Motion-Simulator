@@ -1,7 +1,7 @@
 package com.ahmad.Models;
 
 import com.ahmad.Models.ModeOne.SystemModelModeOne;
-import com.ahmad.Tools.Globals;
+import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
 
 public class WireModel {
@@ -49,6 +49,6 @@ public class WireModel {
     }
 
     public void calculateTension(double massRight, double acceleration) {
-        tension = massRight * (Globals.GRAVITY - acceleration);
+        tension = massRight * (Constants.GRAVITY - acceleration);
     }
 }

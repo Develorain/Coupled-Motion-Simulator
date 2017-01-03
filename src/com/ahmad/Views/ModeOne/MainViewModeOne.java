@@ -6,7 +6,7 @@ import com.ahmad.Controllers.ResetButtonController;
 import com.ahmad.Controllers.StartButtonController;
 import com.ahmad.Models.ModeOne.SystemModelModeOne;
 import com.ahmad.Tools.CustomPanel;
-import com.ahmad.Tools.Globals;
+import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.GraphicsPainter;
 import com.ahmad.Tools.Paintable;
 import com.ahmad.Views.View;
@@ -43,7 +43,7 @@ public class MainViewModeOne implements View, Paintable {
         systemModelModeOne.setView(this);
 
         systemPanel = new CustomPanel(this);
-        systemPanel.setPreferredSize(new Dimension(Globals.SIMULATION_WIDTH_PIXELS, Globals.SIMULATION_HEIGHT_PIXELS));
+        systemPanel.setPreferredSize(new Dimension(Constants.SIMULATION_WIDTH_PIXELS, Constants.SIMULATION_HEIGHT_PIXELS));
 
         layoutScreen();
         registerControllers();
