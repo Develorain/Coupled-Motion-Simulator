@@ -32,11 +32,11 @@ public class SlopedBoxModel extends BoxModel {
     }
 
     public void updateMass(double angle) {
-        mass = friction / (mu * Constants.GRAVITY * MathTools.cos(angle));
+        mass = Math.abs(friction / (mu * Constants.GRAVITY * MathTools.cos(angle)));
     }
 
     public void updateMu(double angle) {
-        mu = friction / (mass * Constants.GRAVITY * MathTools.cos(angle));
+        mu = Math.abs(friction / (mass * Constants.GRAVITY * MathTools.cos(angle)));
     }
 
     @Override

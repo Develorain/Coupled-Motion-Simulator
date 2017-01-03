@@ -61,19 +61,33 @@ public class MainViewModeOne implements View, Paintable {
         systemPanel.repaint();
     }
 
-    // Updates all the information tables
+    // Updates all the information table
     private void updateBoxSystemInfoTable() {
         String accelerationValue = Double.toString(systemModelModeOne.getAccelerationOfSystem());
         accelerationTextField.setText(accelerationValue);
 
-        String velocityValue = Double.toString(systemModelModeOne.getSlopedBox().getVelocityMagnitude());
+        String velocityValue = Double.toString(systemModelModeOne.getSlopedBox().velocity.getX() > 0
+                ? systemModelModeOne.getSlopedBox().velocity.getR()
+                : -systemModelModeOne.getSlopedBox().velocity.getR());
         velocityTextField.setText(velocityValue);
-
-        String frictionValue = Double.toString(systemModelModeOne.slopedBox.friction);
-        leftBoxFrictionTextField.setText(frictionValue);
 
         String tensionValue = Double.toString(systemModelModeOne.wire.tension);
         tensionTextField.setText(tensionValue);
+
+        String leftBoxMassValue = Double.toString(systemModelModeOne.slopedBox.getMass());
+        leftBoxMassTextField.setText(leftBoxMassValue);
+
+        String leftBoxMuValue = Double.toString(systemModelModeOne.slopedBox.getMu());
+        leftBoxMuTextField.setText(leftBoxMuValue);
+
+        String leftBoxFrictionValue = Double.toString(systemModelModeOne.slopedBox.friction);
+        leftBoxFrictionTextField.setText(leftBoxFrictionValue);
+
+        String leftSlopeAngleValue = Double.toString(systemModelModeOne.slopeAngle);
+        leftSlopeAngleTextField.setText(leftSlopeAngleValue);
+
+        String rightBoxMassValue = Double.toString(systemModelModeOne.danglingBox.getMass());
+        rightBoxMassTextField.setText(rightBoxMassValue);
     }
 
     private void registerControllers() {

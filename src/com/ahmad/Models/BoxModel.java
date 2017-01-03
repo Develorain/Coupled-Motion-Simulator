@@ -9,8 +9,8 @@ public abstract class BoxModel {
     protected final int boxHeight = 100;
     public double mass;
 
-    private Vector velocity = new Vector();
-    private Vector acceleration;
+    public Vector velocity = new Vector();
+    public Vector acceleration;
 
     public BoxModel(double mass) {
         this.mass = mass;
@@ -30,10 +30,6 @@ public abstract class BoxModel {
 
     public double getMass() {
         return mass;
-    }
-
-    public double getVelocityMagnitude() {
-        return velocity.getR();
     }
 
     public void setAcceleration(Vector acceleration) {

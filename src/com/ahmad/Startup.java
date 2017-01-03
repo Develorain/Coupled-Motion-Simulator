@@ -31,7 +31,7 @@ public class Startup {
 }
 
 // TODO: ** REAL TODO **
-// TODO: Variable switching
+// TODO: Variable switching (mode two)
 // TODO: Draw pulleys and wires
 
 

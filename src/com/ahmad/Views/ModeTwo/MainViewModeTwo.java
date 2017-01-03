@@ -5,8 +5,8 @@ import com.ahmad.Controllers.ModeTwo.LeftAngleTextFieldController;
 import com.ahmad.Controllers.ModeTwo.RightAngleTextFieldController;
 import com.ahmad.Controllers.ResetButtonController;
 import com.ahmad.Models.ModeTwo.SystemModelModeTwo;
-import com.ahmad.Tools.CustomPanel;
 import com.ahmad.Tools.Constants;
+import com.ahmad.Tools.CustomPanel;
 import com.ahmad.Tools.GraphicsPainter;
 import com.ahmad.Tools.Paintable;
 import com.ahmad.Views.View;
@@ -69,7 +69,7 @@ public class MainViewModeTwo implements View, Paintable {
         String accel = Double.toString(systemModelModeTwo.getAccelerationOfSystem());
         accelerationTextField.setText(accel);
 
-        String vel = Double.toString(systemModelModeTwo.leftBox.getVelocityMagnitude());
+        String vel = Double.toString(systemModelModeTwo.leftBox.velocity.getR());
         velocityTextField.setText(vel);
     }
 

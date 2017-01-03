@@ -45,7 +45,7 @@ public class WireModel {
         );
 
         x2 = (int) (systemModelModeOne.getDanglingBox().getX() + 25); // - 50 * MathTools.cos(systemModelModeOne.getSlopeAngle())
-        y2 = (int) (systemModelModeOne.getDanglingBox().getY() - 50); //+ 50 * MathTools.sin(systemModelModeOne.getSlopeAngle())
+        y2 = (int) (systemModelModeOne.getDanglingBox().getY() - 50); // + 50 * MathTools.sin(systemModelModeOne.getSlopeAngle())
     }
 
     public void updateTension(double massRight, double acceleration) {
