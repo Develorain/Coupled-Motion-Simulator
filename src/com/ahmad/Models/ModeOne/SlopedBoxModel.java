@@ -31,6 +31,10 @@ public class SlopedBoxModel extends BoxModel {
         }
     }
 
+    public void updateMass(double angle, double muLeft, double friction) {
+        mass = friction / (muLeft * Constants.GRAVITY * MathTools.cos(angle));
+    }
+
     @Override
     public void calculateCoordinates() {
         double tempX = Constants.SIMULATION_WIDTH_PIXELS / 2;

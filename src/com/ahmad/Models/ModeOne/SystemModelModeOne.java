@@ -35,21 +35,17 @@ public class SystemModelModeOne extends Model implements SystemModel {
             case 1:
                 slopedBox.updateFriction(slopedBox.getMass(), slopedBox.getMu(), slopeAngle);
                 updateAcceleration(slopedBox.getMass(), danglingBox.getMass(), slopedBox.friction, slopeAngle);
-                updateTension(danglingBox.getMass(), accelerationOfSystem);
+                wire.updateTension(danglingBox.getMass(), accelerationOfSystem);
                 break;
 
             case 2:
                 updateAcceleration(wire.tension, danglingBox.getMass());
-                updateMassLeft(slopeAngle, slopedBox.getMu(), slopedBox.friction);
+                slopedBox.updateMass(slopeAngle, slopedBox.getMu(), slopedBox.friction);
                 break;
 
             case 3:
                 break;
         }
-    }
-
-    private void updateMassLeft(double angle, double muLeft, double friction) {
-        slopedBox.mass = friction / (muLeft * Constants.GRAVITY * MathTools.cos(angle));
     }
 
     private void updateMassRight(double tension, double acceleration) {
@@ -92,10 +88,6 @@ public class SystemModelModeOne extends Model implements SystemModel {
 
         slopedBox.setAcceleration(accelerationLeft);
         danglingBox.setAcceleration(accelerationRight);
-    }
-
-    private void updateTension(double massRight, double acceleration) {
-        wire.calculateTension(massRight, acceleration);
     }
 
     public void iterate() {
