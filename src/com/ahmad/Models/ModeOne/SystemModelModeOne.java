@@ -33,23 +33,24 @@ public class SystemModelModeOne extends Model implements SystemModel {
     public void initializeConstantValues(int scenario) {
         switch (scenario) {
             case 1:
-                slopedBox.updateFriction(slopedBox.getMass(), slopedBox.getMu(), slopeAngle);
+                slopedBox.updateFriction(slopeAngle);
                 updateAcceleration(slopedBox.getMass(), danglingBox.getMass(), slopedBox.friction, slopeAngle);
                 wire.updateTension(danglingBox.getMass(), accelerationOfSystem);
                 break;
 
             case 2:
                 updateAcceleration(wire.tension, danglingBox.getMass());
-                slopedBox.updateMass(slopeAngle, slopedBox.getMu(), slopedBox.friction);
+                slopedBox.updateMass(slopeAngle);
                 break;
 
             case 3:
+                setBoxAccelerations();
+
+                danglingBox.updateMass(wire.tension, accelerationOfSystem);
+                slopedBox.updateFriction(danglingBox.getMass(), accelerationOfSystem, slopeAngle);
+                slopedBox.updateMu(slopeAngle);
                 break;
         }
-    }
-
-    private void updateMassRight(double tension, double acceleration) {
-        danglingBox.mass = tension / (Constants.GRAVITY - acceleration);
     }
 
     private void updateAcceleration(double massLeft, double massRight, double friction, double angle) {

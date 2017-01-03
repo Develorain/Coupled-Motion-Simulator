@@ -276,7 +276,7 @@ public class MainViewModeOne implements View, Paintable {
         JLabel tensionLabel = new JLabel("Tension ");
         gc.anchor = GridBagConstraints.LINE_END;
         gc.gridx = 0;
-        gc.gridy = 5;
+        gc.gridy = 4;
         mainPanel.add(tensionLabel, gc);
 
         accelerationTextField = new JTextField(10);
@@ -295,7 +295,7 @@ public class MainViewModeOne implements View, Paintable {
         tensionTextField = new JTextField(10);
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 1;
-        gc.gridy = 5;
+        gc.gridy = 4;
         mainPanel.add(tensionTextField, gc);
     }
 

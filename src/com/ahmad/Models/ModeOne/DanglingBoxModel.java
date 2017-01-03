@@ -15,6 +15,10 @@ public class DanglingBoxModel extends BoxModel {
         calculateCoordinates();
     }
 
+    public void updateMass(double tension, double acceleration) {
+        mass = tension / (Constants.GRAVITY - acceleration);
+    }
+
     @Override
     public void calculateCoordinates() {
         double tempX = Constants.SIMULATION_WIDTH_PIXELS / 2;

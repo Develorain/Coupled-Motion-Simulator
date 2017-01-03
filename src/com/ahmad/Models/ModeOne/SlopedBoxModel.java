@@ -18,21 +18,25 @@ public class SlopedBoxModel extends BoxModel {
         calculateCoordinates();
     }
 
-    public void updateFriction(double massLeft, double muLeft, double angle) {
-        friction = muLeft * massLeft * Constants.GRAVITY * MathTools.cos(angle);
+    public void updateFriction(double angle) {
+        friction = mu * mass * Constants.GRAVITY * MathTools.cos(angle);
     }
 
-    public void updateFriction(double massLeft, double massRight, double acceleration, double angle) {
-        // TODO: what if acceleration is 0?
-        if (acceleration > 0) {
-            friction = (massLeft + massRight) * acceleration - massRight * Constants.GRAVITY + massLeft * Constants.GRAVITY * MathTools.sin(angle);
+    public void updateFriction(double massRight, double acceleration, double angle) {
+        // TODO: what if acceleration is 0? the problem is we don't know which dirction the friction will be, we will have to look at netforce instead of acceleration
+        if (acceleration < 0) {
+            friction = (mass + massRight) * acceleration - massRight * Constants.GRAVITY + mass * Constants.GRAVITY * MathTools.sin(angle);
         } else {
-            friction = -(massLeft + massRight) * acceleration + massRight * Constants.GRAVITY - massLeft * Constants.GRAVITY * MathTools.sin(angle);
+            friction = -(mass + massRight) * acceleration + massRight * Constants.GRAVITY - mass * Constants.GRAVITY * MathTools.sin(angle);
         }
     }
 
-    public void updateMass(double angle, double muLeft, double friction) {
-        mass = friction / (muLeft * Constants.GRAVITY * MathTools.cos(angle));
+    public void updateMass(double angle) {
+        mass = friction / (mu * Constants.GRAVITY * MathTools.cos(angle));
+    }
+
+    public void updateMu(double angle) {
+        mu = friction / (mass * Constants.GRAVITY * MathTools.cos(angle));
     }
 
     @Override
