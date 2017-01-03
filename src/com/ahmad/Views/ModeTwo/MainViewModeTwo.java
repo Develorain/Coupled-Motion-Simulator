@@ -4,6 +4,7 @@ import com.ahmad.Controllers.ModeComboBoxController;
 import com.ahmad.Controllers.ModeTwo.LeftAngleTextFieldController;
 import com.ahmad.Controllers.ModeTwo.RightAngleTextFieldController;
 import com.ahmad.Controllers.ResetButtonController;
+import com.ahmad.Controllers.StartButtonController;
 import com.ahmad.Models.ModeTwo.SystemModelModeTwo;
 import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.CustomPanel;
@@ -74,10 +75,8 @@ public class MainViewModeTwo implements View, Paintable {
     }
 
     private void registerControllers() {
-        /*
-        StartButtonController sbl = new StartButtonController(systemModelModeTwo);
+        StartButtonController sbl = new StartButtonController(this, systemModelModeTwo);
         startButton.addActionListener(sbl);
-        */
 
 
         LeftAngleTextFieldController latfc = new LeftAngleTextFieldController(leftSlopeAngleTextField, systemModelModeTwo);

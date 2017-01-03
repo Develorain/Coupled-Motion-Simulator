@@ -52,12 +52,6 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         //rightWire = new WireModel();
     }
 
-    public void initializeConstantValues(int scenario) {
-        updateFriction();
-        updateAcceleration();
-        //updateTension();
-    }
-
     private void updateFriction() {
         frictionOfSystem = leftBox.getMass() * Constants.GRAVITY * MathTools.cos(leftSlopeAngle) * leftBox.getMu();
         //frictionOfSlopedBox = 10;
@@ -130,7 +124,9 @@ public class SystemModelModeTwo extends Model implements SystemModel {
 
     @Override
     public void takeInputAndInitializeConstantValues(View mainView) {
-
+        updateFriction();
+        updateAcceleration();
+        //updateTension();
     }
 
     public void iterate() {
