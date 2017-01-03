@@ -55,14 +55,10 @@ public class Startup {
 // fix acceleration calculation   (complete)
 // add tension calculation        (complete)
 
-
-//
-//
-//
-//
-//
-//
-//
+//if friction is 0, mu is 0. vice versa // todo
+//limit angle to 89 // todo
+//if friction is neg when accel is neg, give error // todo
+//if friction is pos when accel is pos, give error // todo SEE INTENSE PHYSICS FILE
 
 // TODO: **SECONDARY**
 // make it so that you can either pick to put in mu value, or just the frictional force of the box

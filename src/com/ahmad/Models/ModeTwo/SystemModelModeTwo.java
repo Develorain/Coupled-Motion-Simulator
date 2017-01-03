@@ -5,6 +5,7 @@ import com.ahmad.Models.SystemModel;
 import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
+import com.ahmad.Views.View;
 
 // TODO:
 // draw slopes
@@ -125,6 +126,11 @@ public class SystemModelModeTwo extends Model implements SystemModel {
 
     public double getAccelerationOfSystem() {
         return accelerationOfSystem;
+    }
+
+    @Override
+    public void takeInputAndInitializeConstantValues(View mainView) {
+
     }
 
     public void iterate() {

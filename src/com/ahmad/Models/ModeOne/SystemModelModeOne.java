@@ -6,6 +6,8 @@ import com.ahmad.Models.WireModel;
 import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
+import com.ahmad.Views.ModeOne.MainViewModeOne;
+import com.ahmad.Views.View;
 
 public class SystemModelModeOne extends Model implements SystemModel {
     public SlopedBoxModel slopedBox;
@@ -30,7 +32,45 @@ public class SystemModelModeOne extends Model implements SystemModel {
         wire = new WireModel(this);
     }
 
-    public void initializeConstantValues(int scenario) {
+    public void takeInputAndInitializeConstantValues(View mainView) {
+        // Take input
+
+        MainViewModeOne mainViewModeOne = (MainViewModeOne) mainView;
+
+        int scenario = -1;
+
+        if (!mainViewModeOne.leftBoxMassTextField.getText().isEmpty() && !mainViewModeOne.rightBoxMassTextField.getText().isEmpty()
+                && !mainViewModeOne.leftBoxMuTextField.getText().isEmpty() && !mainViewModeOne.leftSlopeAngleTextField.getText().isEmpty()) {
+            scenario = 1;
+
+            getSlopedBox().mass = Double.parseDouble(mainViewModeOne.leftBoxMassTextField.getText());
+            getDanglingBox().mass = Double.parseDouble(mainViewModeOne.rightBoxMassTextField.getText());
+            getSlopedBox().mu = Double.parseDouble(mainViewModeOne.leftBoxMuTextField.getText());
+            slopeAngle = Double.parseDouble(mainViewModeOne.leftSlopeAngleTextField.getText());
+        } else if (!mainViewModeOne.rightBoxMassTextField.getText().isEmpty() && !mainViewModeOne.tensionTextField.getText().isEmpty()
+                && !mainViewModeOne.leftSlopeAngleTextField.getText().isEmpty() && !mainViewModeOne.leftBoxFrictionTextField.getText().isEmpty()
+                && !mainViewModeOne.leftBoxMuTextField.getText().isEmpty()) {
+            scenario = 2;
+
+            getDanglingBox().mass = Double.parseDouble(mainViewModeOne.rightBoxMassTextField.getText());
+            wire.tension = Double.parseDouble(mainViewModeOne.tensionTextField.getText());
+            slopeAngle = Double.parseDouble(mainViewModeOne.leftSlopeAngleTextField.getText());
+            slopedBox.friction = Double.parseDouble(mainViewModeOne.leftBoxFrictionTextField.getText());
+            getSlopedBox().mu = Double.parseDouble(mainViewModeOne.leftBoxMuTextField.getText());
+        } else if (!mainViewModeOne.accelerationTextField.getText().isEmpty() && !mainViewModeOne.tensionTextField.getText().isEmpty()
+                && !mainViewModeOne.leftSlopeAngleTextField.getText().isEmpty() && !mainViewModeOne.leftBoxMassTextField.getText().isEmpty()) {
+            scenario = 3;
+
+            accelerationOfSystem = Double.parseDouble(mainViewModeOne.accelerationTextField.getText());
+            wire.tension = Double.parseDouble(mainViewModeOne.tensionTextField.getText());
+            slopeAngle = Double.parseDouble(mainViewModeOne.leftSlopeAngleTextField.getText());
+            getSlopedBox().mass = Double.parseDouble(mainViewModeOne.leftBoxMassTextField.getText());
+        } else {
+            System.out.println("Missing input");
+        }
+
+
+        // Initialize constant values
         switch (scenario) {
             case 1:
                 slopedBox.updateFriction(slopeAngle);

@@ -1,9 +1,8 @@
 package com.ahmad.Controllers;
 
-import com.ahmad.Models.ModeOne.SystemModelModeOne;
 import com.ahmad.Models.SystemModel;
 import com.ahmad.Tools.Constants;
-import com.ahmad.Views.ModeOne.MainViewModeOne;
+import com.ahmad.Views.View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,53 +10,18 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class StartButtonController implements ActionListener {
-    private MainViewModeOne mainView;
+    private View mainView;
     private SystemModel systemModel;
 
     private Timer timer;
 
-    public StartButtonController(MainViewModeOne mainView, SystemModel systemModel) {
+    public StartButtonController(View mainView, SystemModel systemModel) {
         this.mainView = mainView;
         this.systemModel = systemModel;
     }
 
     public void actionPerformed(ActionEvent actionEvent) {
-        SystemModelModeOne sysModel = (SystemModelModeOne) systemModel;
-
-        int scenario = -1;
-
-        if (!mainView.leftBoxMassTextField.getText().isEmpty() && !mainView.rightBoxMassTextField.getText().isEmpty()
-                && !mainView.leftBoxMuTextField.getText().isEmpty() && !mainView.leftSlopeAngleTextField.getText().isEmpty()) {
-            scenario = 1;
-
-            sysModel.getSlopedBox().mass = Double.parseDouble(mainView.leftBoxMassTextField.getText());
-            sysModel.getDanglingBox().mass = Double.parseDouble(mainView.rightBoxMassTextField.getText());
-            sysModel.getSlopedBox().mu = Double.parseDouble(mainView.leftBoxMuTextField.getText());
-            sysModel.slopeAngle = Double.parseDouble(mainView.leftSlopeAngleTextField.getText());
-        } else if (!mainView.rightBoxMassTextField.getText().isEmpty() && !mainView.tensionTextField.getText().isEmpty()
-                && !mainView.leftSlopeAngleTextField.getText().isEmpty() && !mainView.leftBoxFrictionTextField.getText().isEmpty()
-                && !mainView.leftBoxMuTextField.getText().isEmpty()) {
-            scenario = 2;
-
-            sysModel.getDanglingBox().mass = Double.parseDouble(mainView.rightBoxMassTextField.getText());
-            sysModel.wire.tension = Double.parseDouble(mainView.tensionTextField.getText());
-            sysModel.slopeAngle = Double.parseDouble(mainView.leftSlopeAngleTextField.getText());
-            sysModel.slopedBox.friction = Double.parseDouble(mainView.leftBoxFrictionTextField.getText());
-            sysModel.getSlopedBox().mu = Double.parseDouble(mainView.leftBoxMuTextField.getText());
-        } else if (!mainView.accelerationTextField.getText().isEmpty() && !mainView.tensionTextField.getText().isEmpty()
-                && !mainView.leftSlopeAngleTextField.getText().isEmpty() && !mainView.leftBoxMassTextField.getText().isEmpty()) {
-            scenario = 3;
-
-            sysModel.accelerationOfSystem = Double.parseDouble(mainView.accelerationTextField.getText());
-            sysModel.wire.tension = Double.parseDouble(mainView.tensionTextField.getText());
-            sysModel.slopeAngle = Double.parseDouble(mainView.leftSlopeAngleTextField.getText());
-            sysModel.getSlopedBox().mass = Double.parseDouble(mainView.leftBoxMassTextField.getText());
-        } else {
-            System.out.println("Missing input");
-            return;
-        }
-
-        systemModel.initializeConstantValues(scenario);
+        systemModel.takeInputAndInitializeConstantValues(mainView);
 
         TimerTask timerTask = new TimerTask() {
             public void run() {
