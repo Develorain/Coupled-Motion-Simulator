@@ -32,14 +32,17 @@ public class MainViewModeTwo implements View, Paintable {
 
     private JTextField leftBoxMassTextField;
     private JTextField leftBoxMuTextField;
+    private JTextField leftBoxFrictionTextField;
     private JTextField leftSlopeAngleTextField;
 
     private JTextField middleBoxMassTextField;
     private JTextField middleBoxMuTextField;
+    private JTextField middleBoxFrictionTextField;
     private JTextField middleSlopeAngleTextField;
 
     private JTextField rightBoxMassTextField;
     private JTextField rightBoxMuTextField;
+    private JTextField rightBoxFrictionTextField;
     private JTextField rightSlopeAngleTextField;
 
     public MainViewModeTwo(SystemModelModeTwo systemModelModeTwo) {
@@ -125,7 +128,7 @@ public class MainViewModeTwo implements View, Paintable {
         JLabel rightSlopeTitleLabel = new JLabel("Right Slope");
         gc.anchor = GridBagConstraints.CENTER;
         gc.gridx = 6;
-        gc.gridy = 4;
+        gc.gridy = 5;
         gc.gridwidth = 2;
         gc.gridheight = 1;
         mainPanel.add(rightSlopeTitleLabel, gc);
@@ -133,7 +136,7 @@ public class MainViewModeTwo implements View, Paintable {
         JLabel rightSlopeAngleLabel = new JLabel("Angle ");
         gc.anchor = GridBagConstraints.LINE_END;
         gc.gridx = 6;
-        gc.gridy = 5;
+        gc.gridy = 6;
         gc.gridwidth = 1;
         gc.gridheight = 1;
         mainPanel.add(rightSlopeAngleLabel, gc);
@@ -142,7 +145,7 @@ public class MainViewModeTwo implements View, Paintable {
         rightSlopeAngleTextField.setText("45");
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 7;
-        gc.gridy = 5;
+        gc.gridy = 6;
         mainPanel.add(rightSlopeAngleTextField, gc);
     }
 
@@ -173,6 +176,13 @@ public class MainViewModeTwo implements View, Paintable {
         gc.gridwidth = 1;
         mainPanel.add(rightBoxMuLabel, gc);
 
+        JLabel rightBoxFrictionLabel = new JLabel("Friction ");
+        gc.anchor = GridBagConstraints.LINE_END;
+        gc.gridx = 6;
+        gc.gridy = 4;
+        gc.gridwidth = 1;
+        mainPanel.add(rightBoxFrictionLabel, gc);
+
         rightBoxMassTextField = new JTextField("1", 10);
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 7;
@@ -185,6 +195,13 @@ public class MainViewModeTwo implements View, Paintable {
         gc.gridx = 7;
         gc.gridy = 3;
         mainPanel.add(rightBoxMuTextField, gc);
+
+        rightBoxFrictionTextField = new JTextField(10);
+        rightBoxFrictionTextField.setText("0");
+        gc.anchor = GridBagConstraints.LINE_START;
+        gc.gridx = 7;
+        gc.gridy = 4;
+        mainPanel.add(rightBoxFrictionTextField, gc);
     }
 
     private void createButtonTable(GridBagConstraints gc) {
@@ -243,6 +260,13 @@ public class MainViewModeTwo implements View, Paintable {
         gc.gridwidth = 1;
         mainPanel.add(middleBoxMuLabel, gc);
 
+        JLabel middleBoxFrictionLabel = new JLabel("Friction ");
+        gc.anchor = GridBagConstraints.LINE_END;
+        gc.gridx = 4;
+        gc.gridy = 4;
+        gc.gridwidth = 1;
+        mainPanel.add(middleBoxFrictionLabel, gc);
+
         middleBoxMassTextField = new JTextField("1", 10);
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 5;
@@ -255,6 +279,13 @@ public class MainViewModeTwo implements View, Paintable {
         gc.gridx = 5;
         gc.gridy = 3;
         mainPanel.add(middleBoxMuTextField, gc);
+
+        middleBoxFrictionTextField = new JTextField(10);
+        middleBoxFrictionTextField.setText("0");
+        gc.anchor = GridBagConstraints.LINE_START;
+        gc.gridx = 5;
+        gc.gridy = 4;
+        mainPanel.add(middleBoxFrictionTextField, gc);
     }
 
     private void createLeftBlockTable(GridBagConstraints gc) {
@@ -283,6 +314,12 @@ public class MainViewModeTwo implements View, Paintable {
         gc.gridy = 3;
         mainPanel.add(leftBoxMuLabel, gc);
 
+        JLabel leftBoxFrictionLabel = new JLabel("Friction ");
+        gc.anchor = GridBagConstraints.LINE_END;
+        gc.gridx = 2;
+        gc.gridy = 4;
+        mainPanel.add(leftBoxFrictionLabel, gc);
+
         leftBoxMassTextField = new JTextField(10);
         leftBoxMassTextField.setText("1");
         gc.anchor = GridBagConstraints.LINE_START;
@@ -296,6 +333,13 @@ public class MainViewModeTwo implements View, Paintable {
         gc.gridx = 3;
         gc.gridy = 3;
         mainPanel.add(leftBoxMuTextField, gc);
+
+        leftBoxFrictionTextField = new JTextField(10);
+        leftBoxFrictionTextField.setText("0");
+        gc.anchor = GridBagConstraints.LINE_START;
+        gc.gridx = 3;
+        gc.gridy = 4;
+        mainPanel.add(leftBoxFrictionTextField, gc);
     }
 
     private void createLeftSlopeTable(GridBagConstraints gc) {
@@ -304,7 +348,7 @@ public class MainViewModeTwo implements View, Paintable {
         JLabel leftSlopeTitleLabel = new JLabel("Left Slope");
         gc.anchor = GridBagConstraints.CENTER;
         gc.gridx = 2;
-        gc.gridy = 4;
+        gc.gridy = 5;
         gc.gridwidth = 2;
         gc.gridheight = 1;
         mainPanel.add(leftSlopeTitleLabel, gc);
@@ -312,7 +356,7 @@ public class MainViewModeTwo implements View, Paintable {
         JLabel leftSlopeAngleLabel = new JLabel("Angle ");
         gc.anchor = GridBagConstraints.LINE_END;
         gc.gridx = 2;
-        gc.gridy = 5;
+        gc.gridy = 6;
         gc.gridwidth = 1;
         gc.gridheight = 1;
         mainPanel.add(leftSlopeAngleLabel, gc);
@@ -321,7 +365,7 @@ public class MainViewModeTwo implements View, Paintable {
         leftSlopeAngleTextField.setText("45");
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 3;
-        gc.gridy = 5;
+        gc.gridy = 6;
         mainPanel.add(leftSlopeAngleTextField, gc);
     }
 
@@ -358,6 +402,7 @@ public class MainViewModeTwo implements View, Paintable {
         mainPanel.add(accelerationTextField, gc);
 
         velocityTextField = new JTextField(10);
+        velocityTextField.setEditable(false);
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 1;
         gc.gridy = 3;

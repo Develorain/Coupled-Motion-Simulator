@@ -4,6 +4,7 @@ import com.ahmad.Models.ModeOne.SystemModelModeOne;
 import com.ahmad.Views.ModeOne.MainViewModeOne;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Startup {
     public static JFrame jFrame;
@@ -18,7 +19,7 @@ public class Startup {
         MainViewModeOne mainViewModeOne = new MainViewModeOne(new SystemModelModeOne());
 
         jFrame = new JFrame("Coupled Motion Simulator");
-        //jFrame.setMinimumSize(new Dimension(708, 851));
+        jFrame.setMinimumSize(new Dimension(1200, 800));
         //jFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         jFrame.getContentPane().add(mainViewModeOne.mainPanel);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,7 +32,8 @@ public class Startup {
 }
 
 // TODO: ** REAL TODO **
-// TODO: Variable switching (mode two)
+// TODO: Implement mode two physics
+// TODO: Variable switching for mode two
 // TODO: Draw pulleys and wires
 
 

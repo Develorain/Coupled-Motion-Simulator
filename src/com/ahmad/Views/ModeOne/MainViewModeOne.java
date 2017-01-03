@@ -120,9 +120,9 @@ public class MainViewModeOne implements View, Paintable {
         mainPanel.add(systemPanel, gc);
 
         createBoxSystemTable(gc);
-        createBlockATable(gc);
-        createSlopeATable(gc);
-        createBlockBTable(gc);
+        createLeftBoxTable(gc);
+        createLeftSlopeTable(gc);
+        createRightBoxTable(gc);
         createButtonTable(gc);
     }
 
@@ -154,7 +154,7 @@ public class MainViewModeOne implements View, Paintable {
         mainPanel.add(resetButton, gc);
     }
 
-    private void createBlockBTable(GridBagConstraints gc) {
+    private void createRightBoxTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.NONE;
         gc.gridheight = 1;
         gc.weightx = 1;
@@ -181,7 +181,7 @@ public class MainViewModeOne implements View, Paintable {
         mainPanel.add(rightBoxMassTextField, gc);
     }
 
-    private void createBlockATable(GridBagConstraints gc) {
+    private void createLeftBoxTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.NONE;
         gc.gridheight = 1;
         gc.weightx = 1;
@@ -234,7 +234,7 @@ public class MainViewModeOne implements View, Paintable {
         mainPanel.add(leftBoxFrictionTextField, gc);
     }
 
-    private void createSlopeATable(GridBagConstraints gc) {
+    private void createLeftSlopeTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.NONE;
 
         JLabel leftSlopeTitleLabel = new JLabel("Left Slope");

@@ -52,6 +52,33 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         //rightWire = new WireModel();
     }
 
+    @Override
+    public void takeInputAndInitializeConstantValues(View mainView) {
+        updateFriction();
+        updateAcceleration();
+        //updateTension();
+    }
+
+    public void iterate() {
+        if (simulationStartTime == 0) {
+            simulationStartTime = System.nanoTime();
+        }
+
+        double elapsedSeconds = (System.nanoTime() - simulationStartTime) / 1000000000.0;
+
+        // Updates the boxes' velocities
+        leftBox.updateVelocity(elapsedSeconds);
+        middleBox.updateVelocity(elapsedSeconds);
+        rightBox.updateVelocity(elapsedSeconds);
+
+        // Updates the boxes' positions
+        leftBox.updatePosition(elapsedSeconds);
+        middleBox.updatePosition(elapsedSeconds);
+        rightBox.updatePosition(elapsedSeconds);
+
+        updateView();
+    }
+
     private void updateFriction() {
         frictionOfSystem = leftBox.getMass() * Constants.GRAVITY * MathTools.cos(leftSlopeAngle) * leftBox.getMu();
         //frictionOfSlopedBox = 10;
@@ -120,32 +147,5 @@ public class SystemModelModeTwo extends Model implements SystemModel {
 
     public double getAccelerationOfSystem() {
         return accelerationOfSystem;
-    }
-
-    @Override
-    public void takeInputAndInitializeConstantValues(View mainView) {
-        updateFriction();
-        updateAcceleration();
-        //updateTension();
-    }
-
-    public void iterate() {
-        if (simulationStartTime == 0) {
-            simulationStartTime = System.nanoTime();
-        }
-
-        double elapsedSeconds = (System.nanoTime() - simulationStartTime) / 1000000000.0;
-
-        // Updates the boxes' velocities
-        leftBox.updateVelocity(elapsedSeconds);
-        middleBox.updateVelocity(elapsedSeconds);
-        rightBox.updateVelocity(elapsedSeconds);
-
-        // Updates the boxes' positions
-        leftBox.updatePosition(elapsedSeconds);
-        middleBox.updatePosition(elapsedSeconds);
-        rightBox.updatePosition(elapsedSeconds);
-
-        updateView();
     }
 }
