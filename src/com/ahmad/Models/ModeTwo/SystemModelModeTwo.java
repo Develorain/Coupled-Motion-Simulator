@@ -59,7 +59,7 @@ public class SystemModelModeTwo extends Model implements SystemModel {
 
     private void updateFriction() {
         frictionOfSystem = leftBox.getMass() * Constants.GRAVITY * MathTools.cos(leftSlopeAngle) * leftBox.getMu();
-        //frictionOfSystem = 10;
+        //frictionOfSlopedBox = 10;
     }
 
     // this method is here because we need access to all boxes to calculate accelerationOfSystem

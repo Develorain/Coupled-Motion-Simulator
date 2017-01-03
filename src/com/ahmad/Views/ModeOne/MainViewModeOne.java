@@ -5,8 +5,8 @@ import com.ahmad.Controllers.ModeOne.AngleTextFieldControllerModeOne;
 import com.ahmad.Controllers.ResetButtonController;
 import com.ahmad.Controllers.StartButtonController;
 import com.ahmad.Models.ModeOne.SystemModelModeOne;
-import com.ahmad.Tools.CustomPanel;
 import com.ahmad.Tools.Constants;
+import com.ahmad.Tools.CustomPanel;
 import com.ahmad.Tools.GraphicsPainter;
 import com.ahmad.Tools.Paintable;
 import com.ahmad.Views.View;
@@ -23,7 +23,7 @@ public class MainViewModeOne implements View, Paintable {
 
     public JTextField accelerationTextField;
     public JTextField velocityTextField;
-    public JTextField frictionTextField;
+    public JTextField leftBoxFrictionTextField;
     public JTextField tensionTextField;
 
     public JButton startButton;
@@ -69,8 +69,8 @@ public class MainViewModeOne implements View, Paintable {
         String velocityValue = Double.toString(systemModelModeOne.getSlopedBox().getVelocityMagnitude());
         velocityTextField.setText(velocityValue);
 
-        String frictionValue = Double.toString(systemModelModeOne.frictionOfSystem);
-        frictionTextField.setText(frictionValue);
+        String frictionValue = Double.toString(systemModelModeOne.slopedBox.friction);
+        leftBoxFrictionTextField.setText(frictionValue);
 
         String tensionValue = Double.toString(systemModelModeOne.wire.tension);
         tensionTextField.setText(tensionValue);
@@ -146,19 +146,19 @@ public class MainViewModeOne implements View, Paintable {
         gc.weightx = 1;
         gc.weighty = 1;
 
-        JLabel boxBTitleLabel = new JLabel("Right Box");
+        JLabel rightBoxTitleLabel = new JLabel("Right Box");
         gc.anchor = GridBagConstraints.CENTER;
         gc.gridx = 4;
         gc.gridy = 1;
         gc.gridwidth = 2;
-        mainPanel.add(boxBTitleLabel, gc);
+        mainPanel.add(rightBoxTitleLabel, gc);
 
-        JLabel boxBMassLabel = new JLabel("Mass ");
+        JLabel rightBoxMassLabel = new JLabel("Mass ");
         gc.anchor = GridBagConstraints.LINE_END;
         gc.gridx = 4;
         gc.gridy = 2;
         gc.gridwidth = 1;
-        mainPanel.add(boxBMassLabel, gc);
+        mainPanel.add(rightBoxMassLabel, gc);
 
         rightBoxMassTextField = new JTextField("1", 10);
         gc.anchor = GridBagConstraints.LINE_START;
@@ -173,25 +173,31 @@ public class MainViewModeOne implements View, Paintable {
         gc.weightx = 1;
         gc.weighty = 1;
 
-        JLabel boxATitleLabel = new JLabel("Left Box");
+        JLabel leftBoxTitleLabel = new JLabel("Left Box");
         gc.anchor = GridBagConstraints.CENTER;
         gc.gridx = 2;
         gc.gridy = 1;
         gc.gridwidth = 2;
-        mainPanel.add(boxATitleLabel, gc);
+        mainPanel.add(leftBoxTitleLabel, gc);
 
-        JLabel boxAMassLabel = new JLabel("Mass ");
+        JLabel leftBoxMassLabel = new JLabel("Mass ");
         gc.anchor = GridBagConstraints.LINE_END;
         gc.gridx = 2;
         gc.gridy = 2;
         gc.gridwidth = 1;
-        mainPanel.add(boxAMassLabel, gc);
+        mainPanel.add(leftBoxMassLabel, gc);
 
-        JLabel boxAMuLabel = new JLabel("Mu ");
+        JLabel leftBoxMuLabel = new JLabel("Mu ");
         gc.anchor = GridBagConstraints.LINE_END;
         gc.gridx = 2;
         gc.gridy = 3;
-        mainPanel.add(boxAMuLabel, gc);
+        mainPanel.add(leftBoxMuLabel, gc);
+
+        JLabel leftBoxFrictionLabel = new JLabel("Friction ");
+        gc.anchor = GridBagConstraints.LINE_END;
+        gc.gridx = 2;
+        gc.gridy = 4;
+        mainPanel.add(leftBoxFrictionLabel, gc);
 
         leftBoxMassTextField = new JTextField(10);
         leftBoxMassTextField.setText("1");
@@ -206,32 +212,38 @@ public class MainViewModeOne implements View, Paintable {
         gc.gridx = 3;
         gc.gridy = 3;
         mainPanel.add(leftBoxMuTextField, gc);
+
+        leftBoxFrictionTextField = new JTextField(10);
+        gc.anchor = GridBagConstraints.LINE_START;
+        gc.gridx = 3;
+        gc.gridy = 4;
+        mainPanel.add(leftBoxFrictionTextField, gc);
     }
 
     private void createSlopeATable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.NONE;
 
-        JLabel slopeATitleLabel = new JLabel("Left Slope");
+        JLabel leftSlopeTitleLabel = new JLabel("Left Slope");
         gc.anchor = GridBagConstraints.CENTER;
         gc.gridx = 2;
-        gc.gridy = 4;
+        gc.gridy = 5;
         gc.gridwidth = 2;
         gc.gridheight = 1;
-        mainPanel.add(slopeATitleLabel, gc);
+        mainPanel.add(leftSlopeTitleLabel, gc);
 
-        JLabel slopeAAngleLabel = new JLabel("Angle ");
+        JLabel leftSlopeAngleLabel = new JLabel("Angle ");
         gc.anchor = GridBagConstraints.LINE_END;
         gc.gridx = 2;
-        gc.gridy = 5;
+        gc.gridy = 6;
         gc.gridwidth = 1;
         gc.gridheight = 1;
-        mainPanel.add(slopeAAngleLabel, gc);
+        mainPanel.add(leftSlopeAngleLabel, gc);
 
         leftSlopeAngleTextField = new JTextField(10);
         leftSlopeAngleTextField.setText("45");
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 3;
-        gc.gridy = 5;
+        gc.gridy = 6;
         mainPanel.add(leftSlopeAngleTextField, gc);
     }
 
@@ -261,12 +273,6 @@ public class MainViewModeOne implements View, Paintable {
         gc.gridy = 3;
         mainPanel.add(velocityLabel, gc);
 
-        JLabel frictionLabel = new JLabel("Friction ");
-        gc.anchor = GridBagConstraints.LINE_END;
-        gc.gridx = 0;
-        gc.gridy = 4;
-        mainPanel.add(frictionLabel, gc);
-
         JLabel tensionLabel = new JLabel("Tension ");
         gc.anchor = GridBagConstraints.LINE_END;
         gc.gridx = 0;
@@ -285,12 +291,6 @@ public class MainViewModeOne implements View, Paintable {
         gc.gridx = 1;
         gc.gridy = 3;
         mainPanel.add(velocityTextField, gc);
-
-        frictionTextField = new JTextField(10);
-        gc.anchor = GridBagConstraints.LINE_START;
-        gc.gridx = 1;
-        gc.gridy = 4;
-        mainPanel.add(frictionTextField, gc);
 
         tensionTextField = new JTextField(10);
         gc.anchor = GridBagConstraints.LINE_START;

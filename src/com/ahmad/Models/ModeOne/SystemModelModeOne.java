@@ -15,7 +15,6 @@ public class SystemModelModeOne extends Model implements SystemModel {
 
     public WireModel wire;
 
-    public double frictionOfSystem; // TODO: doesn't exist, should be friction of sloped box, and should be in sloped box
     public double accelerationOfSystem;
 
     public double slopeAngle;
@@ -34,31 +33,18 @@ public class SystemModelModeOne extends Model implements SystemModel {
     public void initializeConstantValues(int scenario) {
         switch (scenario) {
             case 1:
-                updateFriction(slopedBox.getMass(), slopedBox.getMu(), slopeAngle);
-                updateAcceleration(slopedBox.getMass(), danglingBox.getMass(), frictionOfSystem, slopeAngle);
+                slopedBox.updateFriction(slopedBox.getMass(), slopedBox.getMu(), slopeAngle);
+                updateAcceleration(slopedBox.getMass(), danglingBox.getMass(), slopedBox.friction, slopeAngle);
                 updateTension(danglingBox.getMass(), accelerationOfSystem);
                 break;
 
             case 2:
                 updateAcceleration(wire.tension, danglingBox.getMass());
-                updateMassLeft(slopeAngle, slopedBox.getMu(), frictionOfSystem);
+                updateMassLeft(slopeAngle, slopedBox.getMu(), slopedBox.friction);
                 break;
 
             case 3:
                 break;
-        }
-    }
-
-    private void updateFriction(double massLeft, double muLeft, double angle) {
-        frictionOfSystem = muLeft * massLeft * Constants.GRAVITY * MathTools.cos(angle);
-    }
-
-    private void updateFriction(double massLeft, double massRight, double acceleration, double angle) {
-        // TODO: what if acceleration is 0?
-        if (acceleration > 0) {
-            frictionOfSystem = (massLeft + massRight) * acceleration - massRight * Constants.GRAVITY + massLeft * Constants.GRAVITY * MathTools.sin(angle);
-        } else {
-            frictionOfSystem = -(massLeft + massRight) * acceleration + massRight * Constants.GRAVITY - massLeft * Constants.GRAVITY * MathTools.sin(angle);
         }
     }
 

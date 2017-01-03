@@ -6,6 +6,7 @@ import com.ahmad.Tools.MathTools;
 
 public class SlopedBoxModel extends BoxModel {
     public SystemModelModeOne systemModelModeOne;
+    public double friction;
     public double mu;
 
     public SlopedBoxModel(SystemModelModeOne systemModelModeOne, double mass, double mu) {
@@ -15,6 +16,19 @@ public class SlopedBoxModel extends BoxModel {
         this.mu = mu;
 
         calculateCoordinates();
+    }
+
+    public void updateFriction(double massLeft, double muLeft, double angle) {
+        friction = muLeft * massLeft * Constants.GRAVITY * MathTools.cos(angle);
+    }
+
+    public void updateFriction(double massLeft, double massRight, double acceleration, double angle) {
+        // TODO: what if acceleration is 0?
+        if (acceleration > 0) {
+            friction = (massLeft + massRight) * acceleration - massRight * Constants.GRAVITY + massLeft * Constants.GRAVITY * MathTools.sin(angle);
+        } else {
+            friction = -(massLeft + massRight) * acceleration + massRight * Constants.GRAVITY - massLeft * Constants.GRAVITY * MathTools.sin(angle);
+        }
     }
 
     @Override
