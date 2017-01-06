@@ -2,7 +2,7 @@ package com.ahmad.Models.ModeOne;
 
 import com.ahmad.Models.BoxModel;
 import com.ahmad.Tools.Constants;
-import com.ahmad.Tools.MathTools;
+import com.ahmad.Tools.Vector;
 
 public class DanglingBoxModel extends BoxModel {
     private SystemModelModeOne systemModelModeOne;
@@ -21,20 +21,24 @@ public class DanglingBoxModel extends BoxModel {
 
     @Override
     public void calculateCoordinates() {
-        double tempX = Constants.SIMULATION_WIDTH_PIXELS / 2;
-        double tempY = Constants.SIMULATION_HEIGHT_PIXELS / 2;
+        topLeftCorner = Vector.createFromCartesian(
+                systemModelModeOne.pulley.topLeftCorner.getX() + systemModelModeOne.pulley.radius,
+                systemModelModeOne.pulley.topLeftCorner.getY() + systemModelModeOne.pulley.diameter
+        );
 
-        while (true) {
-            tempX += MathTools.cos(systemModelModeOne.getSlopeAngle());
-            tempY -= MathTools.sin(systemModelModeOne.getSlopeAngle());
+        topRightCorner = Vector.createFromCartesian(
+                (int) (topLeftCorner.getX() + boxWidth),
+                (int) (topLeftCorner.getY())
+        );
 
-            if (tempX >= Constants.SIMULATION_WIDTH_PIXELS - (2 * boxWidth) || tempY <= boxHeight) {
-                // Set the x and y value to the calculated in-bounds coordinates
-                x = tempX;
-                y = tempY;
+        bottomLeftCorner = Vector.createFromCartesian(
+                (int) (topLeftCorner.getX()),
+                (int) (topLeftCorner.getY() + boxHeight)
+        );
 
-                break;
-            }
-        }
+        bottomRightCorner = Vector.createFromCartesian(
+                (int) (topLeftCorner.getX() + boxWidth),
+                (int) (topLeftCorner.getY() + boxHeight)
+        );
     }
 }

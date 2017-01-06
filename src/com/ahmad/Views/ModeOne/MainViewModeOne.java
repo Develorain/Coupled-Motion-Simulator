@@ -315,11 +315,12 @@ public class MainViewModeOne implements View, Paintable {
 
     @Override
     public void paint(Graphics graphics) {
+        GraphicsPainter.drawSlope(graphics, systemModelModeOne.slope);
+        GraphicsPainter.drawPulley(graphics, systemModelModeOne.pulley);
+
         GraphicsPainter.drawSlopedBox(graphics, systemModelModeOne.getSlopedBox(), systemModelModeOne.getSlopeAngle());
         GraphicsPainter.drawDanglingBox(graphics, systemModelModeOne.getDanglingBox());
-        GraphicsPainter.drawSlope(graphics, systemModelModeOne.slope);
         GraphicsPainter.drawWire(graphics, systemModelModeOne.wire);
 
-        graphics.drawOval(systemModelModeOne.getDanglingBox().getX(), systemModelModeOne.getDanglingBox().getY() - 50, 50, 50);
     }
 }

@@ -7,8 +7,11 @@ import com.ahmad.Tools.MathTools;
 public class WireModel {
     public int x1;
     public int y1;
+
     public int x2;
     public int y2;
+
+    // TODO: Potentially require x3, y3 and x4, y4
 
     private SystemModelModeOne systemModelModeOne;
     public double tension;
@@ -19,33 +22,17 @@ public class WireModel {
         calculateCoordinates();
     }
 
-    // top left x:     systemModelModeOne.getSlopedBox().getX()
-    // top left y:     systemModelModeOne.getSlopedBox().getY()
-
-    // bottom left x:  (int) (systemModelModeOne.getSlopedBox().getX() + systemModelModeOne.getSlopedBox().getBoxWidth() * MathTools.sin(systemModelModeOne.getSlopeAngle()))
-    // bottom left y:  (int) (systemModelModeOne.getSlopedBox().getY() + systemModelModeOne.getSlopedBox().getBoxHeight() * MathTools.cos(systemModelModeOne.getSlopeAngle()))
-
-    // top right x:    (int) (systemModelModeOne.getSlopedBox().getX() + systemModelModeOne.getSlopedBox().getBoxWidth() * MathTools.cos(systemModelModeOne.getSlopeAngle()))
-    // top right y:    (int) (systemModelModeOne.getSlopedBox().getY() - systemModelModeOne.getSlopedBox().getBoxHeight() * MathTools.sin(systemModelModeOne.getSlopeAngle()))
-
-    // bottom right x: (int) (systemModelModeOne.getSlopedBox().getX() + systemModelModeOne.getSlopedBox().getBoxWidth() * MathTools.sin(systemModelModeOne.getSlopeAngle()) + systemModelModeOne.getSlopedBox().getBoxWidth() * MathTools.cos(systemModelModeOne.getSlopeAngle()))
-    // bottom right y: (int) (systemModelModeOne.getSlopedBox().getY() + systemModelModeOne.getSlopedBox().getBoxHeight() * MathTools.cos(systemModelModeOne.getSlopeAngle()) - systemModelModeOne.getSlopedBox().getBoxHeight() * MathTools.sin(systemModelModeOne.getSlopeAngle()))
-
     public void calculateCoordinates() {
-        x1 = (int) (
-                (systemModelModeOne.getSlopedBox().getX() + systemModelModeOne.getSlopedBox().getBoxWidth() * MathTools.cos(systemModelModeOne.getSlopeAngle())
-                        + systemModelModeOne.getSlopedBox().getX() + systemModelModeOne.getSlopedBox().getBoxWidth() * MathTools.sin(systemModelModeOne.getSlopeAngle()) + systemModelModeOne.getSlopedBox().getBoxWidth() * MathTools.cos(systemModelModeOne.getSlopeAngle()))
-                        / 2
-        );
+        // Get the coordinates of the midpoint of the right side of the sloped box
+        x1 = (int) ((systemModelModeOne.getSlopedBox().topRightCorner.getX() + systemModelModeOne.getSlopedBox().bottomRightCorner.getX()) / 2);
+        y1 = (int) ((systemModelModeOne.getSlopedBox().topRightCorner.getY() + systemModelModeOne.getSlopedBox().bottomRightCorner.getY()) / 2);
 
-        y1 = (int) (
-                (systemModelModeOne.getSlopedBox().getY() - systemModelModeOne.getSlopedBox().getBoxHeight() * MathTools.sin(systemModelModeOne.getSlopeAngle())
-                        + systemModelModeOne.getSlopedBox().getY() + systemModelModeOne.getSlopedBox().getBoxHeight() * MathTools.cos(systemModelModeOne.getSlopeAngle()) - systemModelModeOne.getSlopedBox().getBoxHeight() * MathTools.sin(systemModelModeOne.getSlopeAngle()))
-                        / 2
-        );
+        // Get the coordinates on the pulley TODO: this code needs to be updated
+        x2 = (int) (systemModelModeOne.pulley.topLeftCorner.getX() + systemModelModeOne.pulley.radius - systemModelModeOne.pulley.radius * MathTools.sin(systemModelModeOne.slopeAngle));
+        y2 = (int) (systemModelModeOne.pulley.topLeftCorner.getY() + systemModelModeOne.pulley.radius - systemModelModeOne.pulley.radius * MathTools.cos(systemModelModeOne.slopeAngle));
 
-        x2 = (int) (systemModelModeOne.getDanglingBox().getX() + 25); // - 50 * MathTools.cos(systemModelModeOne.getSlopeAngle())
-        y2 = (int) (systemModelModeOne.getDanglingBox().getY() - 50); // + 50 * MathTools.sin(systemModelModeOne.getSlopeAngle())
+        // - 50 * MathTools.cos(systemModelModeOne.getSlopeAngle()) // + 25
+        // + 50 * MathTools.sin(systemModelModeOne.getSlopeAngle()) // - 50
     }
 
     public void updateTension(double massRight, double acceleration) {

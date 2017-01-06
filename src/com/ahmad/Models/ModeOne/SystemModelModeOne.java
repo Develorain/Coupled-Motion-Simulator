@@ -1,6 +1,7 @@
 package com.ahmad.Models.ModeOne;
 
 import com.ahmad.Models.Model;
+import com.ahmad.Models.PulleyModel;
 import com.ahmad.Models.SystemModel;
 import com.ahmad.Models.WireModel;
 import com.ahmad.Tools.Constants;
@@ -17,6 +18,8 @@ public class SystemModelModeOne extends Model implements SystemModel {
 
     public WireModel wire;
 
+    public PulleyModel pulley;
+
     public double accelerationOfSystem;
 
     public double slopeAngle;
@@ -26,9 +29,11 @@ public class SystemModelModeOne extends Model implements SystemModel {
     public SystemModelModeOne() {
         slopeAngle = 45;
 
+        slope = new SlopeModelModeOne(this);
+        pulley = new PulleyModel(this);
+
         slopedBox = new SlopedBoxModel(this, 1, 0);
         danglingBox = new DanglingBoxModel(this, 1);
-        slope = new SlopeModelModeOne(this);
         wire = new WireModel(this);
     }
 
@@ -138,8 +143,6 @@ public class SystemModelModeOne extends Model implements SystemModel {
 
         double elapsedSeconds = (System.nanoTime() - simulationStartTime) / 1000000000.0;
 
-        //System.out.println(elapsedSeconds);
-
         // Updates the boxes' velocities
         slopedBox.updateVelocity(elapsedSeconds);
         danglingBox.updateVelocity(elapsedSeconds);
@@ -148,15 +151,23 @@ public class SystemModelModeOne extends Model implements SystemModel {
         slopedBox.updatePosition(elapsedSeconds);
         danglingBox.updatePosition(elapsedSeconds);
 
+        // Updates the wire's coordinates
+        wire.calculateCoordinates();
+
+        // Updates the pulley's coordinates
+        pulley.calculateCoordinates();
+
         updateView();
     }
 
     public void setSlopeAngle(double slopeAngle) {
         this.slopeAngle = slopeAngle;
 
+        slope.calculateCoordinates();
+        pulley.calculateCoordinates();
+
         slopedBox.calculateCoordinates();
         danglingBox.calculateCoordinates();
-        slope.calculateCoordinates();
         wire.calculateCoordinates();
 
         repaintView();

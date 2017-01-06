@@ -1,6 +1,7 @@
 package com.ahmad.Tools;
 
 import com.ahmad.Models.BoxModel;
+import com.ahmad.Models.PulleyModel;
 import com.ahmad.Models.SlopeModel;
 import com.ahmad.Models.WireModel;
 
@@ -25,13 +26,13 @@ public class GraphicsPainter {
         graphics2D.setColor(new Color(51, 51, 51));    // mild gray colour
 
         // Moves origin to x, y coordinate of the rectangle, draws it, and then returns origin back to 0, 0
-        graphics2D.translate(box.getX(), box.getY());
+        graphics2D.translate(box.topLeftCorner.getX(), box.topLeftCorner.getY());
         graphics2D.draw(rotatedRectangle);
-        graphics2D.translate(-box.getX(), -box.getY());
+        graphics2D.translate(-box.topLeftCorner.getX(), -box.topLeftCorner.getY());
     }
 
     public static void drawDanglingBox(Graphics graphics, BoxModel box) {
-        graphics.drawRect(box.getX(), box.getY(), box.getBoxWidth(), box.getBoxHeight());
+        graphics.drawRect((int) box.topLeftCorner.getX(), (int) box.topLeftCorner.getY(), box.getBoxWidth(), box.getBoxHeight());
     }
 
     public static void drawSlope(Graphics graphics, SlopeModel slope) {
@@ -40,6 +41,10 @@ public class GraphicsPainter {
 
     public static void drawWire(Graphics graphics, WireModel wire) {
         graphics.drawLine(wire.x1, wire.y1, wire.x2, wire.y2);
+    }
+
+    public static void drawPulley(Graphics graphics, PulleyModel pulley) {
+        graphics.drawOval((int) pulley.topLeftCorner.getX(), (int) pulley.topLeftCorner.getY(), pulley.diameter, pulley.diameter);
     }
 }
 
