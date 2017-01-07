@@ -149,11 +149,6 @@ public class SystemModelModeOne extends Model implements SystemModel {
         slopedBox.updatePosition(elapsedSeconds);
         danglingBox.updatePosition(elapsedSeconds);
 
-        System.out.println(danglingBox.topRightCorner.getX());
-
-        // Updates the box's coordinates
-        //slopedBox.calculateStartingPositionCoordinates();
-
         // Updates the wire's coordinates
         wire.calculateCoordinates();
 

@@ -56,14 +56,3 @@ public class SlopeModelModeOne extends SlopeModel {
         }
     }
 }
-
-        /*
-        x1 = (int) systemModelModeOne.getSlopedBox().bottomLeftCorner.getX();
-        y1 = (int) systemModelModeOne.getSlopedBox().bottomLeftCorner.getY();
-
-        //x1 = (int) (systemModelModeOne.getSlopedBox().getX() + systemModelModeOne.getSlopedBox().getBoxWidth() * MathTools.sin(systemModelModeOne.getSlopeAngle()));
-        //y1 = (int) (systemModelModeOne.getSlopedBox().getY() + systemModelModeOne.getSlopedBox().getBoxHeight() * MathTools.cos(systemModelModeOne.getSlopeAngle()));
-
-        x2 = systemModelModeOne.getDanglingBox().getX();
-        y2 = systemModelModeOne.getDanglingBox().getY();
-        */

@@ -31,12 +31,12 @@ public class GraphicsPainter {
 
         // Moves origin to x, y coordinate of the rectangle, draws it, and then returns origin back to 0, 0
         graphics2D.translate(box.topLeftCorner.getX(), box.topLeftCorner.getY());
-        graphics2D.draw(rotatedRectangle);
+        graphics2D.fill(rotatedRectangle);
         graphics2D.translate(-box.topLeftCorner.getX(), -box.topLeftCorner.getY());
     }
 
     public static void drawDanglingBox(Graphics graphics, BoxModel box) {
-        graphics.drawRect((int) box.topLeftCorner.getX(), (int) box.topLeftCorner.getY(), box.getBoxWidth(), box.getBoxHeight());
+        graphics.fillRect((int) box.topLeftCorner.getX(), (int) box.topLeftCorner.getY(), box.getBoxWidth(), box.getBoxHeight());
     }
 
     public static void drawSlope(Graphics graphics, SlopeModel slope) {
@@ -50,8 +50,6 @@ public class GraphicsPainter {
     }
 
     public static void drawPulley(Graphics graphics, PulleyModel pulley) {
-        graphics.drawOval((int) pulley.topLeftCorner.getX(), (int) pulley.topLeftCorner.getY(), pulley.diameter, pulley.diameter);
+        graphics.fillOval((int) pulley.topLeftCorner.getX(), (int) pulley.topLeftCorner.getY(), pulley.diameter, pulley.diameter);
     }
 }
-
-//graphics.drawLine(0, 0, getBoxWidth() / 2, getBoxHeight() / 2);

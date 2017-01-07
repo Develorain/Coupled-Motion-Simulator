@@ -24,6 +24,8 @@ public abstract class BoxModel {
     public void updatePosition(double elapsedSeconds) {
         topLeftCorner.setX(topLeftCorner.getX() + (0.5 * acceleration.getX() * elapsedSeconds * elapsedSeconds));
         topLeftCorner.setY(topLeftCorner.getY() - (0.5 * acceleration.getY() * elapsedSeconds * elapsedSeconds));
+
+        calculateBoxVerticesFromTopLeft();
     }
 
     public void updateVelocity(double elapsedSeconds) {
@@ -31,9 +33,9 @@ public abstract class BoxModel {
         velocity.setY(acceleration.getY() * elapsedSeconds);
     }
 
-    // need calculate corners of box based on the coordinates of the topleft corner coordinates method
-
     public abstract void calculateStartingPositionCoordinates();
+
+    public abstract void calculateBoxVerticesFromTopLeft();
 
     public double getMass() {
         return mass;

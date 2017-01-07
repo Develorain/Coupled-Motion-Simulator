@@ -223,7 +223,7 @@ public class MainViewModeTwo implements View, Paintable {
         gc.gridheight = 1;
         gc.weighty = 1;
 
-        String[] modesList = new String[]{"Mode 1", "Mode 2"};
+        String[] modesList = new String[]{"Two Box System", "Three Box System"};
         modesComboBox = new JComboBox(modesList);
         modesComboBox.setSelectedIndex(1);
         gc.gridx = 8;

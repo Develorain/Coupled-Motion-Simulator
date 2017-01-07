@@ -2,6 +2,7 @@ package com.ahmad.Models.ModeTwo;
 
 import com.ahmad.Models.Model;
 import com.ahmad.Models.SystemModel;
+import com.ahmad.Models.WireModel;
 import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
@@ -23,8 +24,8 @@ public class SystemModelModeTwo extends Model implements SystemModel {
     public MiddleSlopeModel middleSlope;
     public RightSlopeModel rightSlope;
 
-    //private WireModel leftWire;
-    //private WireModel rightWire;
+    private WireModel leftWire;
+    private WireModel rightWire;
 
     private double frictionOfSystem;
     private double accelerationOfSystem;

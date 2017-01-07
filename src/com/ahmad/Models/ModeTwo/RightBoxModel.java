@@ -44,6 +44,11 @@ public class RightBoxModel extends BoxModel {
         );
     }
 
+    @Override
+    public void calculateBoxVerticesFromTopLeft() {
+
+    }
+
     public double getMu() {
         return mu;
     }

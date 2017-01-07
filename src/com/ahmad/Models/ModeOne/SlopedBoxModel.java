@@ -20,6 +20,35 @@ public class SlopedBoxModel extends BoxModel {
         calculateStartingPositionCoordinates();
     }
 
+    @Override
+    public void calculateStartingPositionCoordinates() {
+        // Calculate the coordinates of the four corners of the box based on its position
+        topLeftCorner = Vector.createFromCartesian(
+                systemModelModeOne.slope.x1 - boxWidth * MathTools.sin(systemModelModeOne.getSlopeAngle()),
+                systemModelModeOne.slope.y1 - boxHeight * MathTools.cos(systemModelModeOne.getSlopeAngle())
+        );
+
+        calculateBoxVerticesFromTopLeft();
+    }
+
+    @Override
+    public void calculateBoxVerticesFromTopLeft() {
+        topRightCorner = Vector.createFromCartesian(
+                (int) (topLeftCorner.getX() + boxWidth * MathTools.cos(systemModelModeOne.getSlopeAngle())),
+                (int) (topLeftCorner.getY() - boxHeight * MathTools.sin(systemModelModeOne.getSlopeAngle()))
+        );
+
+        bottomLeftCorner = Vector.createFromCartesian(
+                (int) (topLeftCorner.getX() + boxWidth * MathTools.sin(systemModelModeOne.getSlopeAngle())),
+                (int) (topLeftCorner.getY() + boxHeight * MathTools.cos(systemModelModeOne.getSlopeAngle()))
+        );
+
+        bottomRightCorner = Vector.createFromCartesian(
+                (int) (topLeftCorner.getX() + boxWidth * MathTools.sin(systemModelModeOne.getSlopeAngle()) + boxWidth * MathTools.cos(systemModelModeOne.getSlopeAngle())),
+                (int) (topLeftCorner.getY() + boxHeight * MathTools.cos(systemModelModeOne.getSlopeAngle()) - boxHeight * MathTools.sin(systemModelModeOne.getSlopeAngle()))
+        );
+    }
+
     public void updateFriction(double angle) {
         friction = mu * mass * Constants.GRAVITY * MathTools.cos(angle);
     }
@@ -39,30 +68,6 @@ public class SlopedBoxModel extends BoxModel {
 
     public void updateMu(double angle) {
         mu = Math.abs(friction / (mass * Constants.GRAVITY * MathTools.cos(angle)));
-    }
-
-    @Override
-    public void calculateStartingPositionCoordinates() {
-        // Calculate the coordinates of the four corners of the box based on its position
-        topLeftCorner = Vector.createFromCartesian(
-                systemModelModeOne.slope.x1 - boxWidth * MathTools.sin(systemModelModeOne.getSlopeAngle()),
-                systemModelModeOne.slope.y1 - boxHeight * MathTools.cos(systemModelModeOne.getSlopeAngle())
-        );
-
-        topRightCorner = Vector.createFromCartesian(
-                (int) (topLeftCorner.getX() + boxWidth * MathTools.cos(systemModelModeOne.getSlopeAngle())),
-                (int) (topLeftCorner.getY() - boxHeight * MathTools.sin(systemModelModeOne.getSlopeAngle()))
-        );
-
-        bottomLeftCorner = Vector.createFromCartesian(
-                (int) (topLeftCorner.getX() + boxWidth * MathTools.sin(systemModelModeOne.getSlopeAngle())),
-                (int) (topLeftCorner.getY() + boxHeight * MathTools.cos(systemModelModeOne.getSlopeAngle()))
-        );
-
-        bottomRightCorner = Vector.createFromCartesian(
-                (int) (topLeftCorner.getX() + boxWidth * MathTools.sin(systemModelModeOne.getSlopeAngle()) + boxWidth * MathTools.cos(systemModelModeOne.getSlopeAngle())),
-                (int) (topLeftCorner.getY() + boxHeight * MathTools.cos(systemModelModeOne.getSlopeAngle()) - boxHeight * MathTools.sin(systemModelModeOne.getSlopeAngle()))
-        );
     }
 
     public double getMu() {

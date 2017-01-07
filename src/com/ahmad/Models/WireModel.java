@@ -17,8 +17,6 @@ public class WireModel {
     public int x4;
     public int y4;
 
-    // TODO: Potentially require x3, y3 and x4, y4
-
     private SystemModelModeOne systemModelModeOne;
     public double tension;
 

@@ -26,6 +26,11 @@ public class DanglingBoxModel extends BoxModel {
                 systemModelModeOne.pulley.topLeftCorner.getY() + systemModelModeOne.pulley.diameter
         );
 
+        calculateBoxVerticesFromTopLeft();
+    }
+
+    @Override
+    public void calculateBoxVerticesFromTopLeft() {
         topRightCorner = Vector.createFromCartesian(
                 (int) (topLeftCorner.getX() + boxWidth),
                 (int) (topLeftCorner.getY())
