@@ -26,17 +26,18 @@ public class MainViewModeOne implements View, Paintable {
     public JTextField leftBoxFrictionTextField;
     public JTextField tensionTextField;
 
-    public JButton startButton;
-    public JButton pauseButton;
-    public JButton resetButton;
-    public JComboBox modesComboBox;
-
     public JTextField leftBoxMassTextField;
     public JTextField leftBoxMuTextField;
 
     public JTextField rightBoxMassTextField;
 
     public JTextField leftSlopeAngleTextField;
+
+    public JButton startButton;
+    public JButton pauseButton;
+    public JButton resetButton;
+    public JComboBox modesComboBox;
+    public JComboBox inputTypeComboBox;
 
     public MainViewModeOne(SystemModelModeOne systemModelModeOne) {
         this.systemModelModeOne = systemModelModeOne;
@@ -132,25 +133,34 @@ public class MainViewModeOne implements View, Paintable {
         gc.gridheight = 1;
         gc.weighty = 1;
 
+        String[] inputTypeList = new String[]{
+                "Solve for Friction, Acceleration, and Tension",
+                "Solve for Acceleration and Left Mass"
+        };
+        inputTypeComboBox = new JComboBox<>(inputTypeList);
+        gc.gridx = 6;
+        gc.gridy = 1;
+        mainPanel.add(inputTypeComboBox, gc);
+
         String[] modesList = new String[]{"Two Box System", "Three Box System"};
         modesComboBox = new JComboBox<>(modesList);
         gc.gridx = 6;
-        gc.gridy = 1;
+        gc.gridy = 2;
         mainPanel.add(modesComboBox, gc);
 
         startButton = new JButton("Start Simulation");
         gc.gridx = 6;
-        gc.gridy = 2;
+        gc.gridy = 3;
         mainPanel.add(startButton, gc);
 
         pauseButton = new JButton("Pause Simulation");
         gc.gridx = 6;
-        gc.gridy = 3;
+        gc.gridy = 4;
         mainPanel.add(pauseButton, gc);
 
         resetButton = new JButton("Reset Simulation");
         gc.gridx = 6;
-        gc.gridy = 4;
+        gc.gridy = 5;
         mainPanel.add(resetButton, gc);
     }
 

@@ -39,6 +39,7 @@ public class Startup {
 
 // TODO: **BUGS**
 // TODO: IMPORTANT: BoxModel needs to take both mode1 and mode2 system models
+// for some reason the program just crashes after simulating for around 10 seconds
 // start button doesn't actually set the new values of the boxes (mass)
 // pressing the start button multiple times makes the boxes move faster. this happens because multiple timers are created, each of which are adding to velocity
 // putting in no mass breaks the program (for example, removing all the value of dangling box and pressing start)
@@ -50,10 +51,6 @@ public class Startup {
 // borders should scale with window size, not 100 pixels absolute
 
 // TODO: **IMPORTANT**
-// based on what value is not provided (either mass, mu, or acceleration), solve for not given value
-// draw slope, pulley, and string
-// the positions of the boxes should not be hard-coded, but rather be based on the current size of the simulation view
-// add multiple modes
 // fix acceleration calculation   (complete)
 // add tension calculation        (complete)
 
@@ -63,10 +60,8 @@ public class Startup {
 //if friction is pos when accel is pos, give error // todo SEE INTENSE PHYSICS FILE
 
 // TODO: **SECONDARY**
-// make it so that you can either pick to put in mu value, or just the frictional force of the box
 // make window resizable (support for simulation area resizing, possibly scale when window is resized)
 // add data validation when a number is input (for example if a letter is put or if the whole value is erased)
 // round acceleration and velocity values
 // find a fix for jagged edges on sloped box
-// make a JLabel inside the box that follows the box and has the letter "A" on it
 // show how long simulation has been running for (time)

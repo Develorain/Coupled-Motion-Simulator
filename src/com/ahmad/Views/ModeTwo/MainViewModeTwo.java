@@ -38,7 +38,6 @@ public class MainViewModeTwo implements View, Paintable {
     private JTextField middleBoxMassTextField;
     private JTextField middleBoxMuTextField;
     private JTextField middleBoxFrictionTextField;
-    private JTextField middleSlopeAngleTextField;  // useless
 
     private JTextField rightBoxMassTextField;
     private JTextField rightBoxMuTextField;
