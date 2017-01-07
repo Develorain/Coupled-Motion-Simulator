@@ -12,7 +12,7 @@ public class DanglingBoxModel extends BoxModel {
 
         this.systemModelModeOne = systemModelModeOne;
 
-        calculateCoordinates();
+        calculateStartingPositionCoordinates();
     }
 
     public void updateMass(double tension, double acceleration) {
@@ -20,7 +20,7 @@ public class DanglingBoxModel extends BoxModel {
     }
 
     @Override
-    public void calculateCoordinates() {
+    public void calculateStartingPositionCoordinates() {
         topLeftCorner = Vector.createFromCartesian(
                 systemModelModeOne.pulley.topLeftCorner.getX() + systemModelModeOne.pulley.radius,
                 systemModelModeOne.pulley.topLeftCorner.getY() + systemModelModeOne.pulley.diameter

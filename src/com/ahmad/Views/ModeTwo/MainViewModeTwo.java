@@ -57,6 +57,19 @@ public class MainViewModeTwo implements View, Paintable {
     }
 
     @Override
+    public void paint(Graphics graphics) {
+        //graphics.drawLine(0, 0, (int) systemModelModeTwo.rightBox.topLeftCorner.getX(), (int) systemModelModeTwo.rightBox.topLeftCorner.getY());
+
+        GraphicsPainter.drawSlope(graphics, systemModelModeTwo.leftSlope);
+        GraphicsPainter.drawSlope(graphics, systemModelModeTwo.middleSlope);
+        GraphicsPainter.drawSlope(graphics, systemModelModeTwo.rightSlope);
+
+        GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.leftBox, systemModelModeTwo.getLeftSlopeAngle(), false);
+        GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.middleBox, systemModelModeTwo.getMiddleSlopeAngle(), false);
+        GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.rightBox, systemModelModeTwo.getRightSlopeAngle(), true);
+    }
+
+    @Override
     public void update() {
         systemPanel.repaint(); // Repaints the simulation area
 
@@ -407,23 +420,5 @@ public class MainViewModeTwo implements View, Paintable {
         gc.gridx = 1;
         gc.gridy = 3;
         mainPanel.add(velocityTextField, gc);
-    }
-
-    @Override
-    public void paint(Graphics graphics) {
-        //graphics.drawLine(0, 0, Globals.SIMULATION_WIDTH_PIXELS / 3, Globals.SIMULATION_HEIGHT_PIXELS / 2);  // left point of middle slope
-        //graphics.drawLine(0, 0, Globals.SIMULATION_WIDTH_PIXELS / 2, Globals.SIMULATION_HEIGHT_PIXELS / 2); // center point
-        //graphics.drawLine(0, 0, Globals.SIMULATION_WIDTH_PIXELS * 2 / 3, Globals.SIMULATION_HEIGHT_PIXELS / 2); // right point of middle slope
-
-        //graphics.drawLine(0, 0, systemModelModeTwo.leftBox.getX(), systemModelModeTwo.leftBox.getY()); // left box
-        //graphics.drawLine(0, 0, systemModelModeTwo.rightBox.getX(), systemModelModeTwo.rightBox.getY()); // right box
-
-        GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.leftBox, systemModelModeTwo.getLeftSlopeAngle());
-        GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.middleBox, systemModelModeTwo.getMiddleSlopeAngle());
-        GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.rightBox, systemModelModeTwo.getRightSlopeAngle());
-
-        GraphicsPainter.drawSlope(graphics, systemModelModeTwo.leftSlope);
-        GraphicsPainter.drawSlope(graphics, systemModelModeTwo.middleSlope);
-        GraphicsPainter.drawSlope(graphics, systemModelModeTwo.rightSlope);
     }
 }

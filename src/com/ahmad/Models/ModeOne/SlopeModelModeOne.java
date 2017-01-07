@@ -34,6 +34,7 @@ public class SlopeModelModeOne extends SlopeModel {
             }
         }
 
+        //////////////////////////
 
         // Code for right coord
         double tempX2 = Constants.SIMULATION_WIDTH_PIXELS / 2;
@@ -53,9 +54,8 @@ public class SlopeModelModeOne extends SlopeModel {
                 break;
             }
         }
-
-
-
+    }
+}
 
         /*
         x1 = (int) systemModelModeOne.getSlopedBox().bottomLeftCorner.getX();
@@ -67,5 +67,3 @@ public class SlopeModelModeOne extends SlopeModel {
         x2 = systemModelModeOne.getDanglingBox().getX();
         y2 = systemModelModeOne.getDanglingBox().getY();
         */
-    }
-}

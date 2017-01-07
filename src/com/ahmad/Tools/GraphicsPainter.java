@@ -10,7 +10,11 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 
 public class GraphicsPainter {
-    public static void drawSlopedBox(Graphics graphics, BoxModel box, double slopeAngle) {
+    public static void drawSlopedBox(Graphics graphics, BoxModel box, double slopeAngle, boolean invertedAxis) {
+        if (invertedAxis) {
+            slopeAngle -= 180;
+        }
+
         // Creates a rectangle rotated based on the box's angle
         double theta = Math.toRadians(slopeAngle);
         Rectangle2D rectangle2D = new Rectangle2D.Double(0, 0, box.getBoxWidth(), box.getBoxHeight());
@@ -41,6 +45,8 @@ public class GraphicsPainter {
 
     public static void drawWire(Graphics graphics, WireModel wire) {
         graphics.drawLine(wire.x1, wire.y1, wire.x2, wire.y2);
+
+        graphics.drawLine(wire.x3, wire.y3, wire.x4, wire.y4);
     }
 
     public static void drawPulley(Graphics graphics, PulleyModel pulley) {

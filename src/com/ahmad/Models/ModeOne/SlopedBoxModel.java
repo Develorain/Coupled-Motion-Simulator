@@ -17,7 +17,7 @@ public class SlopedBoxModel extends BoxModel {
         this.mu = mu;
 
         // Calculate the coordinates of the box
-        calculateCoordinates();
+        calculateStartingPositionCoordinates();
     }
 
     public void updateFriction(double angle) {
@@ -25,7 +25,7 @@ public class SlopedBoxModel extends BoxModel {
     }
 
     public void updateFriction(double massRight, double acceleration, double angle) {
-        // TODO: what if acceleration is 0? the problem is we don't know which dirction the friction will be, we will have to look at netforce instead of acceleration
+        // TODO: what if acceleration is 0? the problem is we don't know which direction the friction will be, we will have to look at netforce instead of acceleration
         if (acceleration < 0) {
             friction = (mass + massRight) * acceleration - massRight * Constants.GRAVITY + mass * Constants.GRAVITY * MathTools.sin(angle);
         } else {
@@ -42,7 +42,7 @@ public class SlopedBoxModel extends BoxModel {
     }
 
     @Override
-    public void calculateCoordinates() {
+    public void calculateStartingPositionCoordinates() {
         // Calculate the coordinates of the four corners of the box based on its position
         topLeftCorner = Vector.createFromCartesian(
                 systemModelModeOne.slope.x1 - boxWidth * MathTools.sin(systemModelModeOne.getSlopeAngle()),
@@ -69,25 +69,3 @@ public class SlopedBoxModel extends BoxModel {
         return mu;
     }
 }
-
-        /*
-        double tempX = Constants.SIMULATION_WIDTH_PIXELS / 2;
-        double tempY = Constants.SIMULATION_HEIGHT_PIXELS / 2;
-
-        while (true) {
-            tempX -= MathTools.cos(systemModelModeOne.getSlopeAngle());
-            tempY += MathTools.sin(systemModelModeOne.getSlopeAngle());
-
-            if (tempX <= boxWidth || tempY >= Constants.SIMULATION_HEIGHT_PIXELS - boxHeight) {
-                // Set the x and y value to the calculated in-bounds coordinates
-                x = tempX;
-                y = tempY;
-
-                // Offset the values so that the bottom of the box is displayed at this coordinate, not the top left corner
-                x -= boxWidth * MathTools.sin(systemModelModeOne.getSlopeAngle());
-                y -= boxHeight * MathTools.cos(systemModelModeOne.getSlopeAngle());
-
-                break;
-            }
-        }
-        */

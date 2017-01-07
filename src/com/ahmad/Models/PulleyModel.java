@@ -22,13 +22,6 @@ public class PulleyModel {
     }
 
     public void calculateCoordinates() {
-        /*
-        topLeftCorner = Vector.createFromCartesian(
-                systemModelModeOne.slope.x2 - radius * MathTools.sin(systemModelModeOne.slopeAngle),
-                systemModelModeOne.slope.y2 - radius - radius * MathTools.sin(systemModelModeOne.slopeAngle)
-        );
-        */
-
         topLeftCorner = Vector.createFromCartesian(
                 systemModelModeOne.slope.x2 - radius + radius * MathTools.cos(systemModelModeOne.slopeAngle),
                 systemModelModeOne.slope.y2 - radius - radius * MathTools.sin(systemModelModeOne.slopeAngle)

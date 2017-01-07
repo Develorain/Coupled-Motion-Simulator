@@ -15,8 +15,22 @@ public class LeftSlopeModel extends SlopeModel {
 
     @Override
     public void calculateCoordinates() {
-        x1 = (int) Math.round(systemModelModeTwo.leftBox.getX() + systemModelModeTwo.leftBox.getBoxWidth() * MathTools.sin(systemModelModeTwo.getLeftSlopeAngle()));
-        y1 = (int) Math.round(systemModelModeTwo.leftBox.getY() + systemModelModeTwo.leftBox.getBoxHeight() * MathTools.cos(systemModelModeTwo.getLeftSlopeAngle()));
+        double tempX = Constants.SIMULATION_WIDTH_PIXELS / 3;
+        double tempY = Constants.SIMULATION_HEIGHT_PIXELS / 2;
+
+        while (true) {
+            tempX -= MathTools.cos(systemModelModeTwo.getLeftSlopeAngle());
+            tempY += MathTools.sin(systemModelModeTwo.getLeftSlopeAngle());
+
+            // TODO: 100 hardcoded value... remove later
+            if (tempX <= 100 || tempY >= Constants.SIMULATION_HEIGHT_PIXELS - 100) {
+                // Set the x and y value to the calculated in-bounds coordinates
+                x1 = (int) tempX;
+                y1 = (int) tempY;
+
+                break;
+            }
+        }
 
         x2 = Constants.SIMULATION_WIDTH_PIXELS / 3;
         y2 = Constants.SIMULATION_HEIGHT_PIXELS / 2;

@@ -18,10 +18,21 @@ public class RightSlopeModel extends SlopeModel {
         x1 = Constants.SIMULATION_WIDTH_PIXELS * 2 / 3;
         y1 = Constants.SIMULATION_HEIGHT_PIXELS / 2;
 
-        x2 = (int) Math.round(systemModelModeTwo.rightBox.getX() + systemModelModeTwo.rightBox.getBoxWidth() * MathTools.cos(systemModelModeTwo.getRightSlopeAngle()));
-        y2 = (int) Math.round(systemModelModeTwo.rightBox.getY() + systemModelModeTwo.rightBox.getBoxHeight() * MathTools.sin(systemModelModeTwo.getRightSlopeAngle()));
+        double tempX = x1;
+        double tempY = y1;
 
-        x2 = systemModelModeTwo.rightBox.getX();
-        y2 = systemModelModeTwo.rightBox.getY();
+        while (true) {
+            tempX -= MathTools.cos(systemModelModeTwo.getRightSlopeAngle());
+            tempY += MathTools.sin(systemModelModeTwo.getRightSlopeAngle());
+
+            // Todo: hardcoded 100... remove later
+            if (tempX >= Constants.SIMULATION_WIDTH_PIXELS - 100 || tempY >= Constants.SIMULATION_HEIGHT_PIXELS - 100) {
+                // Set the x and y value to the calculated in-bounds coordinates
+                x2 = (int) tempX;
+                y2 = (int) tempY;
+
+                break;
+            }
+        }
     }
 }

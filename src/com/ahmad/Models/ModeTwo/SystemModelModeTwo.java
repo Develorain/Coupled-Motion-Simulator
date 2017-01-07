@@ -40,13 +40,13 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         middleSlopeAngle = 0;
         rightSlopeAngle = 135;
 
-        leftBox = new LeftBoxModel(this, 1, 0);
-        middleBox = new MiddleBoxModel(this, 1, 0);
-        rightBox = new RightBoxModel(this, 1, 0);
-
         leftSlope = new LeftSlopeModel(this);
         middleSlope = new MiddleSlopeModel(this);
         rightSlope = new RightSlopeModel(this);
+
+        leftBox = new LeftBoxModel(this, 1, 0);
+        middleBox = new MiddleBoxModel(this, 1, 0);
+        rightBox = new RightBoxModel(this, 1, 0);
 
         //leftWire = new WireModel();
         //rightWire = new WireModel();
@@ -81,7 +81,6 @@ public class SystemModelModeTwo extends Model implements SystemModel {
 
     private void updateFriction() {
         frictionOfSystem = leftBox.getMass() * Constants.GRAVITY * MathTools.cos(leftSlopeAngle) * leftBox.getMu();
-        //frictionOfSlopedBox = 10;
     }
 
     // this method is here because we need access to all boxes to calculate accelerationOfSystem
@@ -98,37 +97,41 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         rightBox.setAcceleration(accelerationC);
     }
 
-//    private void updateTension() {
-//        leftWire = new WireModel(middleBox);
-//        leftWire.calculateTension(accelerationOfSystem);
-//
-//        System.out.println("Tension: " + leftWire.tension);
-//    }
+    /*
+    private void updateTension() {
+        leftWire = new WireModel(middleBox);
+        leftWire.calculateTension(accelerationOfSystem);
 
+        System.out.println("Tension: " + leftWire.tension);
+    }
+    */
+
+    // TODO: WHY ARE THEY ALL BEING UPDATED NOT JUST LEFT?
     public void setLeftSlopeAngle(double leftSlopeAngle) {
         this.leftSlopeAngle = leftSlopeAngle;
-
-        leftBox.calculateCoordinates();
-        middleBox.calculateCoordinates();
-        rightBox.calculateCoordinates();
 
         leftSlope.calculateCoordinates();
         middleSlope.calculateCoordinates();
         rightSlope.calculateCoordinates();
+
+        leftBox.calculateStartingPositionCoordinates();
+        middleBox.calculateStartingPositionCoordinates();
+        rightBox.calculateStartingPositionCoordinates();
 
         updateView();
     }
 
+    // TODO: WHY ARE THEY ALL BEING UPDATED NOT JUST RIGHT?
     public void setRightSlopeAngle(double rightSlopeAngle) {
         this.rightSlopeAngle = rightSlopeAngle;
-
-        leftBox.calculateCoordinates();
-        middleBox.calculateCoordinates();
-        rightBox.calculateCoordinates();
 
         leftSlope.calculateCoordinates();
         middleSlope.calculateCoordinates();
         rightSlope.calculateCoordinates();
+
+        leftBox.calculateStartingPositionCoordinates();
+        middleBox.calculateStartingPositionCoordinates();
+        rightBox.calculateStartingPositionCoordinates();
 
         updateView();
     }

@@ -11,19 +11,16 @@ import com.ahmad.Views.ModeOne.MainViewModeOne;
 import com.ahmad.Views.View;
 
 public class SystemModelModeOne extends Model implements SystemModel {
+    public SlopeModelModeOne slope;
+    public PulleyModel pulley;
+
     public SlopedBoxModel slopedBox;
     public DanglingBoxModel danglingBox;
 
-    public SlopeModelModeOne slope;
-
     public WireModel wire;
 
-    public PulleyModel pulley;
-
     public double accelerationOfSystem;
-
     public double slopeAngle;
-
     public long simulationStartTime = 0;
 
     public SystemModelModeOne() {
@@ -34,6 +31,7 @@ public class SystemModelModeOne extends Model implements SystemModel {
 
         slopedBox = new SlopedBoxModel(this, 1, 0);
         danglingBox = new DanglingBoxModel(this, 1);
+
         wire = new WireModel(this);
     }
 
@@ -151,11 +149,13 @@ public class SystemModelModeOne extends Model implements SystemModel {
         slopedBox.updatePosition(elapsedSeconds);
         danglingBox.updatePosition(elapsedSeconds);
 
+        System.out.println(danglingBox.topRightCorner.getX());
+
+        // Updates the box's coordinates
+        //slopedBox.calculateStartingPositionCoordinates();
+
         // Updates the wire's coordinates
         wire.calculateCoordinates();
-
-        // Updates the pulley's coordinates
-        pulley.calculateCoordinates();
 
         updateView();
     }
@@ -166,8 +166,8 @@ public class SystemModelModeOne extends Model implements SystemModel {
         slope.calculateCoordinates();
         pulley.calculateCoordinates();
 
-        slopedBox.calculateCoordinates();
-        danglingBox.calculateCoordinates();
+        slopedBox.calculateStartingPositionCoordinates();
+        danglingBox.calculateStartingPositionCoordinates();
         wire.calculateCoordinates();
 
         repaintView();
