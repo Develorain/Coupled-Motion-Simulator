@@ -46,20 +46,20 @@ public class SystemModelModeOne extends Model implements SystemModel {
                 && !mainViewModeOne.leftBoxMuTextField.getText().isEmpty() && !mainViewModeOne.leftSlopeAngleTextField.getText().isEmpty()) {
             scenario = 1;
 
-            getSlopedBox().mass = Double.parseDouble(mainViewModeOne.leftBoxMassTextField.getText());
-            getDanglingBox().mass = Double.parseDouble(mainViewModeOne.rightBoxMassTextField.getText());
-            getSlopedBox().mu = Double.parseDouble(mainViewModeOne.leftBoxMuTextField.getText());
+            slopedBox.mass = Double.parseDouble(mainViewModeOne.leftBoxMassTextField.getText());
+            danglingBox.mass = Double.parseDouble(mainViewModeOne.rightBoxMassTextField.getText());
+            slopedBox.mu = Double.parseDouble(mainViewModeOne.leftBoxMuTextField.getText());
             slopeAngle = Double.parseDouble(mainViewModeOne.leftSlopeAngleTextField.getText());
         } else if (!mainViewModeOne.rightBoxMassTextField.getText().isEmpty() && !mainViewModeOne.tensionTextField.getText().isEmpty()
                 && !mainViewModeOne.leftSlopeAngleTextField.getText().isEmpty() && !mainViewModeOne.leftBoxFrictionTextField.getText().isEmpty()
                 && !mainViewModeOne.leftBoxMuTextField.getText().isEmpty()) {
             scenario = 2;
 
-            getDanglingBox().mass = Double.parseDouble(mainViewModeOne.rightBoxMassTextField.getText());
+            danglingBox.mass = Double.parseDouble(mainViewModeOne.rightBoxMassTextField.getText());
             wire.tension = Double.parseDouble(mainViewModeOne.tensionTextField.getText());
             slopeAngle = Double.parseDouble(mainViewModeOne.leftSlopeAngleTextField.getText());
             slopedBox.friction = Double.parseDouble(mainViewModeOne.leftBoxFrictionTextField.getText());
-            getSlopedBox().mu = Double.parseDouble(mainViewModeOne.leftBoxMuTextField.getText());
+            slopedBox.mu = Double.parseDouble(mainViewModeOne.leftBoxMuTextField.getText());
         } else if (!mainViewModeOne.accelerationTextField.getText().isEmpty() && !mainViewModeOne.tensionTextField.getText().isEmpty()
                 && !mainViewModeOne.leftSlopeAngleTextField.getText().isEmpty() && !mainViewModeOne.leftBoxMassTextField.getText().isEmpty()) {
             scenario = 3;
@@ -67,7 +67,7 @@ public class SystemModelModeOne extends Model implements SystemModel {
             accelerationOfSystem = Double.parseDouble(mainViewModeOne.accelerationTextField.getText());
             wire.tension = Double.parseDouble(mainViewModeOne.tensionTextField.getText());
             slopeAngle = Double.parseDouble(mainViewModeOne.leftSlopeAngleTextField.getText());
-            getSlopedBox().mass = Double.parseDouble(mainViewModeOne.leftBoxMassTextField.getText());
+            slopedBox.mass = Double.parseDouble(mainViewModeOne.leftBoxMassTextField.getText());
         } else {
             System.out.println("Missing input");
         }

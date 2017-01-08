@@ -5,6 +5,7 @@ import com.ahmad.Models.SystemModel;
 import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
+import com.ahmad.Views.ModeTwo.MainViewModeTwo;
 import com.ahmad.Views.View;
 
 // TODO:
@@ -60,6 +61,8 @@ public class SystemModelModeTwo extends Model implements SystemModel {
 
     @Override
     public void takeInputAndInitializeConstantValues(View mainView) {
+        MainViewModeTwo mainViewModeTwo = (MainViewModeTwo) mainView;
+
         updateFriction();
         updateAcceleration();
         //updateTension();
@@ -92,7 +95,6 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         frictionOfSystem = leftBox.getMass() * Constants.GRAVITY * MathTools.cos(leftSlopeAngle) * leftBox.getMu();
     }
 
-    // this method is here because we need access to all boxes to calculate accelerationOfSystem
     private void updateAcceleration() {
         accelerationOfSystem = (middleBox.getMass() * Constants.GRAVITY - leftBox.getMass() * Constants.GRAVITY * MathTools.sin(leftSlopeAngle) - frictionOfSystem)
                 / (leftBox.getMass() + middleBox.getMass());
