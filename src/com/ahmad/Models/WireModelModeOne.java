@@ -6,14 +6,7 @@ import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
 
 public class WireModelModeOne extends WireModel {
-    public Vector coordOnSlopedBox;
-    public Vector coordOnLeftSideOfPulley;
-
-    public Vector coordOnRightSideOfPulley;
-    public Vector coordOnDanglingBox;
-
     private SystemModelModeOne systemModelModeOne;
-    public double tension;
 
     /*
     public int x1;
@@ -37,22 +30,22 @@ public class WireModelModeOne extends WireModel {
 
     @Override
     public void calculateCoordinates() {
-        coordOnSlopedBox = Vector.createFromCartesian(
+        leftStringLeftCoord = Vector.createFromCartesian(
                 (systemModelModeOne.getSlopedBox().topRightCorner.getX() + systemModelModeOne.getSlopedBox().bottomRightCorner.getX()) / 2,
                 (systemModelModeOne.getSlopedBox().topRightCorner.getY() + systemModelModeOne.getSlopedBox().bottomRightCorner.getY()) / 2
         );
 
-        coordOnLeftSideOfPulley = Vector.createFromCartesian(
+        leftStringRightCoord = Vector.createFromCartesian(
                 systemModelModeOne.pulley.topLeftCorner.getX() + systemModelModeOne.pulley.radius - systemModelModeOne.pulley.radius * MathTools.sin(systemModelModeOne.slopeAngle),
                 systemModelModeOne.pulley.topLeftCorner.getY() + systemModelModeOne.pulley.radius - systemModelModeOne.pulley.radius * MathTools.cos(systemModelModeOne.slopeAngle)
         );
 
-        coordOnRightSideOfPulley = Vector.createFromCartesian(
+        rightStringLeftCoord = Vector.createFromCartesian(
                 systemModelModeOne.pulley.topLeftCorner.getX() + systemModelModeOne.pulley.diameter,
                 systemModelModeOne.pulley.topLeftCorner.getY() + systemModelModeOne.pulley.radius
         );
 
-        coordOnDanglingBox = Vector.createFromCartesian(
+        rightStringRightCoord = Vector.createFromCartesian(
                 (systemModelModeOne.getDanglingBox().topLeftCorner.getX() + systemModelModeOne.getDanglingBox().topRightCorner.getX()) / 2,
                 systemModelModeOne.getDanglingBox().topLeftCorner.getY()
         );

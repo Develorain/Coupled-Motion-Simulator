@@ -3,7 +3,7 @@ package com.ahmad.Tools;
 import com.ahmad.Models.BoxModel;
 import com.ahmad.Models.PulleyModel;
 import com.ahmad.Models.SlopeModel;
-import com.ahmad.Models.WireModelModeOne;
+import com.ahmad.Models.WireModel;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -53,24 +53,24 @@ public class GraphicsPainter {
         );
     }
 
-    public static void drawWire(Graphics graphics, WireModelModeOne wire) {
+    public static void drawWire(Graphics graphics, WireModel wire) {
         graphics.drawLine(
-                (int) wire.coordOnSlopedBox.getX(),
-                (int) wire.coordOnSlopedBox.getY(),
-                (int) wire.coordOnLeftSideOfPulley.getX(),
-                (int) wire.coordOnLeftSideOfPulley.getY()
+                (int) wire.leftStringLeftCoord.getX(),
+                (int) wire.leftStringLeftCoord.getY(),
+                (int) wire.leftStringRightCoord.getX(),
+                (int) wire.leftStringRightCoord.getY()
         );
 
         graphics.drawLine(
-                (int) wire.coordOnRightSideOfPulley.getX(),
-                (int) wire.coordOnRightSideOfPulley.getY(),
-                (int) wire.coordOnDanglingBox.getX(),
-                (int) wire.coordOnDanglingBox.getY()
+                (int) wire.rightStringLeftCoord.getX(),
+                (int) wire.rightStringLeftCoord.getY(),
+                (int) wire.rightStringRightCoord.getX(),
+                (int) wire.rightStringRightCoord.getY()
         );
     }
 
     public static void drawPulley(Graphics graphics, PulleyModel pulley) {
-        graphics.fillOval(
+        graphics.drawOval(
                 (int) pulley.topLeftCorner.getX(),
                 (int) pulley.topLeftCorner.getY(),
                 pulley.diameter,

@@ -2,7 +2,6 @@ package com.ahmad.Models.ModeTwo;
 
 import com.ahmad.Models.Model;
 import com.ahmad.Models.SystemModel;
-import com.ahmad.Models.WireModelModeOne;
 import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
@@ -27,8 +26,8 @@ public class SystemModelModeTwo extends Model implements SystemModel {
     public LeftPulleyModel leftPulley;
     public RightPulleyModel rightPulley;
 
-    private WireModelModeOne leftWire;
-    private WireModelModeOne rightWire;
+    public LeftWireModel leftWire;
+    public RightWireModel rightWire;
 
     private double frictionOfSystem;
     private double accelerationOfSystem;
@@ -55,8 +54,8 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         middleBox = new MiddleBoxModel(this, 1, 0);
         rightBox = new RightBoxModel(this, 1, 0);
 
-        //leftWire = new LeftWireModel();
-        //rightWire = new RightWireModel();
+        leftWire = new LeftWireModel(this);
+        rightWire = new RightWireModel(this);
     }
 
     @Override
@@ -82,6 +81,9 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         leftBox.updatePosition(elapsedSeconds);
         middleBox.updatePosition(elapsedSeconds);
         rightBox.updatePosition(elapsedSeconds);
+
+        leftWire.calculateCoordinates();
+        rightWire.calculateCoordinates();
 
         updateView();
     }
@@ -128,6 +130,9 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         middleBox.calculateStartingPositionCoordinates();
         rightBox.calculateStartingPositionCoordinates();
 
+        leftWire.calculateCoordinates();
+        rightWire.calculateCoordinates();
+
         updateView();
     }
 
@@ -145,6 +150,9 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         leftBox.calculateStartingPositionCoordinates();
         middleBox.calculateStartingPositionCoordinates();
         rightBox.calculateStartingPositionCoordinates();
+
+        leftWire.calculateCoordinates();
+        rightWire.calculateCoordinates();
 
         updateView();
     }

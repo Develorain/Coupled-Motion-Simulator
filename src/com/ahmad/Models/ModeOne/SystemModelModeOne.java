@@ -163,6 +163,7 @@ public class SystemModelModeOne extends Model implements SystemModel {
 
         slopedBox.calculateStartingPositionCoordinates();
         danglingBox.calculateStartingPositionCoordinates();
+
         wire.calculateCoordinates();
 
         repaintView();

@@ -45,6 +45,7 @@ public abstract class BoxModel {
         this.acceleration = acceleration;
     }
 
+    /* TODO: useless methods, remove
     public int getX() {
         return (int) x;
     }
@@ -52,6 +53,7 @@ public abstract class BoxModel {
     public int getY() {
         return (int) y;
     }
+    */
 
     public int getBoxWidth() {
         return boxWidth;

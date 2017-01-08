@@ -69,6 +69,9 @@ public class MainViewModeTwo implements View, Paintable {
         GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.leftBox, systemModelModeTwo.getLeftSlopeAngle(), false);
         GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.middleBox, systemModelModeTwo.getMiddleSlopeAngle(), false);
         GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.rightBox, systemModelModeTwo.getRightSlopeAngle(), true);
+
+        GraphicsPainter.drawWire(graphics, systemModelModeTwo.leftWire);
+        GraphicsPainter.drawWire(graphics, systemModelModeTwo.rightWire);
     }
 
     @Override
