@@ -31,7 +31,7 @@ public class GraphicsPainter {
 
         // Moves origin to x, y coordinate of the rectangle, draws it, and then returns origin back to 0, 0
         graphics2D.translate(box.topLeftCorner.getX(), box.topLeftCorner.getY());
-        graphics2D.fill(rotatedRectangle);
+        graphics2D.draw(rotatedRectangle);
         graphics2D.translate(-box.topLeftCorner.getX(), -box.topLeftCorner.getY());
     }
 
@@ -70,7 +70,7 @@ public class GraphicsPainter {
     }
 
     public static void drawPulley(Graphics graphics, PulleyModel pulley) {
-        graphics.drawOval(
+        graphics.fillOval(
                 (int) pulley.topLeftCorner.getX(),
                 (int) pulley.topLeftCorner.getY(),
                 pulley.diameter,

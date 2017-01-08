@@ -115,43 +115,23 @@ public class SystemModelModeTwo extends Model implements SystemModel {
     }
     */
 
-    // TODO: WHY ARE THEY ALL BEING UPDATED NOT JUST LEFT?
     public void setLeftSlopeAngle(double leftSlopeAngle) {
         this.leftSlopeAngle = leftSlopeAngle;
 
         leftSlope.calculateCoordinates();
-        middleSlope.calculateCoordinates();
-        rightSlope.calculateCoordinates();
-
         leftPulley.calculateCoordinates();
-        rightPulley.calculateCoordinates();
-
         leftBox.calculateStartingPositionCoordinates();
-        middleBox.calculateStartingPositionCoordinates();
-        rightBox.calculateStartingPositionCoordinates();
-
         leftWire.calculateCoordinates();
-        rightWire.calculateCoordinates();
 
         updateView();
     }
 
-    // TODO: WHY ARE THEY ALL BEING UPDATED NOT JUST RIGHT?
     public void setRightSlopeAngle(double rightSlopeAngle) {
         this.rightSlopeAngle = rightSlopeAngle;
 
-        leftSlope.calculateCoordinates();
-        middleSlope.calculateCoordinates();
         rightSlope.calculateCoordinates();
-
-        leftPulley.calculateCoordinates();
         rightPulley.calculateCoordinates();
-
-        leftBox.calculateStartingPositionCoordinates();
-        middleBox.calculateStartingPositionCoordinates();
         rightBox.calculateStartingPositionCoordinates();
-
-        leftWire.calculateCoordinates();
         rightWire.calculateCoordinates();
 
         updateView();

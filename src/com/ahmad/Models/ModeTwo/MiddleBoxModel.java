@@ -25,6 +25,11 @@ public class MiddleBoxModel extends BoxModel {
                 Constants.SIMULATION_HEIGHT_PIXELS / 2 - boxHeight
         );
 
+        calculateBoxVerticesFromTopLeft();
+    }
+
+    @Override
+    public void calculateBoxVerticesFromTopLeft() {
         topRightCorner = Vector.createFromCartesian(
                 topLeftCorner.getX() + boxWidth * MathTools.cos(systemModelModeTwo.getMiddleSlopeAngle()),
                 topLeftCorner.getY() - boxHeight * MathTools.sin(systemModelModeTwo.getMiddleSlopeAngle())
@@ -39,11 +44,6 @@ public class MiddleBoxModel extends BoxModel {
                 topRightCorner.getX() + boxWidth * MathTools.sin(systemModelModeTwo.getMiddleSlopeAngle()),
                 topRightCorner.getY() + boxHeight * MathTools.cos(systemModelModeTwo.getMiddleSlopeAngle())
         );
-    }
-
-    @Override
-    public void calculateBoxVerticesFromTopLeft() {
-
     }
 
     public double getMu() {

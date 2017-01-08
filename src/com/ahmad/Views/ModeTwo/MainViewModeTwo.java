@@ -127,12 +127,12 @@ public class MainViewModeTwo implements View, Paintable {
 
         createBoxSystemTable(gc);
 
-        createLeftBlockTable(gc);
+        createLeftBoxTable(gc);
         createLeftSlopeTable(gc);
 
-        createMiddleBlockTable(gc);
+        createMiddleBoxTable(gc);
 
-        createRightBlockTable(gc);
+        createRightBoxTable(gc);
         createRightSlopeTable(gc);
 
         createButtonTable(gc);
@@ -165,13 +165,13 @@ public class MainViewModeTwo implements View, Paintable {
         mainPanel.add(rightSlopeAngleTextField, gc);
     }
 
-    private void createRightBlockTable(GridBagConstraints gc) {
+    private void createRightBoxTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.NONE;
         gc.gridheight = 1;
         gc.weightx = 1;
         gc.weighty = 1;
 
-        JLabel rightBoxTitleLabel = new JLabel("Right Block");
+        JLabel rightBoxTitleLabel = new JLabel("Right Box");
         gc.anchor = GridBagConstraints.CENTER;
         gc.gridx = 6;
         gc.gridy = 1;
@@ -249,13 +249,13 @@ public class MainViewModeTwo implements View, Paintable {
         mainPanel.add(resetButton, gc);
     }
 
-    private void createMiddleBlockTable(GridBagConstraints gc) {
+    private void createMiddleBoxTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.NONE;
         gc.gridheight = 1;
         gc.weightx = 1;
         gc.weighty = 1;
 
-        JLabel middleBoxTitleLabel = new JLabel("Middle Block");
+        JLabel middleBoxTitleLabel = new JLabel("Middle Box");
         gc.anchor = GridBagConstraints.CENTER;
         gc.gridx = 4;
         gc.gridy = 1;
@@ -304,13 +304,13 @@ public class MainViewModeTwo implements View, Paintable {
         mainPanel.add(middleBoxFrictionTextField, gc);
     }
 
-    private void createLeftBlockTable(GridBagConstraints gc) {
+    private void createLeftBoxTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.NONE;
         gc.gridheight = 1;
         gc.weightx = 1;
         gc.weighty = 1;
 
-        JLabel leftBoxTitleLabel = new JLabel("Left Block");
+        JLabel leftBoxTitleLabel = new JLabel("Left Box");
         gc.anchor = GridBagConstraints.CENTER;
         gc.gridx = 2;
         gc.gridy = 1;

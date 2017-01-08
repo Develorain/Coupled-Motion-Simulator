@@ -24,6 +24,12 @@ public class LeftBoxModel extends BoxModel {
                 systemModelModeTwo.leftSlope.leftCoord.getY() - boxHeight * MathTools.cos(systemModelModeTwo.getLeftSlopeAngle())
         );
 
+        calculateBoxVerticesFromTopLeft();
+    }
+
+    @Override
+    public void calculateBoxVerticesFromTopLeft() {
+
         topRightCorner = Vector.createFromCartesian(
                 (int) (topLeftCorner.getX() + boxWidth * MathTools.cos(systemModelModeTwo.getLeftSlopeAngle())),
                 (int) (topLeftCorner.getY() - boxHeight * MathTools.sin(systemModelModeTwo.getLeftSlopeAngle()))
@@ -38,11 +44,6 @@ public class LeftBoxModel extends BoxModel {
                 (int) (topLeftCorner.getX() + boxWidth * MathTools.sin(systemModelModeTwo.getLeftSlopeAngle()) + boxWidth * MathTools.cos(systemModelModeTwo.getLeftSlopeAngle())),
                 (int) (topLeftCorner.getY() + boxHeight * MathTools.cos(systemModelModeTwo.getLeftSlopeAngle()) - boxHeight * MathTools.sin(systemModelModeTwo.getLeftSlopeAngle()))
         );
-    }
-
-    @Override
-    public void calculateBoxVerticesFromTopLeft() {
-
     }
 
     public double getMu() {
