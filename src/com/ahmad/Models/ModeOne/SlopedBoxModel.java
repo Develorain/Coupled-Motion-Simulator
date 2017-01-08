@@ -24,8 +24,8 @@ public class SlopedBoxModel extends BoxModel {
     public void calculateStartingPositionCoordinates() {
         // Calculate the coordinates of the four corners of the box based on its position
         topLeftCorner = Vector.createFromCartesian(
-                systemModelModeOne.slope.x1 - boxWidth * MathTools.sin(systemModelModeOne.getSlopeAngle()),
-                systemModelModeOne.slope.y1 - boxHeight * MathTools.cos(systemModelModeOne.getSlopeAngle())
+                systemModelModeOne.slope.leftCoord.getX() - boxWidth * MathTools.sin(systemModelModeOne.getSlopeAngle()),
+                systemModelModeOne.slope.leftCoord.getY() - boxHeight * MathTools.cos(systemModelModeOne.getSlopeAngle())
         );
 
         calculateBoxVerticesFromTopLeft();

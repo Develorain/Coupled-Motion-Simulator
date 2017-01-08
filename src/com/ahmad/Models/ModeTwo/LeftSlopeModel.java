@@ -3,6 +3,7 @@ package com.ahmad.Models.ModeTwo;
 import com.ahmad.Models.SlopeModel;
 import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
+import com.ahmad.Tools.Vector;
 
 public class LeftSlopeModel extends SlopeModel {
     private SystemModelModeTwo systemModelModeTwo;
@@ -25,14 +26,12 @@ public class LeftSlopeModel extends SlopeModel {
             // TODO: 100 hardcoded value... remove later
             if (tempX <= 100 || tempY >= Constants.SIMULATION_HEIGHT_PIXELS - 100) {
                 // Set the x and y value to the calculated in-bounds coordinates
-                x1 = (int) tempX;
-                y1 = (int) tempY;
+                leftCoord = Vector.createFromCartesian(tempX, tempY);
 
                 break;
             }
         }
 
-        x2 = Constants.SIMULATION_WIDTH_PIXELS / 3;
-        y2 = Constants.SIMULATION_HEIGHT_PIXELS / 2;
+        rightCoord = Vector.createFromCartesian(Constants.SIMULATION_WIDTH_PIXELS / 3, Constants.SIMULATION_HEIGHT_PIXELS / 2);
     }
 }

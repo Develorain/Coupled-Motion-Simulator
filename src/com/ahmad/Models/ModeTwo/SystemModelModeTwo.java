@@ -2,7 +2,7 @@ package com.ahmad.Models.ModeTwo;
 
 import com.ahmad.Models.Model;
 import com.ahmad.Models.SystemModel;
-import com.ahmad.Models.WireModel;
+import com.ahmad.Models.WireModelModeOne;
 import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
@@ -24,8 +24,11 @@ public class SystemModelModeTwo extends Model implements SystemModel {
     public MiddleSlopeModel middleSlope;
     public RightSlopeModel rightSlope;
 
-    private WireModel leftWire;
-    private WireModel rightWire;
+    public LeftPulleyModel leftPulley;
+    public RightPulleyModel rightPulley;
+
+    private WireModelModeOne leftWire;
+    private WireModelModeOne rightWire;
 
     private double frictionOfSystem;
     private double accelerationOfSystem;
@@ -45,12 +48,15 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         middleSlope = new MiddleSlopeModel(this);
         rightSlope = new RightSlopeModel(this);
 
+        leftPulley = new LeftPulleyModel(this);
+        rightPulley = new RightPulleyModel(this);
+
         leftBox = new LeftBoxModel(this, 1, 0);
         middleBox = new MiddleBoxModel(this, 1, 0);
         rightBox = new RightBoxModel(this, 1, 0);
 
-        //leftWire = new WireModel();
-        //rightWire = new WireModel();
+        //leftWire = new LeftWireModel();
+        //rightWire = new RightWireModel();
     }
 
     @Override
@@ -115,6 +121,9 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         middleSlope.calculateCoordinates();
         rightSlope.calculateCoordinates();
 
+        leftPulley.calculateCoordinates();
+        rightPulley.calculateCoordinates();
+
         leftBox.calculateStartingPositionCoordinates();
         middleBox.calculateStartingPositionCoordinates();
         rightBox.calculateStartingPositionCoordinates();
@@ -129,6 +138,9 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         leftSlope.calculateCoordinates();
         middleSlope.calculateCoordinates();
         rightSlope.calculateCoordinates();
+
+        leftPulley.calculateCoordinates();
+        rightPulley.calculateCoordinates();
 
         leftBox.calculateStartingPositionCoordinates();
         middleBox.calculateStartingPositionCoordinates();

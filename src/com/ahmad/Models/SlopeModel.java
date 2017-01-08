@@ -1,10 +1,10 @@
 package com.ahmad.Models;
 
+import com.ahmad.Tools.Vector;
+
 public abstract class SlopeModel {
-    public int x1;  // left x
-    public int y1;  // left y
-    public int x2;  // right x
-    public int y2;  // right y
+    public Vector leftCoord;
+    public Vector rightCoord;
 
     public abstract void calculateCoordinates();
 }

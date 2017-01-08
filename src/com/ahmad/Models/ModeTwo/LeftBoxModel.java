@@ -20,8 +20,8 @@ public class LeftBoxModel extends BoxModel {
     @Override
     public void calculateStartingPositionCoordinates() {
         topLeftCorner = Vector.createFromCartesian(
-                systemModelModeTwo.leftSlope.x1 - boxWidth * MathTools.sin(systemModelModeTwo.getLeftSlopeAngle()),
-                systemModelModeTwo.leftSlope.y1 - boxHeight * MathTools.cos(systemModelModeTwo.getLeftSlopeAngle())
+                systemModelModeTwo.leftSlope.leftCoord.getX() - boxWidth * MathTools.sin(systemModelModeTwo.getLeftSlopeAngle()),
+                systemModelModeTwo.leftSlope.leftCoord.getY() - boxHeight * MathTools.cos(systemModelModeTwo.getLeftSlopeAngle())
         );
 
         topRightCorner = Vector.createFromCartesian(

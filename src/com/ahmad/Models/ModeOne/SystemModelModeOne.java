@@ -1,9 +1,9 @@
 package com.ahmad.Models.ModeOne;
 
 import com.ahmad.Models.Model;
-import com.ahmad.Models.PulleyModel;
+import com.ahmad.Models.PulleyModelModeOne;
 import com.ahmad.Models.SystemModel;
-import com.ahmad.Models.WireModel;
+import com.ahmad.Models.WireModelModeOne;
 import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
@@ -12,12 +12,12 @@ import com.ahmad.Views.View;
 
 public class SystemModelModeOne extends Model implements SystemModel {
     public SlopeModelModeOne slope;
-    public PulleyModel pulley;
+    public PulleyModelModeOne pulley;
 
     public SlopedBoxModel slopedBox;
     public DanglingBoxModel danglingBox;
 
-    public WireModel wire;
+    public WireModelModeOne wire;
 
     public double accelerationOfSystem;
     public double slopeAngle;
@@ -27,12 +27,12 @@ public class SystemModelModeOne extends Model implements SystemModel {
         slopeAngle = 45;
 
         slope = new SlopeModelModeOne(this);
-        pulley = new PulleyModel(this);
+        pulley = new PulleyModelModeOne(this);
 
         slopedBox = new SlopedBoxModel(this, 1, 0);
         danglingBox = new DanglingBoxModel(this, 1);
 
-        wire = new WireModel(this);
+        wire = new WireModelModeOne(this);
     }
 
     public void takeInputAndInitializeConstantValues(View mainView) {

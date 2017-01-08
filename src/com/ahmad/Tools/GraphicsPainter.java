@@ -3,7 +3,7 @@ package com.ahmad.Tools;
 import com.ahmad.Models.BoxModel;
 import com.ahmad.Models.PulleyModel;
 import com.ahmad.Models.SlopeModel;
-import com.ahmad.Models.WireModel;
+import com.ahmad.Models.WireModelModeOne;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -36,20 +36,45 @@ public class GraphicsPainter {
     }
 
     public static void drawDanglingBox(Graphics graphics, BoxModel box) {
-        graphics.fillRect((int) box.topLeftCorner.getX(), (int) box.topLeftCorner.getY(), box.getBoxWidth(), box.getBoxHeight());
+        graphics.fillRect(
+                (int) box.topLeftCorner.getX(),
+                (int) box.topLeftCorner.getY(),
+                box.getBoxWidth(),
+                box.getBoxHeight()
+        );
     }
 
     public static void drawSlope(Graphics graphics, SlopeModel slope) {
-        graphics.drawLine(slope.x1, slope.y1, slope.x2, slope.y2);
+        graphics.drawLine(
+                (int) slope.leftCoord.getX(),
+                (int) slope.leftCoord.getY(),
+                (int) slope.rightCoord.getX(),
+                (int) slope.rightCoord.getY()
+        );
     }
 
-    public static void drawWire(Graphics graphics, WireModel wire) {
-        graphics.drawLine(wire.x1, wire.y1, wire.x2, wire.y2);
+    public static void drawWire(Graphics graphics, WireModelModeOne wire) {
+        graphics.drawLine(
+                (int) wire.coordOnSlopedBox.getX(),
+                (int) wire.coordOnSlopedBox.getY(),
+                (int) wire.coordOnLeftSideOfPulley.getX(),
+                (int) wire.coordOnLeftSideOfPulley.getY()
+        );
 
-        graphics.drawLine(wire.x3, wire.y3, wire.x4, wire.y4);
+        graphics.drawLine(
+                (int) wire.coordOnRightSideOfPulley.getX(),
+                (int) wire.coordOnRightSideOfPulley.getY(),
+                (int) wire.coordOnDanglingBox.getX(),
+                (int) wire.coordOnDanglingBox.getY()
+        );
     }
 
     public static void drawPulley(Graphics graphics, PulleyModel pulley) {
-        graphics.fillOval((int) pulley.topLeftCorner.getX(), (int) pulley.topLeftCorner.getY(), pulley.diameter, pulley.diameter);
+        graphics.fillOval(
+                (int) pulley.topLeftCorner.getX(),
+                (int) pulley.topLeftCorner.getY(),
+                pulley.diameter,
+                pulley.diameter
+        );
     }
 }

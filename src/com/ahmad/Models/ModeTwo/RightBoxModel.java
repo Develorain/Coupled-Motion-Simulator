@@ -24,8 +24,8 @@ public class RightBoxModel extends BoxModel {
         double acuteAngle = 180 - systemModelModeTwo.getRightSlopeAngle();
 
         bottomRightCorner = Vector.createFromCartesian(
-                systemModelModeTwo.rightSlope.x2,
-                systemModelModeTwo.rightSlope.y2
+                systemModelModeTwo.rightSlope.rightCoord.getX(),
+                systemModelModeTwo.rightSlope.rightCoord.getY()
         );
 
         bottomLeftCorner = Vector.createFromCartesian(

@@ -63,6 +63,9 @@ public class MainViewModeTwo implements View, Paintable {
         GraphicsPainter.drawSlope(graphics, systemModelModeTwo.middleSlope);
         GraphicsPainter.drawSlope(graphics, systemModelModeTwo.rightSlope);
 
+        GraphicsPainter.drawPulley(graphics, systemModelModeTwo.leftPulley);
+        GraphicsPainter.drawPulley(graphics, systemModelModeTwo.rightPulley);
+
         GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.leftBox, systemModelModeTwo.getLeftSlopeAngle(), false);
         GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.middleBox, systemModelModeTwo.getMiddleSlopeAngle(), false);
         GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.rightBox, systemModelModeTwo.getRightSlopeAngle(), true);
