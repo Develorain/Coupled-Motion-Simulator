@@ -2,7 +2,6 @@ package com.ahmad.Models.ModeTwo;
 
 import com.ahmad.Models.BoxModel;
 import com.ahmad.Tools.MathTools;
-import com.ahmad.Tools.Vector;
 
 public class RightBoxModel extends BoxModel {
     private SystemModelModeTwo systemModelModeTwo;
@@ -21,10 +20,8 @@ public class RightBoxModel extends BoxModel {
     public void calculateStartingPositionCoordinates() {
         double acuteAngle = 180 - systemModelModeTwo.getRightSlopeAngle();
 
-        topLeftCorner = Vector.createFromCartesian(
-                systemModelModeTwo.rightSlope.rightCoord.getX() - boxWidth * MathTools.cos(acuteAngle) + boxWidth * MathTools.sin(acuteAngle),
-                systemModelModeTwo.rightSlope.rightCoord.getY() - boxHeight * MathTools.sin(acuteAngle) - boxHeight * MathTools.cos(acuteAngle)
-        );
+        topLeftCorner.setX(systemModelModeTwo.rightSlope.rightCoord.getX() - boxWidth * MathTools.cos(acuteAngle) + boxWidth * MathTools.sin(acuteAngle));
+        topLeftCorner.setY(systemModelModeTwo.rightSlope.rightCoord.getY() - boxHeight * MathTools.sin(acuteAngle) - boxHeight * MathTools.cos(acuteAngle));
 
         calculateBoxVerticesFromTopLeft();
     }
@@ -33,20 +30,14 @@ public class RightBoxModel extends BoxModel {
     public void calculateBoxVerticesFromTopLeft() {
         double acuteAngle = 180 - systemModelModeTwo.getRightSlopeAngle();
 
-        topRightCorner = Vector.createFromCartesian(
-                (int) (topLeftCorner.getX() + boxWidth * MathTools.cos(acuteAngle)),
-                (int) (topLeftCorner.getY() + boxHeight * MathTools.sin(acuteAngle))
-        );
+        topRightCorner.setX((int) (topLeftCorner.getX() + boxWidth * MathTools.cos(acuteAngle)));
+        topRightCorner.setY((int) (topLeftCorner.getY() + boxHeight * MathTools.sin(acuteAngle)));
 
-        bottomLeftCorner = Vector.createFromCartesian(
-                (int) (topLeftCorner.getX() - boxWidth * MathTools.sin(acuteAngle)),
-                (int) (topLeftCorner.getY() + boxHeight * MathTools.cos(acuteAngle))
-        );
+        bottomLeftCorner.setX((int) (topLeftCorner.getX() - boxWidth * MathTools.sin(acuteAngle)));
+        bottomLeftCorner.setY((int) (topLeftCorner.getY() + boxHeight * MathTools.cos(acuteAngle)));
 
-        bottomRightCorner = Vector.createFromCartesian(
-                (int) (bottomLeftCorner.getX() + boxWidth * MathTools.cos(acuteAngle)),
-                (int) (bottomLeftCorner.getY() + boxHeight * MathTools.sin(acuteAngle))
-        );
+        bottomRightCorner.setX((int) (bottomLeftCorner.getX() + boxWidth * MathTools.cos(acuteAngle)));
+        bottomRightCorner.setY((int) (bottomLeftCorner.getY() + boxHeight * MathTools.sin(acuteAngle)));
     }
 
     public double getMu() {

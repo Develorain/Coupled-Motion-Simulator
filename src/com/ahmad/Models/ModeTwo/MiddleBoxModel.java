@@ -3,7 +3,6 @@ package com.ahmad.Models.ModeTwo;
 import com.ahmad.Models.BoxModel;
 import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
-import com.ahmad.Tools.Vector;
 
 public class MiddleBoxModel extends BoxModel {
     private SystemModelModeTwo systemModelModeTwo;
@@ -20,30 +19,22 @@ public class MiddleBoxModel extends BoxModel {
 
     @Override
     public void calculateStartingPositionCoordinates() {
-        topLeftCorner = Vector.createFromCartesian(
-                Constants.SIMULATION_WIDTH_PIXELS / 2 - boxWidth / 2,
-                Constants.SIMULATION_HEIGHT_PIXELS / 2 - boxHeight
-        );
+        topLeftCorner.setX(Constants.SIMULATION_WIDTH_PIXELS / 2 - boxWidth / 2);
+        topLeftCorner.setY(Constants.SIMULATION_HEIGHT_PIXELS / 2 - boxHeight);
 
         calculateBoxVerticesFromTopLeft();
     }
 
     @Override
     public void calculateBoxVerticesFromTopLeft() {
-        topRightCorner = Vector.createFromCartesian(
-                topLeftCorner.getX() + boxWidth * MathTools.cos(systemModelModeTwo.getMiddleSlopeAngle()),
-                topLeftCorner.getY() - boxHeight * MathTools.sin(systemModelModeTwo.getMiddleSlopeAngle())
-        );
+        topRightCorner.setX(topLeftCorner.getX() + boxWidth * MathTools.cos(systemModelModeTwo.getMiddleSlopeAngle()));
+        topRightCorner.setY(topLeftCorner.getY() - boxHeight * MathTools.sin(systemModelModeTwo.getMiddleSlopeAngle()));
 
-        bottomLeftCorner = Vector.createFromCartesian(
-                topLeftCorner.getX() + boxWidth * MathTools.sin(systemModelModeTwo.getMiddleSlopeAngle()),
-                topLeftCorner.getY() + boxHeight * MathTools.cos(systemModelModeTwo.getMiddleSlopeAngle())
-        );
+        bottomLeftCorner.setX(topLeftCorner.getX() + boxWidth * MathTools.sin(systemModelModeTwo.getMiddleSlopeAngle()));
+        bottomLeftCorner.setY(topLeftCorner.getY() + boxHeight * MathTools.cos(systemModelModeTwo.getMiddleSlopeAngle()));
 
-        bottomRightCorner = Vector.createFromCartesian(
-                topRightCorner.getX() + boxWidth * MathTools.sin(systemModelModeTwo.getMiddleSlopeAngle()),
-                topRightCorner.getY() + boxHeight * MathTools.cos(systemModelModeTwo.getMiddleSlopeAngle())
-        );
+        bottomRightCorner.setX(topRightCorner.getX() + boxWidth * MathTools.sin(systemModelModeTwo.getMiddleSlopeAngle()));
+        bottomRightCorner.setY(topRightCorner.getY() + boxHeight * MathTools.cos(systemModelModeTwo.getMiddleSlopeAngle()));
     }
 
     public double getMu() {
