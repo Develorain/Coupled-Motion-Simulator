@@ -25,7 +25,7 @@ public class RightWireModel extends WireModel {
                 systemModelModeTwo.rightPulley.topLeftCorner.getY()
         );
 
-        // TODO: wrong!!
+        // TODO: doesn't look parallel to ground
         rightStringLeftCoord = Vector.createFromCartesian(
                 systemModelModeTwo.rightPulley.topLeftCorner.getX() + systemModelModeTwo.rightPulley.radius + systemModelModeTwo.rightPulley.radius * MathTools.sin(systemModelModeTwo.getRightSlopeAngle()),
                 systemModelModeTwo.rightPulley.topLeftCorner.getY() + systemModelModeTwo.rightPulley.radius + systemModelModeTwo.rightPulley.radius * MathTools.cos(systemModelModeTwo.getRightSlopeAngle())

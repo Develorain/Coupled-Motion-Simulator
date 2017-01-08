@@ -57,8 +57,6 @@ public class MainViewModeTwo implements View, Paintable {
 
     @Override
     public void paint(Graphics graphics) {
-        //graphics.drawLine(0, 0, (int) systemModelModeTwo.rightBox.topLeftCorner.getX(), (int) systemModelModeTwo.rightBox.topLeftCorner.getY());
-
         GraphicsPainter.drawSlope(graphics, systemModelModeTwo.leftSlope);
         GraphicsPainter.drawSlope(graphics, systemModelModeTwo.middleSlope);
         GraphicsPainter.drawSlope(graphics, systemModelModeTwo.rightSlope);

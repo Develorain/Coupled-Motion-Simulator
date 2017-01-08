@@ -18,8 +18,8 @@ public class RightPulleyModel extends PulleyModel {
 
     public void calculateCoordinates() {
         topLeftCorner = Vector.createFromCartesian(
-                systemModelModeTwo.rightSlope.leftCoord.getX() - radius + radius * MathTools.cos(systemModelModeTwo.getRightSlopeAngle()),
-                systemModelModeTwo.rightSlope.leftCoord.getY() - radius - radius * MathTools.sin(systemModelModeTwo.getRightSlopeAngle())
+                systemModelModeTwo.rightSlope.leftCoord.getX() - radius + radius * MathTools.sin(systemModelModeTwo.getRightSlopeAngle()),
+                systemModelModeTwo.rightSlope.leftCoord.getY() - diameter
         );
     }
 }

@@ -19,8 +19,6 @@ public class RightBoxModel extends BoxModel {
 
     @Override
     public void calculateStartingPositionCoordinates() {
-        System.out.println(systemModelModeTwo.getRightSlopeAngle());
-
         double acuteAngle = 180 - systemModelModeTwo.getRightSlopeAngle();
 
         bottomRightCorner = Vector.createFromCartesian(
