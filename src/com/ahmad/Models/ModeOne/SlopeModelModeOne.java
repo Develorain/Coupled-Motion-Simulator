@@ -3,7 +3,6 @@ package com.ahmad.Models.ModeOne;
 import com.ahmad.Models.SlopeModel;
 import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
-import com.ahmad.Tools.Vector;
 
 public class SlopeModelModeOne extends SlopeModel {
     private SystemModelModeOne systemModelModeOne;
@@ -28,7 +27,8 @@ public class SlopeModelModeOne extends SlopeModel {
             // TODO: remove hardcoded 100 value. this value represents how many pixels the slope will stop from the edge of the window
             if (tempX <= 100 || tempY >= Constants.SIMULATION_HEIGHT_PIXELS - 100) {
                 // Set the x and y value to the calculated in-bounds coordinates
-                leftCoord = Vector.createFromCartesian(tempX, tempY);
+                leftCoord.setX(tempX);
+                leftCoord.setY(tempY);
 
                 break;
             }
@@ -46,7 +46,8 @@ public class SlopeModelModeOne extends SlopeModel {
             // TODO: remove hardcoded 100 value. this value represents how many pixels the slope will stop from the edge of the window
             if (tempX2 >= Constants.SIMULATION_WIDTH_PIXELS - (2 * 100) || tempY2 <= 100) {
                 // Set the x and y value to the calculated in-bounds coordinates
-                rightCoord = Vector.createFromCartesian(tempX2, tempY2);
+                rightCoord.setX(tempX2);
+                rightCoord.setY(tempY2);
 
                 break;
             }

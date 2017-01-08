@@ -2,7 +2,6 @@ package com.ahmad.Models.ModeTwo;
 
 import com.ahmad.Models.PulleyModel;
 import com.ahmad.Tools.MathTools;
-import com.ahmad.Tools.Vector;
 
 public class RightPulleyModel extends PulleyModel {
     private SystemModelModeTwo systemModelModeTwo;
@@ -17,9 +16,7 @@ public class RightPulleyModel extends PulleyModel {
     }
 
     public void calculateCoordinates() {
-        topLeftCorner = Vector.createFromCartesian(
-                systemModelModeTwo.rightSlope.leftCoord.getX() - radius + radius * MathTools.sin(systemModelModeTwo.getRightSlopeAngle()),
-                systemModelModeTwo.rightSlope.leftCoord.getY() - diameter
-        );
+        topLeftCorner.setX(systemModelModeTwo.rightSlope.leftCoord.getX() - radius + radius * MathTools.sin(systemModelModeTwo.getRightSlopeAngle()));
+        topLeftCorner.setY(systemModelModeTwo.rightSlope.leftCoord.getY() - diameter);
     }
 }

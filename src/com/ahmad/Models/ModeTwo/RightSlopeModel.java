@@ -3,7 +3,6 @@ package com.ahmad.Models.ModeTwo;
 import com.ahmad.Models.SlopeModel;
 import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
-import com.ahmad.Tools.Vector;
 
 public class RightSlopeModel extends SlopeModel {
     private SystemModelModeTwo systemModelModeTwo;
@@ -16,7 +15,8 @@ public class RightSlopeModel extends SlopeModel {
 
     @Override
     public void calculateCoordinates() {
-        leftCoord = Vector.createFromCartesian(Constants.SIMULATION_WIDTH_PIXELS * 2 / 3, Constants.SIMULATION_HEIGHT_PIXELS / 2);
+        leftCoord.setX(Constants.SIMULATION_WIDTH_PIXELS * 2 / 3);
+        leftCoord.setY(Constants.SIMULATION_HEIGHT_PIXELS / 2);
 
         double tempX = leftCoord.getX();
         double tempY = leftCoord.getY();
@@ -27,7 +27,8 @@ public class RightSlopeModel extends SlopeModel {
 
             // Todo: hardcoded 100... remove later
             if (tempX >= Constants.SIMULATION_WIDTH_PIXELS - 100 || tempY >= Constants.SIMULATION_HEIGHT_PIXELS - 100) {
-                rightCoord = Vector.createFromCartesian(tempX, tempY);
+                rightCoord.setX(tempX);
+                rightCoord.setY(tempY);
 
                 break;
             }
