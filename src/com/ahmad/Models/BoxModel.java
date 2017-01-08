@@ -19,16 +19,16 @@ public abstract class BoxModel {
         this.mass = mass;
     }
 
+    public void updateVelocity(double elapsedSeconds) {
+        velocity.setX(acceleration.getX() * elapsedSeconds);
+        velocity.setY(acceleration.getY() * elapsedSeconds);
+    }
+
     public void updatePosition(double elapsedSeconds) {
         topLeftCorner.setX(topLeftCorner.getX() + (0.5 * acceleration.getX() * elapsedSeconds * elapsedSeconds));
         topLeftCorner.setY(topLeftCorner.getY() - (0.5 * acceleration.getY() * elapsedSeconds * elapsedSeconds));
 
         calculateBoxVerticesFromTopLeft();
-    }
-
-    public void updateVelocity(double elapsedSeconds) {
-        velocity.setX(acceleration.getX() * elapsedSeconds);
-        velocity.setY(acceleration.getY() * elapsedSeconds);
     }
 
     public void setAcceleration(Vector acceleration) {

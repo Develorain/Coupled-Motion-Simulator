@@ -151,7 +151,7 @@ public class SystemModelModeOne extends Model implements SystemModel {
         danglingBox.updatePosition(elapsedSeconds);
 
         // Updates the wire's coordinates
-        wire.calculateCoordinates();
+        wire.updatePosition();
 
         updateView();
     }
@@ -165,7 +165,7 @@ public class SystemModelModeOne extends Model implements SystemModel {
         slopedBox.calculateStartingPositionCoordinates();
         danglingBox.calculateStartingPositionCoordinates();
 
-        wire.calculateCoordinates();
+        wire.updatePosition();
 
         repaintView();
     }

@@ -84,8 +84,8 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         middleBox.updatePosition(elapsedSeconds);
         rightBox.updatePosition(elapsedSeconds);
 
-        leftWire.calculateCoordinates();
-        rightWire.calculateCoordinates();
+        leftWire.updatePosition();
+        rightWire.updatePosition();
 
         updateView();
     }
@@ -124,7 +124,7 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         leftSlope.calculateCoordinates();
         leftPulley.calculateCoordinates();
         leftBox.calculateStartingPositionCoordinates();
-        leftWire.calculateCoordinates();
+        leftWire.updatePosition();
 
         repaintView();
     }
@@ -135,7 +135,7 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         rightSlope.calculateCoordinates();
         rightPulley.calculateCoordinates();
         rightBox.calculateStartingPositionCoordinates();
-        rightWire.calculateCoordinates();
+        rightWire.updatePosition();
 
         repaintView();
     }
