@@ -3,7 +3,6 @@ package com.ahmad.Models.ModeOne;
 import com.ahmad.Models.BoxModel;
 import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
-import com.ahmad.Tools.Vector;
 
 public class SlopedBoxModel extends BoxModel {
     public SystemModelModeOne systemModelModeOne;
@@ -22,11 +21,19 @@ public class SlopedBoxModel extends BoxModel {
 
     //TODO: i refactored this class so it does not create so many objects every iteration at the expense of some code repetition
     //TODO: to test it out, go to BoxModel class, and change updatePosition method to be abstract
-    @Override
-    public void updatePosition(double elapsedSeconds) {
-        topLeftCorner.setX(topLeftCorner.getX() + (0.5 * acceleration.getX() * elapsedSeconds * elapsedSeconds));
-        topLeftCorner.setY(topLeftCorner.getY() - (0.5 * acceleration.getY() * elapsedSeconds * elapsedSeconds));
 
+    @Override
+    public void calculateStartingPositionCoordinates() {
+        // Calculate the coordinates of the four corners of the box based on its position
+        topLeftCorner.setX(systemModelModeOne.slope.leftCoord.getX() - boxWidth * MathTools.sin(systemModelModeOne.getSlopeAngle()));
+        topLeftCorner.setY(systemModelModeOne.slope.leftCoord.getY() - boxHeight * MathTools.cos(systemModelModeOne.getSlopeAngle()));
+
+        calculateBoxVerticesFromTopLeft();
+    }
+
+    // calculates top right, bottom left, and bottom right coords based on the top left corner
+    @Override
+    public void calculateBoxVerticesFromTopLeft() {
         topRightCorner.setX((int) (topLeftCorner.getX() + boxWidth * MathTools.cos(systemModelModeOne.getSlopeAngle())));
         topRightCorner.setY((int) (topLeftCorner.getY() - boxHeight * MathTools.sin(systemModelModeOne.getSlopeAngle())));
 
@@ -35,34 +42,6 @@ public class SlopedBoxModel extends BoxModel {
 
         bottomRightCorner.setX((int) (topLeftCorner.getX() + boxWidth * MathTools.sin(systemModelModeOne.getSlopeAngle()) + boxWidth * MathTools.cos(systemModelModeOne.getSlopeAngle())));
         bottomRightCorner.setY((int) (topLeftCorner.getY() + boxHeight * MathTools.cos(systemModelModeOne.getSlopeAngle()) - boxHeight * MathTools.sin(systemModelModeOne.getSlopeAngle())));
-    }
-
-    @Override
-    public void calculateStartingPositionCoordinates() {
-        // Calculate the coordinates of the four corners of the box based on its position
-        topLeftCorner = Vector.createFromCartesian(
-                systemModelModeOne.slope.leftCoord.getX() - boxWidth * MathTools.sin(systemModelModeOne.getSlopeAngle()),
-                systemModelModeOne.slope.leftCoord.getY() - boxHeight * MathTools.cos(systemModelModeOne.getSlopeAngle())
-        );
-
-        topRightCorner = Vector.createFromCartesian(
-                (int) (topLeftCorner.getX() + boxWidth * MathTools.cos(systemModelModeOne.getSlopeAngle())),
-                (int) (topLeftCorner.getY() - boxHeight * MathTools.sin(systemModelModeOne.getSlopeAngle()))
-        );
-
-        bottomLeftCorner = Vector.createFromCartesian(
-                (int) (topLeftCorner.getX() + boxWidth * MathTools.sin(systemModelModeOne.getSlopeAngle())),
-                (int) (topLeftCorner.getY() + boxHeight * MathTools.cos(systemModelModeOne.getSlopeAngle()))
-        );
-
-        bottomRightCorner = Vector.createFromCartesian(
-                (int) (topLeftCorner.getX() + boxWidth * MathTools.sin(systemModelModeOne.getSlopeAngle()) + boxWidth * MathTools.cos(systemModelModeOne.getSlopeAngle())),
-                (int) (topLeftCorner.getY() + boxHeight * MathTools.cos(systemModelModeOne.getSlopeAngle()) - boxHeight * MathTools.sin(systemModelModeOne.getSlopeAngle()))
-        );
-    }
-
-    @Override
-    public void calculateBoxVerticesFromTopLeft() {
     }
 
     public void updateFriction(double angle) {

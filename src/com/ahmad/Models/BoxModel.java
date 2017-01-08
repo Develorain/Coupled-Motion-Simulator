@@ -3,10 +3,10 @@ package com.ahmad.Models;
 import com.ahmad.Tools.Vector;
 
 public abstract class BoxModel {
-    public Vector topLeftCorner;
-    public Vector topRightCorner;
-    public Vector bottomLeftCorner;
-    public Vector bottomRightCorner;
+    public Vector topLeftCorner = Vector.createFromCartesian(0, 0);
+    public Vector topRightCorner = Vector.createFromCartesian(0, 0);
+    public Vector bottomLeftCorner = Vector.createFromCartesian(0, 0);
+    public Vector bottomRightCorner = Vector.createFromCartesian(0, 0);
 
     protected final int boxWidth = 100;
     protected final int boxHeight = 100;
