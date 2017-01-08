@@ -8,13 +8,6 @@ import com.ahmad.Tools.Vector;
 import com.ahmad.Views.ModeTwo.MainViewModeTwo;
 import com.ahmad.Views.View;
 
-// TODO:
-// draw slopes
-// draw pulleys
-// fix acceleration equation to use all 3 boxes
-// add tension and wires
-// add proper friction calculations
-
 public class SystemModelModeTwo extends Model implements SystemModel {
     public LeftBoxModel leftBox;
     public MiddleBoxModel middleBox;
@@ -63,6 +56,12 @@ public class SystemModelModeTwo extends Model implements SystemModel {
     public void takeInputAndInitializeConstantValues(View mainView) {
         MainViewModeTwo mainViewModeTwo = (MainViewModeTwo) mainView;
 
+        int scenario = -1;
+
+        // FIRST SCENARIO
+        // ALL MASSES ARE GIVEN, ALL MU'S ARE GIVEN, ALL ANGLES ARE GIVEN
+        // SOLVE FOR: ACCELERATION, TENSION IN ALL WIRES (maybe solve for friction on the way?)
+
         updateFriction();
         updateAcceleration();
         //updateTension();
@@ -91,10 +90,12 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         updateView();
     }
 
+    // TODO: wrong calculation
     private void updateFriction() {
         frictionOfSystem = leftBox.getMass() * Constants.GRAVITY * MathTools.cos(leftSlopeAngle) * leftBox.getMu();
     }
 
+    // TODO: wrong calculation
     private void updateAcceleration() {
         accelerationOfSystem = (middleBox.getMass() * Constants.GRAVITY - leftBox.getMass() * Constants.GRAVITY * MathTools.sin(leftSlopeAngle) - frictionOfSystem)
                 / (leftBox.getMass() + middleBox.getMass());
@@ -125,7 +126,7 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         leftBox.calculateStartingPositionCoordinates();
         leftWire.calculateCoordinates();
 
-        updateView();
+        repaintView();
     }
 
     public void setRightSlopeAngle(double rightSlopeAngle) {
@@ -136,7 +137,7 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         rightBox.calculateStartingPositionCoordinates();
         rightWire.calculateCoordinates();
 
-        updateView();
+        repaintView();
     }
 
     public double getLeftSlopeAngle() {

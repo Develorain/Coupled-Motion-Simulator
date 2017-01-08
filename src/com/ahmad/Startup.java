@@ -27,41 +27,41 @@ public class Startup {
         jFrame.setVisible(true);
 
         //System.out.println(mainViewModeTwo.systemView.systemPanel.getSize());
-        System.out.println(jFrame.getSize());
+        //System.out.println(jFrame.getSize());
     }
 }
 
-// TODO: ** REAL TODO **
+// TODO: < REAL TODO >
 // TODO: Implement mode two physics
 // TODO: Variable switching for mode two
-// TODO: Draw pulleys and wires
 
-
-// TODO: **BUGS**
-// TODO: IMPORTANT: BoxModel needs to take both mode1 and mode2 system models
-// for some reason the program just crashes after simulating for around 10 seconds
-// start button doesn't actually set the new values of the boxes (mass)
-// pressing the start button multiple times makes the boxes move faster. this happens because multiple timers are created, each of which are adding to velocity
-// putting in no mass breaks the program (for example, removing all the value of dangling box and pressing start)
-// user can input negative angles and angles above 90 degrees
-// if the friction is too great the box moves backwards. instead, the box should not move at all if frictional force is greater than gravity force
-// make sure the boxes don't start at the polar extremes of the slope and make sure it does not go past the pulley or past the slope
-// if simulation is active, and you select the angle text field, and press anything (ex. shift), the boxes move the their original position
+// TODO: < BUGS >
+// for some reason the program just crashes after simulating for around 10 seconds, maybe due to making too many Vector objects
 // simulation view can not be less than 700 pixels wide without the boxes not being centered
 // borders should scale with window size, not 100 pixels absolute
 
-// TODO: **IMPORTANT**
-// fix acceleration calculation   (complete)
-// add tension calculation        (complete)
+// TODO: < TEST INPUTS >
+// TODO: when the test input when using (Solve for Friction, Acceleration, and Tension) is 56 for left mass, 100 for right mass, 1000 for mu, and 25 for angle, the velocity is -0.0
+// if friction is 0, mu is 0. vice versa // todo
+// user can input negative angles and angles above 90 degrees // limit angle to 89 // todo
+// if friction is neg when accel is neg, give error // todo
+// if friction is pos when accel is pos, give error // todo SEE INTENSE PHYSICS FILE
 
-//if friction is 0, mu is 0. vice versa // todo
-//limit angle to 89 // todo
-//if friction is neg when accel is neg, give error // todo
-//if friction is pos when accel is pos, give error // todo SEE INTENSE PHYSICS FILE
-
-// TODO: **SECONDARY**
+// TODO: < QUALITY OF LIFE >
+// make sure the boxes don't start at the polar extremes of the slope
+// make sure the boxes do not go past the pulley or off the screen
 // make window resizable (support for simulation area resizing, possibly scale when window is resized)
+// pressing the start button multiple times makes the boxes move faster. this happens because multiple timers are created, each of which are adding to velocity (solution, just disable all text fields when simulation starts)
 // add data validation when a number is input (for example if a letter is put or if the whole value is erased)
-// round acceleration and velocity values
-// find a fix for jagged edges on sloped box
+// putting in no mass breaks the program (for example, removing all the value of dangling box and pressing start), make an error occur
 // show how long simulation has been running for (time)
+// if simulation is active, and you select the angle text field, and press anything (ex. shift), the boxes move the their original position (solution, just disable all text fields when simulation starts)
+
+
+// TODO: < ALMOST USELESS >
+// round acceleration and velocity values
+// for mode one, draw a line from the end of the first slope to the bottom of the screen to show that there's a wall below the pulley
+// find a fix for jagged edges on sloped box (probably no fix)
+
+// if the friction is too great the box moves backwards. instead, the box should not move at all if frictional force is greater than gravity force (pretty sure this is out of date)
+// TODO: IMPORTANT: BoxModel needs to take both mode1 and mode2 system models (pretty sure this is out of date)

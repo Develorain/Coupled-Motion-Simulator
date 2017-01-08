@@ -25,11 +25,6 @@ public class MainViewModeTwo implements View, Paintable {
     private JTextField accelerationTextField;
     private JTextField velocityTextField;
 
-    private JButton startButton;
-    private JButton pauseButton;
-    private JButton resetButton;
-    private JComboBox modesComboBox;
-
     private JTextField leftBoxMassTextField;
     private JTextField leftBoxMuTextField;
     private JTextField leftBoxFrictionTextField;
@@ -43,6 +38,12 @@ public class MainViewModeTwo implements View, Paintable {
     private JTextField rightBoxMuTextField;
     private JTextField rightBoxFrictionTextField;
     private JTextField rightSlopeAngleTextField;
+
+    private JComboBox inputTypeComboBox;
+    private JComboBox modesComboBox;
+    private JButton startButton;
+    private JButton pauseButton;
+    private JButton resetButton;
 
     public MainViewModeTwo(SystemModelModeTwo systemModelModeTwo) {
         this.systemModelModeTwo = systemModelModeTwo;
@@ -86,11 +87,11 @@ public class MainViewModeTwo implements View, Paintable {
 
     // Updates all the information tables
     private void updateBoxSystemInfoTable() {
-        String accel = Double.toString(systemModelModeTwo.getAccelerationOfSystem());
-        accelerationTextField.setText(accel);
+        String accelerationValue = Double.toString(systemModelModeTwo.getAccelerationOfSystem());
+        accelerationTextField.setText(accelerationValue);
 
-        String vel = Double.toString(systemModelModeTwo.leftBox.velocity.getR());
-        velocityTextField.setText(vel);
+        String velocityValue = Double.toString(systemModelModeTwo.leftBox.velocity.getR());
+        velocityTextField.setText(velocityValue);
     }
 
     private void registerControllers() {
@@ -226,26 +227,36 @@ public class MainViewModeTwo implements View, Paintable {
         gc.gridheight = 1;
         gc.weighty = 1;
 
-        String[] modesList = new String[]{"Two Box System", "Three Box System"};
-        modesComboBox = new JComboBox(modesList);
-        modesComboBox.setSelectedIndex(1);
+        String[] inputTypeList = new String[]{
+                "Placeholder 1 Placeholder 1 Placeholder 1",
+                "Placeholder 2 Placeholder 2 Placeholder 2",
+                "Placeholder 3 Placeholder 3 Placeholder 3"
+        };
+        inputTypeComboBox = new JComboBox<>(inputTypeList);
         gc.gridx = 8;
         gc.gridy = 1;
+        mainPanel.add(inputTypeComboBox, gc);
+
+        String[] modesList = new String[]{"Two Box System", "Three Box System"};
+        modesComboBox = new JComboBox<>(modesList); //todo: if doesn't work at school, try removing <>painte
+        modesComboBox.setSelectedIndex(1);
+        gc.gridx = 8;
+        gc.gridy = 2;
         mainPanel.add(modesComboBox, gc);
 
         startButton = new JButton("Start Simulation");
         gc.gridx = 8;
-        gc.gridy = 2;
+        gc.gridy = 3;
         mainPanel.add(startButton, gc);
 
         pauseButton = new JButton("Pause Simulation");
         gc.gridx = 8;
-        gc.gridy = 3;
+        gc.gridy = 4;
         mainPanel.add(pauseButton, gc);
 
         resetButton = new JButton("Reset Simulation");
         gc.gridx = 8;
-        gc.gridy = 4;
+        gc.gridy = 5;
         mainPanel.add(resetButton, gc);
     }
 

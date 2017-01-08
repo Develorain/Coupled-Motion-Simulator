@@ -15,6 +15,8 @@ public class StartButtonController implements ActionListener {
 
     private Timer timer;
 
+    // TODO: I'm thinking this class needs to be more specific for each mode in order for me to disable all the components
+    // TODO: So make a super class where there are two StartButtonControllers extend for each mode
     public StartButtonController(View mainView, SystemModel systemModel) {
         this.mainView = mainView;
         this.systemModel = systemModel;

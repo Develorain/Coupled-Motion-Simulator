@@ -39,6 +39,7 @@ public class SystemModelModeOne extends Model implements SystemModel {
         // Take input
 
         MainViewModeOne mainViewModeOne = (MainViewModeOne) mainView;
+        //mainViewModeOne.inputTypeComboBox.getSelectedIndex() TODO <-- use this instead. if statements below can be completely removed and use this in the switch statement below
 
         int scenario = -1;
 
@@ -55,19 +56,19 @@ public class SystemModelModeOne extends Model implements SystemModel {
                 && !mainViewModeOne.leftBoxMuTextField.getText().isEmpty()) {
             scenario = 2;
 
-            danglingBox.mass = Double.parseDouble(mainViewModeOne.rightBoxMassTextField.getText());
             wire.tension = Double.parseDouble(mainViewModeOne.tensionTextField.getText());
-            slopeAngle = Double.parseDouble(mainViewModeOne.leftSlopeAngleTextField.getText());
-            slopedBox.friction = Double.parseDouble(mainViewModeOne.leftBoxFrictionTextField.getText());
             slopedBox.mu = Double.parseDouble(mainViewModeOne.leftBoxMuTextField.getText());
+            slopedBox.friction = Double.parseDouble(mainViewModeOne.leftBoxFrictionTextField.getText());
+            slopeAngle = Double.parseDouble(mainViewModeOne.leftSlopeAngleTextField.getText());
+            danglingBox.mass = Double.parseDouble(mainViewModeOne.rightBoxMassTextField.getText());
         } else if (!mainViewModeOne.accelerationTextField.getText().isEmpty() && !mainViewModeOne.tensionTextField.getText().isEmpty()
                 && !mainViewModeOne.leftSlopeAngleTextField.getText().isEmpty() && !mainViewModeOne.leftBoxMassTextField.getText().isEmpty()) {
             scenario = 3;
 
             accelerationOfSystem = Double.parseDouble(mainViewModeOne.accelerationTextField.getText());
             wire.tension = Double.parseDouble(mainViewModeOne.tensionTextField.getText());
-            slopeAngle = Double.parseDouble(mainViewModeOne.leftSlopeAngleTextField.getText());
             slopedBox.mass = Double.parseDouble(mainViewModeOne.leftBoxMassTextField.getText());
+            slopeAngle = Double.parseDouble(mainViewModeOne.leftSlopeAngleTextField.getText());
         } else {
             System.out.println("Missing input");
         }

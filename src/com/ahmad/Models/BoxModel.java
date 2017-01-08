@@ -8,8 +8,6 @@ public abstract class BoxModel {
     public Vector bottomLeftCorner;
     public Vector bottomRightCorner;
 
-    protected double x;  // making this double makes drawing code a lot bulkier since i need to convert from double
-    protected double y;  // but keeping it as int doesn't allow me to increment the position
     protected final int boxWidth = 100;
     protected final int boxHeight = 100;
     public double mass;
@@ -33,6 +31,10 @@ public abstract class BoxModel {
         velocity.setY(acceleration.getY() * elapsedSeconds);
     }
 
+    public void setAcceleration(Vector acceleration) {
+        this.acceleration = acceleration;
+    }
+
     public abstract void calculateStartingPositionCoordinates();
 
     public abstract void calculateBoxVerticesFromTopLeft();
@@ -40,20 +42,6 @@ public abstract class BoxModel {
     public double getMass() {
         return mass;
     }
-
-    public void setAcceleration(Vector acceleration) {
-        this.acceleration = acceleration;
-    }
-
-    /* TODO: useless methods, remove
-    public int getX() {
-        return (int) x;
-    }
-
-    public int getY() {
-        return (int) y;
-    }
-    */
 
     public int getBoxWidth() {
         return boxWidth;

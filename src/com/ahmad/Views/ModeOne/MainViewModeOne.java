@@ -1,5 +1,6 @@
 package com.ahmad.Views.ModeOne;
 
+import com.ahmad.Controllers.InputTypeComboBoxController;
 import com.ahmad.Controllers.ModeComboBoxController;
 import com.ahmad.Controllers.ModeOne.AngleTextFieldControllerModeOne;
 import com.ahmad.Controllers.ResetButtonController;
@@ -33,11 +34,11 @@ public class MainViewModeOne implements View, Paintable {
 
     public JTextField leftSlopeAngleTextField;
 
+    public JComboBox inputTypeComboBox;
+    public JComboBox modesComboBox;
     public JButton startButton;
     public JButton pauseButton;
     public JButton resetButton;
-    public JComboBox modesComboBox;
-    public JComboBox inputTypeComboBox;
 
     public MainViewModeOne(SystemModelModeOne systemModelModeOne) {
         this.systemModelModeOne = systemModelModeOne;
@@ -107,6 +108,9 @@ public class MainViewModeOne implements View, Paintable {
 
         ModeComboBoxController mcbc = new ModeComboBoxController(modesComboBox);
         modesComboBox.addActionListener(mcbc);
+
+        InputTypeComboBoxController itcbc = new InputTypeComboBoxController(this);
+        inputTypeComboBox.addActionListener(itcbc);
     }
 
     private void layoutScreen() {
@@ -121,9 +125,12 @@ public class MainViewModeOne implements View, Paintable {
         mainPanel.add(systemPanel, gc);
 
         createBoxSystemTable(gc);
+
         createLeftBoxTable(gc);
         createLeftSlopeTable(gc);
+
         createRightBoxTable(gc);
+
         createButtonTable(gc);
     }
 
@@ -135,7 +142,8 @@ public class MainViewModeOne implements View, Paintable {
 
         String[] inputTypeList = new String[]{
                 "Solve for Friction, Acceleration, and Tension",
-                "Solve for Acceleration and Left Mass"
+                "Solve for Acceleration and Left Mass",
+                "Solve for Friction, Left Mu, and Right Mass"
         };
         inputTypeComboBox = new JComboBox<>(inputTypeList);
         gc.gridx = 6;
@@ -238,6 +246,7 @@ public class MainViewModeOne implements View, Paintable {
         mainPanel.add(leftBoxMuTextField, gc);
 
         leftBoxFrictionTextField = new JTextField(10);
+        leftBoxFrictionTextField.setEditable(false);
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 3;
         gc.gridy = 4;
@@ -304,6 +313,7 @@ public class MainViewModeOne implements View, Paintable {
         mainPanel.add(tensionLabel, gc);
 
         accelerationTextField = new JTextField(10);
+        accelerationTextField.setEditable(false);
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 1;
         gc.gridy = 2;
@@ -317,6 +327,7 @@ public class MainViewModeOne implements View, Paintable {
         mainPanel.add(velocityTextField, gc);
 
         tensionTextField = new JTextField(10);
+        tensionTextField.setEditable(false);
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 1;
         gc.gridy = 4;

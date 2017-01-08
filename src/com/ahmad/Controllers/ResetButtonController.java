@@ -27,9 +27,9 @@ public class ResetButtonController implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         accelerationTextField.setText("");
         velocityTextField.setText("");
-        //boxAMassTextField.setText("100");
-        //boxAMuTextField.setText("0");
-        //boxBMassTextField.setText("1");
+        boxAMassTextField.setText("100");
+        boxAMuTextField.setText("0");
+        boxBMassTextField.setText("1");
         slopeAAngleTextField.setText("45");
     }
 }

@@ -21,6 +21,18 @@ public class AngleTextFieldControllerModeOne implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
+        /*
+        //System.out.println(keyEvent.getKeyChar());
+
+        double slopeAngle = Double.parseDouble(slopeAngleTextField.getText() + keyEvent.getKeyChar());
+
+        if (slopeAngle > 90) {
+            String temp = slopeAngleTextField.getText();
+            temp = temp.substring(0, temp.length());
+
+            System.out.println(temp);
+        }
+        */
     }
 
     @Override
