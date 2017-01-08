@@ -36,59 +36,40 @@ public class SystemModelModeOne extends Model implements SystemModel {
     }
 
     public void takeInputAndInitializeConstantValues(View mainView) {
-        // Take input
-
         MainViewModeOne mainViewModeOne = (MainViewModeOne) mainView;
-        //mainViewModeOne.inputTypeComboBox.getSelectedIndex() TODO <-- use this instead. if statements below can be completely removed and use this in the switch statement below
 
-        int scenario = -1;
-
-        if (!mainViewModeOne.leftBoxMassTextField.getText().isEmpty() && !mainViewModeOne.rightBoxMassTextField.getText().isEmpty()
-                && !mainViewModeOne.leftBoxMuTextField.getText().isEmpty() && !mainViewModeOne.leftSlopeAngleTextField.getText().isEmpty()) {
-            scenario = 1;
-
-            slopedBox.mass = Double.parseDouble(mainViewModeOne.leftBoxMassTextField.getText());
-            danglingBox.mass = Double.parseDouble(mainViewModeOne.rightBoxMassTextField.getText());
-            slopedBox.mu = Double.parseDouble(mainViewModeOne.leftBoxMuTextField.getText());
-            slopeAngle = Double.parseDouble(mainViewModeOne.leftSlopeAngleTextField.getText());
-        } else if (!mainViewModeOne.rightBoxMassTextField.getText().isEmpty() && !mainViewModeOne.tensionTextField.getText().isEmpty()
-                && !mainViewModeOne.leftSlopeAngleTextField.getText().isEmpty() && !mainViewModeOne.leftBoxFrictionTextField.getText().isEmpty()
-                && !mainViewModeOne.leftBoxMuTextField.getText().isEmpty()) {
-            scenario = 2;
-
-            wire.tension = Double.parseDouble(mainViewModeOne.tensionTextField.getText());
-            slopedBox.mu = Double.parseDouble(mainViewModeOne.leftBoxMuTextField.getText());
-            slopedBox.friction = Double.parseDouble(mainViewModeOne.leftBoxFrictionTextField.getText());
-            slopeAngle = Double.parseDouble(mainViewModeOne.leftSlopeAngleTextField.getText());
-            danglingBox.mass = Double.parseDouble(mainViewModeOne.rightBoxMassTextField.getText());
-        } else if (!mainViewModeOne.accelerationTextField.getText().isEmpty() && !mainViewModeOne.tensionTextField.getText().isEmpty()
-                && !mainViewModeOne.leftSlopeAngleTextField.getText().isEmpty() && !mainViewModeOne.leftBoxMassTextField.getText().isEmpty()) {
-            scenario = 3;
-
-            accelerationOfSystem = Double.parseDouble(mainViewModeOne.accelerationTextField.getText());
-            wire.tension = Double.parseDouble(mainViewModeOne.tensionTextField.getText());
-            slopedBox.mass = Double.parseDouble(mainViewModeOne.leftBoxMassTextField.getText());
-            slopeAngle = Double.parseDouble(mainViewModeOne.leftSlopeAngleTextField.getText());
-        } else {
-            System.out.println("Missing input");
-        }
+        switch (mainViewModeOne.inputTypeComboBox.getSelectedIndex()) {
+            case 0:
+                slopedBox.mass = Double.parseDouble(mainViewModeOne.leftBoxMassTextField.getText());
+                danglingBox.mass = Double.parseDouble(mainViewModeOne.rightBoxMassTextField.getText());
+                slopedBox.mu = Double.parseDouble(mainViewModeOne.leftBoxMuTextField.getText());
+                slopeAngle = Double.parseDouble(mainViewModeOne.leftSlopeAngleTextField.getText());
 
 
-        // Initialize constant values
-        switch (scenario) {
-            case 1:
                 slopedBox.updateFriction(slopeAngle);
                 updateAcceleration(slopedBox.getMass(), danglingBox.getMass(), slopedBox.friction, slopeAngle);
                 wire.updateTension(danglingBox.getMass(), accelerationOfSystem);
                 break;
 
-            case 2:
+            case 1:
+                wire.tension = Double.parseDouble(mainViewModeOne.tensionTextField.getText());
+                slopedBox.mu = Double.parseDouble(mainViewModeOne.leftBoxMuTextField.getText());
+                slopedBox.friction = Double.parseDouble(mainViewModeOne.leftBoxFrictionTextField.getText());
+                slopeAngle = Double.parseDouble(mainViewModeOne.leftSlopeAngleTextField.getText());
+                danglingBox.mass = Double.parseDouble(mainViewModeOne.rightBoxMassTextField.getText());
+
+
                 updateAcceleration(wire.tension, danglingBox.getMass());
                 slopedBox.updateMass(slopeAngle);
                 break;
 
-            case 3:
+            case 2:
+                accelerationOfSystem = Double.parseDouble(mainViewModeOne.accelerationTextField.getText());
+                wire.tension = Double.parseDouble(mainViewModeOne.tensionTextField.getText());
+                slopedBox.mass = Double.parseDouble(mainViewModeOne.leftBoxMassTextField.getText());
+
                 setBoxAccelerations();
+
 
                 danglingBox.updateMass(wire.tension, accelerationOfSystem);
                 slopedBox.updateFriction(danglingBox.getMass(), accelerationOfSystem, slopeAngle);

@@ -14,8 +14,6 @@ public class InputTypeComboBoxController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        int choice = mainViewModeOne.inputTypeComboBox.getSelectedIndex();
-
         // < CLEAR THE VALUES IN ALL TEXT FIELDS
         mainViewModeOne.accelerationTextField.setText("");
         mainViewModeOne.tensionTextField.setText("");
@@ -43,7 +41,7 @@ public class InputTypeComboBoxController implements ActionListener {
 
 
         // < SET THE NON-REQUIRED FIELDS TO UNEDITABLE DEPENDING ON WHICH INPUT TYPE IS SELECTED >
-        switch (choice) {
+        switch (mainViewModeOne.inputTypeComboBox.getSelectedIndex()) {
             case 0:
                 mainViewModeOne.accelerationTextField.setEditable(false);
                 mainViewModeOne.tensionTextField.setEditable(false);
