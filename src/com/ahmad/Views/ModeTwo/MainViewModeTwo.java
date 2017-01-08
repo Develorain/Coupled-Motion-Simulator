@@ -39,7 +39,7 @@ public class MainViewModeTwo implements View, Paintable {
     private JTextField rightBoxFrictionTextField;
     private JTextField rightSlopeAngleTextField;
 
-    private JComboBox inputTypeComboBox;
+    public JComboBox inputTypeComboBox;
     private JComboBox modesComboBox;
     private JButton startButton;
     private JButton pauseButton;
@@ -228,9 +228,8 @@ public class MainViewModeTwo implements View, Paintable {
         gc.weighty = 1;
 
         String[] inputTypeList = new String[]{
-                "Placeholder 1 Placeholder 1 Placeholder 1",
-                "Placeholder 2 Placeholder 2 Placeholder 2",
-                "Placeholder 3 Placeholder 3 Placeholder 3"
+                "Solve for Acceleration and All Tensions",
+                "Placeholder 2 Placeholder 2 Placeholder 2"
         };
         inputTypeComboBox = new JComboBox<>(inputTypeList);
         gc.gridx = 8;
@@ -238,7 +237,7 @@ public class MainViewModeTwo implements View, Paintable {
         mainPanel.add(inputTypeComboBox, gc);
 
         String[] modesList = new String[]{"Two Box System", "Three Box System"};
-        modesComboBox = new JComboBox<>(modesList); //todo: if doesn't work at school, try removing <>painte
+        modesComboBox = new JComboBox<>(modesList); //todo: if doesn't work at school, try removing <>
         modesComboBox.setSelectedIndex(1);
         gc.gridx = 8;
         gc.gridy = 2;

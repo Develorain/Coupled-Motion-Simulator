@@ -56,7 +56,12 @@ public class SystemModelModeTwo extends Model implements SystemModel {
     public void takeInputAndInitializeConstantValues(View mainView) {
         MainViewModeTwo mainViewModeTwo = (MainViewModeTwo) mainView;
 
-        int scenario = -1;
+        switch (mainViewModeTwo.inputTypeComboBox.getSelectedIndex()) {
+            case 0:
+
+
+                break;
+        }
 
         // FIRST SCENARIO
         // ALL MASSES ARE GIVEN, ALL MU'S ARE GIVEN, ALL ANGLES ARE GIVEN

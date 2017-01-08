@@ -71,6 +71,7 @@ public class MainViewModeOne implements View, Paintable {
         String velocityValue = Double.toString(systemModelModeOne.getSlopedBox().velocity.getX() > 0
                 ? systemModelModeOne.getSlopedBox().velocity.getR()
                 : -systemModelModeOne.getSlopedBox().velocity.getR());
+
         velocityTextField.setText(velocityValue);
 
         String tensionValue = Double.toString(systemModelModeOne.wire.tension);
