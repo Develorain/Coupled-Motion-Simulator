@@ -29,7 +29,6 @@ public class LeftBoxModel extends BoxModel {
 
     @Override
     public void calculateBoxVerticesFromTopLeft() {
-
         topRightCorner = Vector.createFromCartesian(
                 (int) (topLeftCorner.getX() + boxWidth * MathTools.cos(systemModelModeTwo.getLeftSlopeAngle())),
                 (int) (topLeftCorner.getY() - boxHeight * MathTools.sin(systemModelModeTwo.getLeftSlopeAngle()))
@@ -41,8 +40,8 @@ public class LeftBoxModel extends BoxModel {
         );
 
         bottomRightCorner = Vector.createFromCartesian(
-                (int) (topLeftCorner.getX() + boxWidth * MathTools.sin(systemModelModeTwo.getLeftSlopeAngle()) + boxWidth * MathTools.cos(systemModelModeTwo.getLeftSlopeAngle())),
-                (int) (topLeftCorner.getY() + boxHeight * MathTools.cos(systemModelModeTwo.getLeftSlopeAngle()) - boxHeight * MathTools.sin(systemModelModeTwo.getLeftSlopeAngle()))
+                (int) (bottomLeftCorner.getX() + boxWidth * MathTools.cos(systemModelModeTwo.getLeftSlopeAngle())),
+                (int) (bottomLeftCorner.getY() - boxHeight * MathTools.sin(systemModelModeTwo.getLeftSlopeAngle()))
         );
     }
 

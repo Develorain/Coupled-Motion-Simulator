@@ -21,30 +21,32 @@ public class RightBoxModel extends BoxModel {
     public void calculateStartingPositionCoordinates() {
         double acuteAngle = 180 - systemModelModeTwo.getRightSlopeAngle();
 
-        bottomRightCorner = Vector.createFromCartesian(
-                systemModelModeTwo.rightSlope.rightCoord.getX(),
-                systemModelModeTwo.rightSlope.rightCoord.getY()
-        );
-
-        bottomLeftCorner = Vector.createFromCartesian(
-                bottomRightCorner.getX() - boxWidth * MathTools.cos(acuteAngle),
-                bottomRightCorner.getY() - boxHeight * MathTools.sin(acuteAngle)
-        );
-
         topLeftCorner = Vector.createFromCartesian(
-                bottomLeftCorner.getX() + boxWidth * MathTools.sin(acuteAngle),
-                bottomLeftCorner.getY() - boxHeight * MathTools.cos(acuteAngle)
+                systemModelModeTwo.rightSlope.rightCoord.getX() - boxWidth * MathTools.cos(acuteAngle) + boxWidth * MathTools.sin(acuteAngle),
+                systemModelModeTwo.rightSlope.rightCoord.getY() - boxHeight * MathTools.sin(acuteAngle) - boxHeight * MathTools.cos(acuteAngle)
         );
 
-        topRightCorner = Vector.createFromCartesian(
-                bottomRightCorner.getX() + boxWidth * MathTools.sin(acuteAngle),
-                bottomRightCorner.getY() - boxHeight * MathTools.cos(acuteAngle)
-        );
+        calculateBoxVerticesFromTopLeft();
     }
 
     @Override
     public void calculateBoxVerticesFromTopLeft() {
+        double acuteAngle = 180 - systemModelModeTwo.getRightSlopeAngle();
 
+        topRightCorner = Vector.createFromCartesian(
+                (int) (topLeftCorner.getX() + boxWidth * MathTools.cos(acuteAngle)),
+                (int) (topLeftCorner.getY() + boxHeight * MathTools.sin(acuteAngle))
+        );
+
+        bottomLeftCorner = Vector.createFromCartesian(
+                (int) (topLeftCorner.getX() - boxWidth * MathTools.sin(acuteAngle)),
+                (int) (topLeftCorner.getY() + boxHeight * MathTools.cos(acuteAngle))
+        );
+
+        bottomRightCorner = Vector.createFromCartesian(
+                (int) (bottomLeftCorner.getX() + boxWidth * MathTools.cos(acuteAngle)),
+                (int) (bottomLeftCorner.getY() + boxHeight * MathTools.sin(acuteAngle))
+        );
     }
 
     public double getMu() {

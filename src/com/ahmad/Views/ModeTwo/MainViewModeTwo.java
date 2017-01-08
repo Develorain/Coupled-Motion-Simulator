@@ -74,9 +74,9 @@ public class MainViewModeTwo implements View, Paintable {
 
     @Override
     public void update() {
-        systemPanel.repaint(); // Repaints the simulation area
+        systemPanel.repaint();        // Repaints the simulation area
 
-        updateBoxSystemInfoTable();       // Updates the box system's information table
+        updateBoxSystemInfoTable();   // Updates the box system's information table
     }
 
     @Override
