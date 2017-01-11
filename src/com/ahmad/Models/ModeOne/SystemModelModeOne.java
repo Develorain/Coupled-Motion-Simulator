@@ -59,6 +59,8 @@ public class SystemModelModeOne extends Model implements SystemModel {
                 danglingBox.mass = Double.parseDouble(mainViewModeOne.rightBoxMassTextField.getText());
 
 
+                //inputTypeTwoCalculation(danglingBox.mass, wire.tension, slopeAngle, 0, 0);
+
                 updateAcceleration(wire.tension, danglingBox.getMass());
                 slopedBox.updateMass(slopeAngle);
                 break;
@@ -77,6 +79,14 @@ public class SystemModelModeOne extends Model implements SystemModel {
                 break;
         }
     }
+
+    /*
+    public void inputTypeTwoCalculation(double massRight, double tension, double angle, double mu, double friction) {
+        accelerationOfSystem = (massRight * Constants.GRAVITY - tension) / massRight;
+
+        slopedBox.mass = tension / accelerationOfSystem;
+    }
+    */
 
     private void updateAcceleration(double massLeft, double massRight, double friction, double angle) {
         double accelerationOfSystemWithoutFriction = (massRight * Constants.GRAVITY - massLeft * Constants.GRAVITY * MathTools.sin(angle)) / (massLeft + massRight);

@@ -28,6 +28,7 @@ public class MainViewModeTwo implements View, Paintable {
     private JTextField leftBoxMassTextField;
     private JTextField leftBoxMuTextField;
     private JTextField leftBoxFrictionTextField;
+    private JTextField leftWireTensionTextField;
     private JTextField leftSlopeAngleTextField;
 
     private JTextField middleBoxMassTextField;
@@ -37,6 +38,7 @@ public class MainViewModeTwo implements View, Paintable {
     private JTextField rightBoxMassTextField;
     private JTextField rightBoxMuTextField;
     private JTextField rightBoxFrictionTextField;
+    private JTextField rightWireTensionTextField;
     private JTextField rightSlopeAngleTextField;
 
     public JComboBox inputTypeComboBox;
@@ -129,11 +131,13 @@ public class MainViewModeTwo implements View, Paintable {
         createBoxSystemTable(gc);
 
         createLeftBoxTable(gc);
+        createLeftWireTable(gc);
         createLeftSlopeTable(gc);
 
         createMiddleBoxTable(gc);
 
         createRightBoxTable(gc);
+        createRightWireTable(gc);
         createRightSlopeTable(gc);
 
         createButtonTable(gc);
@@ -145,7 +149,7 @@ public class MainViewModeTwo implements View, Paintable {
         JLabel rightSlopeTitleLabel = new JLabel("Right Slope");
         gc.anchor = GridBagConstraints.CENTER;
         gc.gridx = 6;
-        gc.gridy = 5;
+        gc.gridy = 7;
         gc.gridwidth = 2;
         gc.gridheight = 1;
         mainPanel.add(rightSlopeTitleLabel, gc);
@@ -153,7 +157,7 @@ public class MainViewModeTwo implements View, Paintable {
         JLabel rightSlopeAngleLabel = new JLabel("Angle ");
         gc.anchor = GridBagConstraints.LINE_END;
         gc.gridx = 6;
-        gc.gridy = 6;
+        gc.gridy = 8;
         gc.gridwidth = 1;
         gc.gridheight = 1;
         mainPanel.add(rightSlopeAngleLabel, gc);
@@ -162,7 +166,7 @@ public class MainViewModeTwo implements View, Paintable {
         rightSlopeAngleTextField.setText("45");
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 7;
-        gc.gridy = 6;
+        gc.gridy = 8;
         mainPanel.add(rightSlopeAngleTextField, gc);
     }
 
@@ -214,7 +218,7 @@ public class MainViewModeTwo implements View, Paintable {
         mainPanel.add(rightBoxMuTextField, gc);
 
         rightBoxFrictionTextField = new JTextField(10);
-        rightBoxFrictionTextField.setText("0");
+        rightBoxFrictionTextField.setEditable(false);
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 7;
         gc.gridy = 4;
@@ -307,7 +311,7 @@ public class MainViewModeTwo implements View, Paintable {
         mainPanel.add(middleBoxMuTextField, gc);
 
         middleBoxFrictionTextField = new JTextField(10);
-        middleBoxFrictionTextField.setText("0");
+        middleBoxFrictionTextField.setEditable(false);
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 5;
         gc.gridy = 4;
@@ -361,11 +365,67 @@ public class MainViewModeTwo implements View, Paintable {
         mainPanel.add(leftBoxMuTextField, gc);
 
         leftBoxFrictionTextField = new JTextField(10);
-        leftBoxFrictionTextField.setText("0");
+        leftBoxFrictionTextField.setEditable(false);
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 3;
         gc.gridy = 4;
         mainPanel.add(leftBoxFrictionTextField, gc);
+    }
+
+    private void createLeftWireTable(GridBagConstraints gc) {
+        gc.fill = GridBagConstraints.NONE;
+        gc.gridheight = 1;
+        gc.weightx = 1;
+        gc.weighty = 1;
+
+        JLabel leftWireTitleLabel = new JLabel("Left Wire");
+        gc.anchor = GridBagConstraints.CENTER;
+        gc.gridx = 2;
+        gc.gridy = 5;
+        gc.gridwidth = 2;
+        mainPanel.add(leftWireTitleLabel, gc);
+
+        JLabel leftWireTensionLabel = new JLabel("Tension ");
+        gc.anchor = GridBagConstraints.LINE_END;
+        gc.gridx = 2;
+        gc.gridy = 6;
+        gc.gridwidth = 1;
+        mainPanel.add(leftWireTensionLabel, gc);
+
+        leftWireTensionTextField = new JTextField(10);
+        leftWireTensionTextField.setEditable(false);
+        gc.anchor = GridBagConstraints.LINE_START;
+        gc.gridx = 3;
+        gc.gridy = 6;
+        mainPanel.add(leftWireTensionTextField, gc);
+    }
+
+    private void createRightWireTable(GridBagConstraints gc) {
+        gc.fill = GridBagConstraints.NONE;
+        gc.gridheight = 1;
+        gc.weightx = 1;
+        gc.weighty = 1;
+
+        JLabel rightWireTitleLabel = new JLabel("Right Wire");
+        gc.anchor = GridBagConstraints.CENTER;
+        gc.gridx = 6;
+        gc.gridy = 5;
+        gc.gridwidth = 2;
+        mainPanel.add(rightWireTitleLabel, gc);
+
+        JLabel rightWireTensionLabel = new JLabel("Tension ");
+        gc.anchor = GridBagConstraints.LINE_END;
+        gc.gridx = 6;
+        gc.gridy = 6;
+        gc.gridwidth = 1;
+        mainPanel.add(rightWireTensionLabel, gc);
+
+        rightWireTensionTextField = new JTextField(10);
+        rightWireTensionTextField.setEditable(false);
+        gc.anchor = GridBagConstraints.LINE_START;
+        gc.gridx = 7;
+        gc.gridy = 6;
+        mainPanel.add(rightWireTensionTextField, gc);
     }
 
     private void createLeftSlopeTable(GridBagConstraints gc) {
@@ -374,7 +434,7 @@ public class MainViewModeTwo implements View, Paintable {
         JLabel leftSlopeTitleLabel = new JLabel("Left Slope");
         gc.anchor = GridBagConstraints.CENTER;
         gc.gridx = 2;
-        gc.gridy = 5;
+        gc.gridy = 7;
         gc.gridwidth = 2;
         gc.gridheight = 1;
         mainPanel.add(leftSlopeTitleLabel, gc);
@@ -382,7 +442,7 @@ public class MainViewModeTwo implements View, Paintable {
         JLabel leftSlopeAngleLabel = new JLabel("Angle ");
         gc.anchor = GridBagConstraints.LINE_END;
         gc.gridx = 2;
-        gc.gridy = 6;
+        gc.gridy = 8;
         gc.gridwidth = 1;
         gc.gridheight = 1;
         mainPanel.add(leftSlopeAngleLabel, gc);
@@ -391,7 +451,7 @@ public class MainViewModeTwo implements View, Paintable {
         leftSlopeAngleTextField.setText("45");
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 3;
-        gc.gridy = 6;
+        gc.gridy = 8;
         mainPanel.add(leftSlopeAngleTextField, gc);
     }
 
@@ -422,6 +482,7 @@ public class MainViewModeTwo implements View, Paintable {
         mainPanel.add(velocityLabel, gc);
 
         accelerationTextField = new JTextField(10);
+        accelerationTextField.setEditable(false);
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 1;
         gc.gridy = 2;
