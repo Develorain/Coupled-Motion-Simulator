@@ -6,7 +6,7 @@ import com.ahmad.Tools.MathTools;
 
 public class MiddleBoxModel extends BoxModel {
     private SystemModelModeTwo systemModelModeTwo;
-    private double mu;
+    public double mu;
 
     public MiddleBoxModel(SystemModelModeTwo systemModelModeTwo, double mass, double mu) {
         super(mass);

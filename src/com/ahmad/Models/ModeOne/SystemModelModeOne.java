@@ -46,6 +46,7 @@ public class SystemModelModeOne extends Model implements SystemModel {
                 slopeAngle = Double.parseDouble(mainViewModeOne.leftSlopeAngleTextField.getText());
 
 
+                // TODO: there is no point of passing it in as parameters
                 slopedBox.updateFriction(slopeAngle);
                 updateAcceleration(slopedBox.getMass(), danglingBox.getMass(), slopedBox.friction, slopeAngle);
                 wire.updateTension(danglingBox.getMass(), accelerationOfSystem);

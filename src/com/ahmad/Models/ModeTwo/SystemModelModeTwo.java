@@ -58,18 +58,25 @@ public class SystemModelModeTwo extends Model implements SystemModel {
 
         switch (mainViewModeTwo.inputTypeComboBox.getSelectedIndex()) {
             case 0:
+                // FIRST SCENARIO
+                // ALL MASSES ARE GIVEN, ALL MU'S ARE GIVEN, ALL ANGLES ARE GIVEN
+                // SOLVE FOR: ACCELERATION, TENSION IN ALL WIRES (maybe solve for friction on the way?)
 
+                leftBox.mass = Double.parseDouble(mainViewModeTwo.leftBoxMassTextField.getText());
+                middleBox.mass = Double.parseDouble(mainViewModeTwo.middleBoxMassTextField.getText());
+                rightBox.mass = Double.parseDouble(mainViewModeTwo.rightBoxMassTextField.getText());
+
+                leftBox.mu = Double.parseDouble(mainViewModeTwo.leftBoxMuTextField.getText());
+                middleBox.mu = Double.parseDouble(mainViewModeTwo.middleBoxMuTextField.getText());
+                rightBox.mu = Double.parseDouble(mainViewModeTwo.rightBoxMuTextField.getText());
+
+                leftSlopeAngle = Double.parseDouble(mainViewModeTwo.leftSlopeAngleTextField.getText());
+                rightSlopeAngle = Double.parseDouble(mainViewModeTwo.rightSlopeAngleTextField.getText());
+
+                updateAcceleration();
 
                 break;
         }
-
-        // FIRST SCENARIO
-        // ALL MASSES ARE GIVEN, ALL MU'S ARE GIVEN, ALL ANGLES ARE GIVEN
-        // SOLVE FOR: ACCELERATION, TENSION IN ALL WIRES (maybe solve for friction on the way?)
-
-        updateFriction();
-        updateAcceleration();
-        //updateTension();
     }
 
     public void iterate() {
@@ -102,9 +109,25 @@ public class SystemModelModeTwo extends Model implements SystemModel {
 
     // TODO: wrong calculation
     private void updateAcceleration() {
-        accelerationOfSystem = (middleBox.getMass() * Constants.GRAVITY - leftBox.getMass() * Constants.GRAVITY * MathTools.sin(leftSlopeAngle) - frictionOfSystem)
-                / (leftBox.getMass() + middleBox.getMass());
+        accelerationOfSystem = (
+                Constants.GRAVITY * (
+                        rightBox.mass * MathTools.sin(rightSlopeAngle)
+                                - leftBox.mass * MathTools.sin(leftSlopeAngle)
+                                - rightBox.getMu() * rightBox.getMass() * MathTools.cos(rightSlopeAngle)
+                                - middleBox.getMu() * middleBox.getMass()
+                                - leftBox.getMu() * leftBox.getMass() * MathTools.cos(leftSlopeAngle)
+                )
+        )
+                / (leftBox.getMass() + middleBox.getMass() + rightBox.getMass());
 
+        System.out.println(accelerationOfSystem);
+
+        accelerationOfSystem = 0;
+
+        setBoxAccelerations();
+    }
+
+    public void setBoxAccelerations() {
         Vector accelerationA = Vector.createFromPolar(accelerationOfSystem, leftSlopeAngle);
         Vector accelerationB = Vector.createFromPolar(accelerationOfSystem, middleSlopeAngle);
         Vector accelerationC = Vector.createFromPolar(accelerationOfSystem, rightSlopeAngle + 180);

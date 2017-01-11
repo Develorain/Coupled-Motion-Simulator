@@ -5,7 +5,7 @@ import com.ahmad.Tools.MathTools;
 
 public class RightBoxModel extends BoxModel {
     private SystemModelModeTwo systemModelModeTwo;
-    private double mu;
+    public double mu;
 
     public RightBoxModel(SystemModelModeTwo systemModelModeTwo, double mass, double mu) {
         super(mass);

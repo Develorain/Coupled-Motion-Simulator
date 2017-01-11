@@ -47,12 +47,28 @@ public class InputTypeComboBoxController implements ActionListener {
                 mainViewModeOne.tensionTextField.setEditable(false);
                 mainViewModeOne.leftBoxFrictionTextField.setEditable(false);
 
+                // Set default values
+                mainViewModeOne.leftBoxMassTextField.setText("1");
+                mainViewModeOne.leftBoxMuTextField.setText("0");
+
+                mainViewModeOne.leftSlopeAngleTextField.setText("45");
+
+                mainViewModeOne.rightBoxMassTextField.setText("1");
+
                 break;
 
             case 1:
                 mainViewModeOne.accelerationTextField.setEditable(false);
                 mainViewModeOne.leftBoxFrictionTextField.setEditable(false);
                 mainViewModeOne.leftBoxMassTextField.setEditable(false);
+
+                mainViewModeOne.tensionTextField.setText("0");
+
+                mainViewModeOne.leftBoxMuTextField.setText("0");
+
+                mainViewModeOne.leftSlopeAngleTextField.setText("45");
+
+                mainViewModeOne.rightBoxMassTextField.setText("1");
 
                 break;
         }

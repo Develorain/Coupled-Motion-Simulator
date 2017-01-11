@@ -22,24 +22,24 @@ public class MainViewModeTwo implements View, Paintable {
 
     public JPanel mainPanel = new JPanel(new GridBagLayout());
 
-    private JTextField accelerationTextField;
-    private JTextField velocityTextField;
+    public JTextField accelerationTextField;
+    public JTextField velocityTextField;
 
-    private JTextField leftBoxMassTextField;
-    private JTextField leftBoxMuTextField;
-    private JTextField leftBoxFrictionTextField;
-    private JTextField leftWireTensionTextField;
-    private JTextField leftSlopeAngleTextField;
+    public JTextField leftBoxMassTextField;
+    public JTextField leftBoxMuTextField;
+    public JTextField leftBoxFrictionTextField;
+    public JTextField leftWireTensionTextField;
+    public JTextField leftSlopeAngleTextField;
 
-    private JTextField middleBoxMassTextField;
-    private JTextField middleBoxMuTextField;
-    private JTextField middleBoxFrictionTextField;
+    public JTextField middleBoxMassTextField;
+    public JTextField middleBoxMuTextField;
+    public JTextField middleBoxFrictionTextField;
 
-    private JTextField rightBoxMassTextField;
-    private JTextField rightBoxMuTextField;
-    private JTextField rightBoxFrictionTextField;
-    private JTextField rightWireTensionTextField;
-    private JTextField rightSlopeAngleTextField;
+    public JTextField rightBoxMassTextField;
+    public JTextField rightBoxMuTextField;
+    public JTextField rightBoxFrictionTextField;
+    public JTextField rightWireTensionTextField;
+    public JTextField rightSlopeAngleTextField;
 
     public JComboBox inputTypeComboBox;
     private JComboBox modesComboBox;
