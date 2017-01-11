@@ -64,19 +64,6 @@ public class SystemModelModeOne extends Model implements SystemModel {
                 slopedBox.updateMass(slopeAngle, danglingBox.mass, accelerationOfSystem, slopedBox.mu);
                 slopedBox.updateFriction(slopeAngle);
                 break;
-
-            case 2:
-                accelerationOfSystem = Double.parseDouble(mainViewModeOne.accelerationTextField.getText());
-                wire.tension = Double.parseDouble(mainViewModeOne.tensionTextField.getText());
-                slopedBox.mass = Double.parseDouble(mainViewModeOne.leftBoxMassTextField.getText());
-
-                setBoxAccelerations();
-
-
-                danglingBox.updateMass(wire.tension, accelerationOfSystem);
-                slopedBox.updateFriction(danglingBox.getMass(), accelerationOfSystem, slopeAngle);
-                slopedBox.updateMu(slopeAngle);
-                break;
         }
     }
 
