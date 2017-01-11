@@ -59,8 +59,17 @@ public class SlopedBoxModel extends BoxModel {
 
     //new version of update mass test
     public void updateMass(double angle, double massRight, double acceleration, double mu) {
-        mass = (massRight * (Constants.GRAVITY - acceleration))
-                / (acceleration + Constants.GRAVITY * MathTools.sin(angle) + mu * Constants.GRAVITY * MathTools.cos(angle));
+        // make sure acceleration does not surpass 9.8
+
+        // if moving right
+        if (acceleration > 0) {
+            mass = (massRight * (Constants.GRAVITY - acceleration))
+                    / (acceleration + Constants.GRAVITY * MathTools.sin(angle) + mu * Constants.GRAVITY * MathTools.cos(angle));
+        } else if (acceleration < 0) {
+            // if moving left
+            mass = (massRight * (Constants.GRAVITY + acceleration))
+                    / (Constants.GRAVITY * MathTools.sin(angle) - mu * Constants.GRAVITY * MathTools.cos(angle) - acceleration);
+        }
     }
 
     public void updateMass(double angle) {
