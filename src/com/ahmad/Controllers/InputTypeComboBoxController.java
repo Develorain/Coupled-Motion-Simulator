@@ -51,6 +51,7 @@ public class InputTypeComboBoxController implements ActionListener {
 
             case 1:
                 mainViewModeOne.accelerationTextField.setEditable(false);
+                mainViewModeOne.leftBoxFrictionTextField.setEditable(false);
                 mainViewModeOne.leftBoxMassTextField.setEditable(false);
 
                 break;

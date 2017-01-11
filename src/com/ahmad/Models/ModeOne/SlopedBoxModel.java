@@ -57,6 +57,12 @@ public class SlopedBoxModel extends BoxModel {
         }
     }
 
+    //new version of update mass test
+    public void updateMass(double angle, double massRight, double acceleration, double mu) {
+        mass = (massRight * (Constants.GRAVITY - acceleration))
+                / (acceleration + Constants.GRAVITY * MathTools.sin(angle) + mu * Constants.GRAVITY * MathTools.cos(angle));
+    }
+
     public void updateMass(double angle) {
         mass = Math.abs(friction / (mu * Constants.GRAVITY * MathTools.cos(angle)));
     }

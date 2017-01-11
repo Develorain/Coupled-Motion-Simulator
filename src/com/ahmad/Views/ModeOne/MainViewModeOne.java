@@ -143,8 +143,7 @@ public class MainViewModeOne implements View, Paintable {
 
         String[] inputTypeList = new String[]{
                 "Solve for Friction, Acceleration, and Tension",
-                "Solve for Acceleration and Left Mass",
-                "Solve for Friction, Left Mu, and Right Mass"
+                "Solve for Acceleration, Left Mass, and Friction"
         };
         inputTypeComboBox = new JComboBox<>(inputTypeList);
         gc.gridx = 6;

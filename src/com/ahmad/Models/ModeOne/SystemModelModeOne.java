@@ -54,7 +54,6 @@ public class SystemModelModeOne extends Model implements SystemModel {
             case 1:
                 wire.tension = Double.parseDouble(mainViewModeOne.tensionTextField.getText());
                 slopedBox.mu = Double.parseDouble(mainViewModeOne.leftBoxMuTextField.getText());
-                slopedBox.friction = Double.parseDouble(mainViewModeOne.leftBoxFrictionTextField.getText());
                 slopeAngle = Double.parseDouble(mainViewModeOne.leftSlopeAngleTextField.getText());
                 danglingBox.mass = Double.parseDouble(mainViewModeOne.rightBoxMassTextField.getText());
 
@@ -62,7 +61,8 @@ public class SystemModelModeOne extends Model implements SystemModel {
                 //inputTypeTwoCalculation(danglingBox.mass, wire.tension, slopeAngle, 0, 0);
 
                 updateAcceleration(wire.tension, danglingBox.getMass());
-                slopedBox.updateMass(slopeAngle);
+                slopedBox.updateMass(slopeAngle, danglingBox.mass, accelerationOfSystem, slopedBox.mu);
+                slopedBox.updateFriction(slopeAngle);
                 break;
 
             case 2:
@@ -80,13 +80,13 @@ public class SystemModelModeOne extends Model implements SystemModel {
         }
     }
 
-    /*
     public void inputTypeTwoCalculation(double massRight, double tension, double angle, double mu, double friction) {
         accelerationOfSystem = (massRight * Constants.GRAVITY - tension) / massRight;
 
         slopedBox.mass = tension / accelerationOfSystem;
+
+        setBoxAccelerations();
     }
-    */
 
     private void updateAcceleration(double massLeft, double massRight, double friction, double angle) {
         double accelerationOfSystemWithoutFriction = (massRight * Constants.GRAVITY - massLeft * Constants.GRAVITY * MathTools.sin(angle)) / (massLeft + massRight);
