@@ -1,12 +1,11 @@
 package com.ahmad.Views.ModeTwo;
 
 import com.ahmad.Controllers.ModeComboBoxController;
-import com.ahmad.Controllers.ModeOne.InputTypeComboBoxControllerModeOne;
 import com.ahmad.Controllers.ModeTwo.InputTypeComboBoxControllerModeTwo;
 import com.ahmad.Controllers.ModeTwo.LeftAngleTextFieldController;
 import com.ahmad.Controllers.ModeTwo.RightAngleTextFieldController;
 import com.ahmad.Controllers.ResetButtonController;
-import com.ahmad.Controllers.StartButtonController;
+import com.ahmad.Controllers.StartButtonControllerModeTwo;
 import com.ahmad.Models.ModeTwo.SystemModelModeTwo;
 import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.CustomPanel;
@@ -44,10 +43,10 @@ public class MainViewModeTwo implements View, Paintable {
     public JTextField rightSlopeAngleTextField;
 
     public JComboBox inputTypeComboBox;
-    private JComboBox modesComboBox;
-    private JButton startButton;
-    private JButton pauseButton;
-    private JButton resetButton;
+    public JComboBox modesComboBox;
+    public JButton startButton;
+    public JButton pauseButton;
+    public JButton resetButton;
 
     public MainViewModeTwo(SystemModelModeTwo systemModelModeTwo) {
         this.systemModelModeTwo = systemModelModeTwo;
@@ -114,7 +113,7 @@ public class MainViewModeTwo implements View, Paintable {
     }
 
     private void registerControllers() {
-        StartButtonController sbl = new StartButtonController(this, systemModelModeTwo);
+        StartButtonControllerModeTwo sbl = new StartButtonControllerModeTwo(this, systemModelModeTwo);
         startButton.addActionListener(sbl);
 
 
@@ -252,7 +251,7 @@ public class MainViewModeTwo implements View, Paintable {
         gc.weighty = 1;
 
         String[] inputTypeList = new String[]{
-                "Solve for Acceleration and All Tensions",
+                "Solve for Acceleration, All Tensions, and Friction",
                 "Placeholder 2 Placeholder 2 Placeholder 2"
         };
         inputTypeComboBox = new JComboBox<>(inputTypeList);
@@ -261,7 +260,7 @@ public class MainViewModeTwo implements View, Paintable {
         mainPanel.add(inputTypeComboBox, gc);
 
         String[] modesList = new String[]{"Two Box System", "Three Box System"};
-        modesComboBox = new JComboBox<>(modesList); //todo: if doesn't work at school, try removing <>
+        modesComboBox = new JComboBox<>(modesList);
         modesComboBox.setSelectedIndex(1);
         gc.gridx = 8;
         gc.gridy = 2;

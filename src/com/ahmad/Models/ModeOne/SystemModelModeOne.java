@@ -19,10 +19,11 @@ public class SystemModelModeOne extends Model implements SystemModel {
 
     public double accelerationOfSystem;
     public double slopeAngle;
-    public long simulationStartTime = 0;
+    public long simulationStartTime;
 
     public SystemModelModeOne() {
         slopeAngle = 45;
+        simulationStartTime = 0;
 
         slope = new SlopeModelModeOne(this);
         pulley = new PulleyModelModeOne(this);

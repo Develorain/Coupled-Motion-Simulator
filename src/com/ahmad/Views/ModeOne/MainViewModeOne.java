@@ -1,10 +1,10 @@
 package com.ahmad.Views.ModeOne;
 
-import com.ahmad.Controllers.ModeOne.InputTypeComboBoxControllerModeOne;
 import com.ahmad.Controllers.ModeComboBoxController;
 import com.ahmad.Controllers.ModeOne.AngleTextFieldControllerModeOne;
+import com.ahmad.Controllers.ModeOne.InputTypeComboBoxControllerModeOne;
 import com.ahmad.Controllers.ResetButtonController;
-import com.ahmad.Controllers.StartButtonController;
+import com.ahmad.Controllers.StartButtonControllerModeOne;
 import com.ahmad.Models.ModeOne.SystemModelModeOne;
 import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.CustomPanel;
@@ -53,9 +53,9 @@ public class MainViewModeOne implements View, Paintable {
 
     @Override
     public void update() {
-        systemPanel.repaint(); // Repaints the simulation area
+        systemPanel.repaint();       // Repaints the simulation area
 
-        updateBoxSystemInfoTable();       // Updates the box system's information table
+        updateBoxSystemInfoTable();  // Updates the box system's information table
     }
 
     @Override
@@ -94,7 +94,7 @@ public class MainViewModeOne implements View, Paintable {
     }
 
     private void registerControllers() {
-        StartButtonController sbl = new StartButtonController(this, systemModelModeOne);
+        StartButtonControllerModeOne sbl = new StartButtonControllerModeOne(this, systemModelModeOne);
         startButton.addActionListener(sbl);
 
 
