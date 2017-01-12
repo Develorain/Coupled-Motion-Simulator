@@ -103,11 +103,6 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         updateView();
     }
 
-    // TODO: wrong calculation
-    private void updateFriction() {
-        frictionOfSystem = leftBox.getMass() * Constants.GRAVITY * MathTools.cos(leftSlopeAngle) * leftBox.getMu();
-    }
-
     private void updateAcceleration(double massLeft, double massRight) {
         double accelerationWithoutFriction = (massRight * Constants.GRAVITY * MathTools.sin(rightSlopeAngle) - massLeft * Constants.GRAVITY * MathTools.sin(leftSlopeAngle)) / (massLeft + massRight);
         if (accelerationWithoutFriction == 0) {
@@ -142,15 +137,6 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         middleBox.setAcceleration(accelerationB);
         rightBox.setAcceleration(accelerationC);
     }
-
-    /*
-    private void updateTension() {
-        leftWire = new WireModel(middleBox);
-        leftWire.calculateTension(accelerationOfSystem);
-
-        System.out.println("Tension: " + leftWire.tension);
-    }
-    */
 
     public void setLeftSlopeAngle(double leftSlopeAngle) {
         this.leftSlopeAngle = leftSlopeAngle;

@@ -15,12 +15,8 @@ public class SlopedBoxModel extends BoxModel {
         this.systemModelModeOne = systemModelModeOne;
         this.mu = mu;
 
-        // Calculate the coordinates of the box
         calculateStartingPositionCoordinates();
     }
-
-    //TODO: i refactored this class so it does not create so many objects every iteration at the expense of some code repetition
-    //TODO: to test it out, go to BoxModel class, and change updatePosition method to be abstract
 
     @Override
     public void calculateStartingPositionCoordinates() {
@@ -48,18 +44,7 @@ public class SlopedBoxModel extends BoxModel {
         friction = mu * mass * Constants.GRAVITY * MathTools.cos(angle);
     }
 
-    public void updateFriction(double massRight, double acceleration, double angle) {
-        // TODO: what if acceleration is 0? the problem is we don't know which direction the friction will be, we will have to look at netforce instead of acceleration
-        if (acceleration < 0) {
-            friction = (mass + massRight) * acceleration - massRight * Constants.GRAVITY + mass * Constants.GRAVITY * MathTools.sin(angle);
-        } else {
-            friction = -(mass + massRight) * acceleration + massRight * Constants.GRAVITY - mass * Constants.GRAVITY * MathTools.sin(angle);
-        }
-    }
-
     public void updateMass(double angle, double massRight, double acceleration, double mu) {
-        // make sure acceleration does not surpass 9.8
-
         // if moving right
         if (acceleration > 0) {
             mass = (massRight * (Constants.GRAVITY - acceleration))
@@ -69,14 +54,6 @@ public class SlopedBoxModel extends BoxModel {
             mass = (massRight * (Constants.GRAVITY + acceleration))
                     / (Constants.GRAVITY * MathTools.sin(angle) - mu * Constants.GRAVITY * MathTools.cos(angle) - acceleration);
         }
-    }
-
-    public void updateMass(double angle) {
-        mass = Math.abs(friction / (mu * Constants.GRAVITY * MathTools.cos(angle)));
-    }
-
-    public void updateMu(double angle) {
-        mu = Math.abs(friction / (mass * Constants.GRAVITY * MathTools.cos(angle)));
     }
 
     public double getMu() {
