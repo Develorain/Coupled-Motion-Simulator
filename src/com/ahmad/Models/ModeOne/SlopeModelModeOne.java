@@ -25,7 +25,7 @@ public class SlopeModelModeOne extends SlopeModel {
             tempY += MathTools.sin(systemModelModeOne.getSlopeAngle());
 
             // TODO: remove hardcoded 100 value. this value represents how many pixels the slope will stop from the edge of the window
-            if (tempX <= 100 || tempY >= Constants.SIMULATION_HEIGHT_PIXELS - 100) {
+            if (tempX <= 0 || tempY >= Constants.SIMULATION_HEIGHT_PIXELS - 100) { // used to be 100, 100 represents the pulley diameter
                 // Set the x and y value to the calculated in-bounds coordinates
                 leftCoord.setX(tempX);
                 leftCoord.setY(tempY);

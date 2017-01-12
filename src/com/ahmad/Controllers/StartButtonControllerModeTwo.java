@@ -32,8 +32,25 @@ public class StartButtonControllerModeTwo extends StartButtonController {
         mainViewModeTwo.rightBoxFrictionTextField.setEditable(false);
         mainViewModeTwo.rightWireTensionTextField.setEditable(false);
         mainViewModeTwo.rightSlopeAngleTextField.setEditable(false);
-
         mainViewModeTwo.inputTypeComboBox.setEnabled(false);
         mainViewModeTwo.startButton.setEnabled(false);
+
+        mainViewModeTwo.accelerationTextField.setFocusable(false);
+        mainViewModeTwo.velocityTextField.setFocusable(false);
+        mainViewModeTwo.leftBoxMassTextField.setFocusable(false);
+        mainViewModeTwo.leftBoxMuTextField.setFocusable(false);
+        mainViewModeTwo.leftBoxFrictionTextField.setFocusable(false);
+        mainViewModeTwo.leftWireTensionTextField.setFocusable(false);
+        mainViewModeTwo.leftSlopeAngleTextField.setFocusable(false);
+        mainViewModeTwo.middleBoxMassTextField.setFocusable(false);
+        mainViewModeTwo.middleBoxMuTextField.setFocusable(false);
+        mainViewModeTwo.middleBoxFrictionTextField.setFocusable(false);
+        mainViewModeTwo.rightBoxMassTextField.setFocusable(false);
+        mainViewModeTwo.rightBoxMuTextField.setFocusable(false);
+        mainViewModeTwo.rightBoxFrictionTextField.setFocusable(false);
+        mainViewModeTwo.rightWireTensionTextField.setFocusable(false);
+        mainViewModeTwo.rightSlopeAngleTextField.setFocusable(false);
+        mainViewModeTwo.inputTypeComboBox.setFocusable(false);
+        mainViewModeTwo.startButton.setFocusable(false);
     }
 }

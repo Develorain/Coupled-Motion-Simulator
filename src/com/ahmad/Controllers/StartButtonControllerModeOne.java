@@ -25,15 +25,21 @@ public class StartButtonControllerModeOne extends StartButtonController implemen
         mainViewModeOne.leftBoxMuTextField.setEditable(false);
         mainViewModeOne.leftBoxFrictionTextField.setEditable(false);
         mainViewModeOne.leftSlopeAngleTextField.setEditable(false);
+        mainViewModeOne.leftSlopeAngleTextField.setFocusable(false);
         mainViewModeOne.rightBoxMassTextField.setEditable(false);
-
         mainViewModeOne.inputTypeComboBox.setEnabled(false);
         mainViewModeOne.startButton.setEnabled(false);
+
+        mainViewModeOne.accelerationTextField.setFocusable(false);
+        mainViewModeOne.velocityTextField.setFocusable(false);
+        mainViewModeOne.tensionTextField.setFocusable(false);
+        mainViewModeOne.leftBoxMassTextField.setFocusable(false);
+        mainViewModeOne.leftBoxMuTextField.setFocusable(false);
+        mainViewModeOne.leftBoxFrictionTextField.setFocusable(false);
+        mainViewModeOne.leftSlopeAngleTextField.setFocusable(false);
+        mainViewModeOne.leftSlopeAngleTextField.setFocusable(false);
+        mainViewModeOne.rightBoxMassTextField.setFocusable(false);
+        mainViewModeOne.inputTypeComboBox.setFocusable(false);
+        mainViewModeOne.startButton.setFocusable(false);
     }
 }
-
-
-// TODO: I'm thinking this class needs to be more specific for each mode in order for me to disable all the components
-// TODO: So make a super class where there are two StartButtonControllers extend for each mode
-
-// TODO: needs to check if start button was already pressed to avoid multiple timers running

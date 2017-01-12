@@ -31,11 +31,15 @@ public class Startup {
     }
 }
 
+// Should I pass in everything like I did in the reset button controller, or should I just give the whole view and use getters and setters?
+// Is the way I refactored the StartButton correct? I feel like it was poorly written
+
 // TODO: < REAL TODO >
 // TODO: Implement mode two physics
 // TODO: Variable switching for mode two
 
 // TODO: < BUGS >
+// TODO: HUGE BUG!!!: In mode two, if you switch to second input method, then switch back to first input method and run it, the program gives a completely wrong answer
 // for some reason the program just crashes after simulating for around 10 seconds
 // simulation view can not be less than 700 pixels wide without the boxes not being centered
 // borders should scale with window size, not 100 pixels absolute
@@ -50,7 +54,6 @@ public class Startup {
 // TODO: < QUALITY OF LIFE >
 // make sure the boxes do not go past the pulley or off the screen
 // make window resizable (support for simulation area resizing, possibly scale when window is resized)
-// pressing the start button multiple times makes the boxes move faster. this happens because multiple timers are created, each of which are adding to velocity (solution, just disable all text fields when simulation starts)
 // add data validation when a number is input (for example if a letter is put or if the whole value is erased)
 // putting in no mass breaks the program (for example, removing all the value of dangling box and pressing start), make an error occur
 // show how long simulation has been running for (time)
