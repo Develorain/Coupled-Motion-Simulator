@@ -26,8 +26,12 @@ public class RightBoxModel extends BoxModel {
     public void calculateStartingPositionCoordinates() {
         double acuteAngle = 180 - systemModelModeTwo.getRightSlopeAngle();
 
-        topLeftCorner.setX(systemModelModeTwo.rightSlope.rightCoord.getX() - boxWidth * MathTools.cos(acuteAngle) + boxWidth * MathTools.sin(acuteAngle));
-        topLeftCorner.setY(systemModelModeTwo.rightSlope.rightCoord.getY() - boxHeight * MathTools.sin(acuteAngle) - boxHeight * MathTools.cos(acuteAngle));
+        topLeftCorner.setX((systemModelModeTwo.rightSlope.leftCoord.getX() + systemModelModeTwo.rightSlope.rightCoord.getX()) / 2
+                - (boxWidth / 2) * MathTools.cos(acuteAngle) + boxWidth * MathTools.sin(acuteAngle)
+        );
+        topLeftCorner.setY((systemModelModeTwo.rightSlope.leftCoord.getY() + systemModelModeTwo.rightSlope.rightCoord.getY()) / 2
+                - (boxHeight / 2) * MathTools.sin(acuteAngle) - boxHeight * MathTools.cos(acuteAngle)
+        );
 
         calculateBoxVerticesFromTopLeft();
     }

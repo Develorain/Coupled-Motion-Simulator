@@ -24,8 +24,10 @@ public class LeftBoxModel extends BoxModel {
 
     @Override
     public void calculateStartingPositionCoordinates() {
-        topLeftCorner.setX(systemModelModeTwo.leftSlope.leftCoord.getX() - boxWidth * MathTools.sin(systemModelModeTwo.getLeftSlopeAngle()));
-        topLeftCorner.setY(systemModelModeTwo.leftSlope.leftCoord.getY() - boxHeight * MathTools.cos(systemModelModeTwo.getLeftSlopeAngle()));
+        topLeftCorner.setX((systemModelModeTwo.leftSlope.leftCoord.getX() + systemModelModeTwo.leftSlope.rightCoord.getX()) / 2
+                - boxWidth * MathTools.sin(systemModelModeTwo.getLeftSlopeAngle()) - (boxWidth / 2) * MathTools.cos(systemModelModeTwo.getLeftSlopeAngle()));
+        topLeftCorner.setY((systemModelModeTwo.leftSlope.leftCoord.getY() + systemModelModeTwo.leftSlope.rightCoord.getY()) / 2
+                - boxHeight * MathTools.cos(systemModelModeTwo.getLeftSlopeAngle()) + (boxHeight / 2) * MathTools.sin(systemModelModeTwo.getLeftSlopeAngle()));
 
         calculateBoxVerticesFromTopLeft();
     }
