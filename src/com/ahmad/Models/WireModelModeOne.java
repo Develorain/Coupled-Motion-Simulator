@@ -28,6 +28,7 @@ public class WireModelModeOne extends WireModel {
         rightStringRightCoord.setY(systemModelModeOne.getDanglingBox().topLeftCorner.getY());
     }
 
+    // TODO: assumes box is moving right, add case for when moving left
     public void updateTension(double massRight, double acceleration) {
         tension = massRight * (Constants.GRAVITY - acceleration);
     }

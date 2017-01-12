@@ -110,7 +110,6 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         frictionOfSystem = leftBox.getMass() * Constants.GRAVITY * MathTools.cos(leftSlopeAngle) * leftBox.getMu();
     }
 
-    // TODO: wrong calculation
     private void updateAcceleration() {
         accelerationOfSystem = (
                 Constants.GRAVITY * (

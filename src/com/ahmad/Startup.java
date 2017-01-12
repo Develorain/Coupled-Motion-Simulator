@@ -19,7 +19,7 @@ public class Startup {
         MainViewModeOne mainViewModeOne = new MainViewModeOne(new SystemModelModeOne());
 
         jFrame = new JFrame("Coupled Motion Simulator");
-        jFrame.setMinimumSize(new Dimension(1200, 800));
+        jFrame.setMinimumSize(new Dimension(1250, 850));
         //jFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         jFrame.getContentPane().add(mainViewModeOne.mainPanel);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -44,6 +44,7 @@ public class SlopedBoxModel extends BoxModel {
         bottomRightCorner.setY((int) (topLeftCorner.getY() + boxHeight * MathTools.cos(systemModelModeOne.getSlopeAngle()) - boxHeight * MathTools.sin(systemModelModeOne.getSlopeAngle())));
     }
 
+    // TODO: assumes boxes are moving right, consider when box is moving left (i think)
     public void updateFriction(double angle) {
         friction = mu * mass * Constants.GRAVITY * MathTools.cos(angle);
     }
@@ -57,7 +58,7 @@ public class SlopedBoxModel extends BoxModel {
         }
     }
 
-    //new version of update mass test
+    // TODO: assumes acceleration is right, consider when box is moving to left
     public void updateMass(double angle, double massRight, double acceleration, double mu) {
         // make sure acceleration does not surpass 9.8
 

@@ -13,6 +13,7 @@ public class LeftWireModel extends WireModel {
         updatePosition();
     }
 
+    // TODO: assumes boxes are moving to the right, consider when they go left
     public void updateTension(double leftMass, double acceleration, double leftSlopeAngle, double leftMu) {
         tension = leftMass * (acceleration + Constants.GRAVITY * MathTools.sin(leftSlopeAngle) + leftMu * Constants.GRAVITY * MathTools.cos(leftSlopeAngle));
     }

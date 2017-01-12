@@ -45,10 +45,8 @@ public class SystemModelModeOne extends Model implements SystemModel {
                 slopedBox.mu = Double.parseDouble(mainViewModeOne.leftBoxMuTextField.getText());
                 slopeAngle = Double.parseDouble(mainViewModeOne.leftSlopeAngleTextField.getText());
 
-
-                // TODO: there is no point of passing it in as parameters
                 slopedBox.updateFriction(slopeAngle);
-                updateAcceleration(slopedBox.getMass(), danglingBox.getMass(), slopedBox.friction, slopeAngle);
+                updateAcceleration(slopedBox.getMass(), danglingBox.getMass(), slopedBox.friction, slopeAngle); // TODO: there is no point of passing it in as parameters
                 wire.updateTension(danglingBox.getMass(), accelerationOfSystem);
                 break;
 
@@ -58,22 +56,11 @@ public class SystemModelModeOne extends Model implements SystemModel {
                 slopeAngle = Double.parseDouble(mainViewModeOne.leftSlopeAngleTextField.getText());
                 danglingBox.mass = Double.parseDouble(mainViewModeOne.rightBoxMassTextField.getText());
 
-
-                //inputTypeTwoCalculation(danglingBox.mass, wire.tension, slopeAngle, 0, 0);
-
                 updateAcceleration(wire.tension, danglingBox.getMass());
                 slopedBox.updateMass(slopeAngle, danglingBox.mass, accelerationOfSystem, slopedBox.mu);
                 slopedBox.updateFriction(slopeAngle);
                 break;
         }
-    }
-
-    public void inputTypeTwoCalculation(double massRight, double tension, double angle, double mu, double friction) {
-        accelerationOfSystem = (massRight * Constants.GRAVITY - tension) / massRight;
-
-        slopedBox.mass = tension / accelerationOfSystem;
-
-        setBoxAccelerations();
     }
 
     private void updateAcceleration(double massLeft, double massRight, double friction, double angle) {
