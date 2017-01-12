@@ -1,6 +1,8 @@
 package com.ahmad.Views.ModeTwo;
 
 import com.ahmad.Controllers.ModeComboBoxController;
+import com.ahmad.Controllers.ModeOne.InputTypeComboBoxControllerModeOne;
+import com.ahmad.Controllers.ModeTwo.InputTypeComboBoxControllerModeTwo;
 import com.ahmad.Controllers.ModeTwo.LeftAngleTextFieldController;
 import com.ahmad.Controllers.ModeTwo.RightAngleTextFieldController;
 import com.ahmad.Controllers.ResetButtonController;
@@ -130,6 +132,9 @@ public class MainViewModeTwo implements View, Paintable {
 
         ModeComboBoxController mcbc = new ModeComboBoxController(modesComboBox);
         modesComboBox.addActionListener(mcbc);
+
+        InputTypeComboBoxControllerModeTwo itcbc = new InputTypeComboBoxControllerModeTwo(this);
+        inputTypeComboBox.addActionListener(itcbc);
     }
 
     private void layoutScreen() {

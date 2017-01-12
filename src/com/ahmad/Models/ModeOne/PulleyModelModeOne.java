@@ -1,6 +1,6 @@
-package com.ahmad.Models;
+package com.ahmad.Models.ModeOne;
 
-import com.ahmad.Models.ModeOne.SystemModelModeOne;
+import com.ahmad.Models.PulleyModel;
 import com.ahmad.Tools.MathTools;
 
 public class PulleyModelModeOne extends PulleyModel {

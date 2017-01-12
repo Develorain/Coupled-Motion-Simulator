@@ -1,6 +1,6 @@
 package com.ahmad.Views.ModeOne;
 
-import com.ahmad.Controllers.InputTypeComboBoxController;
+import com.ahmad.Controllers.ModeOne.InputTypeComboBoxControllerModeOne;
 import com.ahmad.Controllers.ModeComboBoxController;
 import com.ahmad.Controllers.ModeOne.AngleTextFieldControllerModeOne;
 import com.ahmad.Controllers.ResetButtonController;
@@ -110,7 +110,7 @@ public class MainViewModeOne implements View, Paintable {
         ModeComboBoxController mcbc = new ModeComboBoxController(modesComboBox);
         modesComboBox.addActionListener(mcbc);
 
-        InputTypeComboBoxController itcbc = new InputTypeComboBoxController(this);
+        InputTypeComboBoxControllerModeOne itcbc = new InputTypeComboBoxControllerModeOne(this);
         inputTypeComboBox.addActionListener(itcbc);
     }
 

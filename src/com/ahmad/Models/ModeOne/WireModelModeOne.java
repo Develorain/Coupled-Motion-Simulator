@@ -1,6 +1,6 @@
-package com.ahmad.Models;
+package com.ahmad.Models.ModeOne;
 
-import com.ahmad.Models.ModeOne.SystemModelModeOne;
+import com.ahmad.Models.WireModel;
 import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
 
@@ -28,8 +28,11 @@ public class WireModelModeOne extends WireModel {
         rightStringRightCoord.setY(systemModelModeOne.getDanglingBox().topLeftCorner.getY());
     }
 
-    // TODO: assumes box is moving right, add case for when moving left
     public void updateTension(double massRight, double acceleration) {
-        tension = massRight * (Constants.GRAVITY - acceleration);
+        if (acceleration > 0) {
+            tension = massRight * (Constants.GRAVITY - acceleration);
+        } else if (acceleration < 0) {
+            tension = massRight * (acceleration + Constants.GRAVITY);
+        }
     }
 }

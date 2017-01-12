@@ -33,8 +33,4 @@ public class DanglingBoxModel extends BoxModel {
         bottomRightCorner.setX((int) (topLeftCorner.getX() + boxWidth));
         bottomRightCorner.setY((int) (topLeftCorner.getY() + boxHeight));
     }
-
-    public void updateMass(double tension, double acceleration) {
-        mass = tension / (Constants.GRAVITY - acceleration);
-    }
 }

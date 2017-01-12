@@ -1,9 +1,7 @@
 package com.ahmad.Models.ModeOne;
 
 import com.ahmad.Models.Model;
-import com.ahmad.Models.PulleyModelModeOne;
 import com.ahmad.Models.SystemModel;
-import com.ahmad.Models.WireModelModeOne;
 import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;

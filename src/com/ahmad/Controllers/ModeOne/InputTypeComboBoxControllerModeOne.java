@@ -1,21 +1,22 @@
-package com.ahmad.Controllers;
+package com.ahmad.Controllers.ModeOne;
 
 import com.ahmad.Views.ModeOne.MainViewModeOne;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class InputTypeComboBoxController implements ActionListener {
+public class InputTypeComboBoxControllerModeOne implements ActionListener {
     private MainViewModeOne mainViewModeOne;
 
-    public InputTypeComboBoxController(MainViewModeOne mainViewModeOne) {
+    public InputTypeComboBoxControllerModeOne(MainViewModeOne mainViewModeOne) {
         this.mainViewModeOne = mainViewModeOne;
     }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        // < CLEAR THE VALUES IN ALL TEXT FIELDS
+        // < CLEAR THE VALUES IN ALL TEXT FIELDS >
         mainViewModeOne.accelerationTextField.setText("");
+        mainViewModeOne.velocityTextField.setText("");
         mainViewModeOne.tensionTextField.setText("");
 
         mainViewModeOne.leftBoxMassTextField.setText("");

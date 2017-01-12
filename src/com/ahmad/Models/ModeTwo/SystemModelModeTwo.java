@@ -23,7 +23,6 @@ public class SystemModelModeTwo extends Model implements SystemModel {
     public LeftWireModel leftWire;
     public RightWireModel rightWire;
 
-    private double frictionOfSystem;
     private double accelerationOfSystem;
 
     private double leftSlopeAngle;
@@ -109,12 +108,12 @@ public class SystemModelModeTwo extends Model implements SystemModel {
             accelerationOfSystem = 0;
         } else if (accelerationWithoutFriction > 0) {
             accelerationOfSystem = (Constants.GRAVITY * (
-                    rightBox.mass * MathTools.sin(rightSlopeAngle)
-                            - leftBox.mass * MathTools.sin(leftSlopeAngle)
-                            - rightBox.getMu() * rightBox.getMass() * MathTools.cos(rightSlopeAngle)
+                    massRight * MathTools.sin(rightSlopeAngle)
+                            - massLeft * MathTools.sin(leftSlopeAngle)
+                            - rightBox.getMu() * massRight * MathTools.cos(rightSlopeAngle)
                             - middleBox.getMu() * middleBox.getMass()
-                            - leftBox.getMu() * leftBox.getMass() * MathTools.cos(leftSlopeAngle)
-            )) / (leftBox.getMass() + middleBox.getMass() + rightBox.getMass());
+                            - leftBox.getMu() * massLeft * MathTools.cos(leftSlopeAngle)
+            )) / (leftBox.getMass() + middleBox.getMass() + massRight);
         } else if (accelerationWithoutFriction < 0) {
             accelerationOfSystem = (Constants.GRAVITY * (
                     massLeft * MathTools.sin(leftSlopeAngle)
@@ -129,13 +128,13 @@ public class SystemModelModeTwo extends Model implements SystemModel {
     }
 
     public void setBoxAccelerations() {
-        Vector accelerationA = Vector.createFromPolar(accelerationOfSystem, leftSlopeAngle);
-        Vector accelerationB = Vector.createFromPolar(accelerationOfSystem, middleSlopeAngle);
-        Vector accelerationC = Vector.createFromPolar(accelerationOfSystem, rightSlopeAngle + 180);
+        Vector leftAcceleration = Vector.createFromPolar(accelerationOfSystem, leftSlopeAngle);
+        Vector middleAcceleration = Vector.createFromPolar(accelerationOfSystem, middleSlopeAngle);
+        Vector rightAcceleration = Vector.createFromPolar(accelerationOfSystem, rightSlopeAngle + 180);
 
-        leftBox.setAcceleration(accelerationA);
-        middleBox.setAcceleration(accelerationB);
-        rightBox.setAcceleration(accelerationC);
+        leftBox.setAcceleration(leftAcceleration);
+        middleBox.setAcceleration(middleAcceleration);
+        rightBox.setAcceleration(rightAcceleration);
     }
 
     public void setLeftSlopeAngle(double leftSlopeAngle) {
