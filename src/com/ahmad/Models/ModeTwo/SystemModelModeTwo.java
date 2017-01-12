@@ -71,9 +71,12 @@ public class SystemModelModeTwo extends Model implements SystemModel {
                 rightBox.mu = Double.parseDouble(mainViewModeTwo.rightBoxMuTextField.getText());
 
                 leftSlopeAngle = Double.parseDouble(mainViewModeTwo.leftSlopeAngleTextField.getText());
-                rightSlopeAngle = Double.parseDouble(mainViewModeTwo.rightSlopeAngleTextField.getText());
+                rightSlopeAngle = 180 - Double.parseDouble(mainViewModeTwo.rightSlopeAngleTextField.getText());
+
 
                 updateAcceleration();
+                leftWire.updateTension(leftBox.mass, accelerationOfSystem, leftSlopeAngle, leftBox.mu);
+                rightWire.updateTension(rightBox.mass, accelerationOfSystem, rightSlopeAngle, rightBox.mu);
 
                 break;
         }
@@ -119,10 +122,6 @@ public class SystemModelModeTwo extends Model implements SystemModel {
                 )
         )
                 / (leftBox.getMass() + middleBox.getMass() + rightBox.getMass());
-
-        System.out.println(accelerationOfSystem);
-
-        accelerationOfSystem = 0;
 
         setBoxAccelerations();
     }

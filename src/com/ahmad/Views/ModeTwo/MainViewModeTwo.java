@@ -94,6 +94,12 @@ public class MainViewModeTwo implements View, Paintable {
 
         String velocityValue = Double.toString(systemModelModeTwo.leftBox.velocity.getR());
         velocityTextField.setText(velocityValue);
+
+        String leftWireTensionValue = Double.toString(systemModelModeTwo.leftWire.tension);
+        leftWireTensionTextField.setText(leftWireTensionValue);
+
+        String rightWireTensionValue = Double.toString(systemModelModeTwo.rightWire.tension);
+        rightWireTensionTextField.setText(rightWireTensionValue);
     }
 
     private void registerControllers() {

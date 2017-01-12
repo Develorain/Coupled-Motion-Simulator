@@ -1,6 +1,7 @@
 package com.ahmad.Models.ModeTwo;
 
 import com.ahmad.Models.WireModel;
+import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
 
 public class RightWireModel extends WireModel {
@@ -10,6 +11,10 @@ public class RightWireModel extends WireModel {
         this.systemModelModeTwo = systemModelModeTwo;
 
         updatePosition();
+    }
+
+    public void updateTension(double rightMass, double acceleration, double rightSlopeAngle, double rightMu) {
+        tension = rightMass * (Constants.GRAVITY * MathTools.sin(rightSlopeAngle) - rightMu * Constants.GRAVITY * MathTools.cos(rightSlopeAngle) - acceleration);
     }
 
     @Override
