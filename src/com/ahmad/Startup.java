@@ -39,6 +39,7 @@ public class Startup {
 // for some reason the program just crashes after simulating for around 10 seconds, maybe due to making too many Vector objects
 // simulation view can not be less than 700 pixels wide without the boxes not being centered
 // borders should scale with window size, not 100 pixels absolute
+// acceleration can not be greater than 9.8 or less than -9.8, mu can't be negative, angle must be 0 <= angle <= 90
 
 // TODO: < TEST INPUTS >
 // TODO: when the test input when using (Solve for Friction, Acceleration, and Tension) is 56 for left mass, 100 for right mass, 1000 for mu, and 25 for angle, the velocity is -0.0

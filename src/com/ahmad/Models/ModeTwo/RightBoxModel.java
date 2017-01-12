@@ -1,11 +1,13 @@
 package com.ahmad.Models.ModeTwo;
 
 import com.ahmad.Models.BoxModel;
+import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
 
 public class RightBoxModel extends BoxModel {
     private SystemModelModeTwo systemModelModeTwo;
     public double mu;
+    public double friction;
 
     public RightBoxModel(SystemModelModeTwo systemModelModeTwo, double mass, double mu) {
         super(mass);
@@ -14,6 +16,10 @@ public class RightBoxModel extends BoxModel {
         this.mu = mu;
 
         calculateStartingPositionCoordinates();
+    }
+
+    public void updateFriction(double slopeAngle) {
+        friction = Math.abs(mu * mass * Constants.GRAVITY * MathTools.cos(slopeAngle));
     }
 
     @Override

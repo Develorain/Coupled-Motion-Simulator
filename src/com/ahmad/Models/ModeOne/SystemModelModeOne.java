@@ -56,9 +56,9 @@ public class SystemModelModeOne extends Model implements SystemModel {
                 slopeAngle = Double.parseDouble(mainViewModeOne.leftSlopeAngleTextField.getText());
                 danglingBox.mass = Double.parseDouble(mainViewModeOne.rightBoxMassTextField.getText());
 
+                slopedBox.updateFriction(slopeAngle);
                 updateAcceleration(wire.tension, danglingBox.getMass());
                 slopedBox.updateMass(slopeAngle, danglingBox.mass, accelerationOfSystem, slopedBox.mu);
-                slopedBox.updateFriction(slopeAngle);
                 break;
         }
     }
@@ -77,7 +77,7 @@ public class SystemModelModeOne extends Model implements SystemModel {
             }
 
         } else if (accelerationOfSystemWithoutFriction < 0) {
-            accelerationOfSystem = (massRight * Constants.GRAVITY - massLeft * Constants.GRAVITY * MathTools.sin(angle) + friction) / (massLeft + massRight);
+            accelerationOfSystem = (massLeft * Constants.GRAVITY * MathTools.sin(angle) - friction - massRight * Constants.GRAVITY) / (massLeft + massRight);
 
             // Friction only limits motion
             if (accelerationOfSystem > 0) {
@@ -90,6 +90,7 @@ public class SystemModelModeOne extends Model implements SystemModel {
 
     private void updateAcceleration(double tension, double massRight) {
         accelerationOfSystem = (massRight * Constants.GRAVITY - tension) / massRight;
+
         setBoxAccelerations();
     }
 

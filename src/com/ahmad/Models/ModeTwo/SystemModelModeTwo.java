@@ -58,10 +58,6 @@ public class SystemModelModeTwo extends Model implements SystemModel {
 
         switch (mainViewModeTwo.inputTypeComboBox.getSelectedIndex()) {
             case 0:
-                // FIRST SCENARIO
-                // ALL MASSES ARE GIVEN, ALL MU'S ARE GIVEN, ALL ANGLES ARE GIVEN
-                // SOLVE FOR: ACCELERATION, TENSION IN ALL WIRES (maybe solve for friction on the way?)
-
                 leftBox.mass = Double.parseDouble(mainViewModeTwo.leftBoxMassTextField.getText());
                 middleBox.mass = Double.parseDouble(mainViewModeTwo.middleBoxMassTextField.getText());
                 rightBox.mass = Double.parseDouble(mainViewModeTwo.rightBoxMassTextField.getText());
@@ -73,8 +69,10 @@ public class SystemModelModeTwo extends Model implements SystemModel {
                 leftSlopeAngle = Double.parseDouble(mainViewModeTwo.leftSlopeAngleTextField.getText());
                 rightSlopeAngle = 180 - Double.parseDouble(mainViewModeTwo.rightSlopeAngleTextField.getText());
 
-
-                updateAcceleration();
+                leftBox.updateFriction(leftSlopeAngle);
+                middleBox.updateFriction(middleSlopeAngle);
+                rightBox.updateFriction(rightSlopeAngle);
+                updateAcceleration(leftBox.getMass(), rightBox.getMass());
                 leftWire.updateTension(leftBox.mass, accelerationOfSystem, leftSlopeAngle, leftBox.mu);
                 rightWire.updateTension(rightBox.mass, accelerationOfSystem, rightSlopeAngle, rightBox.mu);
 
@@ -110,17 +108,27 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         frictionOfSystem = leftBox.getMass() * Constants.GRAVITY * MathTools.cos(leftSlopeAngle) * leftBox.getMu();
     }
 
-    private void updateAcceleration() {
-        accelerationOfSystem = (
-                Constants.GRAVITY * (
-                        rightBox.mass * MathTools.sin(rightSlopeAngle)
-                                - leftBox.mass * MathTools.sin(leftSlopeAngle)
-                                - rightBox.getMu() * rightBox.getMass() * MathTools.cos(rightSlopeAngle)
-                                - middleBox.getMu() * middleBox.getMass()
-                                - leftBox.getMu() * leftBox.getMass() * MathTools.cos(leftSlopeAngle)
-                )
-        )
-                / (leftBox.getMass() + middleBox.getMass() + rightBox.getMass());
+    private void updateAcceleration(double massLeft, double massRight) {
+        double accelerationWithoutFriction = (massRight * Constants.GRAVITY * MathTools.sin(rightSlopeAngle) - massLeft * Constants.GRAVITY * MathTools.sin(leftSlopeAngle)) / (massLeft + massRight);
+        if (accelerationWithoutFriction == 0) {
+            accelerationOfSystem = 0;
+        } else if (accelerationWithoutFriction > 0) {
+            accelerationOfSystem = (Constants.GRAVITY * (
+                    rightBox.mass * MathTools.sin(rightSlopeAngle)
+                            - leftBox.mass * MathTools.sin(leftSlopeAngle)
+                            - rightBox.getMu() * rightBox.getMass() * MathTools.cos(rightSlopeAngle)
+                            - middleBox.getMu() * middleBox.getMass()
+                            - leftBox.getMu() * leftBox.getMass() * MathTools.cos(leftSlopeAngle)
+            )) / (leftBox.getMass() + middleBox.getMass() + rightBox.getMass());
+        } else if (accelerationWithoutFriction < 0) {
+            accelerationOfSystem = (Constants.GRAVITY * (
+                    massLeft * MathTools.sin(leftSlopeAngle)
+                            - massRight * MathTools.sin(rightSlopeAngle)
+                            - rightBox.getMu() * rightBox.getMass() * MathTools.cos(rightSlopeAngle)
+                            - middleBox.getMu() * middleBox.getMass()
+                            - leftBox.getMu() * leftBox.getMass() * MathTools.cos(leftSlopeAngle)
+            )) / (massLeft + middleBox.getMass() + massRight);
+        }
 
         setBoxAccelerations();
     }

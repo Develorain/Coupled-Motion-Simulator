@@ -7,6 +7,7 @@ import com.ahmad.Tools.MathTools;
 public class MiddleBoxModel extends BoxModel {
     private SystemModelModeTwo systemModelModeTwo;
     public double mu;
+    public double friction;
 
     public MiddleBoxModel(SystemModelModeTwo systemModelModeTwo, double mass, double mu) {
         super(mass);
@@ -15,6 +16,10 @@ public class MiddleBoxModel extends BoxModel {
         this.mu = mu;
 
         calculateStartingPositionCoordinates();
+    }
+
+    public void updateFriction(double slopeAngle) {
+        friction = Math.abs(mu * mass * Constants.GRAVITY * MathTools.cos(slopeAngle));
     }
 
     @Override

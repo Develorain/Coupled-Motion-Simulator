@@ -95,6 +95,15 @@ public class MainViewModeTwo implements View, Paintable {
         String velocityValue = Double.toString(systemModelModeTwo.leftBox.velocity.getR());
         velocityTextField.setText(velocityValue);
 
+        String leftBoxFrictionValue = Double.toString(systemModelModeTwo.leftBox.friction);
+        leftBoxFrictionTextField.setText(leftBoxFrictionValue);
+
+        String middleBoxFrictionValue = Double.toString(systemModelModeTwo.middleBox.friction);
+        middleBoxFrictionTextField.setText(middleBoxFrictionValue);
+
+        String rightBoxFrictionValue = Double.toString(systemModelModeTwo.rightBox.friction);
+        rightBoxFrictionTextField.setText(rightBoxFrictionValue);
+
         String leftWireTensionValue = Double.toString(systemModelModeTwo.leftWire.tension);
         leftWireTensionTextField.setText(leftWireTensionValue);
 
