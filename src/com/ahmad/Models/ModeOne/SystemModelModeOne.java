@@ -62,6 +62,7 @@ public class SystemModelModeOne extends Model implements SystemModel {
         }
     }
 
+    // TODO: this value is WRONG!. Put in 100 on leftMass and there is no acceleration!!!
     private void updateAcceleration(double massLeft, double massRight, double friction, double angle) {
         double accelerationOfSystemWithoutFriction = (massRight * Constants.GRAVITY - massLeft * Constants.GRAVITY * MathTools.sin(angle)) / (massLeft + massRight);
 
@@ -77,6 +78,8 @@ public class SystemModelModeOne extends Model implements SystemModel {
 
         } else if (accelerationOfSystemWithoutFriction < 0) {
             accelerationOfSystem = (massLeft * Constants.GRAVITY * MathTools.sin(angle) - friction - massRight * Constants.GRAVITY) / (massLeft + massRight);
+
+            System.out.println(accelerationOfSystem);
 
             // Friction only limits motion
             if (accelerationOfSystem > 0) {

@@ -17,7 +17,7 @@ public class DanglingBoxModel extends BoxModel {
     @Override
     public void calculateStartingPositionCoordinates() {
         topLeftCorner.setX(systemModelModeOne.pulley.topLeftCorner.getX() + systemModelModeOne.pulley.radius);
-        topLeftCorner.setY(systemModelModeOne.pulley.topLeftCorner.getY() + systemModelModeOne.pulley.diameter);
+        topLeftCorner.setY((systemModelModeOne.slope.rightCoord.getY() + Constants.SIMULATION_HEIGHT_PIXELS) / 2 - (boxHeight / 2));
 
         calculateBoxVerticesFromTopLeft();
     }

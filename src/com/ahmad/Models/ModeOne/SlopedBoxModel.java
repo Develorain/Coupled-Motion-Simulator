@@ -21,8 +21,10 @@ public class SlopedBoxModel extends BoxModel {
     @Override
     public void calculateStartingPositionCoordinates() {
         // Calculate the coordinates of the four corners of the box based on its position
-        topLeftCorner.setX(systemModelModeOne.slope.leftCoord.getX() - boxWidth * MathTools.sin(systemModelModeOne.getSlopeAngle()));
-        topLeftCorner.setY(systemModelModeOne.slope.leftCoord.getY() - boxHeight * MathTools.cos(systemModelModeOne.getSlopeAngle()));
+        topLeftCorner.setX((systemModelModeOne.slope.leftCoord.getX() + systemModelModeOne.slope.rightCoord.getX()) / 2
+                - boxWidth * MathTools.sin(systemModelModeOne.getSlopeAngle()) - (boxWidth / 2) * MathTools.cos(systemModelModeOne.getSlopeAngle()));
+        topLeftCorner.setY((systemModelModeOne.slope.leftCoord.getY() + systemModelModeOne.slope.rightCoord.getY()) / 2
+                - boxHeight * MathTools.cos(systemModelModeOne.getSlopeAngle()) + (boxHeight / 2) * MathTools.sin(systemModelModeOne.getSlopeAngle()));
 
         calculateBoxVerticesFromTopLeft();
     }
