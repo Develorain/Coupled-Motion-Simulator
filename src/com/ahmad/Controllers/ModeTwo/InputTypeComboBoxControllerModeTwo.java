@@ -83,7 +83,7 @@ public class InputTypeComboBoxControllerModeTwo implements ActionListener {
                 mainViewModeTwo.leftSlopeAngleTextField.setText("45");
 
                 mainViewModeTwo.middleBoxMassTextField.setText("1");
-                mainViewModeTwo.middleBoxMuTextField.setText("1");
+                mainViewModeTwo.middleBoxMuTextField.setText("0");
 
                 mainViewModeTwo.rightBoxMassTextField.setText("1");
                 mainViewModeTwo.rightBoxMuTextField.setText("0");

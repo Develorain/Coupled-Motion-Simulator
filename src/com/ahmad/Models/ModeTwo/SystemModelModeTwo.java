@@ -2,8 +2,6 @@ package com.ahmad.Models.ModeTwo;
 
 import com.ahmad.Models.Model;
 import com.ahmad.Models.SystemModel;
-import com.ahmad.Tools.Constants;
-import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
 import com.ahmad.Views.ModeTwo.MainViewModeTwo;
 import com.ahmad.Views.View;
@@ -66,15 +64,19 @@ public class SystemModelModeTwo extends Model implements SystemModel {
                 rightBox.mu = Double.parseDouble(mainViewModeTwo.rightBoxMuTextField.getText());
 
                 leftSlopeAngle = Double.parseDouble(mainViewModeTwo.leftSlopeAngleTextField.getText());
-                rightSlopeAngle = 180 - Double.parseDouble(mainViewModeTwo.rightSlopeAngleTextField.getText());
+                rightSlopeAngle = Double.parseDouble(mainViewModeTwo.rightSlopeAngleTextField.getText());
 
                 leftBox.updateFriction(leftSlopeAngle);
                 middleBox.updateFriction(middleSlopeAngle);
                 rightBox.updateFriction(rightSlopeAngle);
-                updateAcceleration(leftBox.getMass(), rightBox.getMass());
+
+                leftBox.updateXComponentOfGravitationalForce(leftSlopeAngle);
+                rightBox.updateXComponentOfGravitationalForce(rightSlopeAngle);
+
+                updateAcceleration();
+
                 leftWire.updateTension(leftBox.mass, accelerationOfSystem, leftSlopeAngle, leftBox.mu);
                 rightWire.updateTension(rightBox.mass, accelerationOfSystem, rightSlopeAngle, rightBox.mu);
-
                 break;
         }
     }
@@ -102,26 +104,31 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         updateView();
     }
 
-    private void updateAcceleration(double massLeft, double massRight) {
-        double accelerationWithoutFriction = (massRight * Constants.GRAVITY * MathTools.sin(rightSlopeAngle) - massLeft * Constants.GRAVITY * MathTools.sin(leftSlopeAngle)) / (massLeft + massRight);
+    private void updateAcceleration() {
+        double accelerationWithoutFriction = (
+                rightBox.xComponentOfGravitationalForce - leftBox.xComponentOfGravitationalForce)
+                / (leftBox.getMass() + middleBox.getMass() + rightBox.getMass());
+
         if (accelerationWithoutFriction == 0) {
             accelerationOfSystem = 0;
         } else if (accelerationWithoutFriction > 0) {
-            accelerationOfSystem = (Constants.GRAVITY * (
-                    massRight * MathTools.sin(rightSlopeAngle)
-                            - massLeft * MathTools.sin(leftSlopeAngle)
-                            - rightBox.getMu() * massRight * MathTools.cos(rightSlopeAngle)
-                            - middleBox.getMu() * middleBox.getMass()
-                            - leftBox.getMu() * massLeft * MathTools.cos(leftSlopeAngle)
-            )) / (leftBox.getMass() + middleBox.getMass() + massRight);
+            accelerationOfSystem = (rightBox.xComponentOfGravitationalForce - leftBox.xComponentOfGravitationalForce
+                    - leftBox.friction - rightBox.friction - middleBox.friction)
+                    / (leftBox.getMass() + middleBox.getMass() + rightBox.getMass());
+
+            // Friction only limits movement
+            if (accelerationOfSystem < 0) {
+                accelerationOfSystem = 0;
+            }
         } else if (accelerationWithoutFriction < 0) {
-            accelerationOfSystem = (Constants.GRAVITY * (
-                    massLeft * MathTools.sin(leftSlopeAngle)
-                            - massRight * MathTools.sin(rightSlopeAngle)
-                            - rightBox.getMu() * rightBox.getMass() * MathTools.cos(rightSlopeAngle)
-                            - middleBox.getMu() * middleBox.getMass()
-                            - leftBox.getMu() * leftBox.getMass() * MathTools.cos(leftSlopeAngle)
-            )) / (massLeft + middleBox.getMass() + massRight);
+            accelerationOfSystem = -(leftBox.xComponentOfGravitationalForce - rightBox.xComponentOfGravitationalForce
+                    - leftBox.friction - middleBox.friction - rightBox.friction)
+                    / (leftBox.getMass() + middleBox.getMass() + rightBox.getMass());
+
+            // Friction only limits movement
+            if (accelerationOfSystem > 0) {
+                accelerationOfSystem = 0;
+            }
         }
 
         setBoxAccelerations();

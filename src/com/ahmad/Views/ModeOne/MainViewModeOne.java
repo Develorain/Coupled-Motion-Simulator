@@ -342,5 +342,7 @@ public class MainViewModeOne implements View, Paintable {
         GraphicsPainter.drawSlopedBox(graphics, systemModelModeOne.getSlopedBox(), systemModelModeOne.getSlopeAngle(), false);
         GraphicsPainter.drawDanglingBox(graphics, systemModelModeOne.getDanglingBox());
         GraphicsPainter.drawWire(graphics, systemModelModeOne.wire);
+
+        GraphicsPainter.drawWall(graphics, systemModelModeOne.slope);
     }
 }

@@ -2,8 +2,6 @@ package com.ahmad.Models.ModeOne;
 
 import com.ahmad.Models.Model;
 import com.ahmad.Models.SystemModel;
-import com.ahmad.Tools.Constants;
-import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
 import com.ahmad.Views.ModeOne.MainViewModeOne;
 import com.ahmad.Views.View;
@@ -45,7 +43,12 @@ public class SystemModelModeOne extends Model implements SystemModel {
                 slopeAngle = Double.parseDouble(mainViewModeOne.leftSlopeAngleTextField.getText());
 
                 slopedBox.updateFriction(slopeAngle);
-                updateAcceleration(slopedBox.getMass(), danglingBox.getMass(), slopedBox.friction, slopeAngle); // TODO: there is no point of passing it in as parameters
+
+                slopedBox.updateXComponentOfGravitationalForce(slopeAngle);
+                danglingBox.updateXComponentOfGravitationalForce();
+
+                updateAccelerationInputTypeOne();
+
                 wire.updateTension(danglingBox.getMass(), accelerationOfSystem);
                 break;
 
@@ -56,20 +59,25 @@ public class SystemModelModeOne extends Model implements SystemModel {
                 danglingBox.mass = Double.parseDouble(mainViewModeOne.rightBoxMassTextField.getText());
 
                 slopedBox.updateFriction(slopeAngle);
-                updateAcceleration(wire.tension, danglingBox.getMass());
+
+                danglingBox.updateXComponentOfGravitationalForce();
+
+                updateAccelerationInputTypeTwo();
+
                 slopedBox.updateMass(slopeAngle, danglingBox.mass, accelerationOfSystem, slopedBox.mu);
                 break;
         }
     }
 
-    // TODO: this value is WRONG!. Put in 100 on leftMass and there is no acceleration!!!
-    private void updateAcceleration(double massLeft, double massRight, double friction, double angle) {
-        double accelerationOfSystemWithoutFriction = (massRight * Constants.GRAVITY - massLeft * Constants.GRAVITY * MathTools.sin(angle)) / (massLeft + massRight);
+    private void updateAccelerationInputTypeOne() {
+        double accelerationOfSystemWithoutFriction = (danglingBox.xComponentOfGravitationalForce - slopedBox.xComponentOfGravitationalForce)
+                / (slopedBox.getMass() + danglingBox.getMass());
 
         if (accelerationOfSystemWithoutFriction == 0) {
             accelerationOfSystem = 0;
         } else if (accelerationOfSystemWithoutFriction > 0) {
-            accelerationOfSystem = (massRight * Constants.GRAVITY - massLeft * Constants.GRAVITY * MathTools.sin(angle) - friction) / (massLeft + massRight);
+            accelerationOfSystem = (danglingBox.xComponentOfGravitationalForce - slopedBox.xComponentOfGravitationalForce - slopedBox.friction)
+                    / (slopedBox.getMass() + danglingBox.getMass());
 
             // Friction only limits motion
             if (accelerationOfSystem < 0) {
@@ -77,9 +85,8 @@ public class SystemModelModeOne extends Model implements SystemModel {
             }
 
         } else if (accelerationOfSystemWithoutFriction < 0) {
-            accelerationOfSystem = (massLeft * Constants.GRAVITY * MathTools.sin(angle) - friction - massRight * Constants.GRAVITY) / (massLeft + massRight);
-
-            System.out.println(accelerationOfSystem);
+            accelerationOfSystem = -(slopedBox.xComponentOfGravitationalForce - slopedBox.friction - danglingBox.xComponentOfGravitationalForce)
+                    / (slopedBox.getMass() + danglingBox.getMass());
 
             // Friction only limits motion
             if (accelerationOfSystem > 0) {
@@ -90,8 +97,8 @@ public class SystemModelModeOne extends Model implements SystemModel {
         setBoxAccelerations();
     }
 
-    private void updateAcceleration(double tension, double massRight) {
-        accelerationOfSystem = (massRight * Constants.GRAVITY - tension) / massRight;
+    private void updateAccelerationInputTypeTwo() {
+        accelerationOfSystem = (danglingBox.xComponentOfGravitationalForce - wire.tension) / danglingBox.getMass();
 
         setBoxAccelerations();
     }

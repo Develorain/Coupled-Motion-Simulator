@@ -14,6 +14,10 @@ public class DanglingBoxModel extends BoxModel {
         calculateStartingPositionCoordinates();
     }
 
+    public void updateXComponentOfGravitationalForce() {
+        xComponentOfGravitationalForce = mass * Constants.GRAVITY;
+    }
+
     @Override
     public void calculateStartingPositionCoordinates() {
         topLeftCorner.setX(systemModelModeOne.pulley.topLeftCorner.getX() + systemModelModeOne.pulley.radius);

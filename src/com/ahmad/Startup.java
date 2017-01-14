@@ -35,8 +35,8 @@ public class Startup {
 // Is the way I refactored the StartButton correct? I feel like it was poorly written
 
 // TODO: < REAL TODO >
-// TODO: Implement mode two physics
-// TODO: Variable switching for mode two
+// TODO: Implement mode two input type two
+// TODO: if friction is stronger than force applied, acceleration should be 0
 
 // TODO: < BUGS >
 // TODO: HUGE BUG!!!: In mode two, if you switch to second input method, then switch back to first input method and run it, the program gives a completely wrong answer
@@ -57,12 +57,9 @@ public class Startup {
 // add data validation when a number is input (for example if a letter is put or if the whole value is erased)
 // putting in no mass breaks the program (for example, removing all the value of dangling box and pressing start), make an error occur
 // show how long simulation has been running for (time)
-// if simulation is active, and you select the angle text field, and press anything (ex. shift), the boxes move the their original position (solution, just disable all text fields when simulation starts)
 
 // TODO: < ALMOST USELESS >
 // round acceleration and velocity values
 // for mode one, draw a line from the end of the first slope to the bottom of the screen to show that there's a wall below the pulley
-// find a fix for jagged edges on sloped box (probably no fix)
 
 // if the friction is too great the box moves backwards. instead, the box should not move at all if frictional force is greater than gravity force (pretty sure this is out of date)
-// make sure the boxes don't start at the polar extremes of the slope

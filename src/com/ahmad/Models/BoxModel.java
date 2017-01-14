@@ -1,5 +1,7 @@
 package com.ahmad.Models;
 
+import com.ahmad.Tools.Constants;
+import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
 
 public abstract class BoxModel {
@@ -11,6 +13,7 @@ public abstract class BoxModel {
     protected final int boxWidth = 100;
     protected final int boxHeight = 100;
     public double mass;
+    public double xComponentOfGravitationalForce;    // The x component of the gravitational force on the box
 
     public Vector velocity = new Vector();
     public Vector acceleration;
@@ -31,16 +34,24 @@ public abstract class BoxModel {
         calculateBoxVerticesFromTopLeft();
     }
 
-    public void setAcceleration(Vector acceleration) {
-        this.acceleration = acceleration;
+    public void updateXComponentOfGravitationalForce(double slopeAngle) {
+        xComponentOfGravitationalForce = mass * Constants.GRAVITY * MathTools.sin(slopeAngle);
     }
 
     public abstract void calculateStartingPositionCoordinates();
 
     public abstract void calculateBoxVerticesFromTopLeft();
 
+    public void setAcceleration(Vector acceleration) {
+        this.acceleration = acceleration;
+    }
+
     public double getMass() {
         return mass;
+    }
+
+    public void setMass(double mass) {
+        this.mass = mass;
     }
 
     public int getBoxWidth() {
