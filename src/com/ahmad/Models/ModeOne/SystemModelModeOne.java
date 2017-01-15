@@ -37,11 +37,6 @@ public class SystemModelModeOne extends Model implements SystemModel {
         wire = new WireModelModeOne(this);
     }
 
-    @Override
-    public void setActive() {
-        isActive = true;
-    }
-
     public void takeInputAndInitializeConstantValues(View mainView) {
         MainViewModeOne mainViewModeOne = (MainViewModeOne) mainView;
 

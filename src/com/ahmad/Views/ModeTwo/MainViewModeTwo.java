@@ -5,7 +5,7 @@ import com.ahmad.Controllers.ModeTwo.InputTypeComboBoxControllerModeTwo;
 import com.ahmad.Controllers.ModeTwo.LeftAngleTextFieldController;
 import com.ahmad.Controllers.ModeTwo.RightAngleTextFieldController;
 import com.ahmad.Controllers.ResetButtonController;
-import com.ahmad.Controllers.StartButtonController;
+import com.ahmad.Controllers.ModeTwo.StartButtonControllerModeTwo;
 import com.ahmad.Models.ModeTwo.SystemModelModeTwo;
 import com.ahmad.Startup;
 import com.ahmad.Tools.Constants;
@@ -18,8 +18,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainViewModeTwo implements View, Paintable {
-    private boolean fieldsAreDisabled = false;
-
     public CustomPanel systemPanel;
 
     private SystemModelModeTwo systemModelModeTwo;
@@ -83,46 +81,6 @@ public class MainViewModeTwo implements View, Paintable {
 
     @Override
     public void update() {
-        if (systemModelModeTwo.isActive && !fieldsAreDisabled) {
-            fieldsAreDisabled = true;
-
-            accelerationTextField.setEditable(false);
-            velocityTextField.setEditable(false);
-            leftBoxMassTextField.setEditable(false);
-            leftBoxMuTextField.setEditable(false);
-            leftBoxFrictionTextField.setEditable(false);
-            leftWireTensionTextField.setEditable(false);
-            leftSlopeAngleTextField.setEditable(false);
-            middleBoxMassTextField.setEditable(false);
-            middleBoxMuTextField.setEditable(false);
-            middleBoxFrictionTextField.setEditable(false);
-            rightBoxMassTextField.setEditable(false);
-            rightBoxMuTextField.setEditable(false);
-            rightBoxFrictionTextField.setEditable(false);
-            rightWireTensionTextField.setEditable(false);
-            rightSlopeAngleTextField.setEditable(false);
-            inputTypeComboBox.setEnabled(false);
-            startButton.setEnabled(false);
-
-            accelerationTextField.setFocusable(false);
-            velocityTextField.setFocusable(false);
-            leftBoxMassTextField.setFocusable(false);
-            leftBoxMuTextField.setFocusable(false);
-            leftBoxFrictionTextField.setFocusable(false);
-            leftWireTensionTextField.setFocusable(false);
-            leftSlopeAngleTextField.setFocusable(false);
-            middleBoxMassTextField.setFocusable(false);
-            middleBoxMuTextField.setFocusable(false);
-            middleBoxFrictionTextField.setFocusable(false);
-            rightBoxMassTextField.setFocusable(false);
-            rightBoxMuTextField.setFocusable(false);
-            rightBoxFrictionTextField.setFocusable(false);
-            rightWireTensionTextField.setFocusable(false);
-            rightSlopeAngleTextField.setFocusable(false);
-            inputTypeComboBox.setFocusable(false);
-            startButton.setFocusable(false);
-        }
-
         systemPanel.repaint();        // Repaints the simulation area
 
         updateBoxSystemInfoTable();   // Updates the box system's information table
@@ -158,8 +116,8 @@ public class MainViewModeTwo implements View, Paintable {
     }
 
     private void registerControllers() {
-        StartButtonController sbc = new StartButtonController(this, systemModelModeTwo);
-        startButton.addActionListener(sbc);
+        StartButtonControllerModeTwo sbl = new StartButtonControllerModeTwo(this, systemModelModeTwo);
+        startButton.addActionListener(sbl);
 
 
         LeftAngleTextFieldController latfc = new LeftAngleTextFieldController(leftSlopeAngleTextField, systemModelModeTwo);
