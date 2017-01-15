@@ -12,7 +12,6 @@ import java.util.TimerTask;
 public class StartButtonController implements ActionListener {
     private View view;
     private SystemModel systemModel;
-    private Timer timer;
 
     public StartButtonController(View view, SystemModel systemModel) {
         this.view = view;
@@ -20,6 +19,7 @@ public class StartButtonController implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent actionEvent) {
+        systemModel.setActive();
         systemModel.takeInputAndInitializeConstantValues(view);
 
         TimerTask timerTask = new TimerTask() {
@@ -28,7 +28,7 @@ public class StartButtonController implements ActionListener {
             }
         };
 
-        timer = new Timer();
+        Timer timer = new Timer();
 
         timer.scheduleAtFixedRate(timerTask, 0, 1000 / Constants.UPDATES_PER_SECOND);
     }

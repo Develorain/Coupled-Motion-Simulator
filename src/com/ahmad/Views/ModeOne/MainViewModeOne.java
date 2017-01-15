@@ -4,7 +4,7 @@ import com.ahmad.Controllers.ModeComboBoxController;
 import com.ahmad.Controllers.ModeOne.AngleTextFieldControllerModeOne;
 import com.ahmad.Controllers.ModeOne.InputTypeComboBoxControllerModeOne;
 import com.ahmad.Controllers.ResetButtonController;
-import com.ahmad.Controllers.ModeOne.StartButtonControllerModeOne;
+import com.ahmad.Controllers.StartButtonController;
 import com.ahmad.Models.ModeOne.SystemModelModeOne;
 import com.ahmad.Startup;
 import com.ahmad.Tools.Constants;
@@ -17,6 +17,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainViewModeOne implements View, Paintable {
+    private boolean fieldsAreDisabled = false;
+
     public CustomPanel systemPanel;
 
     public SystemModelModeOne systemModelModeOne;
@@ -57,6 +59,34 @@ public class MainViewModeOne implements View, Paintable {
 
     @Override
     public void update() {
+        if (systemModelModeOne.isActive && !fieldsAreDisabled) {
+            fieldsAreDisabled = true;
+
+            accelerationTextField.setEditable(false);
+            velocityTextField.setEditable(false);
+            tensionTextField.setEditable(false);
+            leftBoxMassTextField.setEditable(false);
+            leftBoxMuTextField.setEditable(false);
+            leftBoxFrictionTextField.setEditable(false);
+            leftSlopeAngleTextField.setEditable(false);
+            leftSlopeAngleTextField.setFocusable(false);
+            rightBoxMassTextField.setEditable(false);
+            inputTypeComboBox.setEnabled(false);
+            startButton.setEnabled(false);
+
+            accelerationTextField.setFocusable(false);
+            velocityTextField.setFocusable(false);
+            tensionTextField.setFocusable(false);
+            leftBoxMassTextField.setFocusable(false);
+            leftBoxMuTextField.setFocusable(false);
+            leftBoxFrictionTextField.setFocusable(false);
+            leftSlopeAngleTextField.setFocusable(false);
+            leftSlopeAngleTextField.setFocusable(false);
+            rightBoxMassTextField.setFocusable(false);
+            inputTypeComboBox.setFocusable(false);
+            startButton.setFocusable(false);
+        }
+
         systemPanel.repaint();       // Repaints the simulation area
 
         updateBoxSystemInfoTable();  // Updates the box system's information table
@@ -98,8 +128,8 @@ public class MainViewModeOne implements View, Paintable {
     }
 
     private void registerControllers() {
-        StartButtonControllerModeOne sbl = new StartButtonControllerModeOne(this, systemModelModeOne);
-        startButton.addActionListener(sbl);
+        StartButtonController sbc = new StartButtonController(this, systemModelModeOne);
+        startButton.addActionListener(sbc);
 
 
         AngleTextFieldControllerModeOne atfc = new AngleTextFieldControllerModeOne(leftSlopeAngleTextField, systemModelModeOne);
