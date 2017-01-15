@@ -54,6 +54,11 @@ public class SystemModelModeTwo extends Model implements SystemModel {
     }
 
     @Override
+    public void setActive() {
+        isActive = true;
+    }
+
+    @Override
     public void takeInputAndInitializeConstantValues(View mainView) {
         MainViewModeTwo mainViewModeTwo = (MainViewModeTwo) mainView;
 

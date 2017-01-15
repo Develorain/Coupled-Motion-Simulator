@@ -1,7 +1,6 @@
 package com.ahmad.Controllers.ModeOne;
 
 import com.ahmad.Models.ModeOne.SystemModelModeOne;
-import com.ahmad.Tools.Prompt;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
@@ -26,18 +25,24 @@ public class AngleTextFieldControllerModeOne implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent keyEvent) {
+        if (slopeAngleTextField.getText().isEmpty()) {
+            return;
+        }
+
         try {
             double slopeAngle = Double.parseDouble(slopeAngleTextField.getText());
 
             if (slopeAngle < 0 || slopeAngle > 90) {
-                systemModelModeOne.setSlopeAngle(0);
+                JOptionPane.showMessageDialog(null, "The angle must be between 0 and 90.");
 
-                Prompt.displayErrorMessage("The angle input is incorrect.");
+                slopeAngleTextField.setText("45");
             } else {
                 systemModelModeOne.setSlopeAngle(slopeAngle);
             }
-        } catch (Exception e) {
-            System.out.println("Error for angle");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "The angle must be a number.");
+
+            slopeAngleTextField.setText("45");
         }
     }
 }

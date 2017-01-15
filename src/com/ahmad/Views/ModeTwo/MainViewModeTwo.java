@@ -116,8 +116,8 @@ public class MainViewModeTwo implements View, Paintable {
     }
 
     private void registerControllers() {
-        StartButtonControllerModeTwo sbl = new StartButtonControllerModeTwo(this, systemModelModeTwo);
-        startButton.addActionListener(sbl);
+        StartButtonControllerModeTwo sbc = new StartButtonControllerModeTwo(this, systemModelModeTwo);
+        startButton.addActionListener(sbc);
 
 
         LeftAngleTextFieldController latfc = new LeftAngleTextFieldController(leftSlopeAngleTextField, systemModelModeTwo);

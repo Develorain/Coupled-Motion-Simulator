@@ -98,8 +98,8 @@ public class MainViewModeOne implements View, Paintable {
     }
 
     private void registerControllers() {
-        StartButtonControllerModeOne sbl = new StartButtonControllerModeOne(this, systemModelModeOne);
-        startButton.addActionListener(sbl);
+        StartButtonControllerModeOne sbc = new StartButtonControllerModeOne(this, systemModelModeOne);
+        startButton.addActionListener(sbc);
 
 
         AngleTextFieldControllerModeOne atfc = new AngleTextFieldControllerModeOne(leftSlopeAngleTextField, systemModelModeOne);
