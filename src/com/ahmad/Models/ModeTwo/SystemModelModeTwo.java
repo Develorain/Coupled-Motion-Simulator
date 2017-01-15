@@ -9,7 +9,7 @@ import com.ahmad.Views.ModeTwo.MainViewModeTwo;
 import com.ahmad.Views.View;
 
 public class SystemModelModeTwo extends Model implements SystemModel {
-    public boolean isActive = false;
+    private boolean isActive = false;
 
     public LeftBoxModel leftBox;
     public MiddleBoxModel middleBox;
@@ -62,32 +62,28 @@ public class SystemModelModeTwo extends Model implements SystemModel {
     public void takeInputAndInitializeConstantValues(View mainView) {
         MainViewModeTwo mainViewModeTwo = (MainViewModeTwo) mainView;
 
-        switch (mainViewModeTwo.inputTypeComboBox.getSelectedIndex()) {
-            case 0:
-                leftBox.mass = Double.parseDouble(mainViewModeTwo.leftBoxMassTextField.getText());
-                middleBox.mass = Double.parseDouble(mainViewModeTwo.middleBoxMassTextField.getText());
-                rightBox.mass = Double.parseDouble(mainViewModeTwo.rightBoxMassTextField.getText());
+        leftBox.mass = Double.parseDouble(mainViewModeTwo.leftBoxMassTextField.getText());
+        middleBox.mass = Double.parseDouble(mainViewModeTwo.middleBoxMassTextField.getText());
+        rightBox.mass = Double.parseDouble(mainViewModeTwo.rightBoxMassTextField.getText());
 
-                leftBox.mu = Double.parseDouble(mainViewModeTwo.leftBoxMuTextField.getText());
-                middleBox.mu = Double.parseDouble(mainViewModeTwo.middleBoxMuTextField.getText());
-                rightBox.mu = Double.parseDouble(mainViewModeTwo.rightBoxMuTextField.getText());
+        leftBox.mu = Double.parseDouble(mainViewModeTwo.leftBoxMuTextField.getText());
+        middleBox.mu = Double.parseDouble(mainViewModeTwo.middleBoxMuTextField.getText());
+        rightBox.mu = Double.parseDouble(mainViewModeTwo.rightBoxMuTextField.getText());
 
-                leftSlopeAngle = Double.parseDouble(mainViewModeTwo.leftSlopeAngleTextField.getText());
-                rightSlopeAngle = 180 - Double.parseDouble(mainViewModeTwo.rightSlopeAngleTextField.getText());
+        leftSlopeAngle = Double.parseDouble(mainViewModeTwo.leftSlopeAngleTextField.getText());
+        rightSlopeAngle = 180 - Double.parseDouble(mainViewModeTwo.rightSlopeAngleTextField.getText());
 
-                leftBox.updateFriction(leftSlopeAngle);
-                middleBox.updateFriction(middleSlopeAngle);
-                rightBox.updateFriction(rightSlopeAngle);
+        leftBox.updateFriction(leftSlopeAngle);
+        middleBox.updateFriction(middleSlopeAngle);
+        rightBox.updateFriction(rightSlopeAngle);
 
-                leftBox.updateXComponentOfGravitationalForce(leftSlopeAngle);
-                rightBox.updateXComponentOfGravitationalForce(180 - rightSlopeAngle);
+        leftBox.updateXComponentOfGravitationalForce(leftSlopeAngle);
+        rightBox.updateXComponentOfGravitationalForce(180 - rightSlopeAngle);
 
-                updateAcceleration();
+        updateAcceleration();
 
-                leftWire.updateTension(leftBox.mass, accelerationOfSystem, leftSlopeAngle, leftBox.mu);
-                rightWire.updateTension(rightBox.mass, accelerationOfSystem, rightSlopeAngle, rightBox.mu);
-                break;
-        }
+        leftWire.updateTension(leftBox.mass, accelerationOfSystem, leftSlopeAngle, leftBox.mu);
+        rightWire.updateTension(rightBox.mass, accelerationOfSystem, rightSlopeAngle, rightBox.mu);
     }
 
     public void iterate() {

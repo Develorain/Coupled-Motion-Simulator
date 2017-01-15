@@ -35,17 +35,12 @@ public class Startup {
 }
 
 // TODO: < REAL TODO >
-// Remove mode two input type two
-// remove hardcoded values
-
-// TODO: < DATA VALIDATION >
-// startbutton needs to check if angle is not empty (kinda like mu)
-// acceleration can not be greater than 9.8 or less than -9.8
-// add data validation when a number is input (for example if a letter is put or if the whole value is erased)
-// putting in no mass breaks the program (for example, removing all the value of dangling box and pressing start), make an error occur
+// pause and reset button
 
 // TODO: < QUALITY OF LIFE >
 // make window resizable (support for simulation area resizing, possibly scale when window is resized)
+// Window minimum size is a little too small on linux
 // round acceleration and velocity values
 // remove slopemodels classes, wires, etc
-// Window minimum size is a little too small on linux
+// puting 0f as a number doesn't give error
+// remove hardcoded values

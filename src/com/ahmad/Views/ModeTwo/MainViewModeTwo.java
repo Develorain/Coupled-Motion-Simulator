@@ -1,11 +1,10 @@
 package com.ahmad.Views.ModeTwo;
 
 import com.ahmad.Controllers.ModeComboBoxController;
-import com.ahmad.Controllers.ModeTwo.InputTypeComboBoxControllerModeTwo;
 import com.ahmad.Controllers.ModeTwo.LeftAngleTextFieldController;
 import com.ahmad.Controllers.ModeTwo.RightAngleTextFieldController;
-import com.ahmad.Controllers.ResetButtonController;
 import com.ahmad.Controllers.ModeTwo.StartButtonControllerModeTwo;
+import com.ahmad.Controllers.ResetButtonController;
 import com.ahmad.Models.ModeTwo.SystemModelModeTwo;
 import com.ahmad.Startup;
 import com.ahmad.Tools.Constants;
@@ -44,7 +43,6 @@ public class MainViewModeTwo implements View, Paintable {
     public JTextField rightWireTensionTextField;
     public JTextField rightSlopeAngleTextField;
 
-    public JComboBox inputTypeComboBox;
     public JComboBox modesComboBox;
     public JButton startButton;
     public JButton pauseButton;
@@ -134,9 +132,6 @@ public class MainViewModeTwo implements View, Paintable {
 
         ModeComboBoxController mcbc = new ModeComboBoxController(startup, modesComboBox);
         modesComboBox.addActionListener(mcbc);
-
-        InputTypeComboBoxControllerModeTwo itcbc = new InputTypeComboBoxControllerModeTwo(this);
-        inputTypeComboBox.addActionListener(itcbc);
     }
 
     private void layoutScreen() {
@@ -253,35 +248,26 @@ public class MainViewModeTwo implements View, Paintable {
         gc.gridheight = 1;
         gc.weighty = 1;
 
-        String[] inputTypeList = new String[]{
-                "Solve for Acceleration, All Tensions, and Friction",
-                "Placeholder 2 Placeholder 2 Placeholder 2"
-        };
-        inputTypeComboBox = new JComboBox<>(inputTypeList);
-        gc.gridx = 8;
-        gc.gridy = 1;
-        mainPanel.add(inputTypeComboBox, gc);
-
         String[] modesList = new String[]{"Two Box System", "Three Box System"};
         modesComboBox = new JComboBox<>(modesList);
         modesComboBox.setSelectedIndex(1);
         gc.gridx = 8;
-        gc.gridy = 2;
+        gc.gridy = 1;
         mainPanel.add(modesComboBox, gc);
 
         startButton = new JButton("Start Simulation");
         gc.gridx = 8;
-        gc.gridy = 3;
+        gc.gridy = 2;
         mainPanel.add(startButton, gc);
 
         pauseButton = new JButton("Pause Simulation");
         gc.gridx = 8;
-        gc.gridy = 4;
+        gc.gridy = 3;
         mainPanel.add(pauseButton, gc);
 
         resetButton = new JButton("Reset Simulation");
         gc.gridx = 8;
-        gc.gridy = 5;
+        gc.gridy = 4;
         mainPanel.add(resetButton, gc);
     }
 

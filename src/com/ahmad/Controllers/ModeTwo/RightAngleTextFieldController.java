@@ -25,12 +25,24 @@ public class RightAngleTextFieldController implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent keyEvent) {
+        if (slopeAngleTextField.getText().isEmpty()) {
+            return;
+        }
+
         try {
             double slopeAngle = Double.parseDouble(slopeAngleTextField.getText());
 
-            systemModelModeTwo.setRightSlopeAngle(180 - slopeAngle);
-        } catch (Exception e) {
-            System.out.println("Error for angle");
+            if (slopeAngle < 0 || slopeAngle > 90) {
+                JOptionPane.showMessageDialog(null, "The right angle must be between 0 and 90.");
+
+                slopeAngleTextField.setText("45");
+            } else {
+                systemModelModeTwo.setRightSlopeAngle(180 - slopeAngle);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "The right angle must be a number.");
+
+            slopeAngleTextField.setText("45");
         }
     }
 }

@@ -10,7 +10,7 @@ import com.ahmad.Views.ModeOne.MainViewModeOne;
 import com.ahmad.Views.View;
 
 public class SystemModelModeOne extends Model implements SystemModel {
-    public boolean isActive = false;
+    private boolean isActive = false;
 
     public SlopeModelModeOne slope;
     public PulleyModel pulley;

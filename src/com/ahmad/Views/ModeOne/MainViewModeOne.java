@@ -3,8 +3,8 @@ package com.ahmad.Views.ModeOne;
 import com.ahmad.Controllers.ModeComboBoxController;
 import com.ahmad.Controllers.ModeOne.AngleTextFieldControllerModeOne;
 import com.ahmad.Controllers.ModeOne.InputTypeComboBoxControllerModeOne;
-import com.ahmad.Controllers.ResetButtonController;
 import com.ahmad.Controllers.ModeOne.StartButtonControllerModeOne;
+import com.ahmad.Controllers.ResetButtonController;
 import com.ahmad.Models.ModeOne.SystemModelModeOne;
 import com.ahmad.Startup;
 import com.ahmad.Tools.Constants;
@@ -145,20 +145,20 @@ public class MainViewModeOne implements View, Paintable {
         gc.gridheight = 1;
         gc.weighty = 1;
 
+        String[] modesList = new String[]{"Two Box System", "Three Box System"};
+        modesComboBox = new JComboBox<>(modesList);
+        gc.gridx = 6;
+        gc.gridy = 1;
+        mainPanel.add(modesComboBox, gc);
+
         String[] inputTypeList = new String[]{
                 "Solve for Friction, Acceleration, and Tension",
                 "Solve for Acceleration, Left Mass, and Friction"
         };
         inputTypeComboBox = new JComboBox<>(inputTypeList);
         gc.gridx = 6;
-        gc.gridy = 1;
-        mainPanel.add(inputTypeComboBox, gc);
-
-        String[] modesList = new String[]{"Two Box System", "Three Box System"};
-        modesComboBox = new JComboBox<>(modesList);
-        gc.gridx = 6;
         gc.gridy = 2;
-        mainPanel.add(modesComboBox, gc);
+        mainPanel.add(inputTypeComboBox, gc);
 
         startButton = new JButton("Start Simulation");
         gc.gridx = 6;
