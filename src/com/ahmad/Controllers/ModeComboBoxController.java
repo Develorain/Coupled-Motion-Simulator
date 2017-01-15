@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 public class ModeComboBoxController implements ActionListener {
     private Startup startup;
     private JComboBox modesComboBox;
+    // taha says we only need a jcombobox
 
     public ModeComboBoxController(Startup startup, JComboBox modesComboBox) {
         this.startup = startup;

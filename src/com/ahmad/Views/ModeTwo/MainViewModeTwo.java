@@ -125,8 +125,7 @@ public class MainViewModeTwo implements View, Paintable {
         rightSlopeAngleTextField.addKeyListener(ratfc);
 
 
-        ResetButtonController rbc = new ResetButtonController(accelerationTextField, velocityTextField,
-                leftBoxMassTextField, leftBoxMuTextField, rightBoxMassTextField, leftSlopeAngleTextField);
+        ResetButtonController rbc = new ResetButtonController(startup, modesComboBox);
         resetButton.addActionListener(rbc);
 
 
@@ -221,7 +220,7 @@ public class MainViewModeTwo implements View, Paintable {
         gc.gridwidth = 1;
         mainPanel.add(rightBoxFrictionLabel, gc);
 
-        rightBoxMassTextField = new JTextField("1", 10);
+        rightBoxMassTextField = new JTextField("2", 10);
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 7;
         gc.gridy = 2;

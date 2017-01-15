@@ -1,35 +1,43 @@
 package com.ahmad.Controllers;
 
+import com.ahmad.Models.ModeOne.SystemModelModeOne;
+import com.ahmad.Models.ModeTwo.SystemModelModeTwo;
+import com.ahmad.Startup;
+import com.ahmad.Views.ModeOne.MainViewModeOne;
+import com.ahmad.Views.ModeTwo.MainViewModeTwo;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ResetButtonController implements ActionListener {
-    private JTextField accelerationTextField;
-    private JTextField velocityTextField;
-    private JTextField boxAMassTextField;
-    private JTextField boxAMuTextField;
-    private JTextField boxBMassTextField;
-    private JTextField slopeAAngleTextField;
+    private Startup startup;
+    private JComboBox modesComboBox;
 
-    public ResetButtonController(JTextField accelerationTextField, JTextField velocityTextField,
-                                 JTextField boxAMassTextField, JTextField boxAMuTextField,
-                                 JTextField boxBMassTextField, JTextField slopeAAngleTextField) {
-        this.accelerationTextField = accelerationTextField;
-        this.velocityTextField = velocityTextField;
-        this.boxAMassTextField = boxAMassTextField;
-        this.boxAMuTextField = boxAMuTextField;
-        this.boxBMassTextField = boxBMassTextField;
-        this.slopeAAngleTextField = slopeAAngleTextField;
+    public ResetButtonController(Startup startup, JComboBox modesComboBox) {
+        this.startup = startup;
+        this.modesComboBox = modesComboBox;
     }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        accelerationTextField.setText("");
-        velocityTextField.setText("");
-        boxAMassTextField.setText("100");
-        boxAMuTextField.setText("0");
-        boxBMassTextField.setText("1");
-        slopeAAngleTextField.setText("45");
+        int currentMode = modesComboBox.getSelectedIndex();
+
+        JPanel contentPane = (JPanel) startup.getJFrame().getContentPane();
+        contentPane.removeAll();
+
+        if (currentMode == 0) {
+            MainViewModeOne mainViewModeOne = new MainViewModeOne(startup, new SystemModelModeOne());
+
+            contentPane.add(mainViewModeOne.mainPanel);
+        } else if (currentMode == 1) {
+            MainViewModeTwo mainViewModeTwo = new MainViewModeTwo(startup, new SystemModelModeTwo());
+
+            contentPane.add(mainViewModeTwo.mainPanel);
+        }
+
+        startup.getJFrame().pack();
+        startup.getJFrame().setMinimumSize(startup.getJFrame().getSize());
+        contentPane.revalidate();
     }
 }

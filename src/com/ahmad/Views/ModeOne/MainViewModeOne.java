@@ -106,8 +106,7 @@ public class MainViewModeOne implements View, Paintable {
         leftSlopeAngleTextField.addKeyListener(atfc);
 
 
-        ResetButtonController rbc = new ResetButtonController(accelerationTextField, velocityTextField,
-                leftBoxMassTextField, leftBoxMuTextField, rightBoxMassTextField, leftSlopeAngleTextField);
+        ResetButtonController rbc = new ResetButtonController(startup, modesComboBox);
         resetButton.addActionListener(rbc);
 
 
