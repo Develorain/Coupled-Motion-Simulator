@@ -185,7 +185,6 @@ public class MainViewModeTwo implements View, Paintable {
         GridBagConstraints gc = new GridBagConstraints();
 
         // Creates and adds simulation view to the main JPanel
-        //gc.fill = GridBagConstraints.BOTH;
         gc.anchor = GridBagConstraints.CENTER;
         gc.gridx = 0;
         gc.gridy = 0;

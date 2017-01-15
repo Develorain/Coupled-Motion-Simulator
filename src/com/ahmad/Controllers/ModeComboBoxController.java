@@ -37,6 +37,7 @@ public class ModeComboBoxController implements ActionListener {
         }
 
         startup.getJFrame().pack();
+        startup.getJFrame().setMinimumSize(startup.getJFrame().getSize());
         contentPane.revalidate();
     }
 }

@@ -4,7 +4,6 @@ public class Vector {
     private double x;
     private double y;
 
-    // http://stackoverflow.com/questions/929021/what-are-static-factory-methods
     public static Vector createFromCartesian(double x, double y) {
         Vector vector = new Vector();
         vector.setX(x);
