@@ -36,10 +36,11 @@ public class Startup {
 
 // TODO: < REAL TODO >
 // Remove mode two input type two
+// remove hardcoded values
 
 // TODO: < DATA VALIDATION >
-// acceleration can not be greater than 9.8 or less than -9.8, mu can't be negative, angle must be 0 <= angle <= 90
 // user can input negative angles and angles above 90 degrees
+// acceleration can not be greater than 9.8 or less than -9.8, mu can't be negative, angle must be 0 <= angle <= 90
 // add data validation when a number is input (for example if a letter is put or if the whole value is erased)
 // putting in no mass breaks the program (for example, removing all the value of dangling box and pressing start), make an error occur
 
