@@ -17,12 +17,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainViewModeTwo implements View, Paintable {
-    public CustomPanel systemPanel;
+    private CustomPanel systemPanel;
 
     private SystemModelModeTwo systemModelModeTwo;
 
     public JPanel mainPanel = new JPanel(new GridBagLayout());
-    public Startup startup;
+    private Startup startup;
 
     public JTextField accelerationTextField;
     public JTextField velocityTextField;
@@ -43,10 +43,9 @@ public class MainViewModeTwo implements View, Paintable {
     public JTextField rightWireTensionTextField;
     public JTextField rightSlopeAngleTextField;
 
-    public JComboBox modesComboBox;
+    private JComboBox modesComboBox;
     public JButton startButton;
-    public JButton pauseButton;
-    public JButton resetButton;
+    private JButton resetButton;
 
     public MainViewModeTwo(Startup startup, SystemModelModeTwo systemModelModeTwo) {
         this.startup = startup;
@@ -259,14 +258,9 @@ public class MainViewModeTwo implements View, Paintable {
         gc.gridy = 2;
         mainPanel.add(startButton, gc);
 
-        pauseButton = new JButton("Pause Simulation");
-        gc.gridx = 8;
-        gc.gridy = 3;
-        mainPanel.add(pauseButton, gc);
-
         resetButton = new JButton("Reset Simulation");
         gc.gridx = 8;
-        gc.gridy = 4;
+        gc.gridy = 3;
         mainPanel.add(resetButton, gc);
     }
 

@@ -20,9 +20,9 @@ public class SystemModelModeOne extends Model implements SystemModel {
 
     public WireModelModeOne wire;
 
-    public double accelerationOfSystem;
+    private double accelerationOfSystem;
     public double slopeAngle;
-    public long simulationStartTime;
+    private long simulationStartTime;
 
     public SystemModelModeOne() {
         slopeAngle = 45;

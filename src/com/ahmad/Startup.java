@@ -34,9 +34,6 @@ public class Startup {
     }
 }
 
-// TODO: < REAL TODO >
-// pause button
-
 // TODO: < QUALITY OF LIFE >
 // make window resizable (support for simulation area resizing, possibly scale when window is resized)
 // Window minimum size is a little too small on linux
