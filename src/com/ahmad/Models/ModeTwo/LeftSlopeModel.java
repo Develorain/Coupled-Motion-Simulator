@@ -22,7 +22,6 @@ public class LeftSlopeModel extends SlopeModel {
             tempX -= MathTools.cos(systemModelModeTwo.getLeftSlopeAngle());
             tempY += MathTools.sin(systemModelModeTwo.getLeftSlopeAngle());
 
-            // TODO: 100 hardcoded value... remove later
             if (tempX <= 0 || tempY >= Constants.SIMULATION_HEIGHT_PIXELS) {
                 // Set the x and y value to the calculated in-bounds coordinates
                 leftCoord.setX(tempX);

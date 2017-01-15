@@ -16,7 +16,6 @@ public class Startup {
         //jFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         jFrame.getContentPane().add(mainViewModeOne.mainPanel);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //jFrame.setSize(100, 100);
         jFrame.pack();
         jFrame.setVisible(true);
 
@@ -43,7 +42,7 @@ public class Startup {
 // TODO: Implement mode two input type two
 
 // TODO: < BUGS >
-// simulation view can not be less than 700 pixels wide without the boxes not being centered
+// remove slopemodels classes, wires, etc
 // borders should scale with window size, not 100 pixels absolute
 // acceleration can not be greater than 9.8 or less than -9.8, mu can't be negative, angle must be 0 <= angle <= 90
 

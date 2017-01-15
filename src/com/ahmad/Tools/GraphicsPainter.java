@@ -71,8 +71,8 @@ public class GraphicsPainter {
 
     public static void drawPulley(Graphics graphics, PulleyModel pulley) {
         graphics.fillOval(
-                (int) pulley.topLeftCorner.getX(),
-                (int) pulley.topLeftCorner.getY(),
+                (int) pulley.getTopLeftCorner().getX(),
+                (int) pulley.getTopLeftCorner().getY(),
                 (int) pulley.getDiameter(),
                 (int) pulley.getDiameter()
         );

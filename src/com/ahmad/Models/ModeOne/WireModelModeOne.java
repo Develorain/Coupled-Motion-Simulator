@@ -18,11 +18,11 @@ public class WireModelModeOne extends WireModel {
         leftStringLeftCoord.setX((systemModelModeOne.getSlopedBox().topRightCorner.getX() + systemModelModeOne.getSlopedBox().bottomRightCorner.getX()) / 2);
         leftStringLeftCoord.setY((systemModelModeOne.getSlopedBox().topRightCorner.getY() + systemModelModeOne.getSlopedBox().bottomRightCorner.getY()) / 2);
 
-        leftStringRightCoord.setX(systemModelModeOne.pulley.topLeftCorner.getX() + systemModelModeOne.pulley.getRadius() - systemModelModeOne.pulley.getRadius() * MathTools.sin(systemModelModeOne.slopeAngle));
-        leftStringRightCoord.setY(systemModelModeOne.pulley.topLeftCorner.getY() + systemModelModeOne.pulley.getRadius() - systemModelModeOne.pulley.getRadius() * MathTools.cos(systemModelModeOne.slopeAngle));
+        leftStringRightCoord.setX(systemModelModeOne.pulley.getTopLeftCorner().getX() + systemModelModeOne.pulley.getRadius() - systemModelModeOne.pulley.getRadius() * MathTools.sin(systemModelModeOne.slopeAngle));
+        leftStringRightCoord.setY(systemModelModeOne.pulley.getTopLeftCorner().getY() + systemModelModeOne.pulley.getRadius() - systemModelModeOne.pulley.getRadius() * MathTools.cos(systemModelModeOne.slopeAngle));
 
-        rightStringLeftCoord.setX(systemModelModeOne.pulley.topLeftCorner.getX() + systemModelModeOne.pulley.getDiameter());
-        rightStringLeftCoord.setY(systemModelModeOne.pulley.topLeftCorner.getY() + systemModelModeOne.pulley.getRadius());
+        rightStringLeftCoord.setX(systemModelModeOne.pulley.getTopLeftCorner().getX() + systemModelModeOne.pulley.getDiameter());
+        rightStringLeftCoord.setY(systemModelModeOne.pulley.getTopLeftCorner().getY() + systemModelModeOne.pulley.getRadius());
 
         rightStringRightCoord.setX((systemModelModeOne.getDanglingBox().topLeftCorner.getX() + systemModelModeOne.getDanglingBox().topRightCorner.getX()) / 2);
         rightStringRightCoord.setY(systemModelModeOne.getDanglingBox().topLeftCorner.getY());

@@ -24,7 +24,6 @@ public class SlopeModelModeOne extends SlopeModel {
             tempX -= MathTools.cos(systemModelModeOne.getSlopeAngle());
             tempY += MathTools.sin(systemModelModeOne.getSlopeAngle());
 
-            // TODO: remove hardcoded 100 value. this value represents how many pixels the slope will stop from the edge of the window
             if (tempX <= 0 || tempY >= Constants.SIMULATION_HEIGHT_PIXELS) {
                 // Set the x and y value to the calculated in-bounds coordinates
                 leftCoord.setX(tempX);

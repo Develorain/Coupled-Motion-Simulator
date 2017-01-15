@@ -1,8 +1,10 @@
 package com.ahmad.Models.ModeOne;
 
 import com.ahmad.Models.Model;
+import com.ahmad.Models.PulleyModel;
 import com.ahmad.Models.SystemModel;
 import com.ahmad.Tools.Constants;
+import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
 import com.ahmad.Views.ModeOne.MainViewModeOne;
 import com.ahmad.Views.View;
@@ -11,7 +13,7 @@ public class SystemModelModeOne extends Model implements SystemModel {
     public boolean isActive = false;
 
     public SlopeModelModeOne slope;
-    public PulleyModelModeOne pulley;
+    public PulleyModel pulley;
 
     public SlopedBoxModel slopedBox;
     public DanglingBoxModel danglingBox;
@@ -27,7 +29,7 @@ public class SystemModelModeOne extends Model implements SystemModel {
         simulationStartTime = 0;
 
         slope = new SlopeModelModeOne(this);
-        pulley = new PulleyModelModeOne(this);
+        pulley = createNewPulley();
 
         slopedBox = new SlopedBoxModel(this, 1, 0);
         danglingBox = new DanglingBoxModel(this, 1);
@@ -145,17 +147,25 @@ public class SystemModelModeOne extends Model implements SystemModel {
     }
 
     public void checkIfBoxesStillHaveRoomToMove() {
-        if ((slopedBox.bottomRightCorner.getX() > pulley.topLeftCorner.getX() && slopedBox.topRightCorner.getY() < (pulley.topLeftCorner.getY() + pulley.getDiameter()))
+        if ((slopedBox.bottomRightCorner.getX() > pulley.getTopLeftCorner().getX() && slopedBox.topRightCorner.getY() < (pulley.getTopLeftCorner().getY() + pulley.getDiameter()))
                 || danglingBox.bottomLeftCorner.getY() > Constants.SIMULATION_HEIGHT_PIXELS) {
             isActive = false;
         }
+    }
+
+    private PulleyModel createNewPulley() {
+        final int radius = 50;
+
+        return new PulleyModel(radius,
+                slope.rightCoord.getX() - radius + radius * MathTools.cos(slopeAngle),
+                slope.rightCoord.getY() - radius - radius * MathTools.sin(slopeAngle));
     }
 
     public void setSlopeAngle(double slopeAngle) {
         this.slopeAngle = slopeAngle;
 
         slope.calculateCoordinates();
-        pulley.calculateCoordinates();
+        pulley = createNewPulley();
 
         slopedBox.calculateStartingPositionCoordinates();
         danglingBox.calculateStartingPositionCoordinates();

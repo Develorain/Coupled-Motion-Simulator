@@ -1,7 +1,9 @@
 package com.ahmad.Models.ModeTwo;
 
 import com.ahmad.Models.Model;
+import com.ahmad.Models.PulleyModel;
 import com.ahmad.Models.SystemModel;
+import com.ahmad.Tools.MathTools;
 import com.ahmad.Tools.Vector;
 import com.ahmad.Views.ModeTwo.MainViewModeTwo;
 import com.ahmad.Views.View;
@@ -17,8 +19,8 @@ public class SystemModelModeTwo extends Model implements SystemModel {
     public MiddleSlopeModel middleSlope;
     public RightSlopeModel rightSlope;
 
-    public LeftPulleyModel leftPulley;
-    public RightPulleyModel rightPulley;
+    public PulleyModel leftPulley;
+    public PulleyModel rightPulley;
 
     public LeftWireModel leftWire;
     public RightWireModel rightWire;
@@ -40,8 +42,8 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         middleSlope = new MiddleSlopeModel(this);
         rightSlope = new RightSlopeModel(this);
 
-        leftPulley = new LeftPulleyModel(this);
-        rightPulley = new RightPulleyModel(this);
+        leftPulley = createLeftPulley();
+        rightPulley = createRightPulley();
 
         leftBox = new LeftBoxModel(this, 1, 0);
         middleBox = new MiddleBoxModel(this, 1, 0);
@@ -115,9 +117,25 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         }
     }
 
+    private PulleyModel createLeftPulley() {
+        final int radius = 25;
+
+        return new PulleyModel(radius,
+                leftSlope.rightCoord.getX() - radius * MathTools.sin(getLeftSlopeAngle()) - radius,
+                leftSlope.rightCoord.getY() - (radius * 2));
+    }
+
+    private PulleyModel createRightPulley() {
+        final int radius = 25;
+
+        return new PulleyModel(radius,
+                rightSlope.leftCoord.getX() - radius + radius * MathTools.sin(getRightSlopeAngle()),
+                rightSlope.leftCoord.getY() - (radius * 2));
+    }
+
     public void checkIfBoxesStillHaveRoomToMove() {
-        if (leftBox.bottomRightCorner.getX() > leftPulley.topLeftCorner.getX() && leftBox.topRightCorner.getY() < (leftPulley.topLeftCorner.getY() + leftPulley.getDiameter())
-                || rightBox.bottomLeftCorner.getX() < (rightPulley.topLeftCorner.getX() + leftPulley.getDiameter()) && rightBox.topLeftCorner.getY() < (rightPulley.topLeftCorner.getY() + rightPulley.getDiameter())) {
+        if (leftBox.bottomRightCorner.getX() > leftPulley.getTopLeftCorner().getX() && leftBox.topRightCorner.getY() < (leftPulley.getTopLeftCorner().getY() + leftPulley.getDiameter())
+                || rightBox.bottomLeftCorner.getX() < (rightPulley.getTopLeftCorner().getX() + leftPulley.getDiameter()) && rightBox.topLeftCorner.getY() < (rightPulley.getTopLeftCorner().getY() + rightPulley.getDiameter())) {
             isActive = false;
         }
     }
@@ -166,7 +184,7 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         this.leftSlopeAngle = leftSlopeAngle;
 
         leftSlope.calculateCoordinates();
-        leftPulley.calculateCoordinates();
+        leftPulley = createLeftPulley();
         leftBox.calculateStartingPositionCoordinates();
         leftWire.updatePosition();
 
@@ -177,7 +195,7 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         this.rightSlopeAngle = rightSlopeAngle;
 
         rightSlope.calculateCoordinates();
-        rightPulley.calculateCoordinates();
+        rightPulley = createRightPulley();
         rightBox.calculateStartingPositionCoordinates();
         rightWire.updatePosition();
 

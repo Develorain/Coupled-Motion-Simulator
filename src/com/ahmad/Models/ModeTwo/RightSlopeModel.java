@@ -25,7 +25,6 @@ public class RightSlopeModel extends SlopeModel {
             tempX -= MathTools.cos(systemModelModeTwo.getRightSlopeAngle());
             tempY += MathTools.sin(systemModelModeTwo.getRightSlopeAngle());
 
-            // Todo: hardcoded 100... remove later
             if (tempX >= Constants.SIMULATION_WIDTH_PIXELS || tempY >= Constants.SIMULATION_HEIGHT_PIXELS) {
                 rightCoord.setX(tempX);
                 rightCoord.setY(tempY);
