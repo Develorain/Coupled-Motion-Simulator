@@ -1,22 +1,26 @@
-package com.ahmad.Controllers;
+package com.ahmad.Controllers.ModeOne;
 
+import com.ahmad.Controllers.StartButtonController;
 import com.ahmad.Models.ModeOne.SystemModelModeOne;
 import com.ahmad.Views.ModeOne.MainViewModeOne;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class StartButtonControllerModeOne extends StartButtonController implements ActionListener {
+public class StartButtonControllerModeOne extends StartButtonController {
     private MainViewModeOne mainViewModeOne;
+    private SystemModelModeOne systemModelModeOne;
 
     public StartButtonControllerModeOne(MainViewModeOne mainViewModeOne, SystemModelModeOne systemModelModeOne) {
         super(mainViewModeOne, systemModelModeOne);
 
         this.mainViewModeOne = mainViewModeOne;
+        this.systemModelModeOne = systemModelModeOne;
     }
 
     public void actionPerformed(ActionEvent actionEvent) {
         super.actionPerformed(actionEvent);
+
+        systemModelModeOne.isActive = true;
 
         mainViewModeOne.accelerationTextField.setEditable(false);
         mainViewModeOne.velocityTextField.setEditable(false);

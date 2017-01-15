@@ -5,8 +5,9 @@ import com.ahmad.Controllers.ModeTwo.InputTypeComboBoxControllerModeTwo;
 import com.ahmad.Controllers.ModeTwo.LeftAngleTextFieldController;
 import com.ahmad.Controllers.ModeTwo.RightAngleTextFieldController;
 import com.ahmad.Controllers.ResetButtonController;
-import com.ahmad.Controllers.StartButtonControllerModeTwo;
+import com.ahmad.Controllers.ModeTwo.StartButtonControllerModeTwo;
 import com.ahmad.Models.ModeTwo.SystemModelModeTwo;
+import com.ahmad.Startup;
 import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.CustomPanel;
 import com.ahmad.Tools.GraphicsPainter;
@@ -22,6 +23,7 @@ public class MainViewModeTwo implements View, Paintable {
     private SystemModelModeTwo systemModelModeTwo;
 
     public JPanel mainPanel = new JPanel(new GridBagLayout());
+    public Startup startup;
 
     public JTextField accelerationTextField;
     public JTextField velocityTextField;
@@ -48,7 +50,8 @@ public class MainViewModeTwo implements View, Paintable {
     public JButton pauseButton;
     public JButton resetButton;
 
-    public MainViewModeTwo(SystemModelModeTwo systemModelModeTwo) {
+    public MainViewModeTwo(Startup startup, SystemModelModeTwo systemModelModeTwo) {
+        this.startup = startup;
         this.systemModelModeTwo = systemModelModeTwo;
         systemModelModeTwo.setView(this);
 
@@ -129,7 +132,7 @@ public class MainViewModeTwo implements View, Paintable {
         resetButton.addActionListener(rbc);
 
 
-        ModeComboBoxController mcbc = new ModeComboBoxController(modesComboBox);
+        ModeComboBoxController mcbc = new ModeComboBoxController(startup, modesComboBox);
         modesComboBox.addActionListener(mcbc);
 
         InputTypeComboBoxControllerModeTwo itcbc = new InputTypeComboBoxControllerModeTwo(this);
@@ -140,7 +143,8 @@ public class MainViewModeTwo implements View, Paintable {
         GridBagConstraints gc = new GridBagConstraints();
 
         // Creates and adds simulation view to the main JPanel
-        gc.fill = GridBagConstraints.BOTH;
+        //gc.fill = GridBagConstraints.BOTH;
+        gc.anchor = GridBagConstraints.CENTER;
         gc.gridx = 0;
         gc.gridy = 0;
         gc.gridwidth = 9;

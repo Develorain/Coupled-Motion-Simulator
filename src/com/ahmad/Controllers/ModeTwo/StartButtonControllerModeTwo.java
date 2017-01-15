@@ -1,5 +1,6 @@
-package com.ahmad.Controllers;
+package com.ahmad.Controllers.ModeTwo;
 
+import com.ahmad.Controllers.StartButtonController;
 import com.ahmad.Models.ModeTwo.SystemModelModeTwo;
 import com.ahmad.Views.ModeTwo.MainViewModeTwo;
 
@@ -7,15 +8,19 @@ import java.awt.event.ActionEvent;
 
 public class StartButtonControllerModeTwo extends StartButtonController {
     private MainViewModeTwo mainViewModeTwo;
+    private SystemModelModeTwo systemModelModeTwo;
 
     public StartButtonControllerModeTwo(MainViewModeTwo mainViewModeTwo, SystemModelModeTwo systemModelModeTwo) {
         super(mainViewModeTwo, systemModelModeTwo);
 
         this.mainViewModeTwo = mainViewModeTwo;
+        this.systemModelModeTwo = systemModelModeTwo;
     }
 
     public void actionPerformed(ActionEvent actionEvent) {
         super.actionPerformed(actionEvent);
+
+        systemModelModeTwo.isActive = true;
 
         mainViewModeTwo.accelerationTextField.setEditable(false);
         mainViewModeTwo.velocityTextField.setEditable(false);

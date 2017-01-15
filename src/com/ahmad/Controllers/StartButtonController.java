@@ -19,7 +19,6 @@ public class StartButtonController implements ActionListener {
         this.systemModel = systemModel;
     }
 
-    @Override
     public void actionPerformed(ActionEvent actionEvent) {
         systemModel.takeInputAndInitializeConstantValues(view);
 

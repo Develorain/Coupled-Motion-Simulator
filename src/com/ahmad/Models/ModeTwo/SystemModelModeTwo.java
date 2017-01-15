@@ -7,6 +7,8 @@ import com.ahmad.Views.ModeTwo.MainViewModeTwo;
 import com.ahmad.Views.View;
 
 public class SystemModelModeTwo extends Model implements SystemModel {
+    public boolean isActive = false;
+
     public LeftBoxModel leftBox;
     public MiddleBoxModel middleBox;
     public RightBoxModel rightBox;
@@ -64,14 +66,14 @@ public class SystemModelModeTwo extends Model implements SystemModel {
                 rightBox.mu = Double.parseDouble(mainViewModeTwo.rightBoxMuTextField.getText());
 
                 leftSlopeAngle = Double.parseDouble(mainViewModeTwo.leftSlopeAngleTextField.getText());
-                rightSlopeAngle = Double.parseDouble(mainViewModeTwo.rightSlopeAngleTextField.getText());
+                rightSlopeAngle = 180 - Double.parseDouble(mainViewModeTwo.rightSlopeAngleTextField.getText());
 
                 leftBox.updateFriction(leftSlopeAngle);
                 middleBox.updateFriction(middleSlopeAngle);
                 rightBox.updateFriction(rightSlopeAngle);
 
                 leftBox.updateXComponentOfGravitationalForce(leftSlopeAngle);
-                rightBox.updateXComponentOfGravitationalForce(rightSlopeAngle);
+                rightBox.updateXComponentOfGravitationalForce(180 - rightSlopeAngle);
 
                 updateAcceleration();
 
@@ -82,26 +84,37 @@ public class SystemModelModeTwo extends Model implements SystemModel {
     }
 
     public void iterate() {
-        if (simulationStartTime == 0) {
-            simulationStartTime = System.nanoTime();
+        checkIfBoxesStillHaveRoomToMove();
+
+        if (isActive) {
+            if (simulationStartTime == 0) {
+                simulationStartTime = System.nanoTime();
+            }
+
+            double elapsedSeconds = (System.nanoTime() - simulationStartTime) / 1000000000.0;
+
+            // Updates the boxes' velocities
+            leftBox.updateVelocity(elapsedSeconds);
+            middleBox.updateVelocity(elapsedSeconds);
+            rightBox.updateVelocity(elapsedSeconds);
+
+            // Updates the boxes' positions
+            leftBox.updatePosition(elapsedSeconds);
+            middleBox.updatePosition(elapsedSeconds);
+            rightBox.updatePosition(elapsedSeconds);
+
+            leftWire.updatePosition();
+            rightWire.updatePosition();
+
+            updateView();
         }
+    }
 
-        double elapsedSeconds = (System.nanoTime() - simulationStartTime) / 1000000000.0;
-
-        // Updates the boxes' velocities
-        leftBox.updateVelocity(elapsedSeconds);
-        middleBox.updateVelocity(elapsedSeconds);
-        rightBox.updateVelocity(elapsedSeconds);
-
-        // Updates the boxes' positions
-        leftBox.updatePosition(elapsedSeconds);
-        middleBox.updatePosition(elapsedSeconds);
-        rightBox.updatePosition(elapsedSeconds);
-
-        leftWire.updatePosition();
-        rightWire.updatePosition();
-
-        updateView();
+    public void checkIfBoxesStillHaveRoomToMove() {
+        if (leftBox.bottomRightCorner.getX() > leftPulley.topLeftCorner.getX() && leftBox.topRightCorner.getY() < (leftPulley.topLeftCorner.getY() + leftPulley.diameter)
+                || rightBox.bottomLeftCorner.getX() < (rightPulley.topLeftCorner.getX() + leftPulley.diameter) && rightBox.topLeftCorner.getY() < (rightPulley.topLeftCorner.getY() + rightPulley.diameter)) {
+            isActive = false;
+        }
     }
 
     private void updateAcceleration() {

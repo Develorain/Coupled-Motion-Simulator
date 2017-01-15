@@ -4,10 +4,29 @@ import com.ahmad.Models.ModeOne.SystemModelModeOne;
 import com.ahmad.Views.ModeOne.MainViewModeOne;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Startup {
-    public static JFrame jFrame;
+    private JFrame jFrame;
+
+    public Startup() {
+        MainViewModeOne mainViewModeOne = new MainViewModeOne(this, new SystemModelModeOne());
+
+        jFrame = new JFrame("Coupled Motion Simulator");
+        //jFrame.setMinimumSize(new Dimension(1250, 850));
+        //jFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        jFrame.getContentPane().add(mainViewModeOne.mainPanel);
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //jFrame.setSize(100, 100);
+        jFrame.pack();
+        jFrame.setVisible(true);
+
+        //System.out.println(mainViewModeTwo.systemView.systemPanel.getSize());
+        //System.out.println(jFrame.getSize());
+    }
+
+    public JFrame getJFrame() {
+        return jFrame;
+    }
 
     public static void main(String[] args) {
         try {
@@ -16,31 +35,14 @@ public class Startup {
             e.printStackTrace();
         }
 
-        MainViewModeOne mainViewModeOne = new MainViewModeOne(new SystemModelModeOne());
-
-        jFrame = new JFrame("Coupled Motion Simulator");
-        jFrame.setMinimumSize(new Dimension(1250, 850));
-        //jFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        jFrame.getContentPane().add(mainViewModeOne.mainPanel);
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.pack();
-        jFrame.setVisible(true);
-
-        //System.out.println(mainViewModeTwo.systemView.systemPanel.getSize());
-        //System.out.println(jFrame.getSize());
+        new Startup();
     }
 }
 
-// Should I pass in everything like I did in the reset button controller, or should I just give the whole view and use getters and setters?
-// Is the way I refactored the StartButton correct? I feel like it was poorly written
-
 // TODO: < REAL TODO >
 // TODO: Implement mode two input type two
-// TODO: if friction is stronger than force applied, acceleration should be 0
 
 // TODO: < BUGS >
-// TODO: HUGE BUG!!!: In mode two, if you switch to second input method, then switch back to first input method and run it, the program gives a completely wrong answer
-// for some reason the program just crashes after simulating for around 10 seconds
 // simulation view can not be less than 700 pixels wide without the boxes not being centered
 // borders should scale with window size, not 100 pixels absolute
 // acceleration can not be greater than 9.8 or less than -9.8, mu can't be negative, angle must be 0 <= angle <= 90
@@ -60,6 +62,5 @@ public class Startup {
 
 // TODO: < ALMOST USELESS >
 // round acceleration and velocity values
-// for mode one, draw a line from the end of the first slope to the bottom of the screen to show that there's a wall below the pulley
 
 // if the friction is too great the box moves backwards. instead, the box should not move at all if frictional force is greater than gravity force (pretty sure this is out of date)

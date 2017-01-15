@@ -11,29 +11,32 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ModeComboBoxController implements ActionListener {
+    private Startup startup;
     private JComboBox modesComboBox;
 
-    public ModeComboBoxController(JComboBox modesComboBox) {
+    public ModeComboBoxController(Startup startup, JComboBox modesComboBox) {
+        this.startup = startup;
         this.modesComboBox = modesComboBox;
     }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        int currentMode = modesComboBox.getSelectedIndex() + 1;
+        int currentMode = modesComboBox.getSelectedIndex();
 
-        JPanel contentPane = (JPanel) Startup.jFrame.getContentPane();
+        JPanel contentPane = (JPanel) startup.getJFrame().getContentPane();
         contentPane.removeAll();
 
-        if (currentMode == 1) {
-            MainViewModeOne mainViewModeOne = new MainViewModeOne(new SystemModelModeOne());
+        if (currentMode == 0) {
+            MainViewModeOne mainViewModeOne = new MainViewModeOne(startup, new SystemModelModeOne());
 
             contentPane.add(mainViewModeOne.mainPanel);
-        } else if (currentMode == 2) {
-            MainViewModeTwo mainViewModeTwo = new MainViewModeTwo(new SystemModelModeTwo());
+        } else if (currentMode == 1) {
+            MainViewModeTwo mainViewModeTwo = new MainViewModeTwo(startup, new SystemModelModeTwo());
 
             contentPane.add(mainViewModeTwo.mainPanel);
         }
 
+        startup.getJFrame().pack();
         contentPane.revalidate();
     }
 }

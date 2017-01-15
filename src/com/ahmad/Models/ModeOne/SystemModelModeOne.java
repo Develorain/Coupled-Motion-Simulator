@@ -2,11 +2,14 @@ package com.ahmad.Models.ModeOne;
 
 import com.ahmad.Models.Model;
 import com.ahmad.Models.SystemModel;
+import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.Vector;
 import com.ahmad.Views.ModeOne.MainViewModeOne;
 import com.ahmad.Views.View;
 
 public class SystemModelModeOne extends Model implements SystemModel {
+    public boolean isActive = false;
+
     public SlopeModelModeOne slope;
     public PulleyModelModeOne pulley;
 
@@ -112,24 +115,35 @@ public class SystemModelModeOne extends Model implements SystemModel {
     }
 
     public void iterate() {
-        if (simulationStartTime == 0) {
-            simulationStartTime = System.nanoTime();
+        checkIfBoxesStillHaveRoomToMove();
+
+        if (isActive) {
+            if (simulationStartTime == 0) {
+                simulationStartTime = System.nanoTime();
+            }
+
+            double elapsedSeconds = (System.nanoTime() - simulationStartTime) / 1000000000.0;
+
+            // Updates the boxes' velocities
+            slopedBox.updateVelocity(elapsedSeconds);
+            danglingBox.updateVelocity(elapsedSeconds);
+
+            // Updates the boxes' positions
+            slopedBox.updatePosition(elapsedSeconds);
+            danglingBox.updatePosition(elapsedSeconds);
+
+            // Updates the wire's coordinates
+            wire.updatePosition();
+
+            updateView();
         }
+    }
 
-        double elapsedSeconds = (System.nanoTime() - simulationStartTime) / 1000000000.0;
-
-        // Updates the boxes' velocities
-        slopedBox.updateVelocity(elapsedSeconds);
-        danglingBox.updateVelocity(elapsedSeconds);
-
-        // Updates the boxes' positions
-        slopedBox.updatePosition(elapsedSeconds);
-        danglingBox.updatePosition(elapsedSeconds);
-
-        // Updates the wire's coordinates
-        wire.updatePosition();
-
-        updateView();
+    public void checkIfBoxesStillHaveRoomToMove() {
+        if ((slopedBox.bottomRightCorner.getX() > pulley.topLeftCorner.getX() && slopedBox.topRightCorner.getY() < (pulley.topLeftCorner.getY() + pulley.diameter))
+                || danglingBox.bottomLeftCorner.getY() > Constants.SIMULATION_HEIGHT_PIXELS) {
+            isActive = false;
+        }
     }
 
     public void setSlopeAngle(double slopeAngle) {
