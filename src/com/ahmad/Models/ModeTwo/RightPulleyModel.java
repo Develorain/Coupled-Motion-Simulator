@@ -9,14 +9,13 @@ public class RightPulleyModel extends PulleyModel {
     public RightPulleyModel(SystemModelModeTwo systemModelModeTwo) {
         this.systemModelModeTwo = systemModelModeTwo;
 
-        radius = 25;
-        diameter = radius * 2;
+        setRadius(25);
 
         calculateCoordinates();
     }
 
     public void calculateCoordinates() {
-        topLeftCorner.setX(systemModelModeTwo.rightSlope.leftCoord.getX() - radius + radius * MathTools.sin(systemModelModeTwo.getRightSlopeAngle()));
-        topLeftCorner.setY(systemModelModeTwo.rightSlope.leftCoord.getY() - diameter);
+        topLeftCorner.setX(systemModelModeTwo.rightSlope.leftCoord.getX() - getRadius() + getRadius() * MathTools.sin(systemModelModeTwo.getRightSlopeAngle()));
+        topLeftCorner.setY(systemModelModeTwo.rightSlope.leftCoord.getY() - getDiameter());
     }
 }

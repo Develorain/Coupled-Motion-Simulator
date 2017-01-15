@@ -26,12 +26,12 @@ public class RightWireModel extends WireModel {
         leftStringLeftCoord.setX(systemModelModeTwo.middleBox.topRightCorner.getX());
         leftStringLeftCoord.setY((systemModelModeTwo.middleBox.topRightCorner.getY() + systemModelModeTwo.middleBox.bottomRightCorner.getY()) / 2);
 
-        leftStringRightCoord.setX(systemModelModeTwo.rightPulley.topLeftCorner.getX() + systemModelModeTwo.rightPulley.radius);
+        leftStringRightCoord.setX(systemModelModeTwo.rightPulley.topLeftCorner.getX() + systemModelModeTwo.rightPulley.getRadius());
         leftStringRightCoord.setY(systemModelModeTwo.rightPulley.topLeftCorner.getY());
 
         // TODO: doesn't look parallel to ground
-        rightStringLeftCoord.setX(systemModelModeTwo.rightPulley.topLeftCorner.getX() + systemModelModeTwo.rightPulley.radius + systemModelModeTwo.rightPulley.radius * MathTools.sin(systemModelModeTwo.getRightSlopeAngle()));
-        rightStringLeftCoord.setY(systemModelModeTwo.rightPulley.topLeftCorner.getY() + systemModelModeTwo.rightPulley.radius + systemModelModeTwo.rightPulley.radius * MathTools.cos(systemModelModeTwo.getRightSlopeAngle()));
+        rightStringLeftCoord.setX(systemModelModeTwo.rightPulley.topLeftCorner.getX() + systemModelModeTwo.rightPulley.getRadius() + systemModelModeTwo.rightPulley.getRadius() * MathTools.sin(systemModelModeTwo.getRightSlopeAngle()));
+        rightStringLeftCoord.setY(systemModelModeTwo.rightPulley.topLeftCorner.getY() + systemModelModeTwo.rightPulley.getRadius() + systemModelModeTwo.rightPulley.getRadius() * MathTools.cos(systemModelModeTwo.getRightSlopeAngle()));
 
         rightStringRightCoord.setX((systemModelModeTwo.rightBox.topLeftCorner.getX() + systemModelModeTwo.rightBox.bottomLeftCorner.getX()) / 2);
         rightStringRightCoord.setY((systemModelModeTwo.rightBox.topLeftCorner.getY() + systemModelModeTwo.rightBox.bottomLeftCorner.getY()) / 2);

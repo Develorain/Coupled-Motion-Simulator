@@ -116,8 +116,8 @@ public class SystemModelModeTwo extends Model implements SystemModel {
     }
 
     public void checkIfBoxesStillHaveRoomToMove() {
-        if (leftBox.bottomRightCorner.getX() > leftPulley.topLeftCorner.getX() && leftBox.topRightCorner.getY() < (leftPulley.topLeftCorner.getY() + leftPulley.diameter)
-                || rightBox.bottomLeftCorner.getX() < (rightPulley.topLeftCorner.getX() + leftPulley.diameter) && rightBox.topLeftCorner.getY() < (rightPulley.topLeftCorner.getY() + rightPulley.diameter)) {
+        if (leftBox.bottomRightCorner.getX() > leftPulley.topLeftCorner.getX() && leftBox.topRightCorner.getY() < (leftPulley.topLeftCorner.getY() + leftPulley.getDiameter())
+                || rightBox.bottomLeftCorner.getX() < (rightPulley.topLeftCorner.getX() + leftPulley.getDiameter()) && rightBox.topLeftCorner.getY() < (rightPulley.topLeftCorner.getY() + rightPulley.getDiameter())) {
             isActive = false;
         }
     }

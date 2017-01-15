@@ -73,8 +73,8 @@ public class GraphicsPainter {
         graphics.fillOval(
                 (int) pulley.topLeftCorner.getX(),
                 (int) pulley.topLeftCorner.getY(),
-                pulley.diameter,
-                pulley.diameter
+                (int) pulley.getDiameter(),
+                (int) pulley.getDiameter()
         );
     }
 

@@ -9,14 +9,13 @@ public class PulleyModelModeOne extends PulleyModel {
     public PulleyModelModeOne(SystemModelModeOne systemModelModeOne) {
         this.systemModelModeOne = systemModelModeOne;
 
-        radius = 50;
-        diameter = radius * 2;
+        setRadius(50);
 
         calculateCoordinates();
     }
 
     public void calculateCoordinates() {
-        topLeftCorner.setX(systemModelModeOne.slope.rightCoord.getX() - radius + radius * MathTools.cos(systemModelModeOne.slopeAngle));
-        topLeftCorner.setY(systemModelModeOne.slope.rightCoord.getY() - radius - radius * MathTools.sin(systemModelModeOne.slopeAngle));
+        topLeftCorner.setX(systemModelModeOne.slope.rightCoord.getX() - getRadius() + getRadius() * MathTools.cos(systemModelModeOne.slopeAngle));
+        topLeftCorner.setY(systemModelModeOne.slope.rightCoord.getY() - getRadius() - getRadius() * MathTools.sin(systemModelModeOne.slopeAngle));
     }
 }

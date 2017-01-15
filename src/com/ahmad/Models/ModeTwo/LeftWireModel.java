@@ -27,10 +27,10 @@ public class LeftWireModel extends WireModel {
         leftStringLeftCoord.setX((systemModelModeTwo.leftBox.topRightCorner.getX() + systemModelModeTwo.leftBox.bottomRightCorner.getX()) / 2);
         leftStringLeftCoord.setY((systemModelModeTwo.leftBox.topRightCorner.getY() + systemModelModeTwo.leftBox.bottomRightCorner.getY()) / 2);
 
-        leftStringRightCoord.setX(systemModelModeTwo.leftPulley.topLeftCorner.getX() + systemModelModeTwo.leftPulley.radius - systemModelModeTwo.leftPulley.radius * MathTools.sin(systemModelModeTwo.getLeftSlopeAngle()));
-        leftStringRightCoord.setY(systemModelModeTwo.leftPulley.topLeftCorner.getY() + systemModelModeTwo.leftPulley.radius - systemModelModeTwo.leftPulley.radius * MathTools.cos(systemModelModeTwo.getLeftSlopeAngle()));
+        leftStringRightCoord.setX(systemModelModeTwo.leftPulley.topLeftCorner.getX() + systemModelModeTwo.leftPulley.getRadius() - systemModelModeTwo.leftPulley.getRadius() * MathTools.sin(systemModelModeTwo.getLeftSlopeAngle()));
+        leftStringRightCoord.setY(systemModelModeTwo.leftPulley.topLeftCorner.getY() + systemModelModeTwo.leftPulley.getRadius() - systemModelModeTwo.leftPulley.getRadius() * MathTools.cos(systemModelModeTwo.getLeftSlopeAngle()));
 
-        rightStringLeftCoord.setX(systemModelModeTwo.leftPulley.topLeftCorner.getX() + systemModelModeTwo.leftPulley.radius);
+        rightStringLeftCoord.setX(systemModelModeTwo.leftPulley.topLeftCorner.getX() + systemModelModeTwo.leftPulley.getRadius());
         rightStringLeftCoord.setY(systemModelModeTwo.leftPulley.topLeftCorner.getY());
 
         rightStringRightCoord.setX(systemModelModeTwo.middleBox.topLeftCorner.getX());
