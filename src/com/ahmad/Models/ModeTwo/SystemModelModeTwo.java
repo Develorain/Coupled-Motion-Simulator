@@ -83,7 +83,7 @@ public class SystemModelModeTwo extends Model implements SystemModel {
         updateAcceleration();
 
         leftWire.updateTension(leftBox.mass, accelerationOfSystem, leftSlopeAngle, leftBox.mu);
-        rightWire.updateTension(rightBox.mass, accelerationOfSystem, rightSlopeAngle, rightBox.mu);
+        rightWire.updateTension(rightBox.mass, accelerationOfSystem, 180 - rightSlopeAngle, rightBox.mu);
     }
 
     public void iterate() {
