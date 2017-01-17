@@ -36,8 +36,11 @@ public class ResetButtonController implements ActionListener {
             contentPane.add(mainViewModeTwo.mainPanel);
         }
 
+        int state = startup.getJFrame().getExtendedState();
         startup.getJFrame().pack();
         startup.getJFrame().setMinimumSize(startup.getJFrame().getSize());
+        startup.getJFrame().setExtendedState(state);
+
         contentPane.revalidate();
     }
 }

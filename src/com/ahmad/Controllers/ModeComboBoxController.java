@@ -13,7 +13,6 @@ import java.awt.event.ActionListener;
 public class ModeComboBoxController implements ActionListener {
     private Startup startup;
     private JComboBox modesComboBox;
-    // taha says we only need a jcombobox
 
     public ModeComboBoxController(Startup startup, JComboBox modesComboBox) {
         this.startup = startup;
@@ -37,8 +36,11 @@ public class ModeComboBoxController implements ActionListener {
             contentPane.add(mainViewModeTwo.mainPanel);
         }
 
+        int state = startup.getJFrame().getExtendedState();
         startup.getJFrame().pack();
         startup.getJFrame().setMinimumSize(startup.getJFrame().getSize());
+        startup.getJFrame().setExtendedState(state);
+
         contentPane.revalidate();
     }
 }

@@ -31,7 +31,7 @@ public class SystemModelModeTwo extends Model implements SystemModel {
     private double middleSlopeAngle;
     private double rightSlopeAngle;
 
-    public long simulationStartTime = 0;
+    private long simulationStartTime = 0;
 
     public SystemModelModeTwo() {
         leftSlopeAngle = 45;
