@@ -148,6 +148,8 @@ public class SystemModelModeOne extends Model implements SystemModel {
 
     public void checkIfBoxesStillHaveRoomToMove() {
         if ((slopedBox.bottomRightCorner.getX() > pulley.getTopLeftCorner().getX() && slopedBox.topRightCorner.getY() < (pulley.getTopLeftCorner().getY() + pulley.getDiameter()))
+                || slopedBox.bottomLeftCorner.getX() < slope.leftCoord.getX()
+                || danglingBox.topLeftCorner.getY() < pulley.getTopLeftCorner().getY() + pulley.getDiameter()
                 || danglingBox.bottomLeftCorner.getY() > Constants.SIMULATION_HEIGHT_PIXELS) {
             isActive = false;
         }

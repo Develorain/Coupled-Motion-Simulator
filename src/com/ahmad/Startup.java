@@ -34,10 +34,5 @@ public class Startup {
     }
 }
 
-// TODO: < QUALITY OF LIFE >
-// make window resizable (support for simulation area resizing, possibly scale when window is resized)
-// window minimum size is a little too small on linux
 // round acceleration and velocity values
-// remove slope models classes, wires, etc
-// putting 0f as a number doesn't give error
 // remove hardcoded values
