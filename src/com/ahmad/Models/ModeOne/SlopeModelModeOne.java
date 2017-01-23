@@ -1,18 +1,27 @@
 package com.ahmad.Models.ModeOne;
 
+/** SlopeModelModeOne
+ * Performs the calculations for slope in system in mode one
+ * @since January 18, 2017
+ * @author Ahmad Gharib
+ */
+
 import com.ahmad.Models.SlopeModel;
 import com.ahmad.Tools.Constants;
 import com.ahmad.Tools.MathTools;
 
 public class SlopeModelModeOne extends SlopeModel {
-    private SystemModelModeOne systemModelModeOne;
+    private SystemModelModeOne systemModelModeOne;   // Declare the system model
 
+    /** Default Constructor
+     * @param systemModelModeOne  a reference to the system model */
     public SlopeModelModeOne(SystemModelModeOne systemModelModeOne) {
         super();
         this.systemModelModeOne = systemModelModeOne;
         calculateCoordinates();
     }
 
+    /** Calculates the coordinates of the slope model */
     @Override
     public void calculateCoordinates() {
         // Code for left coord

@@ -1,5 +1,11 @@
 package com.ahmad.Views.ModeTwo;
 
+/** MainViewModeTwo
+ * The main Graphics User Interface for mode two
+ * @since January 18, 2017
+ * @author Ahmad Gharib
+ */
+
 import com.ahmad.Controllers.ModeComboBoxController;
 import com.ahmad.Controllers.ModeTwo.LeftAngleTextFieldController;
 import com.ahmad.Controllers.ModeTwo.RightAngleTextFieldController;
@@ -17,36 +23,39 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainViewModeTwo implements View, Paintable {
-    private CustomPanel systemPanel;
+    private CustomPanel systemPanel; // Declare the system panel
 
-    private SystemModelModeTwo systemModelModeTwo;
+    private SystemModelModeTwo systemModelModeTwo; // Declare the system model
 
-    public JPanel mainPanel = new JPanel(new GridBagLayout());
-    private Startup startup;
+    private JPanel mainPanel = new JPanel(new GridBagLayout()); // Declare the main panel
+    private Startup startup; // Declare the startup
 
-    public JTextField accelerationTextField;
-    public JTextField velocityTextField;
+    private JTextField accelerationTextField; // Declare the acceleration text field
+    private JTextField velocityTextField; // Declare the velocity text field
 
-    public JTextField leftBoxMassTextField;
-    public JTextField leftBoxMuTextField;
-    public JTextField leftBoxFrictionTextField;
-    public JTextField leftWireTensionTextField;
-    public JTextField leftSlopeAngleTextField;
+    private JTextField leftBoxMassTextField; // Declare the left box mass text field
+    private JTextField leftBoxMuTextField; // Declare the left box mu text field
+    private JTextField leftBoxFrictionTextField; // Declare the left box friction text field
+    private JTextField leftWireTensionTextField; // Declare the left wire tension text field
+    private JTextField leftSlopeAngleTextField; // Declare the left slope angle text field
 
-    public JTextField middleBoxMassTextField;
-    public JTextField middleBoxMuTextField;
-    public JTextField middleBoxFrictionTextField;
+    private JTextField middleBoxMassTextField; // Declare the middle box mass text field
+    private JTextField middleBoxMuTextField; // Declare the middle box mu text field
+    private JTextField middleBoxFrictionTextField; // Declare the middle box friction text field
 
-    public JTextField rightBoxMassTextField;
-    public JTextField rightBoxMuTextField;
-    public JTextField rightBoxFrictionTextField;
-    public JTextField rightWireTensionTextField;
-    public JTextField rightSlopeAngleTextField;
+    private JTextField rightBoxMassTextField; // Declare the right box mass text field
+    private JTextField rightBoxMuTextField; // Declare the right box mu text field
+    private JTextField rightBoxFrictionTextField; // Declare the right box friction text field
+    private JTextField rightWireTensionTextField; // Declare the right box tension text field
+    private JTextField rightSlopeAngleTextField; // Declare the right slope angle text field
 
-    private JComboBox modesComboBox;
-    public JButton startButton;
-    private JButton resetButton;
+    private JComboBox modesComboBox; // Declare the modes combobox
+    private JButton startButton; // Declare the start button
+    private JButton resetButton; // Declare the reset button
 
+    /** Default Constructor
+     * @param startup            a reference to the startup
+     * @param systemModelModeTwo a reference to the system model */
     public MainViewModeTwo(Startup startup, SystemModelModeTwo systemModelModeTwo) {
         this.startup = startup;
         this.systemModelModeTwo = systemModelModeTwo;
@@ -59,23 +68,26 @@ public class MainViewModeTwo implements View, Paintable {
         registerControllers();
     }
 
+    /** Paint method to draw custom graphics
+     * @param graphics a reference to graphics instance */
     @Override
     public void paint(Graphics graphics) {
-        GraphicsPainter.drawSlope(graphics, systemModelModeTwo.leftSlope);
-        GraphicsPainter.drawSlope(graphics, systemModelModeTwo.middleSlope);
-        GraphicsPainter.drawSlope(graphics, systemModelModeTwo.rightSlope);
+        GraphicsPainter.drawSlope(graphics, systemModelModeTwo.getLeftSlope());
+        GraphicsPainter.drawSlope(graphics, systemModelModeTwo.getMiddleSlope());
+        GraphicsPainter.drawSlope(graphics, systemModelModeTwo.getRightSlope());
 
-        GraphicsPainter.drawPulley(graphics, systemModelModeTwo.leftPulley);
-        GraphicsPainter.drawPulley(graphics, systemModelModeTwo.rightPulley);
+        GraphicsPainter.drawPulley(graphics, systemModelModeTwo.getLeftPulley());
+        GraphicsPainter.drawPulley(graphics, systemModelModeTwo.getRightPulley());
 
-        GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.leftBox, systemModelModeTwo.getLeftSlopeAngle(), false);
-        GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.middleBox, systemModelModeTwo.getMiddleSlopeAngle(), false);
-        GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.rightBox, systemModelModeTwo.getRightSlopeAngle(), true);
+        GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.getLeftBox(), systemModelModeTwo.getLeftSlopeAngle(), false);
+        GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.getMiddleBox(), systemModelModeTwo.getMiddleSlopeAngle(), false);
+        GraphicsPainter.drawSlopedBox(graphics, systemModelModeTwo.getRightBox(), systemModelModeTwo.getRightSlopeAngle(), true);
 
-        GraphicsPainter.drawWire(graphics, systemModelModeTwo.leftWire);
-        GraphicsPainter.drawWire(graphics, systemModelModeTwo.rightWire);
+        GraphicsPainter.drawWire(graphics, systemModelModeTwo.getLeftWire());
+        GraphicsPainter.drawWire(graphics, systemModelModeTwo.getRightWire());
     }
 
+    /** Gets data from the model and updates the view */
     @Override
     public void update() {
         systemPanel.repaint();        // Repaints the simulation area
@@ -83,35 +95,37 @@ public class MainViewModeTwo implements View, Paintable {
         updateBoxSystemInfoTable();   // Updates the box system's information table
     }
 
+    /** Repaints the view */
     @Override
     public void repaint() {
         systemPanel.repaint();
     }
 
-    // Updates all the information tables
+    /** Updates all the information tables on the screen */
     private void updateBoxSystemInfoTable() {
         String accelerationValue = Double.toString(systemModelModeTwo.getAccelerationOfSystem());
         accelerationTextField.setText(accelerationValue);
 
-        String velocityValue = Double.toString(systemModelModeTwo.leftBox.velocity.getR());
+        String velocityValue = Double.toString(systemModelModeTwo.getLeftBox().getVelocity().getR());
         velocityTextField.setText(velocityValue);
 
-        String leftBoxFrictionValue = Double.toString(systemModelModeTwo.leftBox.friction);
+        String leftBoxFrictionValue = Double.toString(systemModelModeTwo.getLeftBox().getFriction());
         leftBoxFrictionTextField.setText(leftBoxFrictionValue);
 
-        String middleBoxFrictionValue = Double.toString(systemModelModeTwo.middleBox.friction);
+        String middleBoxFrictionValue = Double.toString(systemModelModeTwo.getMiddleBox().getFriction());
         middleBoxFrictionTextField.setText(middleBoxFrictionValue);
 
-        String rightBoxFrictionValue = Double.toString(systemModelModeTwo.rightBox.friction);
+        String rightBoxFrictionValue = Double.toString(systemModelModeTwo.getRightBox().getFriction());
         rightBoxFrictionTextField.setText(rightBoxFrictionValue);
 
-        String leftWireTensionValue = Double.toString(systemModelModeTwo.leftWire.tension);
+        String leftWireTensionValue = Double.toString(systemModelModeTwo.getLeftWire().getTension());
         leftWireTensionTextField.setText(leftWireTensionValue);
 
-        String rightWireTensionValue = Double.toString(systemModelModeTwo.rightWire.tension);
+        String rightWireTensionValue = Double.toString(systemModelModeTwo.getRightWire().getTension());
         rightWireTensionTextField.setText(rightWireTensionValue);
     }
 
+    /** Registers all the view's controllers */
     private void registerControllers() {
         StartButtonControllerModeTwo sbc = new StartButtonControllerModeTwo(this, systemModelModeTwo);
         startButton.addActionListener(sbc);
@@ -132,6 +146,7 @@ public class MainViewModeTwo implements View, Paintable {
         modesComboBox.addActionListener(mcbc);
     }
 
+    /** Lays out the components of the screen */
     private void layoutScreen() {
         GridBagConstraints gc = new GridBagConstraints();
 
@@ -158,6 +173,7 @@ public class MainViewModeTwo implements View, Paintable {
         createButtonTable(gc);
     }
 
+    /** Creates the right slope table */
     private void createRightSlopeTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.NONE;
 
@@ -185,6 +201,7 @@ public class MainViewModeTwo implements View, Paintable {
         mainPanel.add(rightSlopeAngleTextField, gc);
     }
 
+    /** Creates the right box table */
     private void createRightBoxTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.NONE;
         gc.gridheight = 1;
@@ -240,6 +257,7 @@ public class MainViewModeTwo implements View, Paintable {
         mainPanel.add(rightBoxFrictionTextField, gc);
     }
 
+    /** Creates the button table */
     private void createButtonTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.HORIZONTAL;
         gc.gridwidth = 1;
@@ -264,6 +282,7 @@ public class MainViewModeTwo implements View, Paintable {
         mainPanel.add(resetButton, gc);
     }
 
+    /** Creates the middle box table */
     private void createMiddleBoxTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.NONE;
         gc.gridheight = 1;
@@ -319,6 +338,7 @@ public class MainViewModeTwo implements View, Paintable {
         mainPanel.add(middleBoxFrictionTextField, gc);
     }
 
+    /** Creates the left box table */
     private void createLeftBoxTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.NONE;
         gc.gridheight = 1;
@@ -373,6 +393,7 @@ public class MainViewModeTwo implements View, Paintable {
         mainPanel.add(leftBoxFrictionTextField, gc);
     }
 
+    /** Creates the left wire table */
     private void createLeftWireTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.NONE;
         gc.gridheight = 1;
@@ -401,6 +422,7 @@ public class MainViewModeTwo implements View, Paintable {
         mainPanel.add(leftWireTensionTextField, gc);
     }
 
+    /** Creates the right wire table */
     private void createRightWireTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.NONE;
         gc.gridheight = 1;
@@ -429,6 +451,7 @@ public class MainViewModeTwo implements View, Paintable {
         mainPanel.add(rightWireTensionTextField, gc);
     }
 
+    /** Creates the left slope table */
     private void createLeftSlopeTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.NONE;
 
@@ -456,6 +479,7 @@ public class MainViewModeTwo implements View, Paintable {
         mainPanel.add(leftSlopeAngleTextField, gc);
     }
 
+    /** Creates the box system table */
     private void createBoxSystemTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.NONE;
         gc.weightx = 1;
@@ -495,5 +519,107 @@ public class MainViewModeTwo implements View, Paintable {
         gc.gridx = 1;
         gc.gridy = 3;
         mainPanel.add(velocityTextField, gc);
+    }
+
+    /** Returns the main panel
+     * @return the main panel */
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
+    /** Returns the acceleration text field
+     * @return the acceleration text field */
+    public JTextField getAccelerationTextField() {
+        return accelerationTextField;
+    }
+
+    /** Returns the velocity text field
+     * @return the velocity text field */
+    public JTextField getVelocityTextField() {
+        return velocityTextField;
+    }
+
+    /** Returns the left box mass text field
+     * @return the left box mass text field */
+    public JTextField getLeftBoxMassTextField() {
+        return leftBoxMassTextField;
+    }
+
+    /** Returns the left box mu text field
+     * @return the left box mu text field */
+    public JTextField getLeftBoxMuTextField() {
+        return leftBoxMuTextField;
+    }
+
+    /** Returns the left box friction text field
+     * @return the left box friction text field */
+    public JTextField getLeftBoxFrictionTextField() {
+        return leftBoxFrictionTextField;
+    }
+
+    /** Returns the left tension text field
+     * @return the left tension text field */
+    public JTextField getLeftWireTensionTextField() {
+        return leftWireTensionTextField;
+    }
+
+    /** Returns the left slope angle text field
+     * @return the left slope angle text field */
+    public JTextField getLeftSlopeAngleTextField() {
+        return leftSlopeAngleTextField;
+    }
+
+    /** Returns the middle box mass text field
+     * @return the middle box mass text field */
+    public JTextField getMiddleBoxMassTextField() {
+        return middleBoxMassTextField;
+    }
+
+    /** Returns the middle box mu text field
+     * @return the middle box mu text field */
+    public JTextField getMiddleBoxMuTextField() {
+        return middleBoxMuTextField;
+    }
+
+    /** Returns the middle box friction text field
+     * @return the middle box friction text field */
+    public JTextField getMiddleBoxFrictionTextField() {
+        return middleBoxFrictionTextField;
+    }
+
+    /** Returns the right box mass text field
+     * @return the right box mass text field */
+    public JTextField getRightBoxMassTextField() {
+        return rightBoxMassTextField;
+    }
+
+    /** Returns the right box mu text field
+     * @return the right box mu text field */
+    public JTextField getRightBoxMuTextField() {
+        return rightBoxMuTextField;
+    }
+
+    /** Returns the right box friction text field
+     * @return the right box friction text field */
+    public JTextField getRightBoxFrictionTextField() {
+        return rightBoxFrictionTextField;
+    }
+
+    /** Returns the right tension text field
+     * @return the right tension text field */
+    public JTextField getRightWireTensionTextField() {
+        return rightWireTensionTextField;
+    }
+
+    /** Returns the right slope angle text field
+     * @return the right slope angle text field */
+    public JTextField getRightSlopeAngleTextField() {
+        return rightSlopeAngleTextField;
+    }
+
+    /** Returns the start button
+     * @return the start button */
+    public JButton getStartButton() {
+        return startButton;
     }
 }

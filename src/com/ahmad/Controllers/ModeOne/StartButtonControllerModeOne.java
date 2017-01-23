@@ -1,5 +1,11 @@
 package com.ahmad.Controllers.ModeOne;
 
+/** StartButtonControllerModeOne
+ * Handles input for the start button in mode one
+ * @since January 18, 2017
+ * @author Ahmad Gharib
+ */
+
 import com.ahmad.Controllers.StartButtonController;
 import com.ahmad.Models.ModeOne.SystemModelModeOne;
 import com.ahmad.Views.ModeOne.MainViewModeOne;
@@ -8,18 +14,22 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 public class StartButtonControllerModeOne extends StartButtonController {
-    private MainViewModeOne mainViewModeOne;
-    private SystemModelModeOne systemModelModeOne;
+    private MainViewModeOne mainViewModeOne;   // Declare the main view
 
+    /** Default Constructor
+     * @param mainViewModeOne     a reference to the view
+     * @param systemModelModeOne  a reference to the system model */
     public StartButtonControllerModeOne(MainViewModeOne mainViewModeOne, SystemModelModeOne systemModelModeOne) {
         super(mainViewModeOne, systemModelModeOne);
 
         this.mainViewModeOne = mainViewModeOne;
-        this.systemModelModeOne = systemModelModeOne;
     }
 
+    /** Listens for an action to be performed on the start button
+     * @param actionEvent the event created upon interaction */
+    @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        if (mainViewModeOne.inputTypeComboBox.getSelectedIndex() == 0) {
+        if (mainViewModeOne.getInputTypeComboBox().getSelectedIndex() == 0) {
             if (!checkLeftMass() || !checkLeftMu() || !checkRightMass() || !checkAngle()) {
                 return;
             }
@@ -31,34 +41,36 @@ public class StartButtonControllerModeOne extends StartButtonController {
 
         super.actionPerformed(actionEvent);
 
-        mainViewModeOne.accelerationTextField.setEditable(false);
-        mainViewModeOne.velocityTextField.setEditable(false);
-        mainViewModeOne.tensionTextField.setEditable(false);
-        mainViewModeOne.leftBoxMassTextField.setEditable(false);
-        mainViewModeOne.leftBoxMuTextField.setEditable(false);
-        mainViewModeOne.leftBoxFrictionTextField.setEditable(false);
-        mainViewModeOne.leftSlopeAngleTextField.setEditable(false);
-        mainViewModeOne.leftSlopeAngleTextField.setFocusable(false);
-        mainViewModeOne.rightBoxMassTextField.setEditable(false);
-        mainViewModeOne.inputTypeComboBox.setEnabled(false);
-        mainViewModeOne.startButton.setEnabled(false);
+        mainViewModeOne.getAccelerationTextField().setEditable(false);
+        mainViewModeOne.getVelocityTextField().setEditable(false);
+        mainViewModeOne.getTensionTextField().setEditable(false);
+        mainViewModeOne.getLeftBoxMassTextField().setEditable(false);
+        mainViewModeOne.getLeftBoxMuTextField().setEditable(false);
+        mainViewModeOne.getLeftBoxFrictionTextField().setEditable(false);
+        mainViewModeOne.getLeftSlopeAngleTextField().setEditable(false);
+        mainViewModeOne.getLeftSlopeAngleTextField().setFocusable(false);
+        mainViewModeOne.getRightBoxMassTextField().setEditable(false);
+        mainViewModeOne.getInputTypeComboBox().setEnabled(false);
+        mainViewModeOne.getStartButton().setEnabled(false);
 
-        mainViewModeOne.accelerationTextField.setFocusable(false);
-        mainViewModeOne.velocityTextField.setFocusable(false);
-        mainViewModeOne.tensionTextField.setFocusable(false);
-        mainViewModeOne.leftBoxMassTextField.setFocusable(false);
-        mainViewModeOne.leftBoxMuTextField.setFocusable(false);
-        mainViewModeOne.leftBoxFrictionTextField.setFocusable(false);
-        mainViewModeOne.leftSlopeAngleTextField.setFocusable(false);
-        mainViewModeOne.leftSlopeAngleTextField.setFocusable(false);
-        mainViewModeOne.rightBoxMassTextField.setFocusable(false);
-        mainViewModeOne.inputTypeComboBox.setFocusable(false);
-        mainViewModeOne.startButton.setFocusable(false);
+        mainViewModeOne.getAccelerationTextField().setFocusable(false);
+        mainViewModeOne.getVelocityTextField().setFocusable(false);
+        mainViewModeOne.getTensionTextField().setFocusable(false);
+        mainViewModeOne.getLeftBoxMassTextField().setFocusable(false);
+        mainViewModeOne.getLeftBoxMuTextField().setFocusable(false);
+        mainViewModeOne.getLeftBoxFrictionTextField().setFocusable(false);
+        mainViewModeOne.getLeftSlopeAngleTextField().setFocusable(false);
+        mainViewModeOne.getLeftSlopeAngleTextField().setFocusable(false);
+        mainViewModeOne.getRightBoxMassTextField().setFocusable(false);
+        mainViewModeOne.getInputTypeComboBox().setFocusable(false);
+        mainViewModeOne.getStartButton().setFocusable(false);
     }
 
+    /** Validates left mass input
+     * @return whether or not the input is valid */
     private boolean checkLeftMass() {
         try {
-            double leftMass = Double.parseDouble(mainViewModeOne.leftBoxMassTextField.getText());
+            double leftMass = Double.parseDouble(mainViewModeOne.getLeftBoxMassTextField().getText());
 
             if (leftMass < 0) {
                 JOptionPane.showMessageDialog(null, "The left mass must be greater than 0.");
@@ -74,9 +86,11 @@ public class StartButtonControllerModeOne extends StartButtonController {
         return true;
     }
 
+    /** Validates left mu input
+     * @return whether or not the input is valid */
     private boolean checkLeftMu() {
         try {
-            double mu = Double.parseDouble(mainViewModeOne.leftBoxMuTextField.getText());
+            double mu = Double.parseDouble(mainViewModeOne.getLeftBoxMuTextField().getText());
 
             if (mu < 0) {
                 JOptionPane.showMessageDialog(null, "The mu must be greater than 0.");
@@ -92,9 +106,11 @@ public class StartButtonControllerModeOne extends StartButtonController {
         return true;
     }
 
+    /** Validates right mass input
+     * @return whether or not the input is valid */
     private boolean checkRightMass() {
         try {
-            double rightMass = Double.parseDouble(mainViewModeOne.rightBoxMassTextField.getText());
+            double rightMass = Double.parseDouble(mainViewModeOne.getRightBoxMassTextField().getText());
 
             if (rightMass < 0) {
                 JOptionPane.showMessageDialog(null, "The right mass must be greater than 0.");
@@ -110,8 +126,10 @@ public class StartButtonControllerModeOne extends StartButtonController {
         return true;
     }
 
+    /** Validates angle input
+     * @return whether or not the input is valid */
     private boolean checkAngle() {
-        if (mainViewModeOne.leftSlopeAngleTextField.getText().isEmpty()) {
+        if (mainViewModeOne.getLeftSlopeAngleTextField().getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "The angle must be a number.");
 
             return false;
@@ -120,9 +138,11 @@ public class StartButtonControllerModeOne extends StartButtonController {
         return true;
     }
 
+    /** Validates tension input
+     * @return whether or not the input is valid */
     private boolean checkTension() {
         try {
-            double tension = Double.parseDouble(mainViewModeOne.tensionTextField.getText());
+            double tension = Double.parseDouble(mainViewModeOne.getTensionTextField().getText());
 
             if (tension < 0) {
                 JOptionPane.showMessageDialog(null, "The tension must be greater than 0.");

@@ -1,5 +1,11 @@
 package com.ahmad.Views.ModeOne;
 
+/** MainViewModeOne
+ * The main Graphics User Interface for mode one
+ * @since January 18, 2017
+ * @author Ahmad Gharib
+ */
+
 import com.ahmad.Controllers.ModeComboBoxController;
 import com.ahmad.Controllers.ModeOne.AngleTextFieldControllerModeOne;
 import com.ahmad.Controllers.ModeOne.InputTypeComboBoxControllerModeOne;
@@ -17,30 +23,32 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainViewModeOne implements View, Paintable {
-    private CustomPanel systemPanel;
+    private CustomPanel systemPanel;                            // Declare the system panel
+    private SystemModelModeOne systemModelModeOne;              // Declare the system model
 
-    private SystemModelModeOne systemModelModeOne;
+    private JPanel mainPanel = new JPanel(new GridBagLayout()); // Declare the main panel
+    private Startup startup;                                    // Declare the startup
 
-    public JPanel mainPanel = new JPanel(new GridBagLayout());
-    private Startup startup;
+    private JTextField accelerationTextField;       // Declare the acceleration text field
+    private JTextField velocityTextField;           // Declare the velocity text field
+    private JTextField leftBoxFrictionTextField;    // Declare the left box friction text field
+    private JTextField tensionTextField;            // Declare the tension text field
 
-    public JTextField accelerationTextField;
-    public JTextField velocityTextField;
-    public JTextField leftBoxFrictionTextField;
-    public JTextField tensionTextField;
+    private JTextField leftBoxMassTextField;        // Declare the left box mass text field
+    private JTextField leftBoxMuTextField;          // Declare the left box mu text field
 
-    public JTextField leftBoxMassTextField;
-    public JTextField leftBoxMuTextField;
+    private JTextField rightBoxMassTextField;       // Declare the right box mass text field
 
-    public JTextField rightBoxMassTextField;
+    private JTextField leftSlopeAngleTextField;     // Declare the left slope angle text field
 
-    public JTextField leftSlopeAngleTextField;
+    private JComboBox inputTypeComboBox;            // Declare the input type combo box
+    private JComboBox modesComboBox;                // Declare the modes combo box
+    private JButton startButton;                    // Declare the start button
+    private JButton resetButton;                    // Declare the reset button
 
-    public JComboBox inputTypeComboBox;
-    private JComboBox modesComboBox;
-    public JButton startButton;
-    private JButton resetButton;
-
+    /** Default Constructor
+     * @param startup            a reference to the startup
+     * @param systemModelModeOne a reference to the system model */
     public MainViewModeOne(Startup startup, SystemModelModeOne systemModelModeOne) {
         this.systemModelModeOne = systemModelModeOne;
         this.startup = startup;
@@ -54,6 +62,21 @@ public class MainViewModeOne implements View, Paintable {
         registerControllers();
     }
 
+    /** Paint method to draw custom graphics
+     * @param graphics a reference to graphics instance */
+    @Override
+    public void paint(Graphics graphics) {
+        GraphicsPainter.drawSlope(graphics, systemModelModeOne.getSlope());
+        GraphicsPainter.drawPulley(graphics, systemModelModeOne.getPulley());
+
+        GraphicsPainter.drawSlopedBox(graphics, systemModelModeOne.getSlopedBox(), systemModelModeOne.getSlopeAngle(), false);
+        GraphicsPainter.drawDanglingBox(graphics, systemModelModeOne.getDanglingBox());
+        GraphicsPainter.drawWire(graphics, systemModelModeOne.getWire());
+
+        GraphicsPainter.drawVerticalLine(graphics, systemModelModeOne.getSlope());
+    }
+
+    /** Gets data from the model and updates the view */
     @Override
     public void update() {
         systemPanel.repaint();       // Repaints the simulation area
@@ -61,41 +84,43 @@ public class MainViewModeOne implements View, Paintable {
         updateBoxSystemInfoTable();  // Updates the box system's information table
     }
 
+    /** Repaints the view */
     @Override
     public void repaint() {
         systemPanel.repaint();
     }
 
-    // Updates all the information table
+    /** Updates all the information tables on the screen */
     private void updateBoxSystemInfoTable() {
         String accelerationValue = Double.toString(systemModelModeOne.getAccelerationOfSystem());
         accelerationTextField.setText(accelerationValue);
 
-        String velocityValue = Double.toString(systemModelModeOne.getSlopedBox().velocity.getX() > 0
-                ? systemModelModeOne.getSlopedBox().velocity.getR()
-                : -systemModelModeOne.getSlopedBox().velocity.getR());
+        String velocityValue = Double.toString(systemModelModeOne.getSlopedBox().getVelocity().getX() > 0
+                ? systemModelModeOne.getSlopedBox().getVelocity().getR()
+                : -systemModelModeOne.getSlopedBox().getVelocity().getR());
 
         velocityTextField.setText(velocityValue);
 
-        String tensionValue = Double.toString(systemModelModeOne.wire.tension);
+        String tensionValue = Double.toString(systemModelModeOne.getWire().getTension());
         tensionTextField.setText(tensionValue);
 
-        String leftBoxMassValue = Double.toString(systemModelModeOne.slopedBox.getMass());
+        String leftBoxMassValue = Double.toString(systemModelModeOne.getSlopedBox().getMass());
         leftBoxMassTextField.setText(leftBoxMassValue);
 
-        String leftBoxMuValue = Double.toString(systemModelModeOne.slopedBox.getMu());
+        String leftBoxMuValue = Double.toString(systemModelModeOne.getSlopedBox().getMu());
         leftBoxMuTextField.setText(leftBoxMuValue);
 
-        String leftBoxFrictionValue = Double.toString(systemModelModeOne.slopedBox.friction);
+        String leftBoxFrictionValue = Double.toString(systemModelModeOne.getSlopedBox().getFriction());
         leftBoxFrictionTextField.setText(leftBoxFrictionValue);
 
-        String leftSlopeAngleValue = Double.toString(systemModelModeOne.slopeAngle);
+        String leftSlopeAngleValue = Double.toString(systemModelModeOne.getSlopeAngle());
         leftSlopeAngleTextField.setText(leftSlopeAngleValue);
 
-        String rightBoxMassValue = Double.toString(systemModelModeOne.danglingBox.getMass());
+        String rightBoxMassValue = Double.toString(systemModelModeOne.getDanglingBox().getMass());
         rightBoxMassTextField.setText(rightBoxMassValue);
     }
 
+    /** Registers all the view's controllers */
     private void registerControllers() {
         StartButtonControllerModeOne sbc = new StartButtonControllerModeOne(this, systemModelModeOne);
         startButton.addActionListener(sbc);
@@ -116,6 +141,7 @@ public class MainViewModeOne implements View, Paintable {
         inputTypeComboBox.addActionListener(itcbc);
     }
 
+    /** Lays out the components of the screen */
     private void layoutScreen() {
         GridBagConstraints gc = new GridBagConstraints();
 
@@ -137,6 +163,7 @@ public class MainViewModeOne implements View, Paintable {
         createButtonTable(gc);
     }
 
+    /** Creates the button table */
     private void createButtonTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.HORIZONTAL;
         gc.gridwidth = 1;
@@ -169,6 +196,7 @@ public class MainViewModeOne implements View, Paintable {
         mainPanel.add(resetButton, gc);
     }
 
+    /** Creates the right box table */
     private void createRightBoxTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.NONE;
         gc.gridheight = 1;
@@ -196,6 +224,7 @@ public class MainViewModeOne implements View, Paintable {
         mainPanel.add(rightBoxMassTextField, gc);
     }
 
+    /** Creates the left box table */
     private void createLeftBoxTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.NONE;
         gc.gridheight = 1;
@@ -250,6 +279,7 @@ public class MainViewModeOne implements View, Paintable {
         mainPanel.add(leftBoxFrictionTextField, gc);
     }
 
+    /** Creates the left slope table */
     private void createLeftSlopeTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.NONE;
 
@@ -277,6 +307,7 @@ public class MainViewModeOne implements View, Paintable {
         mainPanel.add(leftSlopeAngleTextField, gc);
     }
 
+    /** Creates the box system table */
     private void createBoxSystemTable(GridBagConstraints gc) {
         gc.fill = GridBagConstraints.NONE;
         gc.weightx = 1;
@@ -331,15 +362,69 @@ public class MainViewModeOne implements View, Paintable {
         mainPanel.add(tensionTextField, gc);
     }
 
-    @Override
-    public void paint(Graphics graphics) {
-        GraphicsPainter.drawSlope(graphics, systemModelModeOne.slope);
-        GraphicsPainter.drawPulley(graphics, systemModelModeOne.pulley);
+    /** Returns the main panel
+     * @return the main panel */
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
 
-        GraphicsPainter.drawSlopedBox(graphics, systemModelModeOne.getSlopedBox(), systemModelModeOne.getSlopeAngle(), false);
-        GraphicsPainter.drawDanglingBox(graphics, systemModelModeOne.getDanglingBox());
-        GraphicsPainter.drawWire(graphics, systemModelModeOne.wire);
+    /** Returns the acceleration text field
+     * @return the acceleration text field */
+    public JTextField getAccelerationTextField() {
+        return accelerationTextField;
+    }
 
-        GraphicsPainter.drawWall(graphics, systemModelModeOne.slope);
+    /** Returns the velocity text field
+     * @return the velocity text field */
+    public JTextField getVelocityTextField() {
+        return velocityTextField;
+    }
+
+    /** Returns the left box friction text field
+     * @return the left box friction text field */
+    public JTextField getLeftBoxFrictionTextField() {
+        return leftBoxFrictionTextField;
+    }
+
+    /** Returns the tension text field
+     * @return the tension text field */
+    public JTextField getTensionTextField() {
+        return tensionTextField;
+    }
+
+    /** Returns the left box mass text field
+     * @return the left box mass text field */
+    public JTextField getLeftBoxMassTextField() {
+        return leftBoxMassTextField;
+    }
+
+    /** Returns the left box mu text field
+     * @return the left box mu text field */
+    public JTextField getLeftBoxMuTextField() {
+        return leftBoxMuTextField;
+    }
+
+    /** Returns the right box mass text field
+     * @return the right box mass text field */
+    public JTextField getRightBoxMassTextField() {
+        return rightBoxMassTextField;
+    }
+
+    /** Returns the left slope angle text field
+     * @return the left slope angle text field */
+    public JTextField getLeftSlopeAngleTextField() {
+        return leftSlopeAngleTextField;
+    }
+
+    /** Returns the input type combo box
+     * @return the input type combo box */
+    public JComboBox getInputTypeComboBox() {
+        return inputTypeComboBox;
+    }
+
+    /** Returns the start button
+     * @return the start button */
+    public JButton getStartButton() {
+        return startButton;
     }
 }

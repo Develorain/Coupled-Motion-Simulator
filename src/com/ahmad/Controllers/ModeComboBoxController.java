@@ -1,5 +1,11 @@
 package com.ahmad.Controllers;
 
+/** ModeComboBoxController
+ * Handles input for the mode combo box
+ * @since January 18, 2017
+ * @author Ahmad Gharib
+ */
+
 import com.ahmad.Models.ModeOne.SystemModelModeOne;
 import com.ahmad.Models.ModeTwo.SystemModelModeTwo;
 import com.ahmad.Startup;
@@ -11,14 +17,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ModeComboBoxController implements ActionListener {
-    private Startup startup;
-    private JComboBox modesComboBox;
+    private Startup startup;            // Declare the startup
+    private JComboBox modesComboBox;    // Declare the modes combo box
 
+    /** Default Constructor
+     * @param startup       a reference to the startup
+     * @param modesComboBox a reference to the modes combo box */
     public ModeComboBoxController(Startup startup, JComboBox modesComboBox) {
         this.startup = startup;
         this.modesComboBox = modesComboBox;
     }
 
+    /** Listens for an action to be performed on the combo box
+     * @param actionEvent the event created upon interaction */
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         int currentMode = modesComboBox.getSelectedIndex();
@@ -29,11 +40,11 @@ public class ModeComboBoxController implements ActionListener {
         if (currentMode == 0) {
             MainViewModeOne mainViewModeOne = new MainViewModeOne(startup, new SystemModelModeOne());
 
-            contentPane.add(mainViewModeOne.mainPanel);
+            contentPane.add(mainViewModeOne.getMainPanel());
         } else if (currentMode == 1) {
             MainViewModeTwo mainViewModeTwo = new MainViewModeTwo(startup, new SystemModelModeTwo());
 
-            contentPane.add(mainViewModeTwo.mainPanel);
+            contentPane.add(mainViewModeTwo.getMainPanel());
         }
 
         int state = startup.getJFrame().getExtendedState();

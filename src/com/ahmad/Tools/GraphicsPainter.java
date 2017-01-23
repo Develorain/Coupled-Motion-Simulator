@@ -1,5 +1,11 @@
 package com.ahmad.Tools;
 
+/** GraphicsPainter
+ * Utility class to draw graphics to screen
+ * @since January 18, 2017
+ * @author Ahmad Gharib
+ */
+
 import com.ahmad.Models.BoxModel;
 import com.ahmad.Models.PulleyModel;
 import com.ahmad.Models.SlopeModel;
@@ -10,6 +16,11 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 
 public class GraphicsPainter {
+    /** Draws the sloped box to the screen
+     * @param graphics     a reference to the graphics instance
+     * @param box          a reference to the box instance
+     * @param slopeAngle   the slope angle
+     * @param invertedAxis whether the x-axis is inverted or not */
     public static void drawSlopedBox(Graphics graphics, BoxModel box, double slopeAngle, boolean invertedAxis) {
         if (invertedAxis) {
             slopeAngle -= 180;
@@ -30,45 +41,57 @@ public class GraphicsPainter {
         graphics2D.setColor(new Color(51, 51, 51));    // mild gray colour
 
         // Moves origin to x, y coordinate of the rectangle, draws it, and then returns origin back to 0, 0
-        graphics2D.translate(box.topLeftCorner.getX(), box.topLeftCorner.getY());
+        graphics2D.translate(box.getTopLeftCorner().getX(), box.getTopLeftCorner().getY());
         graphics2D.fill(rotatedRectangle);
-        graphics2D.translate(-box.topLeftCorner.getX(), -box.topLeftCorner.getY());
+        graphics2D.translate(-box.getTopLeftCorner().getX(), -box.getTopLeftCorner().getY());
     }
 
+    /** Draws the dangling box to the screen
+     * @param graphics a reference to the graphics instance
+     * @param box      a reference to the box instance */
     public static void drawDanglingBox(Graphics graphics, BoxModel box) {
         graphics.fillRect(
-                (int) box.topLeftCorner.getX(),
-                (int) box.topLeftCorner.getY(),
+                (int) box.getTopLeftCorner().getX(),
+                (int) box.getTopLeftCorner().getY(),
                 box.getBoxWidth(),
                 box.getBoxHeight()
         );
     }
 
+    /** Draws the slope to the screen
+     * @param graphics a reference to the graphics instance
+     * @param slope    a reference to the slope instance */
     public static void drawSlope(Graphics graphics, SlopeModel slope) {
         graphics.drawLine(
-                (int) slope.leftCoord.getX(),
-                (int) slope.leftCoord.getY(),
-                (int) slope.rightCoord.getX(),
-                (int) slope.rightCoord.getY()
+                (int) slope.getLeftCoord().getX(),
+                (int) slope.getLeftCoord().getY(),
+                (int) slope.getRightCoord().getX(),
+                (int) slope.getRightCoord().getY()
         );
     }
 
+    /** Draws the wire to the screen
+     * @param graphics a reference to the graphics instance
+     * @param wire     a reference to the wire instance */
     public static void drawWire(Graphics graphics, WireModel wire) {
         graphics.drawLine(
-                (int) wire.leftStringLeftCoord.getX(),
-                (int) wire.leftStringLeftCoord.getY(),
-                (int) wire.leftStringRightCoord.getX(),
-                (int) wire.leftStringRightCoord.getY()
+                (int) wire.getLeftWireLeftCoord().getX(),
+                (int) wire.getLeftWireLeftCoord().getY(),
+                (int) wire.getLeftWireRightCoord().getX(),
+                (int) wire.getLeftWireRightCoord().getY()
         );
 
         graphics.drawLine(
-                (int) wire.rightStringLeftCoord.getX(),
-                (int) wire.rightStringLeftCoord.getY(),
-                (int) wire.rightStringRightCoord.getX(),
-                (int) wire.rightStringRightCoord.getY()
+                (int) wire.getRightWireLeftCoord().getX(),
+                (int) wire.getRightWireLeftCoord().getY(),
+                (int) wire.getRightWireRightCoord().getX(),
+                (int) wire.getRightWireRightCoord().getY()
         );
     }
 
+    /** Draws the pulley to the screen
+     * @param graphics a reference to the graphics instance
+     * @param pulley   a reference to the pulley instance */
     public static void drawPulley(Graphics graphics, PulleyModel pulley) {
         graphics.fillOval(
                 (int) pulley.getTopLeftCorner().getX(),
@@ -78,11 +101,14 @@ public class GraphicsPainter {
         );
     }
 
-    public static void drawWall(Graphics graphics, SlopeModel slope) {
+    /** Draws the vertical slope from below the pulley to the bottom of the scren
+     * @param graphics a reference to the graphics instance
+     * @param slope    a reference to the slope instance */
+    public static void drawVerticalLine(Graphics graphics, SlopeModel slope) {
         graphics.drawLine(
-                (int) slope.rightCoord.getX(),
-                (int) slope.rightCoord.getY(),
-                (int) slope.rightCoord.getX(),
+                (int) slope.getRightCoord().getX(),
+                (int) slope.getRightCoord().getY(),
+                (int) slope.getRightCoord().getX(),
                 Constants.SIMULATION_HEIGHT_PIXELS);
     }
 }
